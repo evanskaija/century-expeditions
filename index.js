@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
                             </ul>
                         </li>
-                        <li><a href="safaris.html" id="nav-safaris" data-en="Tours & Safaris" data-sw="Safari na Ziara">Tours & Safaris</a></li>
                         <li class="dropdown">
                             <a href="experiences.html" id="nav-experiences" data-en="Experiences" data-sw="Uzoefu">Experiences <i class="fas fa-chevron-down"></i></a>
                             <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -50,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li><a href="planner.html" data-en="Custom Trip Planner" data-sw="Kupanga Safari">Custom Trip Planner</a></li>
                             </ul>
                         </li>
+                        <li><a href="safaris.html" id="nav-safaris" data-en="Tours & Safaris" data-sw="Safari na Ziara">Tours & Safaris</a></li>
                         <li><a href="volunteer.html" id="nav-volunteer" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
                         <li><a href="vehicles.html" id="nav-vehicles" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
                         <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
@@ -2188,6 +2188,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Final sweep to translate dynamically loaded elements on initial pageload
     const currentLang = localStorage.getItem('century-lang') || 'en';
     applyLang(currentLang);
+
+    // Register PWA Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js')
+                .then(registration => {
+                    console.log('Century Adventures PWA Service Worker registered successfully with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Century Adventures PWA Service Worker registration failed:', error);
+                });
+        });
+    }
 
     console.log("Century Adventures Exceptional Features: Weather, Currency, Wishlist & Comparison Engines Ready.");
 });
