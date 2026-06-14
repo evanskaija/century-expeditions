@@ -7275,3 +7275,116 @@ iframe.goog-te-menu-frame {
         padding: 12px 20px !important;
     }
 }
+
+/* ── Mobile Layout Refinements: Header & Floating Widgets ── */
+@media (max-width: 992px) {
+    /* Premium Floating Capsule Header on Mobile/Tablet */
+    .header {
+        position: fixed !important;
+        top: 12px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        max-width: none !important;
+        border-radius: 20px !important;
+        padding: 10px 16px !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        background: var(--header-bg) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Premium rounded corners for mobile drawer */
+    .nav {
+        border-top-left-radius: 24px !important;
+        border-bottom-left-radius: 24px !important;
+        box-shadow: -15px 0 45px rgba(0,0,0,0.3) !important;
+    }
+
+    /* Ensure mobile container adjustments don't cut off container padding */
+    .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        top: 10px !important;
+        left: 10px !important;
+        right: 10px !important;
+        border-radius: 16px !important;
+        padding: 8px 14px !important;
+    }
+}
+
+/* ── Floating Widgets Separation (Safari Expert & WhatsApp) ── */
+/* Ensure WhatsApp widget (Chaty, etc.) is anchored nicely in bottom right */
+#chaty-widget-0,
+.chaty-widget,
+[class*="chaty-widget"],
+[id*="chaty-widget"],
+.whatsapp-widget,
+.whatsapp-float {
+    bottom: 30px !important;
+    right: 30px !important;
+    left: auto !important;
+    position: fixed !important;
+    z-index: 10008 !important;
+}
+
+/* Safari Expert float styling */
+.assistant-float {
+    z-index: 10009 !important; /* Always on top of other floats */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* Shifted position when WhatsApp is present */
+.assistant-float.shifted-above-whatsapp {
+    bottom: 105px !important;
+}
+
+@media (max-width: 768px) {
+    #chaty-widget-0,
+    .chaty-widget,
+    [class*="chaty-widget"],
+    [id*="chaty-widget"],
+    .whatsapp-widget,
+    .whatsapp-float {
+        bottom: 20px !important;
+        right: 15px !important;
+    }
+
+    .assistant-float {
+        right: 15px !important;
+        bottom: 20px !important;
+    }
+
+    .assistant-float.shifted-above-whatsapp {
+        bottom: 90px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #chaty-widget-0,
+    .chaty-widget,
+    [class*="chaty-widget"],
+    [id*="chaty-widget"],
+    .whatsapp-widget,
+    .whatsapp-float {
+        bottom: 16px !important;
+        right: 12px !important;
+    }
+
+    .assistant-float {
+        right: 12px !important;
+        bottom: 16px !important;
+    }
+
+    .assistant-float.shifted-above-whatsapp {
+        bottom: 82px !important;
+    }
+}

@@ -987,160 +987,235 @@ document.addEventListener('DOMContentLoaded', () => {
     // setupAutoScroll('.safaris-grid', 380); // Disabled for CSS marquee
     setupAutoScroll('.experiences-grid', 530);
 
-    // Marquee Arrow Navigation
-    const marqueeContainers = document.querySelectorAll('.marquee-container');
-    marqueeContainers.forEach(container => {
-        const leftArrow = container.querySelector('.marquee-arrow-left');
-        const rightArrow = container.querySelector('.marquee-arrow-right');
-        const track = container.querySelector('.marquee-track');
+    // ── Unified Infinite Marquee Slider Engine ──
+    const initInfiniteMarquees = () => {
+        const wrappers = document.querySelectorAll('.marquee-wrapper');
+        wrappers.forEach(wrapper => {
+            const track = wrapper.querySelector('.marquee-track');
+            if (!track) return;
 
-        if (!leftArrow || !rightArrow || !track) return;
+            // Kill CSS animation to let JS inline translation take absolute control
+            track.style.animation = 'none';
+            track.style.webkitAnimation = 'none';
 
-        const firstCard = track.querySelector('.safari-card, .experience-card, .tip-card');
-        const cardWidth = firstCard ? (firstCard.offsetWidth + 30) : 380; // dynamic width + gap
-        let resumeTimer = null;
-        let isAnimating = false;
+            const container = wrapper.closest('.marquee-container');
+            const leftArrow = container ? container.querySelector('.marquee-arrow-left') : null;
+            const rightArrow = container ? container.querySelector('.marquee-arrow-right') : null;
 
-        const getComputedTranslateX = (el) => {
-            const style = window.getComputedStyle(el);
-            const transform = style.transform;
-            if (!transform || transform === 'none') return 0;
-            const matrix = new DOMMatrixReadOnly(transform);
-            return matrix.m41;
-        };
+            // Find dynamic width of a card (card width + gap)
+            const firstCard = track.querySelector('.safari-card, .experience-card, .tip-card');
+            
+            const getCardWidth = () => {
+                const currentGap = window.innerWidth <= 768 ? 14 : 30;
+                return firstCard ? (firstCard.offsetWidth + currentGap) : 380;
+            };
 
-        const scrollMarquee = (direction) => {
-            if (isAnimating) return;
-            isAnimating = true;
+            let cardWidth = getCardWidth();
+            let halfWidth = track.scrollWidth / 2;
 
-            // Pause the CSS animation
-            track.classList.add('paused');
+            // Recalculate track geometry when sizes change
+            const recomputeGeometry = () => {
+                cardWidth = getCardWidth();
+                halfWidth = track.scrollWidth / 2;
+            };
 
-            requestAnimationFrame(() => {
-                let currentX = getComputedTranslateX(track);
-                // The track content is duplicated for the CSS marquee loop,
-                // so halfWidth = total width of one complete set of cards
-                const halfWidth = track.scrollWidth / 2;
+            window.addEventListener('resize', recomputeGeometry);
 
-                // Kill CSS animation so inline styles take effect
-                track.style.animation = 'none';
-                track.style.transform = `translateX(${currentX}px)`;
-                void track.offsetHeight;
+            // Recompute once images are fully loaded
+            const images = track.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete) {
+                    recomputeGeometry();
+                } else {
+                    img.addEventListener('load', recomputeGeometry);
+                }
+            });
 
-                const shift = direction === 'left' ? cardWidth : -cardWidth;
-                let newX = currentX + shift;
+            // Direction configuration: marquee-right moves to the right, others move to the left
+            const isRightMarquee = track.classList.contains('marquee-right');
+            const baseSpeed = isRightMarquee ? 0.7 : -0.7; // pixels per frame at 60fps
 
-                // INFINITE LOOP: wrap around when reaching the boundary
-                if (newX > 0) {
-                    // Scrolled left past the start → teleport to equivalent position at the end
-                    const wrapX = currentX - halfWidth;
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(${wrapX}px)`;
-                    void track.offsetHeight;
-                    newX = wrapX + shift;
-                } else if (Math.abs(newX) >= halfWidth) {
-                    // Scrolled right past the end → teleport to equivalent position at the start
-                    const wrapX = currentX + halfWidth;
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(${wrapX}px)`;
-                    void track.offsetHeight;
-                    newX = wrapX + shift;
+            let posX = isRightMarquee ? -halfWidth : 0;
+            let targetX = null;
+            let isDragging = false;
+            let isAnimating = false;
+            let startX = 0;
+            let startTranslateX = 0;
+            let lastX = 0;
+            let velocity = 0;
+            let paused = false;
+            let resumeTimeout = null;
+
+            const setPosition = (x) => {
+                posX = x;
+                // Infinite seamless loop logic:
+                if (posX > 0) {
+                    // Scrolled left past origin -> teleport back equivalent position
+                    posX -= halfWidth;
+                    if (targetX !== null) targetX -= halfWidth;
+                    if (isDragging) {
+                        startX += halfWidth;
+                    }
+                } else if (Math.abs(posX) >= halfWidth) {
+                    // Scrolled right past width limit -> teleport forward equivalent position
+                    posX += halfWidth;
+                    if (targetX !== null) targetX += halfWidth;
+                    if (isDragging) {
+                        startX -= halfWidth;
+                    }
+                }
+                track.style.transform = `translateX(${posX}px)`;
+            };
+
+            // Setup initial position
+            setPosition(posX);
+
+            // Frame animation loop
+            let lastTime = performance.now();
+            const animateLoop = (time) => {
+                // Determine delta time to guarantee constant speed across different refresh rates (60hz vs 120hz)
+                const dt = Math.min((time - lastTime) / 16.666, 3);
+                lastTime = time;
+
+                if (isDragging) {
+                    // Decay velocity for drag release inertia
+                    velocity *= 0.95;
+                } else if (isAnimating && targetX !== null) {
+                    const dx = targetX - posX;
+                    if (Math.abs(dx) < 0.5) {
+                        setPosition(targetX);
+                        isAnimating = false;
+                        targetX = null;
+                    } else {
+                        // Smooth cubic-like interpolation
+                        setPosition(posX + dx * 0.15 * dt);
+                    }
+                } else if (!paused) {
+                    // Standard smooth auto-scrolling
+                    setPosition(posX + baseSpeed * dt);
                 }
 
-                // Smooth transition to the next card
-                track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                track.style.transform = `translateX(${newX}px)`;
+                requestAnimationFrame(animateLoop);
+            };
+            requestAnimationFrame(animateLoop);
 
+            // Touch / Mouse Drag handlers
+            const startDrag = (clientX) => {
+                isDragging = true;
+                paused = true;
                 isAnimating = false;
+                targetX = null;
+                clearTimeout(resumeTimeout);
 
-                // Resume auto-scroll after 4 seconds of inactivity
-                clearTimeout(resumeTimer);
-                resumeTimer = setTimeout(() => {
-                    track.style.animation = '';
-                    track.style.transition = '';
-                    track.style.transform = '';
-                    track.classList.remove('paused');
+                startX = clientX;
+                startTranslateX = posX;
+                lastX = clientX;
+                velocity = 0;
+                wrapper.classList.add('dragging');
+            };
+
+            const onDrag = (clientX) => {
+                if (!isDragging) return;
+                const deltaX = clientX - startX;
+                velocity = clientX - lastX;
+                lastX = clientX;
+                setPosition(startTranslateX + deltaX);
+            };
+
+            const endDrag = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                wrapper.classList.remove('dragging');
+
+                // Apply scroll momentum inertia
+                if (Math.abs(velocity) > 1.5) {
+                    isAnimating = true;
+                    const momentum = velocity * 12;
+                    targetX = posX + momentum;
+                    
+                    // Align position to card layout boundaries
+                    const currentCardWidth = getCardWidth();
+                    targetX = Math.round(targetX / currentCardWidth) * currentCardWidth;
+                }
+
+                // Smoothly transition back to auto-scrolling after 4 seconds of user inactivity
+                resumeTimeout = setTimeout(() => {
+                    isAnimating = false;
+                    targetX = null;
+                    paused = false;
                 }, 4000);
+            };
+
+            // Drag Mouse Listeners
+            wrapper.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                startDrag(e.clientX);
             });
-        };
+            window.addEventListener('mousemove', (e) => {
+                onDrag(e.clientX);
+            });
+            window.addEventListener('mouseup', () => {
+                endDrag();
+            });
 
-        leftArrow.addEventListener('click', () => scrollMarquee('left'));
-        rightArrow.addEventListener('click', () => scrollMarquee('right'));
-    });
+            // Drag Touch Listeners (Mobile compatibility)
+            wrapper.addEventListener('touchstart', (e) => {
+                startDrag(e.touches[0].clientX);
+            }, { passive: true });
+            wrapper.addEventListener('touchmove', (e) => {
+                onDrag(e.touches[0].clientX);
+            }, { passive: true });
+            wrapper.addEventListener('touchend', () => {
+                endDrag();
+            }, { passive: true });
 
-    // ── Touch & Mouse Drag Support for All Marquee Wrappers ──
-    document.querySelectorAll('.marquee-wrapper').forEach(wrapper => {
-        const track = wrapper.querySelector('.marquee-track');
-        if (!track) return;
+            // Arrow control actions
+            const scrollMarquee = (direction) => {
+                paused = true;
+                isAnimating = true;
+                clearTimeout(resumeTimeout);
 
-        let isDragging = false;
-        let startX = 0;
-        let startTranslateX = 0;
-        let lastX = 0;
-        let velocity = 0;
-        let dragResumeTimer = null;
+                const currentCardWidth = getCardWidth();
+                // Find index based on current offset
+                const currentCardIndex = Math.round(posX / currentCardWidth);
+                const shift = direction === 'left' ? 1 : -1;
+                targetX = (currentCardIndex + shift) * currentCardWidth;
 
-        const getTranslateX = (el) => {
-            const style = window.getComputedStyle(el);
-            const transform = style.transform;
-            if (!transform || transform === 'none') return 0;
-            return new DOMMatrixReadOnly(transform).m41;
-        };
+                // Resume auto-scroll after 4s
+                resumeTimeout = setTimeout(() => {
+                    isAnimating = false;
+                    targetX = null;
+                    paused = false;
+                }, 4000);
+            };
 
-        const startDrag = (clientX) => {
-            isDragging = true;
-            wrapper.classList.add('dragging');
-            track.classList.add('paused');
-            track.style.animation = 'none';
-            startX = clientX;
-            startTranslateX = getTranslateX(track);
-            lastX = clientX;
-            velocity = 0;
-            track.style.transition = 'none';
-            clearTimeout(dragResumeTimer);
-        };
-
-        const onDrag = (clientX) => {
-            if (!isDragging) return;
-            const delta = clientX - startX;
-            velocity = clientX - lastX;
-            lastX = clientX;
-            const newX = startTranslateX + delta;
-            track.style.transform = `translateX(${newX}px)`;
-        };
-
-        const endDrag = () => {
-            if (!isDragging) return;
-            isDragging = false;
-            wrapper.classList.remove('dragging');
-
-            // Apply momentum
-            if (Math.abs(velocity) > 2) {
-                const momentum = velocity * 8;
-                const currentX = getTranslateX(track);
-                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                track.style.transform = `translateX(${currentX + momentum}px)`;
+            if (leftArrow) {
+                leftArrow.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollMarquee('left');
+                });
+            }
+            if (rightArrow) {
+                rightArrow.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scrollMarquee('right');
+                });
             }
 
-            // Resume auto-scroll after inactivity
-            dragResumeTimer = setTimeout(() => {
-                track.style.animation = '';
-                track.style.transition = '';
-                track.style.transform = '';
-                track.classList.remove('paused');
-            }, 3500);
-        };
+            // Hover control (Pause on hover for desktop)
+            wrapper.addEventListener('mouseenter', () => {
+                if (!isDragging) paused = true;
+            });
+            wrapper.addEventListener('mouseleave', () => {
+                if (!isDragging && !isAnimating && targetX === null) {
+                    paused = false;
+                }
+            });
+        });
+    };
 
-        // Mouse events
-        wrapper.addEventListener('mousedown', (e) => { e.preventDefault(); startDrag(e.clientX); });
-        window.addEventListener('mousemove', (e) => { onDrag(e.clientX); });
-        window.addEventListener('mouseup', () => { endDrag(); });
-
-        // Touch events
-        wrapper.addEventListener('touchstart', (e) => { startDrag(e.touches[0].clientX); }, { passive: true });
-        wrapper.addEventListener('touchmove', (e) => { onDrag(e.touches[0].clientX); }, { passive: true });
-        wrapper.addEventListener('touchend', () => { endDrag(); }, { passive: true });
-    });
+    // Initialize the infinite marquee engine
+    initInfiniteMarquees();
 
     // Lightbox logic
     const galleryImages = document.querySelectorAll('.gallery-grid img');
@@ -1869,6 +1944,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Dynamic floating widgets overlap adjustment (WhatsApp & Safari Expert)
+        const adjustFloatSpacing = () => {
+            const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
+            if (chatyWidget) {
+                assistantFloat.classList.add('shifted-above-whatsapp');
+            } else {
+                assistantFloat.classList.remove('shifted-above-whatsapp');
+            }
+        };
+
+        // Run immediately
+        adjustFloatSpacing();
+
+        // Run periodically and on DOM mutations to adapt if widgets load asynchronously
+        const observer = new MutationObserver(adjustFloatSpacing);
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // Polling fallback
+        let pollCount = 0;
+        const pollInterval = setInterval(() => {
+            adjustFloatSpacing();
+            pollCount++;
+            if (pollCount > 15) clearInterval(pollInterval);
+        }, 1000);
     };
 
     // ── Read More: Auto-collapse long descriptive text sections ──
