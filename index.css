@@ -7555,11 +7555,11 @@ iframe.goog-te-menu-frame {
 /* ── Chat Panel Container ── */
 .comm-panel {
     position: fixed;
-    bottom: 24px;
+    bottom: 92px;
     right: 24px;
     width: 380px;
     max-height: 600px;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 180px);
     background: var(--card-bg, #fff);
     border-radius: 20px;
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
@@ -8131,19 +8131,23 @@ iframe.goog-te-menu-frame {
         padding: 16px;
     }
     .comm-panel {
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100%;
-        max-height: 100vh;
-        height: 100vh;
-        height: 100dvh;
-        border-radius: 0;
-        border: none;
+        bottom: 84px;
+        right: 5%;
+        left: 5%;
+        width: 90%;
+        max-width: 360px;
+        max-height: min(480px, 70vh);
+        height: auto;
+        border-radius: 16px;
+        border: 1px solid var(--border-color, #e0e0e0);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
     .comm-header {
         padding: 16px 14px 12px;
-        border-radius: 0;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
     .comm-category-grid {
         gap: 8px;
@@ -8151,6 +8155,124 @@ iframe.goog-te-menu-frame {
     .comm-category-card {
         padding: 12px 8px;
     }
+}
+
+/* ── Home Menu Options ── */
+.comm-home-menu {
+    display: flex;
+    flex-direction: column;
+}
+.comm-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    color: var(--text-main, #1a1a1a);
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border-bottom: 1px solid var(--border-color, #eaeaea);
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+.comm-menu-item:hover {
+    background-color: rgba(0, 66, 37, 0.03);
+}
+.comm-menu-item:active {
+    background-color: rgba(0, 66, 37, 0.06);
+}
+.comm-menu-icon {
+    font-size: 1.1rem;
+    color: var(--primary-green, #004225);
+    width: 20px;
+    text-align: center;
+}
+.comm-menu-arrow {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #b0b0b0;
+    transition: transform 0.2s;
+}
+.comm-menu-item:hover .comm-menu-arrow {
+    transform: translateX(3px);
+}
+.comm-menu-divider {
+    height: 12px;
+    background: var(--section-bg, #f7f8fa);
+    border-bottom: 1px solid var(--border-color, #eaeaea);
+}
+
+/* ── Immediate Assistance ── */
+.comm-immediate-assistance {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.comm-assistance-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted, #777);
+    margin-bottom: 2px;
+}
+.comm-assistance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.comm-assistance-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    background: var(--card-bg, #fff);
+    border: 1px solid var(--border-color, #e5e5e5);
+    color: var(--text-main, #333);
+    transition: all 0.2s ease;
+}
+.comm-assistance-btn i {
+    font-size: 1.1rem;
+}
+.comm-assistance-btn.btn-call {
+    color: #2e7d32;
+}
+.comm-assistance-btn.btn-whatsapp {
+    color: #25d366;
+}
+.comm-assistance-btn.btn-email {
+    color: #c5a044;
+}
+.comm-assistance-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border-color: var(--accent-gold, #c5a044);
+}
+
+/* Dark theme overrides for new elements */
+[data-theme="dark"] .comm-menu-item {
+    color: #e0e0e0;
+    border-bottom-color: #2d2d44;
+}
+[data-theme="dark"] .comm-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+[data-theme="dark"] .comm-menu-divider {
+    background: #12121e;
+    border-bottom-color: #2d2d44;
+}
+[data-theme="dark"] .comm-assistance-btn {
+    background: #1e1e32;
+    border-color: #2d2d44;
+    color: #e0e0e0;
 }
 
 /* ── Dark Mode Overrides ── */

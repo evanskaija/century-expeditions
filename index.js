@@ -1751,7 +1751,7 @@ document.addEventListener('DOMContentLoaded', () => {
         floatBtn.innerHTML = `
             <span class="comm-float-icon">🦁</span>
             <div class="comm-float-text">
-                <span class="comm-float-title">Safari Support Center</span>
+                <span class="comm-float-title">Safari Expert</span>
                 <span class="comm-float-status"><span class="comm-float-dot"></span> Online • Ready to Help</span>
             </div>
             <span class="comm-float-badge" id="commBadge">0</span>
@@ -1768,7 +1768,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="comm-header-brand">
                         <span class="brand-icon">🦁</span>
                         <div>
-                            <h3>Safari Support</h3>
+                            <h3>Safari Expert</h3>
                             <span class="brand-status"><span class="comm-float-dot"></span> Online</span>
                         </div>
                     </div>
@@ -1786,19 +1786,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- HOME VIEW -->
                 <div class="comm-view active" id="viewHome">
                     <div class="comm-home-greeting">
-                        <h4>How can we help you?</h4>
-                        <p>Select a category to start a conversation</p>
+                        <h4>Welcome to Century Adventures</h4>
+                        <p>How can we help you today?</p>
                     </div>
-                    <div class="comm-category-grid" id="commCatGrid"></div>
-                    <div class="comm-quick-actions">
-                        <a href="https://wa.me/255747115390" target="_blank" class="comm-quick-action">
-                            <i class="fab fa-whatsapp"></i>
-                            <div class="qa-info"><span class="qa-name">WhatsApp Us Directly</span><span class="qa-desc">Instant response from our team</span></div>
+                    
+                    <div class="comm-home-menu">
+                        <div class="comm-menu-item" data-action="chat-safari">
+                            <i class="fas fa-compass comm-menu-icon"></i>
+                            <span>Plan My Safari</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                        </div>
+                        <div class="comm-menu-item" data-action="view-quote">
+                            <i class="fas fa-file-invoice-dollar comm-menu-icon"></i>
+                            <span>Request a Quote</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                        </div>
+                        <a href="https://wa.me/255747115390" target="_blank" class="comm-menu-item">
+                            <i class="fab fa-whatsapp comm-menu-icon"></i>
+                            <span>WhatsApp Us</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
                         </a>
-                        <a href="planner.html" class="comm-quick-action">
-                            <i class="fas fa-compass"></i>
-                            <div class="qa-info"><span class="qa-name">Plan My Safari</span><span class="qa-desc">Get a personalized itinerary</span></div>
-                        </a>
+                        <div class="comm-menu-item" data-action="chat-general">
+                            <i class="fas fa-envelope comm-menu-icon"></i>
+                            <span>Contact Our Team</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                        </div>
+                        <div class="comm-menu-item" data-action="view-report">
+                            <i class="fas fa-exclamation-triangle comm-menu-icon"></i>
+                            <span>Report an Issue</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="comm-menu-divider"></div>
+
+                    <div class="comm-immediate-assistance">
+                        <div class="comm-assistance-title">Need immediate assistance?</div>
+                        <div class="comm-assistance-grid">
+                            <a href="tel:+255747115390" class="comm-assistance-btn btn-call">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Call Us</span>
+                            </a>
+                            <a href="https://wa.me/255747115390" target="_blank" class="comm-assistance-btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </a>
+                            <a href="mailto:info@centuryadventures.com" class="comm-assistance-btn btn-email">
+                                <i class="far fa-envelope"></i>
+                                <span>Email Us</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1883,15 +1920,20 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         document.body.appendChild(panel);
 
-        // ── Populate Category Grid ──
-        const catGrid = document.getElementById('commCatGrid');
-        CATEGORIES.forEach(cat => {
-            const card = document.createElement('div');
-            card.className = 'comm-category-card';
-            card.dataset.catId = cat.id;
-            card.innerHTML = `<span class="cat-emoji">${cat.emoji}</span><span class="cat-label">${cat.label}</span>`;
-            card.addEventListener('click', () => openChat(cat.id));
-            catGrid.appendChild(card);
+        // ── Home Menu Click Handlers ──
+        panel.querySelectorAll('.comm-menu-item[data-action]').forEach(item => {
+            item.addEventListener('click', () => {
+                const action = item.dataset.action;
+                if (action === 'chat-safari') {
+                    openChat('safari');
+                } else if (action === 'chat-general') {
+                    openChat('general');
+                } else if (action === 'view-quote') {
+                    switchView('viewQuote');
+                } else if (action === 'view-report') {
+                    switchView('viewReport');
+                }
+            });
         });
 
         // ── State ──
@@ -2262,6 +2304,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
             if (chatyWidget) {
                 floatBtn.style.bottom = '90px';
+                panel.style.bottom = '158px';
+            } else {
+                floatBtn.style.bottom = '';
+                panel.style.bottom = '';
             }
         };
         adjustFloatSpacing();
