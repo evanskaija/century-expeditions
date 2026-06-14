@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog | Century Adventures</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Logo"></a></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="safaris.html">Tours</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
+                <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="trip-hero" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('assets/07TMMT-IM1507-mara-mara-tented-lodge-1475.jpg') center/cover;">
+        <div class="container text-center">
+            <h1 data-en="Safari Travel Blog" data-sw="Jarida la Safari">Safari Travel Blog</h1>
+            <p class="hero-tagline" data-en="Expert advice, travel guides, and stories from the African bush." data-sw="Ushauri wa kitaalamu, miongozo ya safari, na hadithi kutoka porini.">Expert advice, travel guides, and stories from the African bush.</p>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="section">
+        <div class="container blog-page-grid">
+            <div class="blog-main">
+                <div class="blog-list">
+                    <!-- Post 1 -->
+                    <article class="blog-card-wide scroll-reveal">
+                        <div class="blog-img">
+                            <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Best time to visit">
+                        </div>
+                        <div class="blog-info">
+                            <span class="blog-cat">PLANNING</span>
+                            <h2>Best time to visit Tanzania</h2>
+                            <p>Discover the dry and wet seasons, and when you can see the Great Migration herds crossing the Mara River.</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> June 2, 2026</span>
+                                <a href="best-time-to-visit-tanzania.html" class="read-more">READ MORE &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="blog-card-wide scroll-reveal">
+                        <div class="blog-img">
+                            <img src="assets/elwphant.jpg" alt="Big Five">
+                        </div>
+                        <div class="blog-info">
+                            <span class="blog-cat">WILDLIFE</span>
+                            <h2>The Big Five Animals</h2>
+                            <p>Everything you need to know about Africa's most iconic animals: Lion, Leopard, Elephant, Rhino, and Buffalo.</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> May 28, 2026</span>
+                                <a href="#" class="read-more">READ MORE &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="blog-card-wide scroll-reveal">
+                        <div class="blog-img">
+                            <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Migration Guide">
+                        </div>
+                        <div class="blog-info">
+                            <span class="blog-cat">GUIDES</span>
+                            <h2>Serengeti Migration Guide</h2>
+                            <p>A month-by-month breakdown of where the massive herds of wildebeest and zebra are throughout the year.</p>
+                            <div class="blog-meta">
+                                <span><i class="fas fa-calendar"></i> May 15, 2026</span>
+                                <a href="migration-safaris.html" class="read-more">READ MORE &rarr;</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="blog-sidebar-wrap">
+                <div class="sidebar-box search-box">
+                    <h3>Search Blog</h3>
+                    <div class="search-input">
+                        <input type="text" placeholder="Search articles...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="sidebar-box categories-box">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Safari Tips (12)</a></li>
+                        <li><a href="#">Wildlife Stories (8)</a></li>
+                        <li><a href="#">Destinations (15)</a></li>
+                        <li><a href="#">Conservation (4)</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-box newsletter-sidebar">
+                    <h3>Newsletter</h3>
+                    <p>Get the latest updates directly to your inbox.</p>
+                    <input type="email" placeholder="Email Address">
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;">JOIN</button>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Footer -->
+        <!-- Footer Contact Info -->
+    <div class="footer-top">
+        <div class="container">
+            <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
+            <a href="enquire.html" class="btn enquire-btn" data-en="GET IN TOUCH TODAY!" data-sw="WASILIANA NASI LEO!">GET IN TOUCH TODAY!</a>
+        </div>
+    </div>
+
+    <!-- Final Call to Action -->
+    <section class="section cta-section" style="background: var(--primary-gradient); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <div class="container" style="position: relative; z-index: 2;">
+            <span class="sub-heading" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px;" data-en="YOUR AFRICAN ADVENTURE STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR AFRICAN ADVENTURE STARTS HERE</span>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: white; margin: 10px 0 16px;" data-en="Ready to Explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Ready to Explore Tanzania?</h2>
+            
+            <p class="cta-description" style="max-width: 650px; margin: 0 auto 25px; font-size:0.9rem; line-height: 1.65; opacity: 0.9;">
+                <span class="cta-hide-mobile" data-en="Imagine witnessing a lion hunt at sunrise, watching elephants roam freely across endless savannahs, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. " data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa mapambazuko, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. ">Imagine witnessing a lion hunt at sunrise, watching elephants roam freely across endless savannahs, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. </span>
+                <span data-en="Let Century Adventures turn those dreams into reality." data-sw="Ruhusu Century Adventures kugeuza ndoto hizo kuwa kweli.">Let Century Adventures turn those dreams into reality.</span>
+            </p>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="enquire.html" class="btn btn-primary" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Safari" data-sw="Panga Safari Yako">Plan Your Safari</a>
+                <a href="enquire.html" class="btn btn-outline" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
+            </div>
+            
+            <div style="margin-top: 18px;">
+                <a href="contact.html" style="color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;" data-en="Contact Our Travel Experts &rarr;" data-sw="Wasiliana na Wataalamu Wetu &rarr;">Contact Our Travel Experts &rarr;</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Century Adventures. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

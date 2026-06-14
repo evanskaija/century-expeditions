@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Century Adventures</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body admin-theme">
+    <div class="dashboard-container">
+        <!-- Admin Sidebar -->
+        <aside class="dashboard-sidebar" style="background: #1a1a1a;">
+            <div class="dash-logo"><img src="assets/logo.png" alt="Logo"></div>
+            <nav class="dash-nav">
+                <ul>
+                    <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
+                    <li><a href="#"><i class="fas fa-credit-card"></i> Payments</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="#"><i class="fas fa-blog"></i> Blog Posts</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header">
+                <div>
+                    <h1>Century <span style="color: var(--accent-gold);">Admin</span></h1>
+                    <p>Platform Overview & Statistics</p>
+                </div>
+                <div class="user-profile">
+                    <div class="profile-info" style="text-align: right;">
+                        <strong>Administrator</strong>
+                        <span>Super User</span>
+                    </div>
+                    <img src="assets/user1.jpg" alt="Admin" class="profile-img">
+                </div>
+            </header>
+
+            <!-- Admin Stats -->
+            <section class="dash-stats">
+                <div class="dash-stat-card">
+                    <div class="stat-icon" style="color: #4caf50;"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-meta"><h3>$84,200</h3><p>Monthly Revenue</p></div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon" style="color: #2196f3;"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="stat-meta"><h3>12</h3><p>New Bookings</p></div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="stat-icon" style="color: #f44336;"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="stat-meta"><h3>4</h3><p>Pending Enquiries</p></div>
+                </div>
+            </section>
+
+            <!-- Data Table -->
+            <div class="dash-card">
+                <div class="card-header">
+                    <h3>Recent Bookings</h3>
+                    <button class="btn btn-primary btn-sm">Export Data</button>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Tour Package</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#BK-9021</td>
+                                <td>Sarah Johnson</td>
+                                <td>7-Day Serengeti</td>
+                                <td>15 Sept 2026</td>
+                                <td>$2,450</td>
+                                <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32;">PAID</span></td>
+                                <td><i class="fas fa-ellipsis-v"></i></td>
+                            </tr>
+                            <tr>
+                                <td>#BK-9022</td>
+                                <td>Michael Smith</td>
+                                <td>12-Day Southern</td>
+                                <td>20 Oct 2026</td>
+                                <td>$5,221</td>
+                                <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00;">PENDING</span></td>
+                                <td><i class="fas fa-ellipsis-v"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Testimonials | Century Adventures</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="Logo"></a></div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="testimonials.html" class="active">Reviews</a></li>
+                    <li><a href="safaris.html">Tours</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
+                <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="trip-hero" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('assets/century3.jpg') center/cover;">
+        <div class="container text-center">
+            <h1 data-en="What Our Travelers Say" data-sw="Maoni ya Wasafiri">What Our Travelers Say</h1>
+            <p class="hero-tagline" data-en="Read genuine reviews from guests who explored Tanzania with us." data-sw="Soma maoni halisi kutoka kwa wageni waliochunguza Tanzania nasi.">Read genuine reviews from guests who explored Tanzania with us.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="testimonials-full-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card-full scroll-reveal">
+                    <div class="review-id">#REVIEW-1052</div>
+                    <div class="review-body">
+                        <p>"Absolutely incredible experience. From the pick-up at Kilimanjaro airport to the final drop-off, every detail was perfect. Our guide was like a walking encyclopedia of wildlife knowledge!"</p>
+                    </div>
+                    <div class="review-footer">
+                        <img src="assets/user1.jpg" alt="User" class="review-avatar">
+                        <div class="review-meta">
+                            <h4>James Wilson</h4>
+                            <span>Australia | June 2026</span>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card-full scroll-reveal">
+                    <div class="review-id">#REVIEW-1048</div>
+                    <div class="review-body">
+                        <p>"Century Adventures made our honeymoon unforgettable. The private camps in the Serengeti were luxury beyond expectation. Sleeping under the African stars is something we will never forget."</p>
+                    </div>
+                    <div class="review-footer">
+                        <img src="assets/user2.jpg" alt="User" class="review-avatar">
+                        <div class="review-meta">
+                            <h4>Elena & Marco</h4>
+                            <span>Italy | May 2026</span>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card-full scroll-reveal">
+                    <div class="review-id">#REVIEW-1045</div>
+                    <div class="review-body">
+                        <p>"We saw the Big Five in just 3 days! The vehicle was comfortable and the pop-up roof gave us perfect views for photography. Thank you Century Safaris for the memories!"</p>
+                    </div>
+                    <div class="review-footer">
+                        <img src="assets/user3.jpg" alt="User" class="review-avatar">
+                        <div class="review-meta">
+                            <h4>Sarah Thompson</h4>
+                            <span>Canada | April 2026</span>
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TripAdvisor Box -->
+            <div class="tripadvisor-footer-box animate-in">
+                <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg" alt="TripAdvisor" style="height: 40px; margin-bottom: 20px;">
+                <h3>Total Reviews: 524 | Average Rating: 5.0</h3>
+                <p>We are consistently rated as one of the top safari operators in Arusha.</p>
+                <a href="#" class="btn btn-primary">VIEW ON TRIPADVISOR</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+        <!-- Footer Contact Info -->
+    <div class="footer-top">
+        <div class="container">
+            <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
+            <a href="enquire.html" class="btn enquire-btn" data-en="GET IN TOUCH TODAY!" data-sw="WASILIANA NASI LEO!">GET IN TOUCH TODAY!</a>
+        </div>
+    </div>
+
+    <!-- Final Call to Action -->
+    <section class="section cta-section" style="background: var(--primary-gradient); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
+        <div class="container" style="position: relative; z-index: 2;">
+            <span class="sub-heading" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px;" data-en="YOUR AFRICAN ADVENTURE STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR AFRICAN ADVENTURE STARTS HERE</span>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: white; margin: 10px 0 16px;" data-en="Ready to Explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Ready to Explore Tanzania?</h2>
+            
+            <p class="cta-description" style="max-width: 650px; margin: 0 auto 25px; font-size:0.9rem; line-height: 1.65; opacity: 0.9;">
+                <span class="cta-hide-mobile" data-en="Imagine witnessing a lion hunt at sunrise, watching elephants roam freely across endless savannahs, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. " data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa mapambazuko, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. ">Imagine witnessing a lion hunt at sunrise, watching elephants roam freely across endless savannahs, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. </span>
+                <span data-en="Let Century Adventures turn those dreams into reality." data-sw="Ruhusu Century Adventures kugeuza ndoto hizo kuwa kweli.">Let Century Adventures turn those dreams into reality.</span>
+            </p>
+
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="enquire.html" class="btn btn-primary" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Safari" data-sw="Panga Safari Yako">Plan Your Safari</a>
+                <a href="enquire.html" class="btn btn-outline" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
+            </div>
+            
+            <div style="margin-top: 18px;">
+                <a href="contact.html" style="color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;" data-en="Contact Our Travel Experts &rarr;" data-sw="Wasiliana na Wataalamu Wetu &rarr;">Contact Our Travel Experts &rarr;</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container" style="text-align: center;">
+            <p>&copy; 2026 Century Adventures. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
