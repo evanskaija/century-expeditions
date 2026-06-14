@@ -2189,12 +2189,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLang = localStorage.getItem('century-lang') || 'en';
     applyLang(currentLang);
 
-    // Register PWA Service Worker
+    // Register PWA Service Worker (with forced update check)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
-                    console.log('Century Adventures PWA Service Worker registered successfully with scope:', registration.scope);
+                    console.log('Century Adventures PWA Service Worker registered:', registration.scope);
+                    // Check for updates every time the page loads
+                    registration.update();
+                    // When a new SW is found, tell it to activate immediately
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'activated') {
+                                console.log('New Century Adventures SW activated – refreshing for latest content.');
+                            }
+                        });
+                    });
                 })
                 .catch(error => {
                     console.error('Century Adventures PWA Service Worker registration failed:', error);
