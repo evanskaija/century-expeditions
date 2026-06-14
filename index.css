@@ -1500,6 +1500,15 @@ h2 {
     }
 }
 
+@keyframes heroZoom {
+    0% {
+        transform: scale(1.04) translate(0, 0);
+    }
+    100% {
+        transform: scale(1.12) translate(-1%, -0.5%);
+    }
+}
+
 .hero h1 {
     font-size: 4.5rem;
     font-family: 'Playfair Display', serif;
@@ -3051,10 +3060,10 @@ iframe.goog-te-menu-frame {
 
     @keyframes floatHangMobile {
         0%, 100% {
-            transform: translateY(0);
+            transform: translateY(0) rotate(0deg);
         }
         50% {
-            transform: translateY(-8px);
+            transform: translateY(-16px) rotate(1deg);
         }
     }
 
@@ -5626,10 +5635,12 @@ iframe.goog-te-menu-frame {
     background-attachment: inherit;
     transition: opacity 2.5s ease-in-out;
     opacity: 0;
+    transform: scale(1.02);
 }
 
 .hero-bg-slide.active {
     opacity: 1;
+    animation: heroZoom 16s ease-in-out infinite alternate;
 }
 
 .hero-bg-overlay {
@@ -6837,8 +6848,20 @@ iframe.goog-te-menu-frame {
 
 /* ── Mobile – Marquee Sizing Fixes ── */
 @media (max-width: 768px) {
+    .marquee-container,
+    .mini-marquee.marquee-container {
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+        padding: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        overflow: visible !important;
+    }
+
     .marquee-wrapper {
-        padding: 5px 0 20px 0;
+        width: 100% !important;
+        padding: 10px 0 24px 0 !important;
+        overflow: hidden !important;
     }
 
     .marquee-track {
@@ -6847,24 +6870,19 @@ iframe.goog-te-menu-frame {
 
     /* Marquee arrow positioning for small screens */
     .marquee-arrow {
-        display: flex; /* Always show arrows on mobile */
+        display: flex !important; /* Always show arrows on mobile */
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 0.95rem !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15) !important;
     }
 
     .marquee-arrow-left {
-        left: 5px;
+        left: 12px !important;
     }
 
     .marquee-arrow-right {
-        right: 5px;
-    }
-
-    /* Section containing marquees – add side padding for arrows */
-    .marquee-container {
-        padding: 0 50px;
-    }
-
-    .mini-marquee.marquee-container {
-        padding: 0 45px;
+        right: 12px !important;
     }
 }
 
