@@ -1711,264 +1711,562 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ── Premium Safari Assistant Widget Injection ──
-    const initSafariAssistant = () => {
-        // Floating button HTML injection
-        const assistantFloat = document.createElement('div');
-        assistantFloat.className = 'assistant-float';
-        assistantFloat.id = 'assistantFloatBtn';
-        assistantFloat.innerHTML = `
-            <span class="assistant-icon">🦁</span>
-            <div class="assistant-text">
-                <span class="assistant-title" data-en="Safari Expert" data-sw="Mtaalamu wa Safari">Safari Expert</span>
-                <span class="assistant-status" data-en="Online &bull; Ready to Help" data-sw="Yupo &bull; Tayari Kusaidia"><span class="status-dot"></span>Online &bull; Ready to Help</span>
-            </div>
-        `;
-        document.body.appendChild(assistantFloat);
+    const initCommunicationCenter = () => {
+        // ── Data Layer: localStorage persistence ──
+        const VISITOR_KEY = 'century-visitor-id';
+        const CONV_KEY = 'century-conversations';
+        const getVisitorId = () => {
+            let id = localStorage.getItem(VISITOR_KEY);
+            if (!id) { id = 'visitor-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6); localStorage.setItem(VISITOR_KEY, id); }
+            return id;
+        };
+        const visitorId = getVisitorId();
+        const loadConversations = () => { try { return JSON.parse(localStorage.getItem(CONV_KEY)) || []; } catch(e) { return []; } };
+        const saveConversations = (convs) => { localStorage.setItem(CONV_KEY, JSON.stringify(convs)); };
+        const CATEGORIES = [
+            { id: 'safari', emoji: '🦁', label: 'Safari Booking' },
+            { id: 'pricing', emoji: '💰', label: 'Pricing & Quotations' },
+            { id: 'travel', emoji: '🌍', label: 'Travel Information' },
+            { id: 'accommodation', emoji: '🏨', label: 'Accommodation' },
+            { id: 'volunteer', emoji: '🤝', label: 'Volunteer Programs' },
+            { id: 'support', emoji: '🛠', label: 'Technical Support' },
+            { id: 'problem', emoji: '⚠️', label: 'Report a Problem' },
+            { id: 'general', emoji: '📞', label: 'General Inquiry' }
+        ];
+        const getCatByID = (id) => CATEGORIES.find(c => c.id === id) || CATEGORIES[7];
+        const formatTime = (ts) => { const d = new Date(ts); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
+        const formatDate = (ts) => { const d = new Date(ts); const today = new Date(); if (d.toDateString() === today.toDateString()) return 'Today'; const y = new Date(today); y.setDate(y.getDate() - 1); if (d.toDateString() === y.toDateString()) return 'Yesterday'; return d.toLocaleDateString([], { month: 'short', day: 'numeric' }); };
 
-        // Assistant drawer popup container HTML injection
-        const assistantCard = document.createElement('div');
-        assistantCard.className = 'assistant-card';
-        assistantCard.id = 'assistantCard';
-        assistantCard.innerHTML = `
-            <div class="assistant-header">
-                <button class="close-assistant" id="closeAssistantBtn">&times;</button>
-                <h3 data-en="Welcome to Century Adventures" data-sw="Karibu Century Adventures">Welcome to Century Adventures</h3>
-                <p data-en="How can we help you today?" data-sw="Je, tukusaidie nini leo?">How can we help you today?</p>
-                <span data-en="Our Tanzania travel specialists are ready to assist with planning your perfect adventure." data-sw="Wataalamu wetu wa kusafiri Tanzania wapo tayari kukusaidia kupanga safari yako kamili ya ndoto.">Our Tanzania travel specialists are ready to assist with planning your perfect adventure.</span>
+        // ── Hide old assistant if present ──
+        document.body.classList.add('comm-center-active');
+        const oldFloat = document.getElementById('assistantFloatBtn');
+        if (oldFloat) oldFloat.style.display = 'none';
+        const oldCard = document.getElementById('assistantCard');
+        if (oldCard) oldCard.style.display = 'none';
+
+        // ── Create Floating Button ──
+        const floatBtn = document.createElement('div');
+        floatBtn.className = 'comm-float';
+        floatBtn.id = 'commFloatBtn';
+        floatBtn.innerHTML = `
+            <span class="comm-float-icon">🦁</span>
+            <div class="comm-float-text">
+                <span class="comm-float-title">Safari Support Center</span>
+                <span class="comm-float-status"><span class="comm-float-dot"></span> Online • Ready to Help</span>
             </div>
-            <div class="assistant-body">
-                <div>
-                    <div class="assistant-section-title" data-en="Need Assistance?" data-sw="Je, Unahitaji Usaidizi?">Need Assistance?</div>
-                    <div class="assistant-assistance-list">
-                        <div class="assistant-email-item">
-                            <span class="assistant-email-icon">📧</span>
-                            <div class="assistant-email-info">
-                                <span class="assistant-email-dept" data-en="General Questions" data-sw="Maswali ya Jumla">General Questions</span>
-                                <a href="mailto:info@centuryadventures.com" class="assistant-email-link">info@centuryadventures.com</a>
-                            </div>
-                        </div>
-                        <div class="assistant-email-item">
-                            <span class="assistant-email-icon">🦁</span>
-                            <div class="assistant-email-info">
-                                <span class="assistant-email-dept" data-en="Safari Bookings" data-sw="Kuhifadhi Safari">Safari Bookings</span>
-                                <a href="mailto:bookings@centuryadventures.com" class="assistant-email-link">bookings@centuryadventures.com</a>
-                            </div>
-                        </div>
-                        <div class="assistant-email-item">
-                            <span class="assistant-email-icon">💰</span>
-                            <div class="assistant-email-info">
-                                <span class="assistant-email-dept" data-en="Pricing &amp; Quotations" data-sw="Bei na Makadirio">Pricing &amp; Quotations</span>
-                                <a href="mailto:sales@centuryadventures.com" class="assistant-email-link">sales@centuryadventures.com</a>
-                            </div>
-                        </div>
-                        <div class="assistant-email-item">
-                            <span class="assistant-email-icon">🛠</span>
-                            <div class="assistant-email-info">
-                                <span class="assistant-email-dept" data-en="Customer Support" data-sw="Usaidizi wa Wateja">Customer Support</span>
-                                <a href="mailto:support@centuryadventures.com" class="assistant-email-link">support@centuryadventures.com</a>
-                            </div>
+            <span class="comm-float-badge" id="commBadge">0</span>
+        `;
+        document.body.appendChild(floatBtn);
+
+        // ── Create Chat Panel ──
+        const panel = document.createElement('div');
+        panel.className = 'comm-panel';
+        panel.id = 'commPanel';
+        panel.innerHTML = `
+            <div class="comm-header">
+                <div class="comm-header-top">
+                    <div class="comm-header-brand">
+                        <span class="brand-icon">🦁</span>
+                        <div>
+                            <h3>Safari Support</h3>
+                            <span class="brand-status"><span class="comm-float-dot"></span> Online</span>
                         </div>
                     </div>
+                    <button class="comm-header-close" id="commClose">&times;</button>
                 </div>
+                <div class="comm-header-tabs">
+                    <div class="comm-tab active" data-view="home"><i class="fas fa-home"></i> Home</div>
+                    <div class="comm-tab" data-view="messages"><i class="fas fa-comments"></i> Messages</div>
+                    <div class="comm-tab" data-view="quote"><i class="fas fa-file-invoice-dollar"></i> Quote</div>
+                    <div class="comm-tab" data-view="report"><i class="fas fa-exclamation-triangle"></i> Report</div>
+                </div>
+            </div>
 
-                <div>
-                    <div class="assistant-section-title" data-en="Quick Actions" data-sw="Hatua za Haraka">Quick Actions</div>
-                    <div class="assistant-actions-list">
-                        <a href="planner.html" class="assistant-action-card">
-                            <i class="fas fa-magic"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Plan My Safari" data-sw="Panga Safari Yangu">Plan My Safari</span>
-                                <span class="assistant-action-desc" data-en="Get a personalized safari itinerary based on your budget and interests." data-sw="Pata ratiba ya safari iliyobinafsishwa kulingana na bajeti na maslahi yako.">Get a personalized safari itinerary based on your budget and interests.</span>
-                            </div>
-                        </a>
-                        <a href="https://wa.me/255747115390" target="_blank" class="assistant-action-card">
+            <div class="comm-body" id="commBody">
+                <!-- HOME VIEW -->
+                <div class="comm-view active" id="viewHome">
+                    <div class="comm-home-greeting">
+                        <h4>How can we help you?</h4>
+                        <p>Select a category to start a conversation</p>
+                    </div>
+                    <div class="comm-category-grid" id="commCatGrid"></div>
+                    <div class="comm-quick-actions">
+                        <a href="https://wa.me/255747115390" target="_blank" class="comm-quick-action">
                             <i class="fab fa-whatsapp"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Chat on WhatsApp" data-sw="Zungumza Kwenye WhatsApp">Chat on WhatsApp</span>
-                                <span class="assistant-action-desc" data-en="Speak directly with a safari expert for instant assistance." data-sw="Zungumza moja kwa moja na mtaalamu wa safari kwa usaidizi wa haraka.">Speak directly with a safari expert for instant assistance.</span>
-                            </div>
+                            <div class="qa-info"><span class="qa-name">WhatsApp Us Directly</span><span class="qa-desc">Instant response from our team</span></div>
                         </a>
-                        <a href="enquire.html" class="assistant-action-card">
-                            <i class="far fa-edit"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Request a Custom Quote" data-sw="Omba Nukuu Maalum">Request a Custom Quote</span>
-                                <span class="assistant-action-desc" data-en="Receive a tailored quotation for your dream trip." data-sw="Pokea makadirio yaliyolengwa kwa ajili ya safari yako ya ndoto.">Receive a tailored quotation for your dream trip.</span>
-                            </div>
-                        </a>
-                        <a href="best-time-to-visit-tanzania.html" class="assistant-action-card">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Best Time to Visit Tanzania" data-sw="Muda Mzuri wa Kutembelea Tanzania">Best Time to Visit Tanzania</span>
-                                <span class="assistant-action-desc" data-en="Get expert advice on seasons, wildlife viewing, and migration." data-sw="Pata ushauri wa kitaalamu kuhusu majira, kuona wanyamapori na uhamiaji.">Get expert advice on seasons, wildlife viewing, and migration.</span>
-                            </div>
-                        </a>
-                        <a href="honeymoon-safaris.html" class="assistant-action-card">
-                            <i class="fas fa-heart"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Honeymoon Planning" data-sw="Kupanga Safari ya Fungate">Honeymoon Planning</span>
-                                <span class="assistant-action-desc" data-en="Discover romantic safari and Zanzibar packages." data-sw="Gundua safari za kimapenzi na vifurushi vya Zanzibar.">Discover romantic safari and Zanzibar packages.</span>
-                            </div>
-                        </a>
-                        <a href="family-safaris.html" class="assistant-action-card">
-                            <i class="fas fa-users"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Family Safari Advice" data-sw="Ushauri wa Safari ya Familia">Family Safari Advice</span>
-                                <span class="assistant-action-desc" data-en="Find the best family-friendly destinations and accommodations." data-sw="Tafuta maeneo bora ya kifamilia na malazi yanayofaa watoto.">Find the best family-friendly destinations and accommodations.</span>
-                            </div>
-                        </a>
-                        <a href="volunteer.html" class="assistant-action-card">
-                            <i class="fas fa-hands-helping"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</span>
-                                <span class="assistant-action-desc" data-en="Learn about meaningful volunteer opportunities in Tanzania." data-sw="Jifunze kuhusu fursa zenye maana za kujitolea nchini Tanzania.">Learn about meaningful volunteer opportunities in Tanzania.</span>
-                            </div>
-                        </a>
-                        <a href="contact.html" class="assistant-action-card">
-                            <i class="fas fa-phone-alt"></i>
-                            <div class="assistant-action-info">
-                                <span class="assistant-action-name" data-en="Contact Our Team" data-sw="Wasiliana na Timu Yetu">Contact Our Team</span>
-                                <span class="assistant-action-desc" data-en="Talk to a travel specialist for detailed trip planning." data-sw="Zungumza na mtaalamu wa kusafiri kwa upangaji wa kina wa safari.">Talk to a travel specialist for detailed trip planning.</span>
-                            </div>
+                        <a href="planner.html" class="comm-quick-action">
+                            <i class="fas fa-compass"></i>
+                            <div class="qa-info"><span class="qa-name">Plan My Safari</span><span class="qa-desc">Get a personalized itinerary</span></div>
                         </a>
                     </div>
                 </div>
 
-                <div>
-                    <div class="assistant-section-title" data-en="Popular Questions" data-sw="Maswali Maarufu">Popular Questions</div>
-                    <div class="assistant-faqs">
-                        <div class="assistant-faq-item">
-                            <button class="assistant-faq-question">
-                                <span data-en="How much does a Tanzania safari cost?" data-sw="Je, safari ya Tanzania inagharimu kiasi gani?">How much does a Tanzania safari cost?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                            <div class="assistant-faq-answer">
-                                <div class="assistant-faq-answer-content" data-en="Prices vary depending on destinations, accommodation level, and travel season. Our team can create options for every budget." data-sw="Bei hutofautiana kulingana na maeneo, kiwango cha malazi, na msimu wa kusafiri. Timu yetu inaweza kutengeneza chaguzi kwa kila bajeti.">
-                                    Prices vary depending on destinations, accommodation level, and travel season. Our team can create options for every budget.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="assistant-faq-item">
-                            <button class="assistant-faq-question">
-                                <span data-en="When is the best time to visit Tanzania?" data-sw="Ni lini wakati mzuri wa kutembelea Tanzania?">When is the best time to visit Tanzania?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                            <div class="assistant-faq-answer">
-                                <div class="assistant-faq-answer-content" data-en="Tanzania is a year-round destination, with each season offering unique wildlife experiences." data-sw="Tanzania ni eneo linalotembelewa mwaka mzima, huku kila msimu ukitoa uzoefu wa kipekee wa wanyamapori.">
-                                    Tanzania is a year-round destination, with each season offering unique wildlife experiences.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="assistant-faq-item">
-                            <button class="assistant-faq-question">
-                                <span data-en="Can you create a custom itinerary?" data-sw="Je, mnaweza kutengeneza ratiba maalum?">Can you create a custom itinerary?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                            <div class="assistant-faq-answer">
-                                <div class="assistant-faq-answer-content" data-en="Absolutely. Every trip can be tailored to your interests, schedule, and budget." data-sw="Kabisa. Kila safari inaweza kubinafsishwa kulingana na maslahi yako, ratiba, na bajeti yako.">
-                                    Absolutely. Every trip can be tailored to your interests, schedule, and budget.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="assistant-faq-item">
-                            <button class="assistant-faq-question">
-                                <span data-en="Do you arrange airport transfers?" data-sw="Je, mnaandaa usafiri wa uwanja wa ndege?">Do you arrange airport transfers?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </button>
-                            <div class="assistant-faq-answer">
-                                <div class="assistant-faq-answer-content" data-en="Yes. We can organize airport pickups, domestic flights, accommodation, and all safari logistics." data-sw="Ndiyo. Tunaweza kupanga mapokezi ya uwanja wa ndege, ndege za ndani, malazi, na taratibu zote za safari.">
-                                    Yes. We can organize airport pickups, domestic flights, accommodation, and all safari logistics.
-                                </div>
-                            </div>
-                        </div>
+                <!-- MESSAGES VIEW -->
+                <div class="comm-view" id="viewMessages">
+                    <div id="commConvList" class="comm-conv-list"></div>
+                </div>
+
+                <!-- QUOTE VIEW -->
+                <div class="comm-view" id="viewQuote">
+                    <div class="comm-home-greeting"><h4>Request a Quote</h4><p>We'll respond within 24 hours</p></div>
+                    <form class="comm-form" id="quoteForm">
+                        <label>Destinations of Interest</label>
+                        <select name="destination">
+                            <option value="">Select destination...</option>
+                            <option value="Serengeti">Serengeti National Park</option>
+                            <option value="Ngorongoro">Ngorongoro Crater</option>
+                            <option value="Kilimanjaro">Mount Kilimanjaro</option>
+                            <option value="Zanzibar">Zanzibar Beach</option>
+                            <option value="Tarangire">Tarangire National Park</option>
+                            <option value="Selous">Selous Game Reserve</option>
+                            <option value="Multiple">Multiple Destinations</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label>Travel Dates</label>
+                        <input type="text" name="dates" placeholder="e.g., June 15 - June 22, 2026">
+                        <label>Number of Travelers</label>
+                        <input type="number" name="travelers" min="1" max="50" placeholder="e.g., 4">
+                        <label>Budget Range (USD)</label>
+                        <select name="budget">
+                            <option value="">Select budget range...</option>
+                            <option value="1000-3000">$1,000 - $3,000</option>
+                            <option value="3000-5000">$3,000 - $5,000</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="10000+">$10,000+</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                        <label>Your Email</label>
+                        <input type="email" name="email" placeholder="your@email.com">
+                        <label>Additional Details</label>
+                        <textarea name="details" placeholder="Tell us about your dream safari..."></textarea>
+                        <button type="submit" class="comm-form-submit"><i class="fas fa-paper-plane"></i> Send Quote Request</button>
+                    </form>
+                    <div class="comm-form-success" id="quoteSuccess" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Quote request sent!</strong><br>Our team will respond within 24 hours via email.</p>
                     </div>
                 </div>
 
-                <div>
-                    <div class="assistant-section-title" data-en="Why Travel With Century Adventures?" data-sw="Kwa Nini Usafiri na Century Adventures?">Why Travel With Century Adventures?</div>
-                    <div class="assistant-trust-grid">
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Local Tanzania Experts" data-sw="Wataalamu wa Ndani wa Tanzania">Local Tanzania Experts</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Personalized Safari Planning" data-sw="Upangaji Binafsi wa Safari">Personalized Safari Planning</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Comfortable 4x4 Safari Vehicles" data-sw="Magari ya Safari ya 4x4 yenye Starehe">Comfortable 4x4 Safari Vehicles</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Professional Guides" data-sw="Waongozaji wa Kitaalamu">Professional Guides</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Trusted Service" data-sw="Huduma ya Kuaminika">Trusted Service</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Fast Response Time" data-sw="Majibu ya Haraka">Fast Response Time</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="Tailor-Made Experiences" data-sw="Uzoefu Uliolengwa Kwako">Tailor-Made Experiences</span></div>
-                        <div class="assistant-trust-item"><i class="fas fa-check-circle"></i> <span data-en="24/7 Travel Support" data-sw="Usaidizi wa Safari wa 24/7">24/7 Travel Support</span></div>
+                <!-- REPORT VIEW -->
+                <div class="comm-view" id="viewReport">
+                    <div class="comm-home-greeting"><h4>Report an Issue</h4><p>We take all reports seriously</p></div>
+                    <form class="comm-form" id="reportForm">
+                        <label>Issue Category</label>
+                        <select name="issue_type">
+                            <option value="">Select issue type...</option>
+                            <option value="website">Website Problem</option>
+                            <option value="booking">Booking Issue</option>
+                            <option value="payment">Payment Problem</option>
+                            <option value="guide">Guide Complaint</option>
+                            <option value="service">Service Concern</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label>Your Email</label>
+                        <input type="email" name="email" placeholder="your@email.com">
+                        <label>Describe the Issue</label>
+                        <textarea name="description" placeholder="Please describe your issue in detail..."></textarea>
+                        <button type="submit" class="comm-form-submit"><i class="fas fa-flag"></i> Submit Report</button>
+                    </form>
+                    <div class="comm-form-success" id="reportSuccess" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Report submitted!</strong><br>Our support team will review and contact you soon.</p>
                     </div>
                 </div>
+
+                <!-- CHAT VIEW (injected dynamically) -->
             </div>
-            <div class="assistant-footer">
-                <div class="assistant-footer-label" data-en="Need immediate assistance?" data-sw="Je, unahitaji usaidizi wa haraka?">Need immediate assistance?</div>
-                <div class="assistant-footer-buttons">
-                    <a href="https://wa.me/255747115390" target="_blank" class="assistant-footer-btn"><i class="fab fa-whatsapp"></i> <span data-en="WhatsApp Us" data-sw="Tupigie WhatsApp">WhatsApp Us</span></a>
-                    <a href="mailto:info@centuryadventures.com" class="assistant-footer-btn"><i class="far fa-envelope"></i> <span data-en="Email Us" data-sw="Tutumie Barua Pepe">Email Us</span></a>
-                    <a href="planner.html" class="assistant-footer-btn btn-primary-accent"><i class="fas fa-compass"></i> <span data-en="Get Custom Safari Plan" data-sw="Pata Mpango wa Safari">Get Custom Safari Plan</span></a>
-                </div>
+
+            <div class="comm-panel-footer">
+                <span>🔒 Your conversations are private &amp; secure</span>
             </div>
         `;
-        document.body.appendChild(assistantCard);
+        document.body.appendChild(panel);
 
-        // Click handlers to open/close assistant popup
-        const toggleAssistant = (e) => {
-            if (e) e.stopPropagation();
-            assistantCard.classList.toggle('active');
+        // ── Populate Category Grid ──
+        const catGrid = document.getElementById('commCatGrid');
+        CATEGORIES.forEach(cat => {
+            const card = document.createElement('div');
+            card.className = 'comm-category-card';
+            card.dataset.catId = cat.id;
+            card.innerHTML = `<span class="cat-emoji">${cat.emoji}</span><span class="cat-label">${cat.label}</span>`;
+            card.addEventListener('click', () => openChat(cat.id));
+            catGrid.appendChild(card);
+        });
+
+        // ── State ──
+        let activeConvId = null;
+        let chatViewEl = null;
+
+        // ── View Switching ──
+        const switchView = (viewId) => {
+            panel.querySelectorAll('.comm-view').forEach(v => v.classList.remove('active'));
+            if (chatViewEl) chatViewEl.classList.remove('active');
+            const view = document.getElementById(viewId);
+            if (view) view.classList.add('active');
+            // Update tabs
+            panel.querySelectorAll('.comm-tab').forEach(t => t.classList.remove('active'));
+            const tab = panel.querySelector(`.comm-tab[data-view="${viewId.replace('view', '').toLowerCase()}"]`);
+            if (tab) tab.classList.add('active');
+            // Refresh messages list if switching to messages
+            if (viewId === 'viewMessages') renderConversationList();
         };
 
-        assistantFloat.addEventListener('click', toggleAssistant);
-        document.getElementById('closeAssistantBtn').addEventListener('click', () => {
-            assistantCard.classList.remove('active');
-        });
-
-        // Close drawer when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!assistantCard.contains(e.target) && !assistantFloat.contains(e.target)) {
-                assistantCard.classList.remove('active');
-            }
-        });
-
-        // Toggle expandable FAQ accordion items
-        const faqQuestions = assistantCard.querySelectorAll('.assistant-faq-question');
-        faqQuestions.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const parent = btn.closest('.assistant-faq-item');
-                const isActive = parent.classList.contains('active');
-
-                // Collapse all FAQs first
-                assistantCard.querySelectorAll('.assistant-faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-
-                // Open current FAQ if not already open
-                if (!isActive) {
-                    parent.classList.add('active');
-                }
+        // ── Tab Navigation ──
+        panel.querySelectorAll('.comm-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const viewName = tab.dataset.view;
+                switchView('view' + viewName.charAt(0).toUpperCase() + viewName.slice(1));
             });
         });
 
-        // Dynamic floating widgets overlap adjustment (WhatsApp & Safari Expert)
-        const adjustFloatSpacing = () => {
-            const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
-            if (chatyWidget) {
-                assistantFloat.classList.add('shifted-above-whatsapp');
-            } else {
-                assistantFloat.classList.remove('shifted-above-whatsapp');
+        // ── Open/Close Panel ──
+        const openPanel = () => { panel.classList.add('active'); floatBtn.classList.add('panel-open'); };
+        const closePanel = () => { panel.classList.remove('active'); floatBtn.classList.remove('panel-open'); };
+        window.openSafariSupport = openPanel;
+        floatBtn.addEventListener('click', openPanel);
+        document.getElementById('commClose').addEventListener('click', closePanel);
+        document.addEventListener('click', (e) => {
+            if (panel.classList.contains('active') && !panel.contains(e.target) && !floatBtn.contains(e.target)) {
+                closePanel();
+            }
+        });
+
+        // ── Open Chat for Category ──
+        const openChat = (categoryId) => {
+            const convs = loadConversations();
+            let conv = convs.find(c => c.categoryId === categoryId && c.visitorId === visitorId);
+            if (!conv) {
+                conv = {
+                    id: 'conv-' + Date.now(),
+                    visitorId,
+                    categoryId,
+                    messages: [],
+                    createdAt: Date.now(),
+                    updatedAt: Date.now(),
+                    status: 'open'
+                };
+                convs.push(conv);
+                saveConversations(convs);
+            }
+            activeConvId = conv.id;
+            renderChatView(conv);
+        };
+
+        // ── Render Chat View ──
+        const renderChatView = (conv) => {
+            const cat = getCatByID(conv.categoryId);
+            // Remove old chat view if exists
+            if (chatViewEl) chatViewEl.remove();
+
+            chatViewEl = document.createElement('div');
+            chatViewEl.className = 'comm-chat-view active';
+            chatViewEl.innerHTML = `
+                <div class="comm-chat-header-bar">
+                    <button class="comm-chat-back" id="chatBack"><i class="fas fa-arrow-left"></i></button>
+                    <div>
+                        <div class="comm-chat-category-label">${cat.emoji} ${cat.label}</div>
+                        <div class="comm-chat-category-tag">Private Conversation</div>
+                    </div>
+                </div>
+                <div class="comm-chat-messages" id="chatMessages"></div>
+                <div class="comm-input-bar">
+                    <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+                    <button class="comm-input-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            `;
+
+            // Hide other views and show chat
+            panel.querySelectorAll('.comm-view').forEach(v => v.classList.remove('active'));
+            panel.querySelectorAll('.comm-tab').forEach(t => t.classList.remove('active'));
+            const body = document.getElementById('commBody');
+            body.appendChild(chatViewEl);
+
+            // Render messages
+            renderMessages(conv);
+
+            // Back button
+            chatViewEl.querySelector('#chatBack').addEventListener('click', () => {
+                chatViewEl.classList.remove('active');
+                switchView('viewHome');
+            });
+
+            // Send message
+            const inputEl = chatViewEl.querySelector('#chatInput');
+            const sendMsg = () => {
+                const text = inputEl.value.trim();
+                if (!text) return;
+                addMessage(conv.id, 'visitor', text);
+                inputEl.value = '';
+                // Auto-reply after 1.5s
+                setTimeout(() => {
+                    const replies = [
+                        `Thank you for reaching out about ${cat.label}! 🦁 Our team has received your message and will respond shortly. In the meantime, feel free to WhatsApp us at +255 747 115 390 for instant assistance.`,
+                        `Karibu! We've noted your inquiry about ${cat.label}. A Century Adventures specialist will get back to you within a few hours. Asante sana! 🌍`,
+                        `Thank you! Your message regarding ${cat.label} has been forwarded to our expert team. We typically respond within 2-4 hours during business hours. 🏕️`
+                    ];
+                    const reply = replies[Math.floor(Math.random() * replies.length)];
+                    addMessage(conv.id, 'staff', reply);
+                }, 1500);
+            };
+            chatViewEl.querySelector('#chatSend').addEventListener('click', sendMsg);
+            inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
+            inputEl.focus();
+        };
+
+        // ── Add Message ──
+        const addMessage = (convId, sender, text) => {
+            const convs = loadConversations();
+            const conv = convs.find(c => c.id === convId);
+            if (!conv) return;
+            const msg = { id: 'msg-' + Date.now(), sender, text, timestamp: Date.now() };
+            conv.messages.push(msg);
+            conv.updatedAt = Date.now();
+            if (sender === 'staff') conv.unread = (conv.unread || 0) + 1;
+            saveConversations(convs);
+            // Re-render if active
+            if (activeConvId === convId && chatViewEl) renderMessages(conv);
+            updateBadge();
+
+            // If visitor message, trigger email notification link
+            if (sender === 'visitor') {
+                const cat = getCatByID(conv.categoryId);
+                const subject = encodeURIComponent(`[Century Adventures] ${cat.label} Inquiry from ${visitorId}`);
+                const body = encodeURIComponent(`Category: ${cat.label}\nVisitor ID: ${visitorId}\nMessage: ${text}\n\nSent from Century Adventures Communication Center`);
+                // Create a hidden mailto trigger
+                const mailLink = document.createElement('a');
+                mailLink.href = `mailto:info@centuryadventures.com?subject=${subject}&body=${body}`;
+                mailLink.style.display = 'none';
+                document.body.appendChild(mailLink);
+                // Don't auto-trigger mailto (too intrusive), instead log for admin
+                console.log(`📩 New message to staff: [${cat.label}] "${text}"`);
+                mailLink.remove();
             }
         };
 
-        // Run immediately
-        adjustFloatSpacing();
+        // ── Render Messages ──
+        const renderMessages = (conv) => {
+            const container = chatViewEl.querySelector('#chatMessages');
+            if (!container) return;
+            container.innerHTML = '';
+            const cat = getCatByID(conv.categoryId);
 
-        // Run periodically and on DOM mutations to adapt if widgets load asynchronously
+            // Welcome message if no messages
+            if (conv.messages.length === 0) {
+                container.innerHTML = `
+                    <div class="comm-msg staff">
+                        <span>👋 Welcome to ${cat.label}! How can we help you today? Just type your question below.</span>
+                        <span class="comm-msg-time">Now</span>
+                    </div>
+                `;
+                return;
+            }
+
+            let lastDate = '';
+            conv.messages.forEach(msg => {
+                const dateStr = formatDate(msg.timestamp);
+                if (dateStr !== lastDate) {
+                    lastDate = dateStr;
+                    const dateSep = document.createElement('div');
+                    dateSep.className = 'comm-msg-date-sep';
+                    dateSep.textContent = dateStr;
+                    container.appendChild(dateSep);
+                }
+                const bubble = document.createElement('div');
+                bubble.className = `comm-msg ${msg.sender}`;
+                bubble.innerHTML = `<span>${msg.text}</span><span class="comm-msg-time">${formatTime(msg.timestamp)}</span>`;
+                container.appendChild(bubble);
+            });
+
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
+
+            // Mark as read
+            const convs = loadConversations();
+            const updConv = convs.find(c => c.id === conv.id);
+            if (updConv) { updConv.unread = 0; saveConversations(convs); updateBadge(); }
+        };
+
+        // ── Render Conversation List ──
+        const renderConversationList = () => {
+            const list = document.getElementById('commConvList');
+            const convs = loadConversations().filter(c => c.visitorId === visitorId);
+            list.innerHTML = '';
+
+            if (convs.length === 0) {
+                list.innerHTML = `<div class="comm-empty-state"><i class="fas fa-comments"></i><p>No conversations yet.<br>Start one from the Home tab!</p></div>`;
+                return;
+            }
+
+            // Sort by most recent
+            convs.sort((a, b) => b.updatedAt - a.updatedAt);
+
+            convs.forEach(conv => {
+                const cat = getCatByID(conv.categoryId);
+                const lastMsg = conv.messages[conv.messages.length - 1];
+                const preview = lastMsg ? (lastMsg.text.length > 40 ? lastMsg.text.substring(0, 40) + '...' : lastMsg.text) : 'No messages yet';
+                const timeStr = lastMsg ? formatTime(lastMsg.timestamp) : '';
+                const unread = conv.unread || 0;
+
+                const item = document.createElement('div');
+                item.className = 'comm-conv-item';
+                item.innerHTML = `
+                    <span class="comm-conv-emoji">${cat.emoji}</span>
+                    <div class="comm-conv-info">
+                        <div class="comm-conv-title">${cat.label}</div>
+                        <div class="comm-conv-preview">${preview}</div>
+                    </div>
+                    <div class="comm-conv-meta">
+                        <span class="comm-conv-time">${timeStr}</span>
+                        ${unread > 0 ? `<span class="comm-conv-unread">${unread}</span>` : ''}
+                    </div>
+                `;
+                item.addEventListener('click', () => {
+                    activeConvId = conv.id;
+                    renderChatView(conv);
+                });
+                list.appendChild(item);
+            });
+        };
+
+        // ── Badge Update ──
+        const updateBadge = () => {
+            const convs = loadConversations().filter(c => c.visitorId === visitorId);
+            const totalUnread = convs.reduce((sum, c) => sum + (c.unread || 0), 0);
+            const badge = document.getElementById('commBadge');
+            if (badge) {
+                badge.textContent = totalUnread;
+                badge.classList.toggle('has-unread', totalUnread > 0);
+            }
+        };
+        updateBadge();
+
+        // ── Quote Form ──
+        document.getElementById('quoteForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const dest = data.get('destination') || 'Not specified';
+            const dates = data.get('dates') || 'Not specified';
+            const travelers = data.get('travelers') || 'Not specified';
+            const budget = data.get('budget') || 'Not specified';
+            const email = data.get('email') || 'Not provided';
+            const details = data.get('details') || '';
+
+            // Create a conversation for quote
+            const convs = loadConversations();
+            const conv = {
+                id: 'conv-' + Date.now(),
+                visitorId,
+                categoryId: 'pricing',
+                messages: [{
+                    id: 'msg-' + Date.now(),
+                    sender: 'visitor',
+                    text: `📋 Quote Request:\n• Destination: ${dest}\n• Dates: ${dates}\n• Travelers: ${travelers}\n• Budget: ${budget}\n• Email: ${email}\n${details ? '• Details: ' + details : ''}`,
+                    timestamp: Date.now()
+                }],
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+                status: 'open'
+            };
+            convs.push(conv);
+            saveConversations(convs);
+
+            // Open mailto with quote details
+            const subject = encodeURIComponent('Quote Request - Century Adventures');
+            const body = encodeURIComponent(`Quote Request from Century Adventures Website\n\nDestination: ${dest}\nTravel Dates: ${dates}\nNumber of Travelers: ${travelers}\nBudget Range: ${budget}\nEmail: ${email}\nAdditional Details: ${details}\n\nVisitor ID: ${visitorId}`);
+            window.open(`mailto:info@centuryadventures.com?subject=${subject}&body=${body}`, '_self');
+
+            form.style.display = 'none';
+            document.getElementById('quoteSuccess').style.display = 'block';
+
+            // Add auto-reply
+            setTimeout(() => {
+                const convs2 = loadConversations();
+                const c = convs2.find(x => x.id === conv.id);
+                if (c) {
+                    c.messages.push({
+                        id: 'msg-' + Date.now(),
+                        sender: 'staff',
+                        text: `Thank you for your quote request! 🌍 Our travel specialists will prepare a personalized quotation and send it to ${email || 'your email'} within 24 hours. For faster response, WhatsApp us at +255 747 115 390.`,
+                        timestamp: Date.now()
+                    });
+                    c.unread = 1;
+                    c.updatedAt = Date.now();
+                    saveConversations(convs2);
+                    updateBadge();
+                }
+            }, 2000);
+
+            // Reset form after 4 seconds
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'flex';
+                document.getElementById('quoteSuccess').style.display = 'none';
+            }, 4000);
+        });
+
+        // ── Report Form ──
+        document.getElementById('reportForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const issueType = data.get('issue_type') || 'Not specified';
+            const email = data.get('email') || 'Not provided';
+            const description = data.get('description') || '';
+
+            // Create a conversation for report
+            const convs = loadConversations();
+            const conv = {
+                id: 'conv-' + Date.now(),
+                visitorId,
+                categoryId: 'problem',
+                messages: [{
+                    id: 'msg-' + Date.now(),
+                    sender: 'visitor',
+                    text: `⚠️ Issue Report:\n• Type: ${issueType}\n• Email: ${email}\n• Description: ${description}`,
+                    timestamp: Date.now()
+                }],
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+                status: 'open'
+            };
+            convs.push(conv);
+            saveConversations(convs);
+
+            // Open mailto
+            const subject = encodeURIComponent(`Issue Report - ${issueType} - Century Adventures`);
+            const body = encodeURIComponent(`Issue Report from Century Adventures Website\n\nIssue Type: ${issueType}\nEmail: ${email}\nDescription: ${description}\n\nVisitor ID: ${visitorId}`);
+            window.open(`mailto:support@centuryadventures.com?subject=${subject}&body=${body}`, '_self');
+
+            form.style.display = 'none';
+            document.getElementById('reportSuccess').style.display = 'block';
+
+            setTimeout(() => {
+                const convs2 = loadConversations();
+                const c = convs2.find(x => x.id === conv.id);
+                if (c) {
+                    c.messages.push({ id: 'msg-' + Date.now(), sender: 'staff', text: `We've received your report about "${issueType}". Our support team is reviewing it and will contact you at ${email || 'your email'} shortly. We take all feedback seriously. 🛠️`, timestamp: Date.now() });
+                    c.unread = 1;
+                    c.updatedAt = Date.now();
+                    saveConversations(convs2);
+                    updateBadge();
+                }
+            }, 2000);
+
+            setTimeout(() => { form.reset(); form.style.display = 'flex'; document.getElementById('reportSuccess').style.display = 'none'; }, 4000);
+        });
+
+        // ── WhatsApp/Chaty offset (maintain compatibility) ──
+        const adjustFloatSpacing = () => {
+            const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
+            if (chatyWidget) {
+                floatBtn.style.bottom = '90px';
+            }
+        };
+        adjustFloatSpacing();
         const observer = new MutationObserver(adjustFloatSpacing);
         observer.observe(document.body, { childList: true, subtree: true });
-
-        // Polling fallback
-        let pollCount = 0;
-        const pollInterval = setInterval(() => {
-            adjustFloatSpacing();
-            pollCount++;
-            if (pollCount > 15) clearInterval(pollInterval);
-        }, 1000);
     };
 
     // ── Read More: Auto-collapse long descriptive text sections ──
@@ -2181,7 +2479,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroSlideshow();
     optimizeImages();
     initWishlistAndCompare();
-    initSafariAssistant();
+    initCommunicationCenter();
     initReadMore();
     initMobileOptimizations();
 
