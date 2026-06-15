@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -101,7 +101,7 @@
                 <span class="sub-heading" data-en="WHY ENQUIRE WITH US" data-sw="KWA NINI UULIZE KWETU">WHY ENQUIRE WITH US</span>
                 <h2 data-en="Reasons to Choose Century Adventures" data-sw="Sababu za Kuchagua Century Adventures">Reasons to Choose Century Adventures</h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;">
+            <div class="enquire-features-grid">
                 <!-- Feature 1 -->
                 <div class="scroll-reveal" style="background: var(--card-bg); padding: 35px 20px; border-radius: 24px; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); text-align: center; transition: var(--transition);">
                     <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-green), #006838); border-radius: 18px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
@@ -149,7 +149,7 @@
     <!-- Enquiry Form Section -->
     <section class="section enquire-section" style="background: var(--bg-color);">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start;">
+            <div class="enquire-form-grid">
                 <!-- Left: Info Panel -->
                 <div class="scroll-reveal">
                     <span class="sub-heading" data-en="TELL US YOUR DREAM" data-sw="TUAMBIE NDOTO YAKO">TELL US YOUR DREAM</span>
@@ -193,7 +193,7 @@
                 </div>
 
                 <!-- Right: Enhanced Form -->
-                <div class="scroll-reveal" style="background: var(--card-bg); padding: 45px; border-radius: 28px; box-shadow: var(--shadow-hover); border: 1px solid var(--border-color); position: sticky; top: 120px;">
+                <div class="scroll-reveal enquire-form-card">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <div style="width: 55px; height: 55px; background: linear-gradient(135deg, var(--primary-green), #006838); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
                             <i class="fas fa-paper-plane" style="font-size: 1.3rem; color: var(--accent-gold);"></i>
@@ -206,7 +206,7 @@
                             <label data-en="Full Name *" data-sw="Jina Kamili *">Full Name *</label>
                             <input type="text" name="name" required placeholder="Enter your full name">
                         </div>
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-row enquire-form-row">
                             <div class="form-group">
                                 <label data-en="Email Address *" data-sw="Anwani ya Barua Pepe *">Email Address *</label>
                                 <input type="email" name="email" required placeholder="email@example.com">
@@ -216,7 +216,7 @@
                                 <input type="tel" name="phone" placeholder="+255 XXX XXX XXX">
                             </div>
                         </div>
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-row enquire-form-row">
                             <div class="form-group">
                                 <label data-en="Number of Travelers *" data-sw="Idadi ya Wasafiri *">Number of Travelers *</label>
                                 <input type="number" name="guests" required min="1" value="1">
@@ -242,7 +242,7 @@
                                 <option value="other">Other / Not Sure</option>
                             </select>
                         </div>
-                        <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-row enquire-form-row">
                             <div class="form-group">
                                 <label data-en="Experience Type" data-sw="Aina ya Uzoefu">Experience Type</label>
                                 <select name="experience_type" style="width: 100%; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); font-size: 0.95rem; font-family: 'Inter', sans-serif;">
@@ -289,7 +289,7 @@
                 <span class="sub-heading" data-en="POPULAR ENQUIRIES" data-sw="MASWALI MAARUFU">POPULAR ENQUIRIES</span>
                 <h2 data-en="What Travelers Ask About Most" data-sw="Wasafiri Wanauliza Zaidi Kuhusu Nini">What Travelers Ask About Most</h2>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;">
+            <div class="enquire-popular-grid">
                 <!-- Card 1 -->
                 <div class="scroll-reveal" style="background: var(--card-bg); border-radius: 24px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); transition: var(--transition);">
                     <div style="height: 5px; background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));"></div>
@@ -368,7 +368,7 @@
     <!-- Our Promise Section -->
     <section class="section" style="background: var(--bg-color);">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <div class="enquire-promise-grid">
                 <!-- Promise Card -->
                 <div class="scroll-reveal" style="background: linear-gradient(135deg, var(--primary-green), #002b18); padding: 50px 45px; border-radius: 30px; color: #fff; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: -30px; right: -30px; width: 140px; height: 140px; background: rgba(255,255,255,0.05); border-radius: 50%;"></div>
@@ -402,7 +402,7 @@
     <!-- Contact Info Bar -->
     <section class="section" style="background: var(--section-bg); padding: 50px 0;">
         <div class="container">
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; align-items: center;">
+            <div class="enquire-contact-bar">
                 <a href="tel:+255747115390" style="display: flex; align-items: center; gap: 12px; text-decoration: none; transition: var(--transition);">
                     <div style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary-green), #006838); border-radius: 14px; display: flex; align-items: center; justify-content: center;">
                         <i class="fas fa-phone-alt" style="color: var(--accent-gold); font-size: 1.1rem;"></i>

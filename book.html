@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -360,7 +360,7 @@
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
@@ -441,6 +441,35 @@
 
         [data-theme="dark"] .btn-submit:hover {
             background: #e0b848;
+        }
+
+        /* ── Responsiveness Overrides ── */
+        .booking-pill-grid-half {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+            max-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-step-card {
+                padding: 20px;
+            }
+            .booking-container {
+                margin: 20px auto 60px;
+                padding: 0 15px;
+            }
+            .booking-pill span {
+                padding: 12px 14px;
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .booking-pill-grid-half {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="manifest" href="manifest.json">
@@ -615,7 +644,7 @@
                         </div>
                         <div class="booking-form-group" style="margin-top: 20px;">
                             <label data-en="Flexible Dates?" data-sw="Je, Tarehe Zinaweza Kubadilika?">Flexible Dates?</label>
-                            <div class="booking-pill-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 300px;">
+                            <div class="booking-pill-grid-half">
                                 <label class="booking-pill">
                                     <input type="radio" name="flexible_dates" value="Yes" checked>
                                     <span data-en="Yes" data-sw="Ndiyo">Yes</span>
