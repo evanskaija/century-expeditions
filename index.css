@@ -10206,12 +10206,95 @@ html:not([data-theme="dark"]) .dropdown-menu a.active {
         width: 100% !important;
         gap: 18px !important;
     }
-
-
 }
 
+/* ── Admin Dashboard Common Styles & Authentication Overlay ── */
+body.admin-theme {
+    --admin-bg: #121212;
+    --admin-card-bg: #1e1e1e;
+    --admin-border: #2d2d2d;
+    --admin-text: #e0e0e0;
+    --admin-text-muted: #888888;
+    background-color: var(--admin-bg) !important;
+    color: var(--admin-text) !important;
+}
 
+/* Authentication Overlay */
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.auth-card {
+    background: #1e1e1e;
+    border: 1px solid #2d2d2d;
+    border-radius: 12px;
+    width: 400px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 
+.auth-card img {
+    width: 60px;
+    margin-bottom: 20px;
+}
 
+.auth-card h2 {
+    font-family: 'Playfair Display', serif;
+    color: white !important;
+    margin: 0 0 10px 0;
+}
 
+.auth-card p {
+    color: #888888 !important;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    background: #121212;
+    border: 1px solid #2d2d2d;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 4px;
+    outline: none;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-gold);
+    color: #121212;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.auth-form button:hover {
+    background: #d4b890;
+}
+
+.auth-error {
+    color: #ff7043 !important;
+    font-size: 13px;
+    margin-top: 10px;
+    display: none;
+}

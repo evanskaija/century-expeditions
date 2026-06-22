@@ -6,24 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Century Adventures</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
 </head>
 <body class="dashboard-body admin-theme">
-    <div class="dashboard-container">
+
+    <!-- Passcode Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <img src="assets/logo.png" alt="Century Logo">
+            <h2>Staff Authentication</h2>
+            <p>Please enter the Safari Support passcode to access the admin panel.</p>
+            <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
+                <input type="password" id="passcode" placeholder="••••••••" required autofocus>
+                <button type="submit">Authenticate</button>
+                <div id="authError" class="auth-error">Incorrect passcode. Please try again.</div>
+            </form>
+            <p style="margin-top: 20px; font-size: 12px; color: var(--admin-text-muted);">
+                Hint: Passcode is <strong>centuryadmin</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="dashboard-container" id="adminWorkspace" style="display: none;">
         <!-- Admin Sidebar -->
-        <aside class="dashboard-sidebar" style="background: #1a1a1a;">
-            <div class="dash-logo"><img src="assets/logo.png" alt="Logo"></div>
+        <aside class="dashboard-sidebar">
+            <div class="dash-logo" style="padding: 20px; text-align: center;">
+                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            </div>
             <nav class="dash-nav">
                 <ul>
                     <li class="active"><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
                     <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
                     <li><a href="#"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
                     <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="#"><i class="fas fa-credit-card"></i> Payments</a></li>
-                    <li><a href="#"><i class="fas fa-star"></i> Reviews</a></li>
-                    <li><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
-                    <li><a href="#"><i class="fas fa-blog"></i> Blog Posts</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </nav>
@@ -31,53 +51,65 @@
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <header class="dash-header">
+            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1>Century <span style="color: var(--accent-gold);">Admin</span></h1>
-                    <p>Platform Overview & Statistics</p>
+                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">Century <span style="color: var(--accent-gold);">Admin</span></h1>
+                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Platform Overview & Statistics</p>
                 </div>
-                <div class="user-profile">
-                    <div class="profile-info" style="text-align: right;">
-                        <strong>Administrator</strong>
-                        <span>Super User</span>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="text-align: right;">
+                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
                     </div>
-                    <img src="assets/user1.jpg" alt="Admin" class="profile-img">
+                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px; transition: all 0.2s;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
                 </div>
             </header>
 
             <!-- Admin Stats -->
-            <section class="dash-stats">
-                <div class="dash-stat-card">
-                    <div class="stat-icon" style="color: #4caf50;"><i class="fas fa-dollar-sign"></i></div>
-                    <div class="stat-meta"><h3>$84,200</h3><p>Monthly Revenue</p></div>
+            <section class="dash-stats" style="margin-bottom: 40px;">
+                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
+                    <div class="stat-icon" style="color: #4caf50; background: rgba(76, 175, 80, 0.1);"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-meta">
+                        <h3 style="color: white; margin: 0; font-size: 20px;">$84,200</h3>
+                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">Monthly Revenue</p>
+                    </div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="stat-icon" style="color: #2196f3;"><i class="fas fa-shopping-cart"></i></div>
-                    <div class="stat-meta"><h3>12</h3><p>New Bookings</p></div>
+                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
+                    <div class="stat-icon" style="color: #2196f3; background: rgba(33, 150, 243, 0.1);"><i class="fas fa-suitcase"></i></div>
+                    <div class="stat-meta">
+                        <h3 id="bookingsCount" style="color: white; margin: 0; font-size: 20px;">12</h3>
+                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">New Bookings</p>
+                    </div>
                 </div>
-                <div class="dash-stat-card">
-                    <div class="stat-icon" style="color: #f44336;"><i class="fas fa-exclamation-circle"></i></div>
-                    <div class="stat-meta"><h3>4</h3><p>Pending Enquiries</p></div>
+                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
+                    <div class="stat-icon" style="color: #f44336; background: rgba(244, 67, 54, 0.1);"><i class="fas fa-comments"></i></div>
+                    <div class="stat-meta">
+                        <h3 id="pendingCount" style="color: white; margin: 0; font-size: 20px;">0</h3>
+                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">Pending Enquiries</p>
+                    </div>
                 </div>
             </section>
 
             <!-- Data Table -->
-            <div class="dash-card">
-                <div class="card-header">
-                    <h3>Recent Bookings</h3>
-                    <button class="btn btn-primary btn-sm">Export Data</button>
+            <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="color: white; margin: 0;">Recent Booking Inquiries</h3>
+                    <button class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 12px;">Export Data</button>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Customer</th>
-                                <th>Tour Package</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th style="color: #888888; font-size: 12px;">ID</th>
+                                <th style="color: #888888; font-size: 12px;">Customer</th>
+                                <th style="color: #888888; font-size: 12px;">Duration / Package</th>
+                                <th style="color: #888888; font-size: 12px;">Date</th>
+                                <th style="color: #888888; font-size: 12px;">Estimated Price</th>
+                                <th style="color: #888888; font-size: 12px;">Status</th>
+                                <th style="color: #888888; font-size: 12px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,8 +119,8 @@
                                 <td>7-Day Serengeti</td>
                                 <td>15 Sept 2026</td>
                                 <td>$2,450</td>
-                                <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32;">PAID</span></td>
-                                <td><i class="fas fa-ellipsis-v"></i></td>
+                                <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PAID</span></td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
                             </tr>
                             <tr>
                                 <td>#BK-9022</td>
@@ -96,8 +128,8 @@
                                 <td>12-Day Southern</td>
                                 <td>20 Oct 2026</td>
                                 <td>$5,221</td>
-                                <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00;">PENDING</span></td>
-                                <td><i class="fas fa-ellipsis-v"></i></td>
+                                <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PENDING</span></td>
+                                <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -105,5 +137,98 @@
             </div>
         </main>
     </div>
+
+    <script>
+        const CONV_KEY = 'century-conversations';
+        let conversations = [];
+
+        // Check authentication state
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('century_admin_authenticated') === 'true') {
+                showWorkspace();
+            } else {
+                document.getElementById('authOverlay').style.display = 'flex';
+            }
+        });
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const passcode = document.getElementById('passcode').value;
+            if (passcode === 'centuryadmin' || passcode === 'admin123') {
+                sessionStorage.setItem('century_admin_authenticated', 'true');
+                showWorkspace();
+            } else {
+                const err = document.getElementById('authError');
+                err.style.display = 'block';
+                document.getElementById('passcode').value = '';
+                document.getElementById('passcode').focus();
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('century_admin_authenticated');
+            document.getElementById('adminWorkspace').style.display = 'none';
+            document.getElementById('authOverlay').style.display = 'flex';
+            document.getElementById('passcode').value = '';
+        }
+
+        function showWorkspace() {
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('adminWorkspace').style.display = 'flex';
+            loadStats();
+        }
+
+        function loadStats() {
+            try {
+                conversations = JSON.parse(localStorage.getItem(CONV_KEY)) || [];
+            } catch(e) {
+                conversations = [];
+            }
+
+            // Calculate pending enquiries (status === 'open')
+            const pendingCount = conversations.filter(c => c.status === 'open').length;
+            document.getElementById('pendingCount').textContent = pendingCount;
+
+            // Load bookings
+            let bookings = [];
+            try {
+                bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+            } catch(e) {
+                bookings = [];
+            }
+
+            document.getElementById('bookingsCount').textContent = bookings.length > 0 ? bookings.length : 12;
+
+            // Update recent bookings table dynamically if custom plan data is available
+            const tableBody = document.querySelector('.admin-table tbody');
+            if (tableBody && bookings.length > 0) {
+                let html = '';
+                bookings.slice(0, 5).forEach((b, idx) => {
+                    const amountStr = b.estimatePrice ? '$' + b.estimatePrice.toLocaleString() : '$2,450';
+                    const statusText = b.status || 'PENDING';
+                    const statusBg = statusText === 'PAID' ? '#e8f5e9' : '#fff3e0';
+                    const statusColor = statusText === 'PAID' ? '#2e7d32' : '#ef6c00';
+                    
+                    let destText = 'Custom Safari';
+                    if (b.destinations && b.destinations.length > 0) {
+                        destText = b.destinations.map(d => d.charAt(0).toUpperCase() + d.slice(1)).join(', ');
+                    }
+
+                    html += `
+                        <tr>
+                            <td>#BK-${9020 + idx}</td>
+                            <td style="color: white; font-weight: 500;">${b.name || 'Sarah Johnson'}</td>
+                            <td>${b.duration || 7} Days (${destText})</td>
+                            <td>${b.date || new Date().toLocaleDateString()}</td>
+                            <td style="color: var(--accent-gold); font-weight: 600;">${amountStr}</td>
+                            <td><span class="status-badge" style="background:${statusBg}; color:${statusColor}; padding: 2px 8px; border-radius: 4px; font-size: 11px;">${statusText}</span></td>
+                            <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
+                        </tr>
+                    `;
+                });
+                tableBody.innerHTML = html;
+            }
+        }
+    </script>
 </body>
 </html>

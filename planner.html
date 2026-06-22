@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -630,12 +630,45 @@
                     }
                     return;
                 }
+
+                // Save custom plan to localStorage
+                const booking = {
+                    id: 'BK-' + Date.now(),
+                    name: name,
+                    email: email,
+                    duration: parseInt(document.getElementById('safariDuration').value) || 1,
+                    guests: parseInt(document.getElementById('safariGuests').value) || 1,
+                    lodging: document.querySelector('input[name="accommodation"]:checked')?.value || 'budget',
+                    destinations: Array.from(document.querySelectorAll('input[name="destinations"]:checked')).map(el => el.value),
+                    activities: Array.from(document.querySelectorAll('input[name="activities"]:checked')).map(el => el.value),
+                    notes: document.getElementById('contactNotes').value,
+                    estimatePrice: document.getElementById('calcPrice').textContent,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                    status: 'PENDING'
+                };
+
+                let bookings = [];
+                try {
+                    bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+                } catch(e) {
+                    bookings = [];
+                }
+                bookings.push(booking);
+                localStorage.setItem('century-bookings', JSON.stringify(bookings));
+
+                // Also save/update user profile session so they see their name in the dashboard
+                localStorage.setItem('century-user-profile', JSON.stringify({
+                    name: name,
+                    email: email,
+                    tier: 'Explorer'
+                }));
+
                 if (lang === 'sw') {
                     alert(`Asante ${name}! Ombi lako la safari maalum na makadirio ya bajeti yamewasilishwa kwa mafanikio. Mtaalamu wa safari atawasiliana nawe hivi karibuni ili kukamilisha maelezo.`);
                 } else {
                     alert(`Thank you ${name}! Your custom safari itinerary and budget estimate has been submitted successfully. A safari expert will contact you shortly to refine details.`);
                 }
-                window.location.href = 'index.html';
+                window.location.href = 'dashboard.html'; // Redirect straight to dashboard to see their planned safari!
                 return;
             }
             
