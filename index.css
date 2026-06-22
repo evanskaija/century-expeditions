@@ -1,15 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
 /* Theme Variables */
 :root {
-    --primary-green: #004225;
-    --primary-gradient: linear-gradient(135deg, #004225 0%, #002b18 100%);
-    --accent-gold: #c5a044;
+    --primary-green: #1b4332;
+    --safari-brown: #8b5e3c;
+    --primary-gradient: linear-gradient(135deg, #1b4332 0%, #002b18 100%);
+    --accent-gold: #d4af37;
     --accent-gradient: linear-gradient(135deg, #d4af37 0%, #a68a2d 100%);
+    /* Premium Safari Header Gradient: Gold → Forest Green → Safari Brown */
+    --header-gradient: linear-gradient(135deg, rgba(27,67,50,0.97) 0%, rgba(139,94,60,0.92) 50%, rgba(212,175,55,0.15) 100%);
     --cream-bg: #fdfbf7;
     --white: #ffffff;
     --text-main: #1a1a1a;
     --text-muted: #666666;
-    --glass: rgba(255, 255, 255, 0.9);
-    --glass-dark: rgba(0, 66, 37, 0.95);
+    --glass: rgba(255, 255, 255, 0.93);
+    --glass-dark: rgba(27, 67, 50, 0.97);
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.05);
     --shadow-hover: 0 25px 60px rgba(0, 0, 0, 0.12);
@@ -20,7 +25,7 @@
     --card-bg: var(--white);
     --section-bg: var(--cream-bg);
     --header-bg: var(--glass);
-    --footer-bg: #004225;
+    --footer-bg: #1b4332;
     --border-color: rgba(0, 0, 0, 0.05);
     --section-spacing: 100px;
 }
@@ -72,6 +77,22 @@ body {
     padding-right: 10px;
 }
 
+.header .header-toggles .toggle-btn {
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    background: rgba(0, 0, 0, 0.12) !important;
+    font-size: 0.68rem;
+    padding: 6px 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.header .header-toggles .toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: var(--accent-gold) !important;
+    border-color: var(--accent-gold) !important;
+}
+
 .toggle-btn {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -110,12 +131,12 @@ body {
     width: 0;
 }
 
-/* Consolidated Header Styles */
+/* Consolidated Header Styles - Premium Safari Theme */
 .header {
-    background-color: var(--header-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 14px 0;
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.96) 0%, rgba(139, 94, 60, 0.96) 50%, rgba(212, 175, 55, 0.96) 100%) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 16px 0;
     position: fixed;
     top: 15px;
     width: 95%;
@@ -124,34 +145,90 @@ body {
     right: 0;
     margin: 0 auto;
     z-index: 1000;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(212, 175, 55, 0.3) !important;
     border-radius: 24px;
     transition: var(--transition);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    /* Prevent backdrop-filter from causing text blur and subpixel alignment issues */
+    box-shadow: 0 10px 40px rgba(27,67,50,0.2), 0 2px 0 rgba(255,255,255,0.1) inset;
     transform: translate3d(0, 0, 0);
     -webkit-transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
+[data-theme="dark"] .header {
+    background: linear-gradient(135deg, rgba(15, 40, 30, 0.96) 0%, rgba(95, 60, 40, 0.96) 50%, rgba(175, 140, 45, 0.96) 100%) !important;
+    border-color: rgba(212, 175, 55, 0.4) !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 2px 0 rgba(255,255,255,0.1) inset;
+}
+
 .header.scrolled {
-    padding: 6px 0;
-    top: 5px;
-    background-color: var(--header-bg);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 50px rgba(27,67,50,0.25), 0 2px 0 rgba(255,255,255,0.15) inset;
 }
 
 .header .nav ul li a {
-    color: var(--text-main); /* Standard text color always */
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.header .nav ul li a:hover,
+.header .nav ul li a.active {
+    color: var(--accent-gold) !important;
 }
 
 .header .logo img {
-    height: 70px;
+    height: 72px;
 }
 
-.header.scrolled .logo img {
-    height: 55px;
+
+
+/* ── Brand Name (CENTURY ADVENTURES) beside logo ── */
+.logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo-wrap img {
+    height: 72px;
+    transition: var(--transition);
+    object-fit: contain;
+    display: block;
+}
+
+
+
+.brand-name {
+    font-family: 'Cinzel', serif !important;
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    color: var(--accent-gold) !important;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+[data-theme="dark"] .brand-name {
+    color: var(--accent-gold) !important;
+}
+
+.brand-name span {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 3.5px;
+    color: #ffffff !important;
+    font-weight: 600;
+    margin-top: 6px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+[data-theme="dark"] .brand-name span {
+    color: rgba(255,255,255,0.95) !important;
 }
 
 .header-content {
@@ -160,22 +237,31 @@ body {
     align-items: center;
 }
 
+@media (min-width: 993px) {
+    .header .logo {
+        margin-right: 40px;
+        flex-shrink: 0;
+    }
+
+    .header .nav {
+        margin-left: 24px;
+    }
+}
+
 .logo img {
-    height: 70px;
+    height: 60px;
     transition: var(--transition);
     object-fit: contain;
     display: block;
 }
 
-.header.scrolled .logo img {
-    height: 70px;
-}
+
 
 .nav ul {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 1px;
+    gap: 10px;
 }
 
 .dropdown {
@@ -255,10 +341,10 @@ body {
     text-decoration: none !important;
     color: var(--text-main);
     font-weight: 700;
-    font-size: 0.72rem; /* Was 0.65rem, slightly larger for better legibility and crispness */
+    font-size: 0.85rem;
     transition: var(--transition);
-    padding: 4px 8px; /* Compact padding */
-    opacity: 1; /* Was 0.9, set to 1 for crisp, high-contrast text */
+    padding: 6px 12px;
+    opacity: 1;
     border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -275,8 +361,8 @@ body {
 
 .enquire-btn {
     text-decoration: none !important;
-    padding: 8px 18px !important;
-    font-size: 0.7rem !important;
+    padding: 10px 22px !important;
+    font-size: 0.78rem !important;
     border-radius: 30px !important;
     margin-left: 10px;
 }
@@ -403,7 +489,7 @@ body {
     transform: translateY(0);
 }
 
-.header-actions {
+.header-toggles {
     display: flex;
     align-items: center;
     background: rgba(0,0,0,0.03);
@@ -412,7 +498,7 @@ body {
     gap: 4px;
 }
 
-[data-theme="dark"] .header-actions {
+[data-theme="dark"] .header-toggles {
     background: rgba(255,255,255,0.05);
 }
 
@@ -1072,26 +1158,26 @@ h2 {
         width: 325px;
         max-width: 85vw;
         height: 100vh;
-        background-color: rgba(255, 255, 255, 0.96) !important;
+        background: linear-gradient(135deg, rgba(27, 67, 50, 0.98) 0%, rgba(139, 94, 60, 0.98) 50%, rgba(212, 175, 55, 0.98) 100%) !important;
         backdrop-filter: blur(24px) !important;
         -webkit-backdrop-filter: blur(24px) !important;
         z-index: 10005 !important;
         padding: 50px 0 20px 0; /* Clear circular close button */
         transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        box-shadow: -15px 0 45px rgba(0,0,0,0.18) !important;
+        box-shadow: -15px 0 45px rgba(0,0,0,0.25) !important;
         overflow-y: auto;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        border-left: 1px solid rgba(197, 160, 68, 0.25) !important;
+        border-left: 1px solid rgba(212, 175, 55, 0.3) !important;
         border-top-left-radius: 24px !important;
         border-bottom-left-radius: 24px !important;
         -webkit-overflow-scrolling: touch;
         box-sizing: border-box;
     }
     [data-theme="dark"] .nav {
-        background-color: rgba(5, 15, 10, 0.97) !important;
-        border-left: 1px solid rgba(230, 184, 77, 0.25) !important;
+        background: linear-gradient(135deg, rgba(15, 40, 30, 0.98) 0%, rgba(95, 60, 40, 0.98) 50%, rgba(175, 140, 45, 0.98) 100%) !important;
+        border-left: 1px solid rgba(212, 175, 55, 0.3) !important;
     }
     .nav.active {
         right: 0;
@@ -1135,20 +1221,20 @@ h2 {
         justify-content: space-between;
         border-radius: 0;
         letter-spacing: 0.5px;
-        color: var(--text-main) !important;
+        color: #ffffff !important;
         border-left: 4px solid transparent;
         transition: all 0.25s ease;
         box-sizing: border-box;
     }
     .nav ul li a:hover,
     .nav ul li a.active {
-        background: rgba(197, 160, 68, 0.08) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         border-left-color: var(--accent-gold) !important;
-        color: var(--primary-green) !important;
+        color: var(--accent-gold) !important;
     }
     [data-theme="dark"] .nav ul li a:hover,
     [data-theme="dark"] .nav ul li a.active {
-        background: rgba(230, 184, 77, 0.08) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
         border-left-color: var(--accent-gold) !important;
         color: var(--accent-gold) !important;
     }
@@ -1186,7 +1272,7 @@ h2 {
         font-weight: 500 !important;
         border-left: none !important;
         background: transparent !important;
-        color: var(--text-main) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
         display: flex !important;
         align-items: center;
         justify-content: flex-start;
@@ -1226,15 +1312,18 @@ h2 {
         transform: none !important; /* No transform to prevent containing block bug on fixed drawer */
         backdrop-filter: none !important; /* No filter to prevent containing block bug on Safari */
         -webkit-backdrop-filter: none !important;
-        background-color: var(--card-bg) !important; /* Solid contrast background on mobile */
+        background: linear-gradient(135deg, rgba(27, 67, 50, 0.98) 0%, rgba(139, 94, 60, 0.98) 50%, rgba(212, 175, 55, 0.98) 100%) !important; /* Premium luxury safari gradient */
         border-left: none !important;
         border-right: none !important;
         border-top: none !important;
-        border-bottom: 1px solid var(--border-color) !important;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05) !important;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.25) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
         box-sizing: border-box !important;
         transition: none !important;
         z-index: 100005 !important;
+    }
+    [data-theme="dark"] .header {
+        background: linear-gradient(135deg, rgba(15, 40, 30, 0.98) 0%, rgba(95, 60, 40, 0.98) 50%, rgba(175, 140, 45, 0.98) 100%) !important;
     }
 
     .header.scrolled {
@@ -1246,7 +1335,7 @@ h2 {
     .header .logo img,
     .logo img,
     .header.scrolled .logo img {
-        height: 46px !important;
+        height: 44px !important;
         width: auto !important;
     }
 
@@ -1256,7 +1345,29 @@ h2 {
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
+        gap: 4px !important;
+    }
+
+    .logo-wrap {
+        display: flex !important;
+        align-items: center !important;
         gap: 8px !important;
+    }
+
+    .brand-name {
+        font-size: clamp(0.75rem, 3.2vw, 1.1rem) !important;
+        font-family: 'Cinzel', serif !important;
+        color: var(--accent-gold) !important;
+        display: block !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    .brand-name span {
+        display: block !important;
+        font-size: 0.42rem !important;
+        letter-spacing: 1.5px !important;
+        color: #ffffff !important;
     }
 
     /* ── Mobile Toggle (Reduced size) ── */
@@ -1270,13 +1381,15 @@ h2 {
         height: 36px !important;
         padding: 0 !important;
         border-radius: 8px !important;
-        margin-left: 8px !important;
+        margin-left: 0 !important;
         z-index: 9999 !important;
+        background: var(--accent-gold) !important;
     }
 
     .mobile-toggle .bar {
         width: 18px !important;
         height: 2px !important;
+        background: #002b18 !important;
     }
 
     .mobile-toggle.open .bar:nth-child(1) {
@@ -1291,13 +1404,54 @@ h2 {
     }
 
     .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        display: flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+        gap: 4px !important;
+        order: 2 !important;
+        margin-left: auto !important;
+        margin-right: 4px !important;
+        background: transparent !important;
+        padding: 0 !important;
     }
 
     .header-actions .enquire-btn {
-        display: none;
+        display: none !important;
+    }
+
+    .header-toggles {
+        display: flex !important;
+        gap: 4px !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        border-right: none !important;
+    }
+
+    .header .toggle-btn {
+        padding: 4px 7px !important;
+        font-size: 0.52rem !important;
+        letter-spacing: 0.2px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.35) !important;
+        background: rgba(0, 0, 0, 0.15) !important;
+        flex-shrink: 0 !important;
+    }
+
+    .header .toggle-btn i {
+        font-size: 0.55rem !important;
+    }
+
+    .logo {
+        flex: 1 !important;
+        min-width: 0 !important;
+        order: 1 !important;
+    }
+
+    .mobile-toggle {
+        order: 3 !important;
+        flex-shrink: 0 !important;
     }
 
     /* ── Dropdown (accordion) mobile ── */
@@ -1449,7 +1603,8 @@ h2 {
 
 /* Hero Section Refinements */
 .hero {
-    height: 100vh;
+    height: 85vh;
+    min-height: 650px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1479,14 +1634,14 @@ h2 {
 }
 
 .hero-logo-large {
-    margin-bottom: 40px;
+    margin-bottom: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .hero-logo-large img {
-    height: 180px; /* Large cinematic logo */
+    height: 110px; /* Large cinematic logo */
     filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
     animation: floatHang 4s ease-in-out infinite; /* Hanging up down animation */
 }
@@ -1510,25 +1665,25 @@ h2 {
 }
 
 .hero h1 {
-    font-size: 4.5rem;
+    font-size: 3.2rem;
     font-family: 'Playfair Display', serif;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     line-height: 1.1;
     text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .hero-tagline {
-    font-size: 1.4rem;
-    margin-bottom: 40px;
+    font-size: 1.1rem;
+    margin-bottom: 18px;
     opacity: 0.9;
     letter-spacing: 1px;
 }
 
 .hero-desc {
-    max-width: 700px;
-    margin: 0 auto 38px;
-    line-height: 1.75;
-    font-size: 1.02rem;
+    max-width: 750px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+    font-size: 0.92rem;
     opacity: 0.95;
 }
 
@@ -1976,8 +2131,8 @@ h2 {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1.2fr 1.2fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
     margin-bottom: 60px;
 }
 
@@ -3269,7 +3424,29 @@ iframe.goog-te-menu-frame {
         height: 38px;
     }
 
-    /* Nav panel takes 85% of screen width on small phones */
+    .header .toggle-btn {
+        padding: 3px 5px !important;
+        font-size: 0.44rem !important;
+        letter-spacing: 0 !important;
+    }
+
+    .header .toggle-btn i {
+        font-size: 0.48rem !important;
+    }
+
+    .brand-name {
+        font-size: clamp(0.68rem, 2.6vw, 0.9rem) !important;
+        letter-spacing: 0.8px !important;
+    }
+
+    .brand-name span {
+        font-size: 0.38rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .logo-wrap {
+        gap: 6px !important;
+    }
     /* Nav panel takes 85% of screen width on small phones */
     .nav {
         width: 85% !important;
@@ -5659,9 +5836,44 @@ iframe.goog-te-menu-frame {
 }
 
 @media (max-width: 992px) {
-    /* Hide top header actions completely so mobile header is ultra-clean (only logo and hamburger button) */
+    /* Show compact lang/theme toggles in the mobile header bar */
     .header-actions {
+        display: flex !important;
+        align-items: center !important;
+        flex-shrink: 0 !important;
+        gap: 4px !important;
+        margin-left: auto !important;
+        margin-right: 4px !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .header-actions .enquire-btn {
         display: none !important;
+    }
+
+    .header-toggles {
+        display: flex !important;
+        gap: 4px !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        border-right: none !important;
+    }
+
+    .header .toggle-btn {
+        padding: 4px 7px !important;
+        font-size: 0.52rem !important;
+        letter-spacing: 0.2px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.35) !important;
+        background: rgba(0, 0, 0, 0.15) !important;
+        flex-shrink: 0 !important;
+    }
+
+    .header .toggle-btn i {
+        font-size: 0.55rem !important;
     }
 
     /* Show mobile-only actions inside the side drawer */
@@ -5728,9 +5940,9 @@ iframe.goog-te-menu-frame {
     .mobile-menu-title {
         font-size: 1.25rem !important;
         font-weight: 800 !important;
-        color: var(--primary-green) !important;
+        color: var(--accent-gold) !important;
         padding: 20px 24px !important; /* Aligned with full-width link grid */
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
         margin-bottom: 16px;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -6937,6 +7149,538 @@ iframe.goog-te-menu-frame {
     cursor: grabbing;
 }
 
+/* Century Adventures requested refinements */
+.header {
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.97) 0%, rgba(139, 94, 60, 0.95) 52%, rgba(212, 175, 55, 0.92) 100%) !important;
+}
+
+.header-content {
+    gap: 18px;
+}
+
+.header .logo {
+    min-width: 0;
+}
+
+.header .nav {
+    flex: 1 1 auto;
+}
+
+.header .nav > ul {
+    justify-content: center;
+}
+
+/* Keep the full home navigation fitting across the desktop header */
+@media (min-width: 993px) {
+    .header {
+        width: 100% !important;
+        max-width: 100% !important;
+        top: 0 !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-top: none !important;
+        margin: 0 !important;
+        padding: 8px 0;
+    }
+
+    .header .container.header-content {
+        max-width: none;
+        padding-left: clamp(12px, 1.35vw, 22px);
+        padding-right: clamp(12px, 1.35vw, 22px);
+        gap: clamp(8px, 1vw, 16px);
+    }
+
+    /* Connect the dropdown menu directly to the header strip with bottom border radius */
+    .dropdown-menu,
+    .nav ul li.dropdown .dropdown-menu {
+        top: 100% !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 12px !important;
+        border-bottom-right-radius: 12px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .header .logo {
+        flex: 0 1 245px;
+        margin-right: 0;
+    }
+
+    .logo-wrap {
+        gap: 9px;
+    }
+
+    .header .logo img,
+    .logo-wrap img {
+        height: 62px;
+    }
+
+
+
+    .brand-name {
+        font-size: clamp(1.15rem, 1.35vw, 1.6rem);
+        letter-spacing: 1.2px;
+    }
+
+    .brand-name span {
+        font-size: clamp(0.55rem, 0.65vw, 0.75rem);
+        letter-spacing: 2.2px;
+        margin-top: 4px;
+    }
+
+    /* ── Hero section desktop adjustments ── */
+    .hero {
+        margin-top: 78px !important;
+        padding-top: 90px !important;
+        padding-bottom: 25px !important;
+        height: calc(100vh - 78px) !important;
+        min-height: 650px !important;
+    }
+
+    .hero-logo-large {
+        margin-top: 45px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .hero-logo-large img {
+        height: 135px !important;
+    }
+
+    .hero h1 {
+        font-size: clamp(3.2rem, 4vw, 4.2rem) !important;
+        margin-bottom: 18px !important;
+    }
+
+    .hero-tagline {
+        font-size: clamp(1.1rem, 1.25vw, 1.45rem) !important;
+        margin-bottom: 24px !important;
+    }
+
+    .hero-desc {
+        font-size: clamp(0.92rem, 1.05vw, 1.15rem) !important;
+        max-width: 800px !important;
+        margin-bottom: 28px !important;
+    }
+
+    .header .nav {
+        margin-left: 0;
+        min-width: 0;
+    }
+
+    .header .nav > ul {
+        flex-wrap: nowrap;
+        gap: clamp(2px, 0.35vw, 6px);
+        justify-content: center;
+        padding: 6px 18px;
+        margin: 0;
+        background: rgba(0, 0, 0, 0.22);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .header .nav ul li a {
+        font-size: clamp(0.58rem, 0.62vw, 0.68rem) !important;
+        padding: 4px clamp(4px, 0.46vw, 7px);
+        letter-spacing: 0.2px;
+    }
+
+    .header .nav ul li a i {
+        font-size: 0.62em;
+        margin-left: 3px;
+    }
+
+    .header-actions {
+        flex: 0 0 auto;
+        gap: 4px;
+        margin-left: 0;
+        padding: 2px;
+    }
+
+    .header-toggles {
+        gap: 4px;
+        margin-right: 4px;
+        padding-right: 6px;
+    }
+
+    .header .header-toggles .toggle-btn {
+        padding: 4px 6px;
+        font-size: 0.52rem;
+        letter-spacing: 0.15px;
+    }
+
+    .header .enquire-btn {
+        margin-left: 0;
+        padding: 7px 13px !important;
+        font-size: 0.62rem !important;
+        letter-spacing: 0.25px;
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1180px) {
+    .header {
+        top: 8px;
+    }
+
+    .header .container.header-content {
+        flex-wrap: wrap;
+        row-gap: 6px;
+    }
+
+    .header .logo {
+        flex-basis: auto;
+    }
+
+    .header .nav {
+        flex: 1 0 100%;
+        order: 3;
+    }
+
+    .header .nav > ul {
+        justify-content: center;
+    }
+
+    .header .nav ul li a {
+        font-size: 0.62rem !important;
+        padding: 3px 7px;
+    }
+}
+
+.destinations-slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.destinations-slider-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 2px 24px;
+}
+
+.destinations-slider-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.destinations-slider-track {
+    display: flex;
+    gap: 24px;
+}
+
+.destinations-slider-track .destination-card {
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-width: 0;
+    height: 430px;
+    scroll-snap-align: start;
+    text-decoration: none;
+}
+
+.dest-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.65);
+    background: rgba(27, 67, 50, 0.92);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: translateY(-50%);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.dest-arrow-left {
+    left: -22px;
+}
+
+.dest-arrow-right {
+    right: -22px;
+}
+
+.dest-arrow:hover {
+    background: var(--accent-gold);
+    color: #1b4332;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.cta-action-grid {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 22px !important;
+    flex-wrap: wrap !important;
+}
+
+.cta-circle-btn {
+    width: 142px !important;
+    height: 142px !important;
+    border-radius: 50% !important;
+    padding: 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+    font-weight: 800 !important;
+    font-size: 0.9rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.72) !important;
+    background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.92), rgba(212,175,55,0.95) 45%, rgba(139,94,60,0.94) 100%) !important;
+    color: #163626 !important;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24), inset 0 0 0 1px rgba(255,255,255,0.35) !important;
+    text-decoration: none !important;
+    white-space: normal !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease !important;
+}
+
+.cta-section a[data-en="Plan Your Trip"],
+.cta-section a[data-en="Plan Your Safari"],
+.cta-section a[data-en="Request a Free Quote"] {
+    width: 142px !important;
+    height: 142px !important;
+    border-radius: 50% !important;
+    padding: 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+}
+
+.cta-circle-btn.secondary {
+    background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.92), rgba(27,67,50,0.96) 48%, rgba(139,94,60,0.96) 100%) !important;
+    color: #fff !important;
+}
+
+.cta-circle-btn:hover {
+    transform: translateY(-7px) scale(1.06) !important;
+    filter: saturate(1.08);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3), 0 0 0 9px rgba(212, 175, 55, 0.14) !important;
+}
+
+.cta-circle-btn:active {
+    transform: scale(0.96) !important;
+}
+
+.stats-section .why-us-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+}
+
+.stats-section .why-us-item {
+    padding: 18px 14px !important;
+    border-radius: 14px !important;
+}
+
+.stats-section .why-us-item .icon-wrap {
+    font-size: 1.35rem !important;
+    margin-bottom: 6px !important;
+}
+
+.stats-section .why-us-item strong {
+    font-size: 1.2rem !important;
+    line-height: 1.1 !important;
+}
+
+.stats-section .why-us-item p {
+    font-size: 0.78rem !important;
+    margin: 6px 0 0 !important;
+}
+
+.why-choose-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.choose-card {
+    border-radius: 8px !important;
+    padding: 24px 18px !important;
+}
+
+.choose-read-more,
+.guide-read-more {
+    display: none !important;
+}
+
+.expert-guides-carousel .marquee-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+}
+
+.expert-guides-carousel .marquee-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.expert-guides-carousel .marquee-track {
+    animation: scrollLeft 28s linear infinite;
+    gap: 24px;
+}
+
+.expert-guides-carousel:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.expert-guides-carousel .team-card {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+}
+
+@media (max-width: 992px) {
+    .header-content {
+        gap: 8px !important;
+    }
+
+    .logo-wrap {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .brand-name {
+        white-space: normal !important;
+        overflow-wrap: anywhere !important;
+        text-overflow: clip !important;
+        max-width: min(48vw, 260px);
+    }
+
+    .destinations-slider-track .destination-card {
+        flex-basis: calc((100% - 24px) / 2);
+        height: 360px;
+    }
+
+    .dest-arrow-left {
+        left: 8px;
+    }
+
+    .dest-arrow-right {
+        right: 8px;
+    }
+
+    .why-choose-grid,
+    .stats-section .why-us-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 74px !important;
+        padding: 0 10px !important;
+        background: linear-gradient(135deg, rgba(27, 67, 50, 0.98) 0%, rgba(139, 94, 60, 0.98) 50%, rgba(212, 175, 55, 0.98) 100%) !important;
+    }
+    [data-theme="dark"] .header {
+        background: linear-gradient(135deg, rgba(15, 40, 30, 0.98) 0%, rgba(95, 60, 40, 0.98) 50%, rgba(175, 140, 45, 0.98) 100%) !important;
+    }
+
+    .header-content {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto auto !important;
+        align-items: center !important;
+    }
+
+    .logo {
+        width: auto !important;
+        min-width: 0 !important;
+    }
+
+    .logo-wrap img,
+    .header.scrolled .logo-wrap img,
+    .header .logo img,
+    .logo img {
+        height: 42px !important;
+    }
+
+    .brand-name {
+        font-size: clamp(1rem, 4.2vw, 1.4rem) !important;
+        letter-spacing: 0.6px !important;
+        line-height: 1 !important;
+        max-width: calc(100vw - 172px) !important;
+    }
+
+    .brand-name span {
+        display: none !important;
+    }
+
+    .header-actions {
+        margin-left: 0 !important;
+        margin-right: 2px !important;
+    }
+
+    .header-toggles {
+        display: none !important;
+    }
+
+    .mobile-toggle {
+        justify-self: end !important;
+    }
+
+    .destinations-slider-track {
+        gap: 16px;
+    }
+
+    .destinations-slider-track .destination-card {
+        flex-basis: 84%;
+        height: 300px !important;
+    }
+
+    .dest-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .cta-action-grid {
+        gap: 16px !important;
+    }
+
+    .cta-circle-btn {
+        width: 124px !important;
+        height: 124px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .cta-section a[data-en="Plan Your Trip"],
+    .cta-section a[data-en="Plan Your Safari"],
+    .cta-section a[data-en="Request a Free Quote"] {
+        width: 124px !important;
+        height: 124px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .stats-section .why-us-grid {
+        gap: 12px !important;
+    }
+
+    .why-choose-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .expert-guides-carousel .team-card {
+        flex-basis: 78vw;
+    }
+}
+
+@media (max-width: 992px) {
+    html:not([data-theme="dark"]) .mobile-menu-title,
+    html:not([data-theme="dark"]) .nav ul li a,
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu li a,
+    html:not([data-theme="dark"]) .nav ul li a:hover,
+    html:not([data-theme="dark"]) .nav ul li a.active,
+    html:not([data-theme="dark"]) .mobile-only-action.book-now-item .btn {
+        color: #000000 !important;
+    }
+}
+
 /* ── Premium Card Enhancements (Desktop) ── */
 @media (min-width: 769px) {
     .safari-card:hover {
@@ -7383,11 +8127,15 @@ iframe.goog-te-menu-frame {
         padding: 10px 16px !important;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        background: var(--header-bg) !important;
+        background: linear-gradient(135deg, rgba(27, 67, 50, 0.98) 0%, rgba(139, 94, 60, 0.98) 50%, rgba(212, 175, 55, 0.98) 100%) !important;
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
         margin: 0 !important;
         box-sizing: border-box !important;
+    }
+
+    [data-theme="dark"] .header {
+        background: linear-gradient(135deg, rgba(15, 40, 30, 0.98) 0%, rgba(95, 60, 40, 0.98) 50%, rgba(175, 140, 45, 0.98) 100%) !important;
     }
 
     /* Premium rounded corners for mobile drawer */
@@ -8507,3 +9255,963 @@ iframe.goog-te-menu-frame {
         gap: 20px;
     }
 }
+
+/* Compact CTA buttons and requested page refinements */
+a.btn[data-en="Plan Your Safari"],
+a.btn[data-en="Plan Your Trip"],
+a.btn[data-en="Request a Free Quote"] {
+    padding: 9px 20px !important;
+    font-size: 0.74rem !important;
+    line-height: 1.2 !important;
+    min-height: 38px !important;
+}
+
+.cta-circle-btn,
+.cta-section a[data-en="Plan Your Trip"],
+.cta-section a[data-en="Plan Your Safari"],
+.cta-section a[data-en="Request a Free Quote"] {
+    width: 108px !important;
+    height: 108px !important;
+    min-height: 108px !important;
+    padding: 12px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
+}
+
+@media (max-width: 768px) {
+    .cta-circle-btn,
+    .cta-section a[data-en="Plan Your Trip"],
+    .cta-section a[data-en="Plan Your Safari"],
+    .cta-section a[data-en="Request a Free Quote"] {
+        width: 96px !important;
+        height: 96px !important;
+        min-height: 96px !important;
+        padding: 10px !important;
+        font-size: 0.66rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .mobile-menu-controls {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
+        padding: 0 24px 18px !important;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+        margin-bottom: 10px !important;
+    }
+
+    .mobile-menu-controls .toggle-btn {
+        width: 100%;
+        min-height: 40px;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 0.74rem !important;
+        letter-spacing: 0.3px;
+        border: 1px solid rgba(212, 175, 55, 0.35) !important;
+        background: rgba(212, 175, 55, 0.1) !important;
+        color: var(--accent-gold) !important;
+    }
+
+    [data-theme="dark"] .mobile-menu-controls .toggle-btn {
+        border-color: rgba(212, 175, 55, 0.35) !important;
+        background: rgba(212, 175, 55, 0.1) !important;
+        color: var(--accent-gold) !important;
+    }
+}
+
+.contact-section,
+.contact-team-section,
+.why-contact,
+.commitment-block,
+.vehicle-features,
+.professional-guides,
+.fleet-safety,
+.vol-opportunities,
+.vol-benefits,
+.vol-profiles,
+.vol-gains,
+.editorial-intro {
+    padding-top: 68px !important;
+    padding-bottom: 68px !important;
+}
+
+.contact-hero,
+.fleet-hero,
+.vol-hero {
+    height: 68vh !important;
+    min-height: 430px !important;
+}
+
+.contact-hero-content h1,
+.fleet-hero-content h1,
+.vol-hero-content h1 {
+    font-size: clamp(2rem, 4vw, 3.4rem) !important;
+    margin-bottom: 16px !important;
+}
+
+.contact-hero-tagline,
+.fleet-hero-tagline,
+.vol-hero-tagline {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem) !important;
+    line-height: 1.6 !important;
+    margin-bottom: 24px !important;
+}
+
+.contact-hero-badge,
+.fleet-hero-badge,
+.vol-hero-badge {
+    padding: 6px 16px !important;
+    font-size: 0.64rem !important;
+    letter-spacing: 1.8px !important;
+    margin-bottom: 18px !important;
+}
+
+.contact-layout-grid,
+.editorial-grid,
+.guide-grid {
+    gap: 44px !important;
+}
+
+.contact-info-panel h2,
+.form-container-card h3,
+.why-contact h2,
+.commitment-panel h2,
+.vehicle-features h2,
+.fleet-safety h2,
+.guide-text h2,
+.vol-opportunities h2,
+.vol-benefits h2,
+.vol-profiles h2,
+.vol-gains h2,
+.editorial-heading {
+    font-size: clamp(1.45rem, 2.5vw, 2.2rem) !important;
+    line-height: 1.18 !important;
+    margin-bottom: 16px !important;
+}
+
+.contact-info-panel .intro-text,
+.commitment-panel p,
+.vehicle-features .section-sub,
+.fleet-safety .section-sub,
+.guide-text p,
+.vol-opportunities .section-sub,
+.editorial-body p {
+    font-size: 0.92rem !important;
+    line-height: 1.65 !important;
+}
+
+.contact-details-list {
+    gap: 14px !important;
+    margin-bottom: 28px !important;
+}
+
+.contact-detail-card,
+.help-list-panel,
+.form-container-card,
+.contact-team-section .team-card,
+.why-contact-card,
+.feature-card,
+.safety-card,
+.opp-card,
+.profile-card,
+.gain-card,
+.editorial-pull-quote {
+    border-radius: 14px !important;
+    padding: 22px !important;
+}
+
+.form-container-card {
+    padding: 30px !important;
+}
+
+.form-grid {
+    gap: 14px !important;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    padding: 11px 14px !important;
+    font-size: 0.88rem !important;
+}
+
+.help-items-grid,
+.features-grid,
+.why-contact-grid,
+.opp-grid,
+.profiles-grid,
+.gains-grid,
+.contact-team-section .team-grid,
+.safety-grid,
+.benefits-grid {
+    gap: 18px !important;
+}
+
+.contact-team-section .team-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.contact-team-section .team-card-icon {
+    font-size: 1.65rem !important;
+    margin-bottom: 12px !important;
+}
+
+.contact-team-section .team-card h3,
+.feature-card h3,
+.opp-card h3,
+.profile-card h3,
+.gain-card h4,
+.why-contact-card h3,
+.safety-card h3 {
+    font-size: 0.95rem !important;
+    line-height: 1.35 !important;
+}
+
+.contact-team-section .team-card p,
+.feature-card p,
+.opp-card p,
+.cd-content p,
+.help-item,
+.benefit-item {
+    font-size: 0.84rem !important;
+    line-height: 1.55 !important;
+}
+
+.contact-team-section .team-email {
+    font-size: 0.82rem !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.feature-card-icon,
+.safety-card-icon,
+.opp-card-icon,
+.profile-card-icon,
+.gain-card-icon,
+.cd-icon,
+.wc-icon {
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 14px !important;
+}
+
+.stat-bar-item .num {
+    font-size: 1.7rem !important;
+}
+
+.stat-bar-item .lbl {
+    font-size: 0.66rem !important;
+    letter-spacing: 0.8px !important;
+}
+
+@media (max-width: 1100px) {
+    .contact-team-section .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero,
+    .fleet-hero,
+    .vol-hero {
+        height: 52vh !important;
+        min-height: 360px !important;
+        padding-top: 82px !important;
+        padding-bottom: 24px !important;
+    }
+
+    .contact-section,
+    .contact-team-section,
+    .why-contact,
+    .commitment-block,
+    .vehicle-features,
+    .professional-guides,
+    .fleet-safety,
+    .vol-opportunities,
+    .vol-benefits,
+    .vol-profiles,
+    .vol-gains,
+    .editorial-intro {
+        padding-top: 34px !important;
+        padding-bottom: 34px !important;
+    }
+
+    .contact-layout-grid,
+    .editorial-grid,
+    .guide-grid {
+        gap: 24px !important;
+    }
+
+    .contact-detail-card,
+    .help-list-panel,
+    .form-container-card,
+    .contact-team-section .team-card,
+    .why-contact-card,
+    .feature-card,
+    .safety-card,
+    .opp-card,
+    .profile-card,
+    .gain-card,
+    .editorial-pull-quote {
+        padding: 18px !important;
+    }
+
+    .contact-team-section .team-grid,
+    .features-grid,
+    .why-contact-grid,
+    .opp-grid,
+    .profiles-grid,
+    .gains-grid,
+    .safety-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .stat-bar-item {
+        padding: 8px 10px !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   CUSTOM STYLING: LIGHT SUBMENU DROPDOWN & BLACK TEXT (LIGHT MODE)
+   ═══════════════════════════════════════════════════ */
+
+/* 1. Desktop & Mobile: Enforce Light Background and Pure Black Text for Light Mode */
+html:not([data-theme="dark"]) .dropdown-menu,
+html:not([data-theme="dark"]) .dropdown .dropdown-menu,
+html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    border-color: rgba(197, 160, 68, 0.25) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not([data-theme="dark"]) .dropdown-menu li a,
+html:not([data-theme="dark"]) .dropdown-menu a,
+html:not([data-theme="dark"]) .dropdown-menu li a:link,
+html:not([data-theme="dark"]) .dropdown-menu li a:visited {
+    color: #000000 !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    padding: 12px 25px !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    display: block !important;
+    transition: all 0.25s ease !important;
+}
+
+/* Desktop Hover & Active State (Light Mode) */
+html:not([data-theme="dark"]) .dropdown-menu li a:hover,
+html:not([data-theme="dark"]) .dropdown-menu a:hover,
+html:not([data-theme="dark"]) .dropdown-menu li a.active,
+html:not([data-theme="dark"]) .dropdown-menu a.active {
+    color: #000000 !important;
+    background-color: rgba(197, 160, 68, 0.08) !important; /* Premium light gold hover bg */
+    padding-left: 30px !important; /* Smooth indent on hover */
+}
+
+/* 2. Mobile Navigation: Override Dropdown Submenu Container for Legibility (Light Mode) */
+@media (max-width: 992px) {
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu,
+    html:not([data-theme="dark"]) .dropdown .dropdown-menu {
+        position: static !important;
+        display: block !important;
+        background-color: #fdfbf7 !important; /* Premium light safari cream theme background */
+        border: 1px solid rgba(197, 160, 68, 0.25) !important;
+        border-radius: 8px !important;
+        padding: 6px 0 !important;
+        margin: 8px 16px 8px 24px !important;
+        width: calc(100% - 40px) !important;
+        box-sizing: border-box !important;
+    }
+
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu li a,
+    html:not([data-theme="dark"]) .dropdown .dropdown-menu li a {
+        color: #000000 !important;
+        padding: 10px 16px !important;
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+        border-left: none !important;
+        background: transparent !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu li a:hover,
+    html:not([data-theme="dark"]) .dropdown .dropdown-menu li a:hover,
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu li a.active,
+    html:not([data-theme="dark"]) .dropdown .dropdown-menu li a.active {
+        color: #000000 !important;
+        background-color: rgba(197, 160, 68, 0.12) !important; /* Slightly richer gold hover on mobile */
+        padding-left: 22px !important; /* Elegant slide on hover */
+    }
+
+    html:not([data-theme="dark"]) .nav ul li.dropdown .dropdown-menu li a::before,
+    html:not([data-theme="dark"]) .dropdown .dropdown-menu li a::before {
+        content: '—' !important;
+        color: #a68a2d !important;
+        font-weight: 700 !important;
+        display: inline-block !important;
+        margin-right: 4px !important;
+    }
+}
+
+/* 3. Dark Theme Mode: Dark background and light/gold text for premium contrast (Dark Mode) */
+[data-theme="dark"] .dropdown-menu,
+[data-theme="dark"] .dropdown .dropdown-menu,
+[data-theme="dark"] .nav ul li.dropdown .dropdown-menu {
+    background: #002616 !important; /* Premium dark forest green */
+    background-color: #002616 !important;
+    border-color: rgba(230, 184, 77, 0.25) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="dark"] .dropdown-menu li a,
+[data-theme="dark"] .dropdown-menu a,
+[data-theme="dark"] .dropdown-menu li a:link,
+[data-theme="dark"] .dropdown-menu li a:visited {
+    color: #e0e0e0 !important; /* Off-white text */
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    padding: 12px 25px !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    display: block !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-theme="dark"] .dropdown-menu li a:hover,
+[data-theme="dark"] .dropdown-menu a:hover,
+[data-theme="dark"] .dropdown-menu li a.active,
+[data-theme="dark"] .dropdown-menu a.active {
+    color: #ffffff !important; /* White text on hover */
+    background-color: rgba(230, 184, 77, 0.1) !important; /* Subtle gold hover background */
+    padding-left: 30px !important;
+}
+
+/* Mobile Dark Theme Mode Dropdown */
+@media (max-width: 992px) {
+    [data-theme="dark"] .nav ul li.dropdown .dropdown-menu,
+    [data-theme="dark"] .dropdown .dropdown-menu {
+        position: static !important;
+        display: block !important;
+        background-color: rgba(0, 0, 0, 0.2) !important; /* Translucent dark menu box */
+        border: 1px solid rgba(230, 184, 77, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 6px 0 !important;
+        margin: 8px 16px 8px 24px !important;
+        width: calc(100% - 40px) !important;
+        box-sizing: border-box !important;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+        overflow: hidden !important;
+    }
+
+    [data-theme="dark"] .nav ul li.dropdown .dropdown-menu li a,
+    [data-theme="dark"] .dropdown .dropdown-menu li a {
+        color: #e0e0e0 !important; /* Off-white text */
+        padding: 10px 16px !important;
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+        border-left: none !important;
+        background: transparent !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    [data-theme="dark"] .nav ul li.dropdown .dropdown-menu li a:hover,
+    [data-theme="dark"] .dropdown .dropdown-menu li a:hover,
+    [data-theme="dark"] .nav ul li.dropdown .dropdown-menu li a.active,
+    [data-theme="dark"] .dropdown .dropdown-menu li a.active {
+        color: #ffffff !important; /* White text on hover */
+        background-color: rgba(230, 184, 77, 0.1) !important; /* Gold hover bg */
+    }
+
+    [data-theme="dark"] .nav ul li.dropdown .dropdown-menu li a::before,
+    [data-theme="dark"] .dropdown .dropdown-menu li a::before {
+        content: '—' !important;
+        color: var(--accent-gold) !important;
+        font-weight: 700 !important;
+        display: inline-block !important;
+        margin-right: 4px !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   COMPACT SIZES FOR FOOTER-TOP, CTA & FOOTER SECTIONS
+   ═══════════════════════════════════════════════════ */
+
+/* 1. Footer Top Contact Bar */
+.footer-top {
+    padding: 24px 20px !important;
+    margin-bottom: -30px !important;
+    max-width: 800px !important;
+}
+.footer-top h2 {
+    font-size: 1.4rem !important;
+    margin-bottom: 12px !important;
+}
+.footer-top .btn {
+    padding: 8px 24px !important;
+    font-size: 0.85rem !important;
+}
+
+/* 2. Call To Action (CTA) Section */
+.cta-section {
+    padding: 35px 0 !important;
+}
+.cta-section .sub-heading {
+    font-size: 0.7rem !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 8px !important;
+}
+.cta-section h2 {
+    font-size: 1.6rem !important;
+    margin: 6px 0 12px !important;
+}
+.cta-section p, 
+.cta-section .cta-description {
+    font-size: 0.82rem !important;
+    line-height: 1.55 !important;
+    margin: 0 auto 16px !important;
+    max-width: 600px !important;
+}
+/* Plan Your Trip Button (New Design & Reduced Size) */
+.cta-section a.cta-circle-btn:not(.secondary) {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    white-space: nowrap !important;
+    background: linear-gradient(135deg, #d4af37 0%, #b8921e 100%) !important;
+    color: #000000 !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    padding: 6px 14px !important;
+    border-radius: 6px !important; /* Small rounded corners */
+    box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2) !important;
+    border: 1px solid #d4af37 !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.cta-section a.cta-circle-btn:not(.secondary):hover {
+    background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%) !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+    transform: translateY(-1px) scale(1.02) !important;
+}
+
+/* Request a Free Quote Button (New Design & Reduced Size) */
+.cta-section a.cta-circle-btn.secondary {
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    white-space: nowrap !important;
+    background: rgba(255, 255, 255, 0.06) !important; /* Glassmorphism background */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    font-size: 0.68rem !important;
+    font-weight: 600 !important;
+    padding: 6px 14px !important;
+    border-radius: 6px !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+}
+
+.cta-section a.cta-circle-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(212, 175, 55, 0.8) !important; /* Gold hover border */
+    color: var(--accent-gold) !important; /* Gold hover text */
+    transform: translateY(-1px) scale(1.02) !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05) !important;
+}
+
+.cta-section a[data-en="Contact Our Experts &rarr;"],
+.cta-section a[href="contact.html"] {
+    font-size: 0.78rem !important;
+}
+
+/* 3. Footer Grid and Columns */
+.footer {
+    padding: 80px 0 35px !important; /* Reduced padding from 120px 0 60px */
+}
+.footer-grid {
+    gap: 20px !important; /* Reduced gap */
+}
+.footer-col h3 {
+    font-size: 0.85rem !important; /* Marginally smaller headings */
+    margin-bottom: 14px !important;
+    padding-bottom: 6px !important;
+}
+.footer-col p, 
+.footer-col li a,
+.footer-col ul li a {
+    font-size: 0.8rem !important; /* Reduced from 0.9rem */
+    line-height: 1.6 !important;
+}
+.footer-col ul {
+    gap: 6px !important; /* Tighter list item spacing */
+}
+
+/* 4. TripAdvisor Card inside Footer */
+.tripadvisor-card {
+    padding: 16px !important; /* Reduced from 25px */
+    border-radius: 12px !important;
+}
+.tripadvisor-card img {
+    max-height: 20px !important;
+    margin: 0 auto 8px !important;
+}
+.tripadvisor-card h4 {
+    font-size: 0.8rem !important;
+    margin: 4px 0 !important;
+}
+.tripadvisor-card p {
+    font-size: 0.75rem !important;
+    margin-bottom: 10px !important;
+}
+.tripadvisor-card .btn.btn-small {
+    padding: 6px 14px !important;
+    font-size: 0.72rem !important;
+}
+
+/* 5. Footer Bottom Bar */
+.footer-bottom {
+    padding-top: 15px !important;
+    margin-top: 15px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    gap: 12px !important;
+}
+.footer-bottom p,
+.footer-bottom .copyright,
+.footer-bottom span {
+    font-size: 0.75rem !important; /* Reduced copyright text size */
+}
+.footer-bottom .social-links {
+    margin-bottom: 8px !important;
+}
+.footer-bottom .social-links a {
+    margin: 0 6px !important;
+    font-size: 0.9rem !important;
+}
+
+/* Mobile Media Query Adjustments for Sizing */
+@media (max-width: 768px) {
+    .footer-top {
+        width: 90% !important;
+        padding: 16px 12px !important;
+    }
+    .footer-top h2 {
+        font-size: 1.15rem !important;
+    }
+    .footer-top .btn {
+        padding: 6px 16px !important;
+        font-size: 0.75rem !important;
+    }
+    .cta-section {
+        padding: 25px 12px !important;
+    }
+    .cta-section h2 {
+        font-size: 1.35rem !important;
+    }
+    .footer {
+        padding: 60px 0 25px !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL MOBILE RESPONSIVENESS OVERRIDES (MAX-WIDTH: 768PX)
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* 1. Global Page Spacing & Layout */
+    body {
+        font-size: 0.88rem !important;
+        line-height: 1.6 !important;
+    }
+    section, .section, .welcome-section, .experiences-section, .safaris-section, .destinations-section, .travel-advice-section, .instagram-section, .trusted-by-section, .cta-section {
+        padding-top: 35px !important;
+        padding-bottom: 35px !important;
+    }
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .grid, .grid-layout, .flex-layout, .editorial-grid, .guide-grid, .contact-layout-grid, .destinations-grid-home, .instagram-grid, .features-grid, .opp-grid, .profiles-grid, .gains-grid, .safety-grid, .benefits-grid, .why-contact-grid, .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    /* 2. Text Scaling */
+    h1, .hero h1, .fleet-hero h1, .vol-hero h1, .contact-hero h1, .trip-hero h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 12px !important;
+    }
+    h2, .section > .container > h2, .section .sub-heading + h2, .welcome-section h2, .experiences-section h2, .safaris-section h2, .destinations-section h2, .travel-advice-section h2, .instagram-section h2, .cta-section h2 {
+        font-size: 1.35rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 12px !important;
+    }
+    h3, .footer-col h3, .welcome-section h3, .experience-content h3, .mini-card .safari-content h3, .destination-card h3, .destinations-section h3, .feature-card h3, .opp-card h3, .profile-card h3, .why-contact-card h3, .safety-card h3, .team-card h3, .trip-stats-grid h3 {
+        font-size: 1.05rem !important;
+        line-height: 1.35 !important;
+        margin-bottom: 10px !important;
+    }
+    h4, .gain-card h4, .tripadvisor-card h4, .stat-info h4 {
+        font-size: 0.9rem !important;
+        margin-bottom: 8px !important;
+    }
+    p, .section-desc, .hero-desc, .welcome-section p, .experience-content p, .mini-card p, .cta-description, .footer-col p, .footer-col li a, .editorial-body p, .editorial-pull-quote p, .testimonial-card p, .day-content p {
+        font-size: 0.82rem !important;
+        line-height: 1.55 !important;
+        margin-bottom: 12px !important;
+    }
+    .sub-heading {
+        font-size: 0.65rem !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 8px !important;
+    }
+    .sub-heading::after {
+        bottom: -5px !important;
+        width: 30px !important;
+    }
+
+    /* 3. Hero & Hero Section Optimization */
+    .hero, .fleet-hero, .vol-hero, .contact-hero, .trip-hero {
+        height: 65vh !important;
+        min-height: 400px !important;
+        padding-top: 75px !important;
+        padding-bottom: 25px !important;
+    }
+    .hero-logo-large {
+        margin-bottom: 12px !important;
+    }
+    .hero-logo-large img {
+        height: 65px !important;
+    }
+    .hero-tagline, .fleet-hero-tagline {
+        font-size: 0.78rem !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 15px !important;
+        line-height: 1.5 !important;
+    }
+    .hero-desc {
+        display: none !important; /* Hide long hero desc on mobile to reduce vertical scrolling */
+    }
+
+    /* 4. Card Scaling & Image Heights */
+    .safari-card, .package-card, .destination-card, .experience-card, .testimonial-card, .testimonial-card-new, .testimonial-card-full, .dest-item-card, .experience-card-premium, .feature-card, .opp-card, .profile-card, .gain-card, .why-contact-card, .safety-card, .team-card, .about-card {
+        padding: 15px !important;
+        border-radius: 12px !important;
+        margin-bottom: 10px !important;
+    }
+    .experience-content, .safari-content, .package-content, .card-content {
+        padding: 12px !important;
+    }
+    /* Set max heights for images inside cards on mobile */
+    .safari-card img, .package-card img, .destination-card img, .experience-card img, .dest-item-card img, .experience-card-premium img, .feature-card img, .team-card img, .mini-card img {
+        height: 150px !important;
+        width: 100% !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+    }
+    .marquee-wrapper .experience-card {
+        width: 250px !important;
+        min-width: 250px !important;
+    }
+    .mini-card {
+        width: 240px !important;
+        min-width: 240px !important;
+    }
+
+    /* 5. Button Scaling */
+    .btn, .btn-primary, .btn-outline, .btn-card, .btn-hero-primary, .btn-hero-outline {
+        padding: 8px 18px !important;
+        font-size: 0.78rem !important;
+        border-radius: 30px !important;
+        letter-spacing: 0.5px !important;
+    }
+    .enquire-btn, .header .enquire-btn, .footer-top .btn {
+        padding: 6px 14px !important;
+        font-size: 0.72rem !important;
+    }
+    .btn-small, .tripadvisor-card .btn-small {
+        padding: 5px 12px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* 6. Footer Optimization */
+    .footer {
+        padding: 50px 0 20px !important;
+    }
+    .footer-col {
+        margin-bottom: 15px !important;
+    }
+    .footer-col h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 4px !important;
+    }
+    .footer-col ul {
+        gap: 6px !important;
+    }
+    .footer-col ul li a, .footer-col p {
+        font-size: 0.78rem !important;
+    }
+    .tripadvisor-card {
+        padding: 12px !important;
+        border-radius: 10px !important;
+    }
+    .tripadvisor-card img {
+        max-height: 18px !important;
+        margin-bottom: 6px !important;
+    }
+    .tripadvisor-card h4 {
+        font-size: 0.75rem !important;
+    }
+    .tripadvisor-card p {
+        font-size: 0.7rem !important;
+    }
+    .footer-bottom {
+        padding-top: 12px !important;
+        margin-top: 12px !important;
+        gap: 8px !important;
+    }
+    .footer-bottom p, .footer-bottom .copyright, .footer-bottom span {
+        font-size: 0.72rem !important;
+    }
+    .footer-bottom .social-links a {
+        font-size: 0.8rem !important;
+        margin: 0 4px !important;
+    }
+
+    /* 7. Other Specific Mobile Layout Gaps */
+    .trip-stats-grid {
+        grid-template-columns: 1fr !important;
+        margin-top: -20px !important;
+        gap: 12px !important;
+    }
+    .stat-card {
+        padding: 15px !important;
+        border-radius: 12px !important;
+        gap: 12px !important;
+    }
+    .stat-card i {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.25rem !important;
+    }
+    .stat-info p {
+        font-size: 0.95rem !important;
+    }
+    .pricing-section {
+        padding: 20px !important;
+        border-radius: 15px !important;
+        margin-top: 20px !important;
+    }
+    .pricing-table td {
+        padding: 12px !important;
+        font-size: 0.8rem !important;
+    }
+    .pricing-table td:last-child {
+        font-size: 0.95rem !important;
+    }
+    .itinerary-timeline {
+        padding-left: 20px !important;
+        margin-top: 20px !important;
+    }
+    .itinerary-timeline::before {
+        left: 5px !important;
+    }
+    .day-circle {
+        left: -20px !important;
+        width: 14px !important;
+        height: 14px !important;
+        border-width: 2px !important;
+    }
+    .day-content {
+        padding: 15px !important;
+        border-radius: 10px !important;
+    }
+    .day-content h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+    }
+    .day-content ul li {
+        font-size: 0.8rem !important;
+        padding-left: 18px !important;
+    }
+}
+
+/* ── Header Grid layout on Desktop ── */
+@media (min-width: 993px) {
+    .header-content {
+        display: grid !important;
+        grid-template-areas: 
+            "logo actions"
+            "nav nav" !important;
+        grid-template-columns: auto auto !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        row-gap: 15px !important;
+    }
+    
+    .logo {
+        grid-area: logo !important;
+    }
+    
+    .header-actions {
+        grid-area: actions !important;
+        display: flex !important;
+        align-items: center !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        gap: 12px !important;
+    }
+    
+    .nav {
+        grid-area: nav !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding-top: 12px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    
+    .nav ul {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        gap: 18px !important;
+    }
+
+
+}
+
+
+
+
+
+

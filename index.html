@@ -411,8 +411,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home" style="background-image: linear-gradient(rgba(0,0,0,0.18), rgba(0,25,12,0.68)), url('assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg'); background-size: cover; background-position: center 30%;">
+    <section class="hero" id="home" style="background-image: linear-gradient(rgba(0,0,0,0.18), rgba(0,25,12,0.68)), url('assets/kilimanjalo.png'); background-size: cover; background-position: center 30%;">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <div class="hero-logo-large animate-in">
@@ -430,15 +429,15 @@
                 Experience Tanzania through expertly crafted journeys that bring you closer to nature, wildlife, and authentic African culture. From witnessing the Great Migration in the Serengeti to relaxing on the pristine beaches of Zanzibar, every adventure is designed to create memories that last a lifetime.
             </p>
 
-            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;">
-                <a href="safaris.html" class="btn btn-primary" style="border-radius:50px; padding: 15px 36px; font-weight:700;" data-en="Explore Safaris" data-sw="Chunguza Safari">Explore Safaris</a>
-                <a href="enquire.html" class="btn btn-outline" style="border-radius:50px; padding: 15px 36px; font-weight:700; border-color:#fff; color:#fff;" data-en="Tailor My Trip" data-sw="Panga Safari Yangu">Tailor My Trip</a>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:16px;">
+                <a href="safaris.html" class="btn btn-primary" style="border-radius:50px; padding: 12px 30px; font-weight:700;" data-en="Explore Safaris" data-sw="Chunguza Safari">Explore Safaris</a>
+                <a href="enquire.html" class="btn btn-outline" style="border-radius:50px; padding: 12px 30px; font-weight:700; border-color:#fff; color:#fff;" data-en="Tailor My Trip" data-sw="Panga Safari Yangu">Tailor My Trip</a>
             </div>
 
-            <p style="font-size:0.88rem; font-weight:600; opacity:0.9; margin-bottom:12px;" data-en="⭐⭐⭐⭐⭐ Trusted by travelers from around the world" data-sw="⭐⭐⭐⭐⭐ Inaaminika na wasafiri kutoka kote duniani">
+            <p style="font-size:0.8rem; font-weight:600; opacity:0.9; margin-bottom:8px;" data-en="⭐⭐⭐⭐⭐ Trusted by travelers from around the world" data-sw="⭐⭐⭐⭐⭐ Inaaminika na wasafiri kutoka kote duniani">
                 ⭐⭐⭐⭐⭐ Trusted by travelers from around the world
             </p>
-            <p style="font-size:0.95rem; font-weight:700; color:var(--accent-gold); letter-spacing:1px;" data-en="📍 Serengeti &bull; Ngorongoro &bull; Zanzibar &bull; Kilimanjaro" data-sw="📍 Serengeti &bull; Ngorongoro &bull; Zanzibar &bull; Kilimanjaro">
+            <p style="font-size:0.85rem; font-weight:700; color:var(--accent-gold); letter-spacing:1px;" data-en="📍 Serengeti &bull; Ngorongoro &bull; Zanzibar &bull; Kilimanjaro" data-sw="📍 Serengeti &bull; Ngorongoro &bull; Zanzibar &bull; Kilimanjaro">
                 📍 Serengeti &bull; Ngorongoro &bull; Zanzibar &bull; Kilimanjaro
             </p>
         </div>
@@ -732,62 +731,68 @@
                data-sw="Tanzania ni nyumbani kwa baadhi ya mandhari ya kusisimua ya Afrika na maeneo ya wanyamapori. Kila mkoa hutoa uzoefu wa kipekee, mandhari nzuri, na matukio yasiyosahaulika.">
                 Tanzania is home to some of Africa's most spectacular landscapes and wildlife destinations. Each region offers unique experiences, breathtaking scenery, and unforgettable adventures.
             </p>
-            
-            <div class="destinations-grid-home" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-                <!-- 1. Serengeti -->
-                <a href="serengeti.html" class="destination-card">
-                    <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Serengeti">
-                    <div class="card-overlay">
-                        <h3 data-en="Serengeti" data-sw="Serengeti">Serengeti</h3>
-                        <p data-en="The Endless Plains" data-sw="Mapori Yasiyo na Mwisho">The Endless Plains</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Famous for the Great Migration and wildlife." data-sw="Maarufu kwa Uhamiaji Mkuu na wanyama.">Famous for the Great Migration and wildlife.</p>
+
+            <div class="destinations-slider-container">
+                <button class="dest-arrow dest-arrow-left" aria-label="Previous destination"><i class="fas fa-chevron-left"></i></button>
+                <button class="dest-arrow dest-arrow-right" aria-label="Next destination"><i class="fas fa-chevron-right"></i></button>
+                <div class="destinations-slider-wrapper">
+                    <div class="destinations-slider-track">
+                        <!-- 1. Serengeti -->
+                        <a href="serengeti.html" class="destination-card">
+                            <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Serengeti">
+                            <div class="card-overlay">
+                                <h3 data-en="Serengeti" data-sw="Serengeti">Serengeti</h3>
+                                <p data-en="The Endless Plains" data-sw="Mapori Yasiyo na Mwisho">The Endless Plains</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Famous for the Great Migration and wildlife." data-sw="Maarufu kwa Uhamiaji Mkuu na wanyama.">Famous for the Great Migration and wildlife.</p>
+                            </div>
+                        </a>
+                        <!-- 2. Ngorongoro -->
+                        <a href="ngorongoro.html" class="destination-card">
+                            <img src="assets/ngorongoro.png" alt="Ngorongoro">
+                            <div class="card-overlay">
+                                <h3 data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</h3>
+                                <p data-en="The World's Largest Intact Volcanic Crater" data-sw="Kreta Kubwa Zaidi ya Volkano">The World's Largest Intact Volcanic Crater</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="UNESCO Heritage with dense animal populations." data-sw="Urithi wa UNESCO wenye wanyama wengi.">UNESCO Heritage with dense animal populations.</p>
+                            </div>
+                        </a>
+                        <!-- 3. Zanzibar -->
+                        <a href="zanzibar-beach.html" class="destination-card">
+                            <img src="assets/Zanzibar.jpg" alt="Zanzibar">
+                            <div class="card-overlay">
+                                <h3 data-en="Zanzibar" data-sw="Zanzibar">Zanzibar</h3>
+                                <p data-en="The Spice Island Paradise" data-sw="Kisiwa cha Viungo na Paradiso">The Spice Island Paradise</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="White sandy beaches and historic Stone Town." data-sw="Fukwe nyeupe za mchanga na Stone Town ya kihistoria.">White sandy beaches and historic Stone Town.</p>
+                            </div>
+                        </a>
+                        <!-- 4. Tarangire -->
+                        <a href="tarangire.html" class="destination-card">
+                            <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Tarangire">
+                            <div class="card-overlay">
+                                <h3 data-en="Tarangire" data-sw="Tarangire">Tarangire</h3>
+                                <p data-en="Land of Giants" data-sw="Nchi ya Majitu">Land of Giants</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Known for massive elephant herds and baobabs." data-sw="Inajulikana kwa makundi ya tembo na mibuyu.">Known for massive elephant herds and baobabs.</p>
+                            </div>
+                        </a>
+                        <!-- 5. Manyara -->
+                        <a href="manyara.html" class="destination-card">
+                            <img src="assets/elwphant.jpg" alt="Lake Manyara">
+                            <div class="card-overlay">
+                                <h3 data-en="Lake Manyara" data-sw="Ziwa Manyara">Lake Manyara</h3>
+                                <p data-en="A Hidden Gem" data-sw="Kito Kilichofichika">A Hidden Gem</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Beautiful scenery and tree-climbing lions." data-sw="Mandhari nzuri na simba wanaopanda miti.">Beautiful scenery and tree-climbing lions.</p>
+                            </div>
+                        </a>
+                        <!-- 6. Kilimanjaro -->
+                        <a href="enquire.html" class="destination-card">
+                            <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Mount Kilimanjaro">
+                            <div class="card-overlay">
+                                <h3 data-en="Mount Kilimanjaro" data-sw="Mlima Kilimanjaro">Mount Kilimanjaro</h3>
+                                <p data-en="The Roof of Africa" data-sw="Paa la Afrika">The Roof of Africa</p>
+                                <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Africa's highest peak and iconic trek destination." data-sw="Mlima mrefu zaidi Afrika na njia maarufu ya kupanda.">Africa's highest peak and iconic trek destination.</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <!-- 2. Ngorongoro -->
-                <a href="ngorongoro.html" class="destination-card">
-                    <img src="assets/ngorongoro.png" alt="Ngorongoro">
-                    <div class="card-overlay">
-                        <h3 data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</h3>
-                        <p data-en="The World's Largest Intact Volcanic Crater" data-sw="Kreta Kubwa Zaidi ya Volkano">The World's Largest Intact Volcanic Crater</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="UNESCO Heritage with dense animal populations." data-sw="Urithi wa UNESCO wenye wanyama wengi.">UNESCO Heritage with dense animal populations.</p>
-                    </div>
-                </a>
-                <!-- 3. Zanzibar -->
-                <a href="zanzibar-beach.html" class="destination-card">
-                    <img src="assets/Zanzibar.jpg" alt="Zanzibar">
-                    <div class="card-overlay">
-                        <h3 data-en="Zanzibar" data-sw="Zanzibar">Zanzibar</h3>
-                        <p data-en="The Spice Island Paradise" data-sw="Kisiwa cha Viungo na Paradiso">The Spice Island Paradise</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="White sandy beaches and historic Stone Town." data-sw="Fukwe nyeupe za mchanga na Stone Town ya kihistoria.">White sandy beaches and historic Stone Town.</p>
-                    </div>
-                </a>
-                <!-- 4. Tarangire -->
-                <a href="tarangire.html" class="destination-card">
-                    <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Tarangire">
-                    <div class="card-overlay">
-                        <h3 data-en="Tarangire" data-sw="Tarangire">Tarangire</h3>
-                        <p data-en="Land of Giants" data-sw="Nchi ya Majitu">Land of Giants</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Known for massive elephant herds and baobabs." data-sw="Inajulikana kwa makundi ya tembo na mibuyu.">Known for massive elephant herds and baobabs.</p>
-                    </div>
-                </a>
-                <!-- 5. Manyara -->
-                <a href="manyara.html" class="destination-card">
-                    <img src="assets/elwphant.jpg" alt="Lake Manyara">
-                    <div class="card-overlay">
-                        <h3 data-en="Lake Manyara" data-sw="Ziwa Manyara">Lake Manyara</h3>
-                        <p data-en="A Hidden Gem" data-sw="Kito Kilichofichika">A Hidden Gem</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Beautiful scenery and tree-climbing lions." data-sw="Mandhari nzuri na simba wanaopanda miti.">Beautiful scenery and tree-climbing lions.</p>
-                    </div>
-                </a>
-                <!-- 6. Kilimanjaro -->
-                <a href="enquire.html" class="destination-card">
-                    <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Mount Kilimanjaro">
-                    <div class="card-overlay">
-                        <h3 data-en="Mount Kilimanjaro" data-sw="Mlima Kilimanjaro">Mount Kilimanjaro</h3>
-                        <p data-en="The Roof of Africa" data-sw="Paa la Afrika">The Roof of Africa</p>
-                        <p style="font-size:0.8rem; opacity:0.85; margin-top:5px;" data-en="Africa's highest peak and iconic trek destination." data-sw="Mlima mrefu zaidi Afrika na njia maarufu ya kupanda.">Africa's highest peak and iconic trek destination.</p>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -912,18 +917,7 @@
         </div>
     </section>
 
-    <!-- Trusted By Section -->
-    <section class="trusted-by-section">
-        <div class="container">
-            <div class="brand-track">
-                <div class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/National_Geographic_logo.svg" alt="NatGeo"></div>
-                <div class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Lonely_Planet_logo.svg" alt="Lonely Planet"></div>
-                <div class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Tripadvisor_logo.svg" alt="TripAdvisor"></div>
-                <div class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/BBC_logo.svg" alt="BBC Travel"></div>
-                <div class="brand-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Tanzania_National_Parks_Authority_logo.png" alt="TANAPA"></div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer Contact Info -->
     <div class="footer-top">
@@ -944,9 +938,9 @@
                 <span data-en="Let Century Adventures make those dreams come true." data-sw="Ruhusu Century Adventures kufanya ndoto hizo ziwe kweli.">Let Century Adventures make those dreams come true.</span>
             </p>
 
-            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="enquire.html" class="btn btn-primary" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
-                <a href="enquire.html" class="btn btn-outline" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
+            <div class="cta-action-grid" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="enquire.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
+                <a href="enquire.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
             </div>
             
             <div style="margin-top: 18px;">
@@ -984,9 +978,23 @@
                 <ul>
                     <li><a href="family-safaris.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
                     <li><a href="honeymoon-safaris.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
-                    <li><a href="migration-safaris.html" data-en="Immigration Trips" data-sw="Safari za Uhamiaji">Immigration Trips</a></li>
+                    <li><a href="migration-safaris.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
                     <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
                     <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                </ul>
+            </div>
+            <div class="footer-col link-col collapsible">
+                <h3 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h3>
+                <ul>
+                    <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
+                    <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
+                    <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
+                    <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
+                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
+                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
+                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
+                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
+                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
                 </ul>
             </div>
             <div class="footer-col">

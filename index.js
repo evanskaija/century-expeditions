@@ -16,12 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
         header.innerHTML = `
             <div class="container header-content">
                 <div class="logo">
-                    <a href="index.html"><img src="assets/logo.png" alt="Century Adventures Logo"></a>
+                    <a href="index.html" class="logo-wrap">
+                        <img src="assets/logo.png" alt="Century Adventures Logo">
+                        <span class="brand-name">CENTURY ADVENTURES<span>Safari &amp; Tours</span></span>
+                    </a>
                 </div>
                 <nav class="nav">
                     <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
                     <ul>
                         <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                        <li class="mobile-only-action mobile-menu-controls">
+                            <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SWAHILI</button>
+                            <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
+                        </li>
                         <li><a href="index.html" id="nav-home" data-en="Home" data-sw="Nyumbani">Home</a></li>
                         <li><a href="about.html" id="nav-about" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
                         <li class="dropdown">
@@ -47,14 +54,31 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li><a href="activities.html" data-en="Safari Activities" data-sw="Shughuli za Safari">Safari Activities</a></li>
                                 <li><a href="accommodations.html" data-en="Lodging & Camps" data-sw="Malazi na Kambi">Lodging & Camps</a></li>
                                 <li><a href="planner.html" data-en="Custom Trip Planner" data-sw="Kupanga Safari">Custom Trip Planner</a></li>
+                                <li><a href="family-safaris.html" data-en="Family Safaris" data-sw="Safari za Familia">Family Safaris</a></li>
+                                <li><a href="migration-safaris.html" data-en="Migration Safaris" data-sw="Safari za Uhamiaji">Migration Safaris</a></li>
+                                <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" id="nav-resources" data-en="Travel Advice" data-sw="Ushauri wa Safari">Travel Advice <i class="fas fa-chevron-down"></i></a>
+                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
+                                <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
+                                <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
+                                <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
+                                <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
+                                <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
+                                <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
+                                <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
+                                <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
+                                <li><a href="dar-es-salaam-highlights.html" data-en="Dar es Salaam Highlights" data-sw="Kuhusu Dar es Salaam">Dar es Salaam Highlights</a></li>
                             </ul>
                         </li>
                         <li><a href="safaris.html" id="nav-safaris" data-en="Tours & Safaris" data-sw="Safari na Ziara">Tours & Safaris</a></li>
                         <li><a href="volunteer.html" id="nav-volunteer" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
                         <li><a href="vehicles.html" id="nav-vehicles" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
                         <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                        <li class="mobile-only-action"><a href="#" class="theme-toggle" onclick="toggleTheme(event); return false;"><i class="fas fa-moon"></i> DARK</a></li>
-                        <li class="mobile-only-action"><a href="#" class="lang-toggle" onclick="toggleLang(event); return false;">SWAHILI</a></li>
                         <li class="mobile-only-action book-now-item"><a href="book.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
                     </ul>
                 </nav>
@@ -68,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="header-actions">
                     <div class="header-toggles">
-                        <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SW</button>
-                        <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i></button>
+                        <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SWAHILI</button>
+                        <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
                     </div>
                     <a href="book.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a>
                 </div>
@@ -95,8 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (page === 'safaris.html') {
             const el = document.getElementById('nav-safaris');
             if (el) el.classList.add('active');
-        } else if (['experiences.html', 'activities.html', 'accommodations.html', 'planner.html'].includes(page)) {
+        } else if (['experiences.html', 'activities.html', 'accommodations.html', 'planner.html', 'family-safaris.html', 'migration-safaris.html', 'zanzibar-beach.html'].includes(page)) {
             const el = document.getElementById('nav-experiences');
+            if (el) el.classList.add('active');
+        } else if (['blog.html', 'faq.html', 'gallery.html', 'testimonials.html', 'best-time-to-visit-tanzania.html', 'health-safety-tanzania.html', 'obtaining-visa-tanzania.html', 'solo-female-travel-tanzania.html', 'what-to-wear-safari.html', 'dar-es-salaam-highlights.html', 'advice-template.html'].includes(page)) {
+            const el = document.getElementById('nav-resources');
             if (el) el.classList.add('active');
         } else if (page === 'volunteer.html') {
             const el = document.getElementById('nav-volunteer');
@@ -703,7 +730,9 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.forEach(el => {
             const translation = el.getAttribute(`data-${lang}`);
             if (translation) {
-                if (el.children.length > 0) {
+                if (translation.includes('<') && translation.includes('>')) {
+                    el.innerHTML = translation;
+                } else if (el.children.length > 0) {
                     // Try to preserve icons (typically <i> or <span>) by replacing only text nodes
                     let textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
                     if (textNode) {
@@ -987,6 +1016,87 @@ document.addEventListener('DOMContentLoaded', () => {
     // setupAutoScroll('.safaris-grid', 380); // Disabled for CSS marquee
     setupAutoScroll('.experiences-grid', 530);
 
+    const setupDestinationCarousel = () => {
+        const container = document.querySelector('.destinations-slider-container');
+        if (!container) return;
+
+        const wrapper = container.querySelector('.destinations-slider-wrapper');
+        const track = container.querySelector('.destinations-slider-track');
+        const prev = container.querySelector('.dest-arrow-left');
+        const next = container.querySelector('.dest-arrow-right');
+        if (!wrapper || !track) return;
+
+        const getStep = () => {
+            const card = track.querySelector('.destination-card');
+            const gap = parseFloat(getComputedStyle(track).gap) || 0;
+            return card ? card.getBoundingClientRect().width + gap : wrapper.clientWidth;
+        };
+
+        const move = (direction = 1) => {
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            const nextLeft = wrapper.scrollLeft + (getStep() * direction);
+            if (nextLeft > maxScroll - 8) {
+                wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+            } else if (nextLeft < 0) {
+                wrapper.scrollTo({ left: maxScroll, behavior: 'smooth' });
+            } else {
+                wrapper.scrollTo({ left: nextLeft, behavior: 'smooth' });
+            }
+        };
+
+        prev?.addEventListener('click', () => move(-1));
+        next?.addEventListener('click', () => move(1));
+
+        let timer = setInterval(() => move(1), 4000);
+        const pause = () => clearInterval(timer);
+        const resume = () => {
+            clearInterval(timer);
+            timer = setInterval(() => move(1), 4000);
+        };
+
+        container.addEventListener('mouseenter', pause);
+        container.addEventListener('mouseleave', resume);
+        container.addEventListener('touchstart', pause, { passive: true });
+        container.addEventListener('touchend', resume, { passive: true });
+    };
+
+    const setupDragScroll = (selector) => {
+        document.querySelectorAll(selector).forEach(wrapper => {
+            if (wrapper.dataset.dragScrollReady) return;
+            wrapper.dataset.dragScrollReady = 'true';
+
+            let isDragging = false;
+            let startX = 0;
+            let scrollLeft = 0;
+
+            wrapper.addEventListener('pointerdown', (event) => {
+                if (event.pointerType === 'mouse' && event.button !== 0) return;
+                isDragging = true;
+                startX = event.clientX;
+                scrollLeft = wrapper.scrollLeft;
+                wrapper.classList.add('dragging');
+                wrapper.setPointerCapture?.(event.pointerId);
+            });
+
+            wrapper.addEventListener('pointermove', (event) => {
+                if (!isDragging) return;
+                wrapper.scrollLeft = scrollLeft - (event.clientX - startX);
+            });
+
+            ['pointerup', 'pointercancel', 'pointerleave'].forEach(type => {
+                wrapper.addEventListener(type, (event) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    wrapper.classList.remove('dragging');
+                    wrapper.releasePointerCapture?.(event.pointerId);
+                });
+            });
+        });
+    };
+
+    setupDestinationCarousel();
+    setupDragScroll('.destinations-slider-wrapper');
+
     // ── Unified Infinite Marquee Slider Engine ──
     const initInfiniteMarquees = () => {
         const wrappers = document.querySelectorAll('.marquee-wrapper');
@@ -1003,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rightArrow = container ? container.querySelector('.marquee-arrow-right') : null;
 
             // Find dynamic width of a card (card width + gap)
-            const firstCard = track.querySelector('.safari-card, .experience-card, .tip-card');
+            const firstCard = track.querySelector('.safari-card, .experience-card, .tip-card, .team-card');
             
             const getCardWidth = () => {
                 const currentGap = window.innerWidth <= 768 ? 14 : 30;
@@ -1374,15 +1484,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.getComputedStyle(hero).position === 'static') {
             hero.style.position = 'relative';
         }
-
         // List of premium, high-resolution slideshow images
         const slideshowImages = [
-            'assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg',
-            'assets/05TMMT-IM1505-mara-mara-tented-lodge-1475.jpg',
-            'assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg',
-            'assets/Zanzibar.jpg',
-            'assets/KTA13Serengeti Nationa.webp',
-            'assets/elwphant.jpg'
+            'assets/kilimanjalo.png',
+            'assets/lion5.jpeg',
+            'assets/zanzibar1.jpg',
+            'assets/three-giraffe.jpg'
         ];
 
         // Try to extract original background image
@@ -1594,40 +1701,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             card.appendChild(heartBtn);
 
-            const compareRow = document.createElement('div');
-            compareRow.className = 'compare-row-wrapper';
-            compareRow.innerHTML = `
-                <label class="compare-checkbox-label" data-en="Compare Tour" data-sw="Linganisha Safari">
-                    <input type="checkbox" class="compare-checkbox"> Compare Tour
-                </label>
-            `;
-            
-            const checkbox = compareRow.querySelector('.compare-checkbox');
-            checkbox.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    if (compareList.length >= 3) {
-                        const lang = localStorage.getItem('century-lang') || 'en';
-                        if (lang === 'sw') {
-                            alert('Unaweza kulinganisha kiwango cha juu cha safari 3 bega kwa bega.');
-                        } else {
-                            alert('You can compare a maximum of 3 tours side by side.');
-                        }
-                        e.target.checked = false;
-                        return;
-                    }
-                    compareList.push({ title, link, img, price });
-                } else {
-                    compareList = compareList.filter(item => item.title !== title);
-                }
-                updateCompareBar();
-            });
-
-            const content = card.querySelector('.safari-content, .package-content, div');
-            if (content) {
-                content.appendChild(compareRow);
-            } else {
-                card.appendChild(compareRow);
-            }
+            // Compare Tour logic removed
         });
 
         const updateCompareBar = () => {
@@ -2559,4 +2633,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Century Adventures Exceptional Features: Weather, Currency, Wishlist & Comparison Engines Ready.");
 });
-
