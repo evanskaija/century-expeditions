@@ -619,9 +619,9 @@
                 <ul>
                     <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
                     <li class="active"><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li><a href="#"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
+                    <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
                 </ul>
             </nav>
         </aside>
@@ -746,7 +746,8 @@
         function handleAuth(e) {
             e.preventDefault();
             const passcode = document.getElementById('passcode').value;
-            if (passcode === 'centuryadmin' || passcode === 'admin123') {
+            const correctPasscode = localStorage.getItem('century-admin-passcode') || 'centuryadmin';
+            if (passcode === correctPasscode || passcode === 'admin123') {
                 sessionStorage.setItem('century_admin_authenticated', 'true');
                 showWorkspace();
             } else {

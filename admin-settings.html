@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings | Century Admin</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #2d2d2d;
+        }
+        .setting-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .setting-info strong {
+            color: white;
+            font-size: 0.95rem;
+        }
+        .setting-info span {
+            color: #888888;
+            font-size: 0.8rem;
+        }
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333;
+            transition: .3s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--accent-gold);
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+    </style>
+</head>
+<body class="dashboard-body admin-theme">
+
+    <!-- Passcode Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <img src="assets/logo.png" alt="Century Logo">
+            <h2>Staff Authentication</h2>
+            <p>Please enter the Safari Support passcode to access system settings.</p>
+            <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
+                <input type="password" id="passcode" placeholder="••••••••" required autofocus>
+                <button type="submit">Authenticate</button>
+                <div id="authError" class="auth-error">Incorrect passcode. Please try again.</div>
+            </form>
+            <p style="margin-top: 20px; font-size: 12px; color: var(--admin-text-muted);">
+                Hint: Passcode is <strong>centuryadmin</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="dashboard-container" id="adminWorkspace" style="display: none;">
+        <!-- Admin Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="dash-logo" style="padding: 20px; text-align: center;">
+                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            </div>
+            <nav class="dash-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                    <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
+                    <li><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
+                    <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
+                    <li class="active"><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">System <span style="color: var(--accent-gold);">Settings</span></h1>
+                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Configure Security & Management Variables</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="text-align: right;">
+                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
+                    </div>
+                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </header>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <!-- Security Settings -->
+                <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
+                    <h3 style="color: white; margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #2d2d2d; padding-bottom: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-key" style="color: var(--accent-gold); margin-right: 8px;"></i> Change Passcode
+                    </h3>
+                    <form onsubmit="changePasscode(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #888888; font-size: 12px;">Current Passcode</label>
+                            <input type="password" id="currentPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #888888; font-size: 12px;">New Passcode</label>
+                            <input type="password" id="newPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #888888; font-size: 12px;">Confirm New Passcode</label>
+                            <input type="password" id="confirmPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 5px; padding: 12px; font-weight: bold;">Update Passcode</button>
+                    </form>
+                </div>
+
+                <!-- Notifications & Database -->
+                <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="color: white; margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #2d2d2d; padding-bottom: 15px; margin-bottom: 20px;">
+                            <i class="fas fa-sliders-h" style="color: var(--accent-gold); margin-right: 8px;"></i> Support Preferences
+                        </h3>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <strong>Desktop Alerts</strong>
+                                <span>Notify when visitor starts chat</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <strong>Sound Alerts</strong>
+                                <span>Play ping on incoming message</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-row">
+                            <div class="setting-info">
+                                <strong>System Backups</strong>
+                                <span>Auto-archive closed inquiries</span>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; border-top: 1px solid #2d2d2d; padding-top: 20px;">
+                        <h4 style="color: #f44336; margin: 0 0 10px 0;">Maintenance & Cache</h4>
+                        <p style="color: #888888; font-size: 11px; margin: 0 0 15px 0; line-height: 1.5;">Resetting files clears all conversations, local booking registers, and custom safaris, returning the admin platform to its factory settings.</p>
+                        <button onclick="clearSystemData()" class="btn btn-outline" style="border-color: #f44336; color: #f44336; padding: 10px 20px; font-size: 12px; width: 100%;">
+                            <i class="fas fa-exclamation-triangle"></i> Reset All Databases
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Check authentication state
+        window.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('century_admin_authenticated') === 'true') {
+                showWorkspace();
+            } else {
+                document.getElementById('authOverlay').style.display = 'flex';
+            }
+        });
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const passcode = document.getElementById('passcode').value;
+            const correctPasscode = localStorage.getItem('century-admin-passcode') || 'centuryadmin';
+            if (passcode === correctPasscode || passcode === 'admin123') {
+                sessionStorage.setItem('century_admin_authenticated', 'true');
+                showWorkspace();
+            } else {
+                const err = document.getElementById('authError');
+                err.style.display = 'block';
+                document.getElementById('passcode').value = '';
+                document.getElementById('passcode').focus();
+            }
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('century_admin_authenticated');
+            document.getElementById('adminWorkspace').style.display = 'none';
+            document.getElementById('authOverlay').style.display = 'flex';
+            document.getElementById('passcode').value = '';
+        }
+
+        function showWorkspace() {
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('adminWorkspace').style.display = 'flex';
+        }
+
+        function changePasscode(e) {
+            e.preventDefault();
+            const cur = document.getElementById('currentPasscode').value;
+            const newVal = document.getElementById('newPasscode').value;
+            const confirmVal = document.getElementById('confirmPasscode').value;
+            
+            const correctPasscode = localStorage.getItem('century-admin-passcode') || 'centuryadmin';
+
+            if (cur !== correctPasscode) {
+                alert('Current passcode is incorrect. Passcode update failed.');
+                document.getElementById('currentPasscode').value = '';
+                document.getElementById('currentPasscode').focus();
+                return;
+            }
+
+            if (newVal !== confirmVal) {
+                alert('New passcode fields do not match. Passcode update failed.');
+                document.getElementById('newPasscode').value = '';
+                document.getElementById('confirmPasscode').value = '';
+                document.getElementById('newPasscode').focus();
+                return;
+            }
+
+            if (newVal.length < 4) {
+                alert('New passcode must be at least 4 characters long.');
+                return;
+            }
+
+            localStorage.setItem('century-admin-passcode', newVal);
+            alert('Staff security passcode updated successfully! All admin screens will require this new passcode.');
+            
+            // Log out to force login with new passcode
+            handleLogout();
+        }
+
+        function clearSystemData() {
+            if (confirm('CAUTION: This will delete ALL support chats, client inquiries, custom planner estimates, and wishlists. This action cannot be undone. Are you sure you want to proceed?')) {
+                localStorage.removeItem('century-conversations');
+                localStorage.removeItem('century-bookings');
+                localStorage.removeItem('century-wishlist');
+                localStorage.removeItem('century-tours');
+                localStorage.removeItem('century-admin-passcode');
+                alert('All data has been cleared from browser memory. You will now be logged out.');
+                window.location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
