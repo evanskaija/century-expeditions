@@ -45,11 +45,16 @@ const TRANSLATION_DICTIONARY = {
 (function() {
     const isDark = localStorage.getItem('century-admin-dark-mode') === 'true';
     if (isDark) {
-        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
     }
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Sync dark-mode class to body on load
+    if (document.documentElement.classList.contains('dark-mode')) {
+        document.body.classList.add('dark-mode');
+    }
+
     // 1. Setup layout elements
     setupSidebarActions();
     setupHeaderAvatar();
@@ -142,6 +147,11 @@ function initThemeState() {
 // Toggle active theme class
 function toggleTheme() {
     const isDark = document.body.classList.toggle('dark-mode');
+    if (isDark) {
+        document.documentElement.classList.add('dark-mode');
+    } else {
+        document.documentElement.classList.remove('dark-mode');
+    }
     localStorage.setItem('century-admin-dark-mode', isDark ? 'true' : 'false');
     initThemeState();
 }
