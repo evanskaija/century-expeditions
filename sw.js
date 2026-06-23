@@ -1,4 +1,4 @@
-const CACHE_NAME = 'century-adventures-cache-v12';
+const CACHE_NAME = 'century-adventures-cache-v15';
 const PRECACHE_URLS = [
   'index.html',
   'index.css',

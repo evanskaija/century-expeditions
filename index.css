@@ -10254,15 +10254,7 @@ html:not([data-theme="dark"]) .dropdown-menu a.active {
 }
 
 /* ── Admin Dashboard Common Styles & Authentication Overlay ── */
-body.admin-theme {
-    --admin-bg: #121212;
-    --admin-card-bg: #1e1e1e;
-    --admin-border: #2d2d2d;
-    --admin-text: #e0e0e0;
-    --admin-text-muted: #888888;
-    background-color: var(--admin-bg) !important;
-    color: var(--admin-text) !important;
-}
+/* NOTE: Dark variable block removed – use body.admin-theme.dark-mode below instead */
 
 /* Authentication Overlay */
 .auth-overlay {
@@ -10271,21 +10263,24 @@ body.admin-theme {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.95);
+    background: rgba(248, 250, 252, 0.97);
+    backdrop-filter: blur(8px);
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background 0.3s ease;
 }
 
 .auth-card {
-    background: #1e1e1e;
-    border: 1px solid #2d2d2d;
-    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
     width: 400px;
     padding: 40px 30px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .auth-card img {
@@ -10295,12 +10290,12 @@ body.admin-theme {
 
 .auth-card h2 {
     font-family: 'Playfair Display', serif;
-    color: white !important;
+    color: #000000 !important;
     margin: 0 0 10px 0;
 }
 
 .auth-card p {
-    color: #888888 !important;
+    color: #475569 !important;
     font-size: 14px;
     margin-bottom: 25px;
 }
@@ -10308,25 +10303,26 @@ body.admin-theme {
 .auth-form input {
     width: 100%;
     padding: 12px;
-    background: #121212;
-    border: 1px solid #2d2d2d;
-    color: white;
-    border-radius: 6px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #000000;
+    border-radius: 10px;
     text-align: center;
     font-size: 18px;
     letter-spacing: 4px;
     outline: none;
     margin-bottom: 15px;
     box-sizing: border-box;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .auth-form button {
     width: 100%;
     padding: 12px;
     background: var(--accent-gold);
-    color: #121212;
+    color: #000000;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 15px;
     cursor: pointer;
@@ -11017,50 +11013,192 @@ body.admin-theme.dark-mode .auth-form input {
     }
 }
 
-/* Force every content to be white with black words in Light Mode */
+/* ============================================================
+   COMPREHENSIVE LIGHT MODE: White Backgrounds + Black Text
+   All admin content must be white in light mode
+   ============================================================ */
+
+/* Forecast Card (light blue in dark) → white in light */
 body.admin-theme:not(.dark-mode) .forecast-card {
-    background: var(--admin-card-bg) !important;
-    border: 1px solid var(--admin-card-border) !important;
-    color: var(--admin-text-primary) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    color: #000000 !important;
 }
-body.admin-theme:not(.dark-mode) .forecast-card h3 {
-    color: var(--admin-text-primary) !important;
+body.admin-theme:not(.dark-mode) .forecast-card h3,
+body.admin-theme:not(.dark-mode) .forecast-card h4 {
+    color: #000000 !important;
 }
 body.admin-theme:not(.dark-mode) .forecast-card span {
-    color: var(--admin-text-muted) !important;
+    color: #334155 !important;
 }
 body.admin-theme:not(.dark-mode) .forecast-card .sub-card-white {
-    border: 1px solid var(--admin-card-border) !important;
-    box-shadow: none !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
 }
 
+/* Dark department card → white in light */
 body.admin-theme:not(.dark-mode) .spend-card-dark {
-    background: var(--admin-card-bg) !important;
-    border: 1px solid var(--admin-card-border) !important;
-    color: var(--admin-text-primary) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    color: #000000 !important;
 }
-body.admin-theme:not(.dark-mode) .spend-card-dark h3 {
-    color: var(--admin-text-primary) !important;
+body.admin-theme:not(.dark-mode) .spend-card-dark h3,
+body.admin-theme:not(.dark-mode) .spend-card-dark h4 {
+    color: #000000 !important;
 }
 body.admin-theme:not(.dark-mode) .spend-card-dark span,
-body.admin-theme:not(.dark-mode) .spend-card-dark strong {
-    color: var(--admin-text-primary) !important;
+body.admin-theme:not(.dark-mode) .spend-card-dark strong,
+body.admin-theme:not(.dark-mode) .spend-card-dark p {
+    color: #334155 !important;
 }
 body.admin-theme:not(.dark-mode) .spend-card-dark a {
     color: #5c5cfc !important;
-    background: rgba(92, 92, 252, 0.05) !important;
+    background: rgba(92, 92, 252, 0.06) !important;
     border-color: rgba(92, 92, 252, 0.15) !important;
     box-shadow: none !important;
 }
 
+/* SVG donut chart inner circle → light background in light mode */
+body.admin-theme:not(.dark-mode) .spend-card-dark svg circle[stroke="#2a3347"] {
+    stroke: #e2e8f0 !important;
+}
+
+/* Sub-card purple → keep accent but ensure readable text */
+body.admin-theme:not(.dark-mode) .sub-card-purple {
+    background: #5c5cfc !important;
+    color: #ffffff !important;
+}
+
+/* All dash-cards, header card → white background, black text */
+body.admin-theme:not(.dark-mode) .dash-card,
+body.admin-theme:not(.dark-mode) .dash-header-card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.07) !important;
+}
+body.admin-theme:not(.dark-mode) .dash-card h1,
+body.admin-theme:not(.dark-mode) .dash-card h2,
+body.admin-theme:not(.dark-mode) .dash-card h3,
+body.admin-theme:not(.dark-mode) .dash-card h4,
+body.admin-theme:not(.dark-mode) .dash-card p,
+body.admin-theme:not(.dark-mode) .dash-card span:not(.status-badge),
+body.admin-theme:not(.dark-mode) .dash-card label,
+body.admin-theme:not(.dark-mode) .dash-card strong {
+    color: #000000 !important;
+}
+body.admin-theme:not(.dark-mode) .dash-header-card h1,
+body.admin-theme:not(.dark-mode) .dash-header-card p {
+    color: #000000 !important;
+}
+
+/* Setting info rows */
+body.admin-theme:not(.dark-mode) .setting-info strong {
+    color: #000000 !important;
+}
+body.admin-theme:not(.dark-mode) .setting-info span {
+    color: #475569 !important;
+}
+body.admin-theme:not(.dark-mode) .setting-row {
+    border-bottom-color: #e2e8f0 !important;
+}
+
+/* Table cells → black text */
+body.admin-theme:not(.dark-mode) .admin-table th,
+body.admin-theme:not(.dark-mode) .admin-table td {
+    color: #000000 !important;
+}
+body.admin-theme:not(.dark-mode) .admin-table tr {
+    background: #ffffff !important;
+}
+body.admin-theme:not(.dark-mode) .admin-table thead tr {
+    background: #f8fafc !important;
+}
+
+/* Body background → white */
+body.admin-theme:not(.dark-mode) {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+}
+
+/* Sidebar → white */
+body.admin-theme:not(.dark-mode) .dashboard-sidebar {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* Auth overlay and card → white in light mode */
+body.admin-theme:not(.dark-mode) .auth-overlay {
+    background: rgba(248, 250, 252, 0.97) !important;
+}
+body.admin-theme:not(.dark-mode) .auth-card {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: #000000 !important;
+}
+body.admin-theme:not(.dark-mode) .auth-card h2 {
+    color: #000000 !important;
+}
+body.admin-theme:not(.dark-mode) .auth-card p {
+    color: #475569 !important;
+}
+body.admin-theme:not(.dark-mode) .auth-form input {
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #000000 !important;
+}
+
+/* Message panels → white */
 body.admin-theme:not(.dark-mode) .chat-pane,
 body.admin-theme:not(.dark-mode) .chat-messages-area,
-body.admin-theme:not(.dark-mode) .chat-empty-state {
+body.admin-theme:not(.dark-mode) .chat-empty-state,
+body.admin-theme:not(.dark-mode) .inbox-list-pane,
+body.admin-theme:not(.dark-mode) .inbox-dept-tabs {
     background: #ffffff !important;
+    color: #000000 !important;
 }
 body.admin-theme:not(.dark-mode) .chat-input-bar textarea {
     background: #ffffff !important;
+    color: #000000 !important;
 }
 body.admin-theme:not(.dark-mode) .incoming .admin-msg-bubble {
     background: #f8fafc !important;
+    color: #000000 !important;
 }
+body.admin-theme:not(.dark-mode) .conv-card {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* Catch-all: any element with hardcoded dark colors in light mode */
+body.admin-theme:not(.dark-mode) [style*="color: #ffffff"],
+body.admin-theme:not(.dark-mode) [style*="color:#ffffff"],
+body.admin-theme:not(.dark-mode) [style*="color: white"],
+body.admin-theme:not(.dark-mode) [style*="color:white"] {
+    color: #000000 !important;
+}
+/* Exception: keep accent colors and explicit colored spans */
+body.admin-theme:not(.dark-mode) [style*="color: #5c5cfc"],
+body.admin-theme:not(.dark-mode) [style*="color:#5c5cfc"],
+body.admin-theme:not(.dark-mode) [style*="color: #22c55e"],
+body.admin-theme:not(.dark-mode) [style*="color:#22c55e"],
+body.admin-theme:not(.dark-mode) [style*="color: #ef4444"],
+body.admin-theme:not(.dark-mode) [style*="color:#ef4444"],
+body.admin-theme:not(.dark-mode) [style*="color: #15803d"],
+body.admin-theme:not(.dark-mode) [style*="color:#15803d"],
+body.admin-theme:not(.dark-mode) [style*="color: #0f766e"],
+body.admin-theme:not(.dark-mode) [style*="color:#0f766e"] {
+    color: inherit !important;
+}
+/* Re-apply accent colors explicitly */
+body.admin-theme:not(.dark-mode) [style*="color: #5c5cfc"] { color: #5c5cfc !important; }
+body.admin-theme:not(.dark-mode) [style*="color:#5c5cfc"] { color: #5c5cfc !important; }
+body.admin-theme:not(.dark-mode) [style*="color: #22c55e"] { color: #22c55e !important; }
+body.admin-theme:not(.dark-mode) [style*="color:#22c55e"] { color: #22c55e !important; }
+body.admin-theme:not(.dark-mode) [style*="color: #ef4444"] { color: #ef4444 !important; }
+body.admin-theme:not(.dark-mode) [style*="color:#ef4444"] { color: #ef4444 !important; }
+body.admin-theme:not(.dark-mode) [style*="color: #15803d"] { color: #15803d !important; }
+body.admin-theme:not(.dark-mode) [style*="color:#15803d"] { color: #15803d !important; }
+body.admin-theme:not(.dark-mode) [style*="color: #0f766e"] { color: #0f766e !important; }
+body.admin-theme:not(.dark-mode) [style*="color:#0f766e"] { color: #0f766e !important; }

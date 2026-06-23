@@ -1465,7 +1465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const form = e.target;
         
         // Skip assistant widget forms as they are handled by their own listeners
-        if (form.id === 'quoteForm' || form.id === 'reportForm') {
+        if (form.id === 'quoteForm' || form.id === 'reportForm' || form.id === 'supportForm') {
             return;
         }
         
@@ -2082,7 +2082,28 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!id) { id = 'visitor-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6); localStorage.setItem(VISITOR_KEY, id); }
             return id;
         };
-        const visitorId = getVisitorId();
+        let visitorId = getVisitorId();
+        const identifyVisitor = (name, email) => {
+            if (!name || !email) return;
+            const newId = `${name.trim()} (${email.trim()})`;
+            const oldId = localStorage.getItem(VISITOR_KEY) || visitorId;
+            if (oldId !== newId) {
+                localStorage.setItem(VISITOR_KEY, newId);
+                visitorId = newId;
+                
+                const convs = loadConversations();
+                let updated = false;
+                convs.forEach(c => {
+                    if (c.visitorId === oldId) {
+                        c.visitorId = newId;
+                        updated = true;
+                    }
+                });
+                if (updated) {
+                    saveConversations(convs);
+                }
+            }
+        };
         const loadConversations = () => { try { return JSON.parse(localStorage.getItem(CONV_KEY)) || []; } catch(e) { return []; } };
         const saveConversations = (convs) => { localStorage.setItem(CONV_KEY, JSON.stringify(convs)); };
         const CATEGORIES = [
@@ -2227,6 +2248,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <form class="comm-form" id="supportForm">
                         <h5 style="margin-bottom: 10px; color: #004225; font-size: 0.85rem; font-weight: 700;">Start a New Message</h5>
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                        <label>Your Email Address</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                        <label>Your Phone Number</label>
+                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
                         <label>Message Subject</label>
                         <select name="subject" required>
                             <option value="">Select subject...</option>
@@ -2254,6 +2281,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">Get a personalized safari quotation. Tell us your destination(s), travel dates, number of travelers, budget range, and special requests.</p>
                     </div>
                     <form class="comm-form" id="quoteForm">
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                        <label>Your Email</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                        <label>Your Phone Number</label>
+                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
                         <label>Destinations of Interest</label>
                         <select name="destination">
                             <option value="">Select destination...</option>
@@ -2279,8 +2312,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             <option value="10000+">$10,000+</option>
                             <option value="flexible">Flexible</option>
                         </select>
-                        <label>Your Email</label>
-                        <input type="email" name="email" placeholder="your@email.com">
                         <label>Additional Details</label>
                         <textarea name="details" placeholder="Tell us about your dream safari..."></textarea>
                         <button type="submit" class="comm-form-submit"><i class="fas fa-file-invoice-dollar"></i> Get My Custom Safari Quote</button>
@@ -2298,6 +2329,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">We take every report seriously and respond as quickly as possible.</p>
                     </div>
                     <form class="comm-form" id="reportForm">
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                        <label>Your Email Address</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                        <label>Your Phone Number</label>
+                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
                         <label>Issue Type</label>
                         <select name="issue_type" required>
                             <option value="">Select a category...</option>
@@ -2308,8 +2345,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             <option value="Safari Experience Feedback">Safari Experience Feedback</option>
                             <option value="Other">Other</option>
                         </select>
-                        <label>Your Email Address</label>
-                        <input type="email" name="email" placeholder="your@email.com" required>
                         <label>Describe the Issue</label>
                         <textarea name="description" placeholder="Please provide as much detail as possible so we can assist you effectively." required></textarea>
                         <button type="submit" class="comm-form-submit"><i class="fas fa-flag"></i> Submit Report</button>
@@ -2624,12 +2659,17 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const form = e.target;
             const data = new FormData(form);
+            const name = data.get('name') || 'Not provided';
+            const email = data.get('email') || 'Not provided';
+            const phone = data.get('phone') || 'Not provided';
             const dest = data.get('destination') || 'Not specified';
             const dates = data.get('dates') || 'Not specified';
             const travelers = data.get('travelers') || 'Not specified';
             const budget = data.get('budget') || 'Not specified';
-            const email = data.get('email') || 'Not provided';
             const details = data.get('details') || '';
+
+            // Update visitor identity so identity changes persist
+            identifyVisitor(name, email);
 
             // Create a conversation for quote
             const convs = loadConversations();
@@ -2641,7 +2681,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messages: [{
                     id: 'msg-' + Date.now(),
                     sender: 'visitor',
-                    text: `📋 Quote Request:\n• Destination: ${dest}\n• Dates: ${dates}\n• Travelers: ${travelers}\n• Budget: ${budget}\n• Email: ${email}\n${details ? '• Details: ' + details : ''}`,
+                    text: `📋 Quote Request:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Destination: ${dest}\n• Dates: ${dates}\n• Travelers: ${travelers}\n• Budget: ${budget}\n${details ? '• Details: ' + details : ''}`,
                     timestamp: Date.now()
                 }],
                 createdAt: Date.now(),
@@ -2653,7 +2693,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Open mailto with quote details
             const subject = encodeURIComponent('Quote Request - Century Adventures');
-            const body = encodeURIComponent(`Quote Request from Century Adventures Website\n\nDestination: ${dest}\nTravel Dates: ${dates}\nNumber of Travelers: ${travelers}\nBudget Range: ${budget}\nEmail: ${email}\nAdditional Details: ${details}\n\nVisitor ID: ${visitorId}`);
+            const body = encodeURIComponent(`Quote Request from Century Adventures Website\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDestination: ${dest}\nTravel Dates: ${dates}\nNumber of Travelers: ${travelers}\nBudget Range: ${budget}\nAdditional Details: ${details}\n\nVisitor ID: ${visitorId}`);
             const emails = getRoutingEmails();
             window.open(`mailto:${emails.sales}?subject=${subject}&body=${body}`, '_self');
 
@@ -2673,9 +2713,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const form = e.target;
             const data = new FormData(form);
-            const issueType = data.get('issue_type') || 'Not specified';
+            const name = data.get('name') || 'Not provided';
             const email = data.get('email') || 'Not provided';
+            const phone = data.get('phone') || 'Not provided';
+            const issueType = data.get('issue_type') || 'Not specified';
             const description = data.get('description') || '';
+
+            // Update visitor identity so identity changes persist
+            identifyVisitor(name, email);
 
             // Create a conversation for report
             const convs = loadConversations();
@@ -2687,7 +2732,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messages: [{
                     id: 'msg-' + Date.now(),
                     sender: 'visitor',
-                    text: `⚠️ Issue Report:\n• Type: ${issueType}\n• Email: ${email}\n• Description: ${description}`,
+                    text: `⚠️ Issue Report:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Type: ${issueType}\n• Description: ${description}`,
                     timestamp: Date.now()
                 }],
                 createdAt: Date.now(),
@@ -2699,7 +2744,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Open mailto
             const subject = encodeURIComponent(`Issue Report - ${issueType} - Century Adventures`);
-            const body = encodeURIComponent(`Issue Report from Century Adventures Website\n\nIssue Type: ${issueType}\nEmail: ${email}\nDescription: ${description}\n\nVisitor ID: ${visitorId}`);
+            const body = encodeURIComponent(`Issue Report from Century Adventures Website\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nIssue Type: ${issueType}\nDescription: ${description}\n\nVisitor ID: ${visitorId}`);
             const emails = getRoutingEmails();
             window.open(`mailto:${emails.support}?subject=${subject}&body=${body}`, '_self');
 
@@ -2714,8 +2759,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const form = e.target;
             const data = new FormData(form);
+            const name = data.get('name') || 'Not provided';
+            const email = data.get('email') || 'Not provided';
+            const phone = data.get('phone') || 'Not provided';
             const subject = data.get('subject') || 'General Inquiry';
             const message = data.get('message') || '';
+
+            // Update visitor identity so identity changes persist
+            identifyVisitor(name, email);
 
             // Map subject to category ID
             let categoryId = 'general';
@@ -2737,7 +2788,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messages: [{
                     id: 'msg-' + Date.now(),
                     sender: 'visitor',
-                    text: `💬 Subject: ${subject}\n\n${message}`,
+                    text: `💬 Safari Support Inquiry:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Subject: ${subject}\n\n${message}`,
                     timestamp: Date.now()
                 }],
                 createdAt: Date.now(),
@@ -2756,7 +2807,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (categoryId === 'volunteer') targetEmail = emails.info;
 
             const mailSubject = encodeURIComponent(`[Century Adventures Support] ${subject}`);
-            const mailBody = encodeURIComponent(`New Inquiry from Century Adventures Support Center:\n\nSubject: ${subject}\nMessage: ${message}\n\nVisitor ID: ${visitorId}`);
+            const mailBody = encodeURIComponent(`New Inquiry from Century Adventures Support Center:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\nMessage: ${message}\n\nVisitor ID: ${visitorId}`);
             window.open(`mailto:${targetEmail}?subject=${mailSubject}&body=${mailBody}`, '_self');
 
             form.style.display = 'none';
