@@ -19,9 +19,9 @@
         <div class="auth-card">
             <img src="assets/logo.png" alt="Century Logo">
             <h2>Staff Authentication</h2>
-            <p>Please enter the Safari Support passcode to access customer records.</p>
+            <p>Please enter the passcode to access customer records.</p>
             <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
-                <input type="password" id="passcode" placeholder="••••••••" required autofocus>
+                <input type="password" id="passcode" placeholder="••••••••" required autofocus style="text-align: center;">
                 <button type="submit">Authenticate</button>
                 <div id="authError" class="auth-error">Incorrect passcode. Please try again.</div>
             </form>
@@ -35,55 +35,56 @@
     <div class="dashboard-container" id="adminWorkspace" style="display: none;">
         <!-- Admin Sidebar -->
         <aside class="dashboard-sidebar">
-            <div class="dash-logo" style="padding: 20px; text-align: center;">
-                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px;">
+                <div style="width: 42px; height: 42px; background: rgba(92, 92, 252, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5c5cfc; font-size: 18px;">
+                    🦁
+                </div>
+                <nav class="dash-nav">
+                    <ul>
+                        <li><a href="admin-dashboard.html" title="Dashboard"><i class="fas fa-th-large"></i></a></li>
+                        <li><a href="admin-messages.html" title="Messages"><i class="fas fa-comments"></i></a></li>
+                        <li><a href="admin-tours.html" title="Manage Tours"><i class="fas fa-map-marked-alt"></i></a></li>
+                        <li class="active"><a href="admin-customers.html" title="Customers"><i class="fas fa-users"></i></a></li>
+                        <li><a href="admin-settings.html" title="Settings"><i class="fas fa-cog"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="dash-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                    <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li class="active"><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <a href="#" onclick="handleLogout()" title="Logout" style="width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #8c9ba5; font-size: 18px; transition: all 0.2s;"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <header class="dash-header-card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">Customer <span style="color: var(--accent-gold);">Registry</span></h1>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Manage Registered Clients & Traveler Activities</p>
+                    <h1>Customer Registry</h1>
+                    <p>Manage Registered Clients & Traveler Activities</p>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="text-align: right;">
-                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
-                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
+                    <div style="text-align: right; margin-right: 10px;">
+                        <strong style="color: #0f172a; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: #5c5cfc; font-weight: 600; display: block; margin-top: 2px;">Super User</span>
                     </div>
-                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
                 </div>
             </header>
 
             <!-- Customer Table -->
-            <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
+            <div class="dash-card">
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="color: white; margin: 0;">Registered Accounts & Enquiries</h3>
-                    <button onclick="clearRegistry()" class="btn btn-outline btn-sm" style="padding: 6px 12px; font-size: 12px; color: #ff7043; border-color: #ff7043;">Reset Registry</button>
+                    <h3 style="margin: 0; color: #0f172a;">Registered Accounts & Enquiries</h3>
+                    <button onclick="clearRegistry()" style="background: none; border: 1px solid #ef4444; color: #ef4444; padding: 6px 14px; font-size: 12px; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.2s;">Reset Registry</button>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th style="color: #888888; font-size: 12px;">Customer Name</th>
-                                <th style="color: #888888; font-size: 12px;">Contact Email</th>
-                                <th style="color: #888888; font-size: 12px;">Planned Trip / Source</th>
-                                <th style="color: #888888; font-size: 12px;">Tier</th>
-                                <th style="color: #888888; font-size: 12px;">Status</th>
-                                <th style="color: #888888; font-size: 12px;">Actions</th>
+                                <th>Customer Name</th>
+                                <th>Contact Email</th>
+                                <th>Planned Trip / Source</th>
+                                <th>Tier</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="customersTableBody">
@@ -188,20 +189,19 @@
             });
 
             tbody.innerHTML = list.map(c => {
-                const isGuest = c.tier === 'Guest';
-                const statusColor = c.status === 'Active' || c.status === 'Active Chat' ? '#2e7d32' : '#888888';
-                const statusBg = c.status === 'Active' || c.status === 'Active Chat' ? '#e8f5e9' : 'rgba(255,255,255,0.05)';
-                const tierColor = c.tier === 'VIP Elite' ? 'var(--accent-gold)' : (c.tier === 'Premium Member' ? 'var(--primary-green)' : '#ffffff');
+                const statusColor = c.status === 'Active' || c.status === 'Active Chat' ? '#15803d' : '#475569';
+                const statusBg = c.status === 'Active' || c.status === 'Active Chat' ? '#dcfce7' : '#f1f5f9';
+                const tierColor = c.tier === 'VIP Elite' ? '#5c5cfc' : (c.tier === 'Premium Member' ? '#0f766e' : '#1e293b');
 
                 return `
                     <tr>
-                        <td style="color: white; font-weight: 600;"><i class="fas fa-user" style="margin-right: 8px; color: #888888; font-size: 11px;"></i> ${c.name}</td>
+                        <td style="color: #0f172a; font-weight: 600;"><i class="fas fa-user" style="margin-right: 8px; color: #64748b; font-size: 11px;"></i> ${c.name}</td>
                         <td style="font-family: monospace; font-size: 13px;">${c.email}</td>
-                        <td style="color: #e0e0e0;">${c.source}</td>
-                        <td style="color: ${tierColor}; font-weight: 500;">${c.tier}</td>
-                        <td><span class="status-badge" style="background: ${statusBg}; color: ${statusColor}; font-size: 11px; padding: 2px 8px; border-radius: 4px;">${c.status}</span></td>
+                        <td style="color: #334155;">${c.source}</td>
+                        <td style="color: ${tierColor}; font-weight: 600;">${c.tier}</td>
+                        <td><span class="status-badge" style="background: ${statusBg}; color: ${statusColor}; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${c.status}</span></td>
                         <td>
-                            <button onclick="contactCustomer('${c.name}', '${c.email}')" style="background: none; border: none; color: var(--accent-gold); cursor: pointer; font-size: 14px;" title="Email Client"><i class="fas fa-envelope-open-text"></i></button>
+                            <button onclick="contactCustomer('${c.name}', '${c.email}')" style="background: none; border: none; color: #5c5cfc; cursor: pointer; font-size: 14px;" title="Email Client"><i class="fas fa-envelope-open-text"></i></button>
                         </td>
                     </tr>
                 `;

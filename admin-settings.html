@@ -16,8 +16,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #2d2d2d;
+            padding: 18px 0;
+            border-bottom: 1px solid #e2e8f0;
         }
         .setting-info {
             display: flex;
@@ -25,11 +25,12 @@
             gap: 4px;
         }
         .setting-info strong {
-            color: white;
+            color: #0f172a;
             font-size: 0.95rem;
+            font-weight: 600;
         }
         .setting-info span {
-            color: #888888;
+            color: #64748b;
             font-size: 0.8rem;
         }
         /* Toggle Switch */
@@ -48,7 +49,7 @@
             position: absolute;
             cursor: pointer;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #333;
+            background-color: #cbd5e1;
             transition: .3s;
             border-radius: 24px;
         }
@@ -64,10 +65,27 @@
             border-radius: 50%;
         }
         input:checked + .slider {
-            background-color: var(--accent-gold);
+            background-color: #5c5cfc;
         }
         input:checked + .slider:before {
             transform: translateX(22px);
+        }
+        
+        .btn-primary {
+            background: #5c5cfc;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(92, 92, 252, 0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: #4747e2;
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -78,7 +96,7 @@
         <div class="auth-card">
             <img src="assets/logo.png" alt="Century Logo">
             <h2>Staff Authentication</h2>
-            <p>Please enter the Safari Support passcode to access system settings.</p>
+            <p>Please enter the passcode to access system settings.</p>
             <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
                 <input type="password" id="passcode" placeholder="••••••••" required autofocus>
                 <button type="submit">Authenticate</button>
@@ -94,67 +112,68 @@
     <div class="dashboard-container" id="adminWorkspace" style="display: none;">
         <!-- Admin Sidebar -->
         <aside class="dashboard-sidebar">
-            <div class="dash-logo" style="padding: 20px; text-align: center;">
-                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px;">
+                <div style="width: 42px; height: 42px; background: rgba(92, 92, 252, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5c5cfc; font-size: 18px;">
+                    🦁
+                </div>
+                <nav class="dash-nav">
+                    <ul>
+                        <li><a href="admin-dashboard.html" title="Dashboard"><i class="fas fa-th-large"></i></a></li>
+                        <li><a href="admin-messages.html" title="Messages"><i class="fas fa-comments"></i></a></li>
+                        <li><a href="admin-tours.html" title="Manage Tours"><i class="fas fa-map-marked-alt"></i></a></li>
+                        <li><a href="admin-customers.html" title="Customers"><i class="fas fa-users"></i></a></li>
+                        <li class="active"><a href="admin-settings.html" title="Settings"><i class="fas fa-cog"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="dash-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                    <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
-                    <li class="active"><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <a href="#" onclick="handleLogout()" title="Logout" style="width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #8c9ba5; font-size: 18px; transition: all 0.2s;"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <header class="dash-header-card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">System <span style="color: var(--accent-gold);">Settings</span></h1>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Configure Security & Management Variables</p>
+                    <h1>System Settings</h1>
+                    <p>Configure Security & Management Variables</p>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="text-align: right;">
-                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
-                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
+                    <div style="text-align: right; margin-right: 10px;">
+                        <strong style="color: #0f172a; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: #5c5cfc; font-weight: 600; display: block; margin-top: 2px;">Super User</span>
                     </div>
-                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
                 </div>
             </header>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
                 <!-- Security Settings -->
-                <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
-                    <h3 style="color: white; margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #2d2d2d; padding-bottom: 15px; margin-bottom: 20px;">
-                        <i class="fas fa-key" style="color: var(--accent-gold); margin-right: 8px;"></i> Change Passcode
+                <div class="dash-card">
+                    <h3 style="border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-key" style="color: #5c5cfc; margin-right: 8px;"></i> Change Passcode
                     </h3>
                     <form onsubmit="changePasscode(event)" style="display: flex; flex-direction: column; gap: 15px;">
                         <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <label style="color: #888888; font-size: 12px;">Current Passcode</label>
-                            <input type="password" id="currentPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">Current Passcode</label>
+                            <input type="password" id="currentPasscode" required style="padding: 10px; border-radius: 8px;">
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <label style="color: #888888; font-size: 12px;">New Passcode</label>
-                            <input type="password" id="newPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">New Passcode</label>
+                            <input type="password" id="newPasscode" required style="padding: 10px; border-radius: 8px;">
                         </div>
                         <div style="display: flex; flex-direction: column; gap: 5px;">
-                            <label style="color: #888888; font-size: 12px;">Confirm New Passcode</label>
-                            <input type="password" id="confirmPasscode" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">Confirm New Passcode</label>
+                            <input type="password" id="confirmPasscode" required style="padding: 10px; border-radius: 8px;">
                         </div>
-                        <button type="submit" class="btn btn-primary" style="margin-top: 5px; padding: 12px; font-weight: bold;">Update Passcode</button>
+                        <button type="submit" class="btn-primary" style="margin-top: 5px; width: 100%;">Update Passcode</button>
                     </form>
                 </div>
 
-                <!-- Notifications & Database -->
-                <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between;">
+                <!-- Preferences & Database -->
+                <div class="dash-card" style="display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <h3 style="color: white; margin-top: 0; font-family: 'Playfair Display', serif; border-bottom: 1px solid #2d2d2d; padding-bottom: 15px; margin-bottom: 20px;">
-                            <i class="fas fa-sliders-h" style="color: var(--accent-gold); margin-right: 8px;"></i> Support Preferences
+                        <h3 style="border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;">
+                            <i class="fas fa-sliders-h" style="color: #5c5cfc; margin-right: 8px;"></i> Support Preferences
                         </h3>
                         <div class="setting-row">
                             <div class="setting-info">
@@ -188,13 +207,39 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 30px; border-top: 1px solid #2d2d2d; padding-top: 20px;">
-                        <h4 style="color: #f44336; margin: 0 0 10px 0;">Maintenance & Cache</h4>
-                        <p style="color: #888888; font-size: 11px; margin: 0 0 15px 0; line-height: 1.5;">Resetting files clears all conversations, local booking registers, and custom safaris, returning the admin platform to its factory settings.</p>
-                        <button onclick="clearSystemData()" class="btn btn-outline" style="border-color: #f44336; color: #f44336; padding: 10px 20px; font-size: 12px; width: 100%;">
+                    <div style="margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                        <h4 style="color: #ef4444; margin: 0 0 10px 0; font-size: 14px; font-weight: 700;">Maintenance & Cache</h4>
+                        <p style="color: #64748b; font-size: 11px; margin: 0 0 15px 0; line-height: 1.5;">Resetting files clears all conversations, local booking registers, and custom safaris, returning the admin platform to its factory settings.</p>
+                        <button onclick="clearSystemData()" style="background: none; border: 1px solid #ef4444; color: #ef4444; padding: 10px 20px; font-size: 12px; width: 100%; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.2s;">
                             <i class="fas fa-exclamation-triangle"></i> Reset All Databases
                         </button>
                     </div>
+                </div>
+                
+                <!-- Email Routing Settings -->
+                <div class="dash-card">
+                    <h3 style="border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-envelope-open-text" style="color: #5c5cfc; margin-right: 8px;"></i> Email Routing Setup
+                    </h3>
+                    <form id="routingEmailsForm" onsubmit="saveRoutingEmails(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">General & Info (info@)</label>
+                            <input type="email" id="emailInfo" required placeholder="info@centuryadventures.com" style="padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">Safari Bookings (bookings@)</label>
+                            <input type="email" id="emailBooking" required placeholder="bookings@centuryadventures.com" style="padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">Technical Support (support@)</label>
+                            <input type="email" id="emailSupport" required placeholder="support@centuryadventures.com" style="padding: 10px; border-radius: 8px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: #64748b; font-size: 12px; font-weight: 600;">Sales & Custom Quotes (sales@)</label>
+                            <input type="email" id="emailSales" required placeholder="sales@centuryadventures.com" style="padding: 10px; border-radius: 8px;">
+                        </div>
+                        <button type="submit" class="btn-primary" style="margin-top: 5px; width: 100%;">Save Routing Emails</button>
+                    </form>
                 </div>
             </div>
         </main>
@@ -208,7 +253,32 @@
             } else {
                 document.getElementById('authOverlay').style.display = 'flex';
             }
+
+            // Load routing emails
+            const defaults = {
+                info: 'info@centuryadventures.com',
+                booking: 'bookings@centuryadventures.com',
+                support: 'support@centuryadventures.com',
+                sales: 'sales@centuryadventures.com'
+            };
+            const current = JSON.parse(localStorage.getItem('century-routing-emails')) || defaults;
+            document.getElementById('emailInfo').value = current.info || defaults.info;
+            document.getElementById('emailBooking').value = current.booking || defaults.booking;
+            document.getElementById('emailSupport').value = current.support || defaults.support;
+            document.getElementById('emailSales').value = current.sales || defaults.sales;
         });
+
+        function saveRoutingEmails(e) {
+            e.preventDefault();
+            const config = {
+                info: document.getElementById('emailInfo').value.trim(),
+                booking: document.getElementById('emailBooking').value.trim(),
+                support: document.getElementById('emailSupport').value.trim(),
+                sales: document.getElementById('emailSales').value.trim()
+            };
+            localStorage.setItem('century-routing-emails', JSON.stringify(config));
+            alert('Department routing emails updated successfully! Inquiries will now target these addresses.');
+        }
 
         function handleAuth(e) {
             e.preventDefault();
@@ -267,8 +337,6 @@
 
             localStorage.setItem('century-admin-passcode', newVal);
             alert('Staff security passcode updated successfully! All admin screens will require this new passcode.');
-            
-            // Log out to force login with new passcode
             handleLogout();
         }
 

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     <style>
-        /* Modern Premium Chat Dashboard Styles */
+        /* Premium Light Chat Dashboard Styles */
         :root {
-            --admin-bg: #121212;
-            --admin-card-bg: #1e1e1e;
-            --admin-border: #2d2d2d;
-            --admin-text: #e0e0e0;
-            --admin-text-muted: #888888;
+            --admin-bg: #eaeef6;
+            --admin-card-bg: #ffffff;
+            --admin-border: rgba(0,0,0,0.06);
+            --admin-text: #1e293b;
+            --admin-text-muted: #64748b;
         }
 
         body.admin-theme {
@@ -33,58 +33,30 @@
         .dashboard-container {
             display: flex;
             min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            gap: 30px;
         }
 
-        /* Sidebar override */
-        .admin-theme .dashboard-sidebar {
-            background: #1a1a1a !important;
-            border-right: 1px solid var(--admin-border);
-            width: 260px;
-            flex-shrink: 0;
-        }
-
-        .dash-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        .dash-nav ul li {
-            margin-bottom: 5px;
-        }
-
-        .dash-nav ul li a {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px 20px;
-            color: var(--admin-text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .dash-nav ul li a:hover,
-        .dash-nav ul li.active a {
-            color: var(--accent-gold);
-            background: rgba(197, 168, 128, 0.1);
-        }
+        /* Sidebar override is handled in index.css */
 
         /* Main Messaging Layout */
         .messaging-main {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: calc(100vh - 40px);
             overflow: hidden;
-            background: var(--admin-bg);
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
         }
 
         .messaging-header {
             padding: 20px 30px;
             border-bottom: 1px solid var(--admin-border);
-            background: var(--admin-card-bg);
+            background: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -92,39 +64,40 @@
         }
 
         .messaging-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
             margin: 0;
-            color: white;
+            color: #0f172a;
         }
 
         .messaging-header h1 span {
-            color: var(--accent-gold);
+            color: #5c5cfc;
         }
 
         .messaging-content {
             display: flex;
             flex-grow: 1;
             overflow: hidden;
-            height: calc(100vh - 85px);
+            height: 100%;
         }
 
         /* Left Pane: Inbox List */
         .inbox-list-pane {
-            width: 380px;
+            width: 360px;
             border-right: 1px solid var(--admin-border);
             display: flex;
             flex-direction: column;
-            background: #161616;
+            background: #ffffff;
             flex-shrink: 0;
         }
 
         .inbox-search-filter {
-            padding: 15px;
+            padding: 20px;
             border-bottom: 1px solid var(--admin-border);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .search-box {
@@ -133,7 +106,7 @@
 
         .search-box i {
             position: absolute;
-            left: 12px;
+            left: 14px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--admin-text-muted);
@@ -141,14 +114,14 @@
 
         .search-box input {
             width: 100%;
-            padding: 10px 10px 10px 35px;
-            background: var(--admin-card-bg);
-            border: 1px solid var(--admin-border);
-            border-radius: 6px;
-            color: white;
+            padding: 10px 10px 10px 38px;
+            background: #f1f5f9 !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            color: #0f172a !important;
             box-sizing: border-box;
             outline: none;
-            font-size: 14px;
+            font-size: 13.5px;
         }
 
         .filter-row {
@@ -158,56 +131,61 @@
 
         .filter-row select {
             flex: 1;
-            padding: 8px 10px;
-            background: var(--admin-card-bg);
-            border: 1px solid var(--admin-border);
-            color: var(--admin-text);
-            border-radius: 6px;
+            padding: 8px 12px !important;
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            color: #475569 !important;
+            border-radius: 10px !important;
             outline: none;
-            font-size: 13px;
+            font-size: 12.5px;
         }
 
         .inbox-scroll {
             flex-grow: 1;
             overflow-y: auto;
+            background: #ffffff;
         }
 
         .inbox-empty {
             padding: 40px 20px;
             text-align: center;
             color: var(--admin-text-muted);
-            font-size: 14px;
+            font-size: 13.5px;
         }
 
         .conv-card {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--admin-border);
+            padding: 18px 20px;
+            border-bottom: 1px solid #f1f5f9;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
             position: relative;
+            background: #ffffff;
         }
 
         .conv-card:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: #f8fafc;
         }
 
         .conv-card.active {
-            background: rgba(197, 168, 128, 0.08);
-            border-left: 4px solid var(--accent-gold);
+            background: rgba(92, 92, 252, 0.05);
+            border-left: 4px solid #5c5cfc;
         }
 
         .conv-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .conv-visitor-id {
             font-weight: 600;
             font-size: 13px;
-            color: var(--accent-gold);
-            font-family: monospace;
+            color: #0f172a;
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .conv-time {
@@ -232,46 +210,45 @@
         }
 
         .tag-badge {
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
         }
 
         .tag-category {
-            background: #25332c;
-            color: #81c784;
+            background: rgba(92, 92, 252, 0.08);
+            color: #5c5cfc;
         }
 
         .tag-status {
-            font-size: 10px;
             text-transform: uppercase;
         }
 
         .status-open {
-            background: #2b1f1d;
-            color: #ff8a65;
+            background: #fef3c7;
+            color: #d97706;
         }
 
         .status-replied {
-            background: #1e2c3a;
-            color: #64b5f6;
+            background: #dcfce7;
+            color: #15803d;
         }
 
         .status-closed {
-            background: #232323;
-            color: #9e9e9e;
+            background: #f1f5f9;
+            color: #64748b;
         }
 
         .conv-unread-dot {
             position: absolute;
             right: 20px;
-            bottom: 18px;
-            width: 10px;
-            height: 10px;
-            background-color: var(--accent-gold);
+            bottom: 22px;
+            width: 8px;
+            height: 8px;
+            background-color: #5c5cfc;
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-gold);
+            box-shadow: 0 0 6px rgba(92, 92, 252, 0.4);
         }
 
         /* Right Pane: Chat Window */
@@ -279,7 +256,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            background: #111111;
+            background: #f8fafc;
         }
 
         .chat-empty-state {
@@ -294,13 +271,13 @@
 
         .chat-empty-state i {
             font-size: 48px;
-            color: #2d2d2d;
+            color: #cbd5e1;
         }
 
         .chat-header {
-            padding: 15px 25px;
+            padding: 16px 25px;
             border-bottom: 1px solid var(--admin-border);
-            background: var(--admin-card-bg);
+            background: #ffffff;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -321,13 +298,13 @@
 
         .chat-title-row h2 {
             font-size: 16px;
+            font-weight: 700;
             margin: 0;
-            color: white;
-            font-family: monospace;
+            color: #0f172a;
         }
 
         .chat-meta-row {
-            font-size: 12px;
+            font-size: 11.5px;
             color: var(--admin-text-muted);
         }
 
@@ -342,21 +319,22 @@
             align-items: center;
             gap: 8px;
             font-size: 13px;
+            color: #475569;
         }
 
         .status-select-wrapper select {
-            padding: 6px 12px;
-            background: var(--admin-bg);
-            border: 1px solid var(--admin-border);
-            color: white;
-            border-radius: 4px;
+            padding: 6px 12px !important;
+            background: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            color: #1e293b !important;
+            border-radius: 8px !important;
             outline: none;
         }
 
         .btn-delete-conv {
             background: none;
             border: none;
-            color: #e57373;
+            color: #ef4444;
             cursor: pointer;
             font-size: 16px;
             padding: 5px;
@@ -364,7 +342,7 @@
         }
 
         .btn-delete-conv:hover {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .chat-messages-area {
@@ -374,8 +352,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0);
-            background-size: 24px 24px;
+            background-color: #f8fafc;
         }
 
         /* Message Bubbles */
@@ -394,26 +371,28 @@
 
         .admin-msg-bubble {
             max-width: 65%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 14.5px;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 14px;
             line-height: 1.5;
             position: relative;
             word-break: break-word;
             white-space: pre-wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
         }
 
         .incoming .admin-msg-bubble {
-            background: #242424;
-            color: #f1f1f1;
-            border-bottom-left-radius: 3px;
+            background: #ffffff;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #e2e8f0;
         }
 
         .outgoing .admin-msg-bubble {
-            background: #1B3B2B; /* Dark green theme */
-            color: #e8f5e9;
-            border-bottom-right-radius: 3px;
-            border: 1px solid rgba(197, 168, 128, 0.2);
+            background: #5c5cfc;
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 15px rgba(92, 92, 252, 0.15);
         }
 
         .admin-msg-time {
@@ -425,13 +404,13 @@
         }
 
         .outgoing .admin-msg-time {
-            color: #a5d6a7;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Input Bar */
         .chat-input-bar {
             padding: 15px 25px;
-            background: var(--admin-card-bg);
+            background: #ffffff;
             border-top: 1px solid var(--admin-border);
             display: flex;
             gap: 15px;
@@ -441,30 +420,31 @@
 
         .chat-input-bar textarea {
             flex-grow: 1;
-            background: var(--admin-bg);
-            border: 1px solid var(--admin-border);
-            border-radius: 8px;
-            color: white;
-            padding: 12px;
+            background: #f1f5f9 !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            color: #0f172a !important;
+            padding: 12px !important;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 13.5px;
             resize: none;
             height: 44px;
             max-height: 120px;
             outline: none;
             box-sizing: border-box;
-            transition: border-color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .chat-input-bar textarea:focus {
-            border-color: var(--accent-gold);
+            border-color: #5c5cfc !important;
+            background: #ffffff !important;
         }
 
         .btn-send-reply {
-            background: var(--accent-gold);
-            color: #121212;
+            background: #5c5cfc;
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 44px;
             height: 44px;
             display: flex;
@@ -473,10 +453,11 @@
             cursor: pointer;
             transition: all 0.2s ease;
             font-size: 16px;
+            box-shadow: 0 4px 10px rgba(92, 92, 252, 0.2);
         }
 
         .btn-send-reply:hover {
-            background: #d4b890;
+            background: #4747e2;
             transform: translateY(-2px);
         }
 
@@ -487,7 +468,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(241, 245, 249, 0.95);
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -495,13 +476,13 @@
         }
 
         .auth-card {
-            background: var(--admin-card-bg);
-            border: 1px solid var(--admin-border);
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 28px;
             width: 400px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
         .auth-card img {
@@ -510,8 +491,9 @@
         }
 
         .auth-card h2 {
-            font-family: 'Playfair Display', serif;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: #0f172a;
             margin: 0 0 10px 0;
         }
 
@@ -524,10 +506,10 @@
         .auth-form input {
             width: 100%;
             padding: 12px;
-            background: var(--admin-bg);
-            border: 1px solid var(--admin-border);
-            color: white;
-            border-radius: 6px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #0f172a;
+            border-radius: 12px;
             text-align: center;
             font-size: 18px;
             letter-spacing: 4px;
@@ -539,22 +521,23 @@
         .auth-form button {
             width: 100%;
             padding: 12px;
-            background: var(--accent-gold);
-            color: #121212;
+            background: #5c5cfc;
+            color: #ffffff;
             border: none;
-            border-radius: 6px;
+            border-radius: 12px;
             font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            transition: background 0.2s ease;
+            box-shadow: 0 4px 10px rgba(92, 92, 252, 0.2);
+            transition: all 0.2s ease;
         }
 
         .auth-form button:hover {
-            background: #d4b890;
+            background: #4747e2;
         }
 
         .auth-error {
-            color: #ff7043;
+            color: #ef4444;
             font-size: 13px;
             margin-top: 10px;
             display: none;
@@ -596,7 +579,7 @@
         <div class="auth-card">
             <img src="assets/logo.png" alt="Century Logo">
             <h2>Staff Authentication</h2>
-            <p>Please enter the Safari Support passcode to access private communication logs.</p>
+            <p>Please enter the passcode to access private communication logs.</p>
             <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
                 <input type="password" id="passcode" placeholder="••••••••" required autofocus>
                 <button type="submit">Authenticate</button>
@@ -612,21 +595,26 @@
     <div class="dashboard-container" id="adminWorkspace" style="display: none;">
         <!-- Sidebar -->
         <aside class="dashboard-sidebar">
-            <div class="dash-logo" style="padding: 20px; text-align: center;">
-                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px;">
+                <div style="width: 42px; height: 42px; background: rgba(92, 92, 252, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5c5cfc; font-size: 18px;">
+                    🦁
+                </div>
+                <nav class="dash-nav">
+                    <ul>
+                        <li><a href="admin-dashboard.html" title="Dashboard"><i class="fas fa-th-large"></i></a></li>
+                        <li class="active"><a href="admin-messages.html" title="Messages"><i class="fas fa-comments"></i></a></li>
+                        <li><a href="admin-tours.html" title="Manage Tours"><i class="fas fa-map-marked-alt"></i></a></li>
+                        <li><a href="admin-customers.html" title="Customers"><i class="fas fa-users"></i></a></li>
+                        <li><a href="admin-settings.html" title="Settings"><i class="fas fa-cog"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="dash-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                    <li class="active"><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <a href="#" onclick="handleLogout()" title="Logout" style="width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #8c9ba5; font-size: 18px; transition: all 0.2s;"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
-        <!-- Main Workspace -->
+        <!-- Main Workspace Pane -->
         <div class="messaging-main">
             <header class="messaging-header">
                 <div>
@@ -636,13 +624,10 @@
                     </p>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="text-align: right;">
-                        <strong style="color: white;">Staff Officer</strong>
-                        <div style="font-size: 11px; color: var(--accent-gold);">Online Support</div>
+                    <div style="text-align: right; margin-right: 10px;">
+                        <strong style="color: #0f172a; display: block; font-size: 14px;">Staff Officer</strong>
+                        <span style="font-size: 11px; color: #5c5cfc; font-weight: 600; display: block; margin-top: 2px;">Online Support</span>
                     </div>
-                    <button onclick="handleLogout()" style="background: none; border: 1px solid var(--admin-border); color: var(--admin-text); padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
                 </div>
             </header>
 
@@ -671,6 +656,12 @@
                             </select>
                         </div>
                     </div>
+                    
+                    <!-- Department Tab Bar (separating 4 places) -->
+                    <div class="inbox-dept-tabs" id="deptTabsContainer">
+                        <!-- Loaded dynamically -->
+                    </div>
+
                     <div class="inbox-scroll" id="conversationList">
                         <!-- List loaded dynamically -->
                     </div>
@@ -687,7 +678,7 @@
                         <div class="chat-header">
                             <div class="chat-visitor-info">
                                 <div class="chat-title-row">
-                                    <button class="mobile-back-btn" onclick="closeMobileChat()" style="display: none; background: none; border: none; color: white; font-size: 18px; margin-right: 10px; cursor: pointer;">
+                                    <button class="mobile-back-btn" onclick="closeMobileChat()" style="display: none; background: none; border: none; color: #0f172a; font-size: 18px; margin-right: 10px; cursor: pointer;">
                                         <i class="fas fa-arrow-left"></i>
                                     </button>
                                     <h2 id="activeVisitorId">visitor-xxxxxx</h2>
@@ -735,11 +726,21 @@
         let conversations = [];
         let activeConvId = null;
         let updateInterval = null;
+        let activeDeptFilter = 'all';
 
         // Check authentication state
         window.addEventListener('DOMContentLoaded', () => {
             if (sessionStorage.getItem('century_admin_authenticated') === 'true') {
                 showWorkspace();
+            } else {
+                document.getElementById('authOverlay').style.display = 'flex';
+            }
+
+            // Check for department query parameter (view-routing shortcut)
+            const params = new URLSearchParams(window.location.search);
+            const deptParam = params.get('dept');
+            if (deptParam && ['info', 'booking', 'support', 'sales'].includes(deptParam)) {
+                activeDeptFilter = deptParam;
             }
         });
 
@@ -769,6 +770,7 @@
             document.getElementById('authOverlay').style.display = 'none';
             document.getElementById('adminWorkspace').style.display = 'flex';
             loadConversations();
+            renderDepartmentTabs();
             renderConversations();
             
             // Set up polling for new messages from visitors every 3 seconds
@@ -777,6 +779,7 @@
                 const wasScrolledToBottom = scrollArea.scrollHeight - scrollArea.clientHeight <= scrollArea.scrollTop + 50;
                 
                 loadConversations();
+                renderDepartmentTabs();
                 renderConversations(false); // don't redraw everything unless needed
                 
                 if (activeConvId) {
@@ -791,10 +794,56 @@
             }, 3000);
         }
 
+        function getConversationDepartment(c) {
+            if (c.department) return c.department;
+            // Backwards compatibility fallback mapping
+            if (c.categoryId === 'safari') return 'booking';
+            if (c.categoryId === 'pricing') return 'sales';
+            if (c.categoryId === 'problem' || c.categoryId === 'support') return 'support';
+            return 'info';
+        }
+
+        function setDeptFilter(dept) {
+            activeDeptFilter = dept;
+            renderDepartmentTabs();
+            filterConversations();
+        }
+
+        function renderDepartmentTabs() {
+            const container = document.getElementById('deptTabsContainer');
+            if (!container) return;
+
+            const counts = { all: 0, info: 0, booking: 0, support: 0, sales: 0 };
+            conversations.forEach(c => {
+                counts.all++;
+                const dept = getConversationDepartment(c);
+                if (counts[dept] !== undefined) {
+                    counts[dept]++;
+                }
+            });
+
+            container.innerHTML = `
+                <button class="dept-tab ${activeDeptFilter === 'all' ? 'active' : ''}" data-dept="all" onclick="setDeptFilter('all')">
+                    All <span class="dept-tab-count">${counts.all}</span>
+                </button>
+                <button class="dept-tab ${activeDeptFilter === 'info' ? 'active' : ''}" data-dept="info" onclick="setDeptFilter('info')">
+                    📧 Info <span class="dept-tab-count">${counts.info}</span>
+                </button>
+                <button class="dept-tab ${activeDeptFilter === 'booking' ? 'active' : ''}" data-dept="booking" onclick="setDeptFilter('booking')">
+                    🦁 Booking <span class="dept-tab-count">${counts.booking}</span>
+                </button>
+                <button class="dept-tab ${activeDeptFilter === 'support' ? 'active' : ''}" data-dept="support" onclick="setDeptFilter('support')">
+                    🛠 Support <span class="dept-tab-count">${counts.support}</span>
+                </button>
+                <button class="dept-tab ${activeDeptFilter === 'sales' ? 'active' : ''}" data-dept="sales" onclick="setDeptFilter('sales')">
+                    💰 Sales <span class="dept-tab-count">${counts.sales}</span>
+                </button>
+            `;
+        }
+
         function loadConversations() {
             try {
                 conversations = JSON.parse(localStorage.getItem(CONV_KEY)) || [];
-                // Sort by last update time descending
                 conversations.sort((a, b) => (b.updatedAt || b.createdAt) - (a.updatedAt || a.createdAt));
             } catch(e) {
                 conversations = [];
@@ -815,6 +864,8 @@
 
         function renderConversations(fullRedraw = true) {
             const listContainer = document.getElementById('conversationList');
+            if (!listContainer) return;
+            
             const searchVal = document.getElementById('searchVal').value.toLowerCase().trim();
             const filterCat = document.getElementById('filterCat').value;
             const filterStatus = document.getElementById('filterStatus').value;
@@ -825,8 +876,9 @@
                 
                 const matchesCat = filterCat === 'all' || c.categoryId === filterCat;
                 const matchesStatus = filterStatus === 'all' || c.status === filterStatus;
+                const matchesDept = activeDeptFilter === 'all' || getConversationDepartment(c) === activeDeptFilter;
 
-                return matchesSearch && matchesCat && matchesStatus;
+                return matchesSearch && matchesCat && matchesStatus && matchesDept;
             });
 
             if (filtered.length === 0) {
@@ -834,9 +886,7 @@
                 return;
             }
 
-            // Optimize: If not doing a full redraw, just update contents without breaking active card state
             if (!fullRedraw) {
-                // If length is different, do full redraw anyway
                 const existingCards = listContainer.querySelectorAll('.conv-card');
                 if (existingCards.length !== filtered.length) {
                     fullRedraw = true;
@@ -860,7 +910,7 @@
                     card.id = `card-${conv.id}`;
                     card.innerHTML = `
                         <div class="conv-card-header">
-                            <span class="conv-visitor-id">${conv.visitorId.substr(0, 16)}...</span>
+                            <span class="conv-visitor-id">${conv.visitorId}</span>
                             <span class="conv-time">${timeStr}</span>
                         </div>
                         <div class="conv-preview">${lastText}</div>
@@ -875,7 +925,6 @@
                 } else {
                     const card = document.getElementById(`card-${conv.id}`);
                     if (card) {
-                        // Update contents without replacing element
                         card.className = `conv-card ${activeConvId === conv.id ? 'active' : ''}`;
                         card.querySelector('.conv-time').textContent = timeStr;
                         card.querySelector('.conv-preview').textContent = lastText;
@@ -900,7 +949,6 @@
         function selectConversation(id) {
             activeConvId = id;
             
-            // Mark read by staff
             conversations.forEach(c => {
                 if (c.id === id) {
                     c.unreadByStaff = false;
@@ -908,7 +956,6 @@
             });
             saveConversations();
 
-            // Set active class on cards
             document.querySelectorAll('.conv-card').forEach(card => {
                 card.classList.remove('active');
             });
@@ -932,13 +979,11 @@
 
                 renderChatMessages(activeConv);
                 
-                // Scroll to bottom
                 const area = document.getElementById('chatMessagesArea');
                 setTimeout(() => {
                     area.scrollTop = area.scrollHeight;
                 }, 50);
 
-                // For mobile
                 if (window.innerWidth <= 768) {
                     document.getElementById('chatPane').classList.add('mobile-active');
                     document.querySelector('.mobile-back-btn').style.display = 'inline-block';
@@ -968,7 +1013,6 @@
                 `;
             });
 
-            // If HTML changed, redraw. Avoid redraw if identical to prevent UI glitch
             if (area.innerHTML !== messagesHTML) {
                 area.innerHTML = messagesHTML;
             }
@@ -995,20 +1039,17 @@
                     text: text,
                     timestamp: now
                 });
-                // Update conversation properties
                 conversations[convIndex].updatedAt = now;
-                conversations[convIndex].status = 'replied'; // Auto set to Replied on staff answer
-                conversations[convIndex].unread = 1; // Mark unread for visitor
+                conversations[convIndex].status = 'replied';
+                conversations[convIndex].unread = 1;
 
                 saveConversations();
                 textarea.value = '';
 
-                // Redraw chat and list
                 renderChatMessages(conversations[convIndex]);
                 document.getElementById('activeStatusSelect').value = 'replied';
                 renderConversations();
 
-                // Scroll to bottom
                 const area = document.getElementById('chatMessagesArea');
                 area.scrollTop = area.scrollHeight;
             }

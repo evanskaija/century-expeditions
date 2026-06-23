@@ -17,26 +17,47 @@
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.7);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
         .modal-content {
-            background: #1e1e1e;
-            border: 1px solid #2d2d2d;
-            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 24px;
             width: 500px;
             padding: 30px;
             position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
         .close-modal {
             position: absolute;
             top: 15px; right: 20px;
             font-size: 24px;
-            color: #888888;
+            color: #64748b;
             cursor: pointer;
             background: none; border: none;
+        }
+        .btn-primary {
+            background: #5c5cfc;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 13.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(92, 92, 252, 0.2);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: #4747e2;
+            transform: translateY(-1px);
         }
     </style>
 </head>
@@ -47,9 +68,9 @@
         <div class="auth-card">
             <img src="assets/logo.png" alt="Century Logo">
             <h2>Staff Authentication</h2>
-            <p>Please enter the Safari Support passcode to access the tour editor.</p>
+            <p>Please enter the passcode to access the tour editor.</p>
             <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
-                <input type="password" id="passcode" placeholder="••••••••" required autofocus>
+                <input type="password" id="passcode" placeholder="••••••••" required autofocus style="text-align: center;">
                 <button type="submit">Authenticate</button>
                 <div id="authError" class="auth-error">Incorrect passcode. Please try again.</div>
             </form>
@@ -63,55 +84,56 @@
     <div class="dashboard-container" id="adminWorkspace" style="display: none;">
         <!-- Admin Sidebar -->
         <aside class="dashboard-sidebar">
-            <div class="dash-logo" style="padding: 20px; text-align: center;">
-                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px;">
+                <div style="width: 42px; height: 42px; background: rgba(92, 92, 252, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5c5cfc; font-size: 18px;">
+                    🦁
+                </div>
+                <nav class="dash-nav">
+                    <ul>
+                        <li><a href="admin-dashboard.html" title="Dashboard"><i class="fas fa-th-large"></i></a></li>
+                        <li><a href="admin-messages.html" title="Messages"><i class="fas fa-comments"></i></a></li>
+                        <li class="active"><a href="admin-tours.html" title="Manage Tours"><i class="fas fa-map-marked-alt"></i></a></li>
+                        <li><a href="admin-customers.html" title="Customers"><i class="fas fa-users"></i></a></li>
+                        <li><a href="admin-settings.html" title="Settings"><i class="fas fa-cog"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="dash-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                    <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li class="active"><a href="admin-tours.html"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li><a href="admin-customers.html"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <a href="#" onclick="handleLogout()" title="Logout" style="width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #8c9ba5; font-size: 18px; transition: all 0.2s;"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <header class="dash-header-card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">Manage <span style="color: var(--accent-gold);">Tours</span></h1>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Publish & Edit Safari Packages</p>
+                    <h1>Manage Tours</h1>
+                    <p>Publish & Edit Safari Packages</p>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="text-align: right;">
-                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
-                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
+                    <div style="text-align: right; margin-right: 10px;">
+                        <strong style="color: #0f172a; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: #5c5cfc; font-weight: 600; display: block; margin-top: 2px;">Super User</span>
                     </div>
-                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
                 </div>
             </header>
 
             <!-- Tours Card -->
-            <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
+            <div class="dash-card">
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="color: white; margin: 0;">Active Safari Catalog</h3>
-                    <button onclick="openAddModal()" class="btn btn-primary btn-sm" style="padding: 8px 16px; font-size: 12px;"><i class="fas fa-plus"></i> Add New Tour</button>
+                    <h3 style="margin: 0; color: #0f172a;">Active Safari Catalog</h3>
+                    <button onclick="openAddModal()" class="btn-primary"><i class="fas fa-plus"></i> Add New Tour</button>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th style="color: #888888; font-size: 12px;">Image</th>
-                                <th style="color: #888888; font-size: 12px;">Tour Package Title</th>
-                                <th style="color: #888888; font-size: 12px;">Duration</th>
-                                <th style="color: #888888; font-size: 12px;">Base Cost</th>
-                                <th style="color: #888888; font-size: 12px;">Difficulty</th>
-                                <th style="color: #888888; font-size: 12px;">Actions</th>
+                                <th>Image</th>
+                                <th>Tour Package Title</th>
+                                <th>Duration</th>
+                                <th>Base Cost</th>
+                                <th>Difficulty</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="toursTableBody">
@@ -127,38 +149,38 @@
     <div id="tourModal" class="modal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()">&times;</button>
-            <h3 id="modalTitle" style="color: white; margin-top: 0; font-family: 'Playfair Display', serif;">Add New Safari</h3>
+            <h3 id="modalTitle" style="color: #0f172a; margin-top: 0; font-family: 'Inter', sans-serif; font-weight: 700;">Add New Safari</h3>
             <form id="tourForm" onsubmit="saveTour(event)" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
                 <input type="hidden" id="editTourId">
                 <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="color: #888888; font-size: 12px;">Tour Title</label>
-                    <input type="text" id="tourTitle" required style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                    <label style="color: #64748b; font-size: 12px; font-weight: 600;">Tour Title</label>
+                    <input type="text" id="tourTitle" required style="padding: 10px; border-radius: 8px;">
                 </div>
                 <div style="display: flex; gap: 15px;">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
-                        <label style="color: #888888; font-size: 12px;">Duration (Days)</label>
-                        <input type="number" id="tourDuration" required min="1" style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        <label style="color: #64748b; font-size: 12px; font-weight: 600;">Duration (Days)</label>
+                        <input type="number" id="tourDuration" required min="1" style="padding: 10px; border-radius: 8px;">
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
-                        <label style="color: #888888; font-size: 12px;">Base Cost (USD)</label>
-                        <input type="text" id="tourPrice" required placeholder="e.g. $2,450" style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        <label style="color: #64748b; font-size: 12px; font-weight: 600;">Base Cost (USD)</label>
+                        <input type="text" id="tourPrice" required placeholder="e.g. $2,450" style="padding: 10px; border-radius: 8px;">
                     </div>
                 </div>
                 <div style="display: flex; gap: 15px;">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
-                        <label style="color: #888888; font-size: 12px;">Difficulty</label>
-                        <select id="tourDifficulty" style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        <label style="color: #64748b; font-size: 12px; font-weight: 600;">Difficulty</label>
+                        <select id="tourDifficulty" style="padding: 10px; border-radius: 8px;">
                             <option value="Easy">Easy</option>
                             <option value="Moderate">Moderate</option>
                             <option value="Challenging">Challenging</option>
                         </select>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
-                        <label style="color: #888888; font-size: 12px;">Cover Image URL</label>
-                        <input type="text" id="tourImage" placeholder="assets/images/..." style="padding: 10px; background: #121212; border: 1px solid #2d2d2d; color: white; border-radius: 6px;">
+                        <label style="color: #64748b; font-size: 12px; font-weight: 600;">Cover Image URL</label>
+                        <input type="text" id="tourImage" placeholder="assets/images/..." style="padding: 10px; border-radius: 8px;">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" style="margin-top: 10px; padding: 12px; font-weight: bold;">Save Safari Package</button>
+                <button type="submit" class="btn-primary" style="margin-top: 10px; padding: 12px; font-weight: bold; width: 100%; justify-content: center;">Save Safari Package</button>
             </form>
         </div>
     </div>
@@ -228,14 +250,14 @@
             const tbody = document.getElementById('toursTableBody');
             tbody.innerHTML = tours.map(tour => `
                 <tr>
-                    <td><img src="${tour.image || 'assets/logo.png'}" alt="Tour" style="width: 60px; height: 40px; object-fit: cover; border-radius: 4px; border: 1px solid #2d2d2d;"></td>
-                    <td style="color: white; font-weight: 500;">${tour.title}</td>
+                    <td><img src="${tour.image || 'assets/logo.png'}" alt="Tour" style="width: 60px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;"></td>
+                    <td style="color: #0f172a; font-weight: 500;">${tour.title}</td>
                     <td>${tour.duration} Days</td>
-                    <td style="color: var(--accent-gold); font-weight: 600;">${tour.price}</td>
-                    <td><span class="status-badge" style="background: rgba(255,255,255,0.05); color: #e0e0e0; font-size: 11px; padding: 2px 8px; border-radius: 4px;">${tour.difficulty}</span></td>
+                    <td style="color: #5c5cfc; font-weight: 600;">${tour.price}</td>
+                    <td><span class="status-badge" style="background: #f1f5f9; color: #475569; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${tour.difficulty}</span></td>
                     <td>
-                        <button onclick="openEditModal('${tour.id}')" style="background: none; border: none; color: #2196f3; cursor: pointer; margin-right: 10px; font-size: 14px;"><i class="fas fa-edit"></i></button>
-                        <button onclick="deleteTour('${tour.id}')" style="background: none; border: none; color: #f44336; cursor: pointer; font-size: 14px;"><i class="fas fa-trash-alt"></i></button>
+                        <button onclick="openEditModal('${tour.id}')" style="background: none; border: none; color: #5c5cfc; cursor: pointer; margin-right: 10px; font-size: 14px;"><i class="fas fa-edit"></i></button>
+                        <button onclick="deleteTour('${tour.id}')" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px;"><i class="fas fa-trash-alt"></i></button>
                     </td>
                 </tr>
             `).join('');

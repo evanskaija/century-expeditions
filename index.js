@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <li><a href="dar-es-salaam-highlights.html" data-en="Dar es Salaam Highlights" data-sw="Kuhusu Dar es Salaam">Dar es Salaam Highlights</a></li>
                             </ul>
                         </li>
-                        <li><a href="safaris.html" id="nav-safaris" data-en="Tours & Safaris" data-sw="Safari na Ziara">Tours & Safaris</a></li>
+                        <li><a href="safaris.html" id="nav-safaris" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
                         <li><a href="volunteer.html" id="nav-volunteer" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
                         <li><a href="vehicles.html" id="nav-vehicles" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
                         <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
@@ -783,8 +783,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (span) {
                 if (isExpanded) {
                     span.textContent = lang === 'sw' ? 'Funga' : 'Read Less';
+                    span.setAttribute('data-en', 'Read Less');
+                    span.setAttribute('data-sw', 'Funga');
                 } else {
                     span.textContent = lang === 'sw' ? 'Soma Zaidi' : 'Read More';
+                    span.setAttribute('data-en', 'Read More');
+                    span.setAttribute('data-sw', 'Soma Zaidi');
                 }
             }
         });
@@ -1460,16 +1464,300 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const form = e.target;
         
-        // Differentiate alerts depending on form context
-        if (form.classList.contains('booking-form') || form.id === 'mainBookingForm') {
-            alert('Thank you for your enquiry! Your request has been received. Our safari experts will contact you within 24 hours to help plan your adventure.');
-            form.reset();
-        } else if (form.classList.contains('pay-form')) {
-            alert('Thank you! Your secure payment details have been submitted for verification. We will process your booking immediately and send a confirmation email.');
-            form.reset();
+        // Skip assistant widget forms as they are handled by their own listeners
+        if (form.id === 'quoteForm' || form.id === 'reportForm') {
+            return;
+        }
+        
+        const lang = localStorage.getItem('century-lang') || 'en';
+        
+        let name = '';
+        let email = '';
+        let phone = '';
+        let message = '';
+        let text = '';
+        let categoryId = 'general';
+        
+        const isContactForm = form.querySelector('#safari_type') || window.location.pathname.includes('contact.html') || form.id === 'contactForm';
+        const isBookForm = window.location.pathname.includes('book.html') && form.id === 'mainBookingForm';
+        const isEnquireForm = window.location.pathname.includes('enquire.html') && form.id === 'mainBookingForm';
+        const isSafariPageBookingForm = form.classList.contains('booking-form') && !isBookForm && !isContactForm;
+        
+        if (isContactForm) {
+            name = form.querySelector('#name')?.value || '';
+            email = form.querySelector('#email')?.value || '';
+            phone = form.querySelector('#phone')?.value || '';
+            const safariType = form.querySelector('#safari_type')?.value || '';
+            const travelDate = form.querySelector('#travel_date')?.value || '';
+            const travelers = form.querySelector('#travelers')?.value || '';
+            message = form.querySelector('#message')?.value || '';
+            
+            categoryId = (safariType === 'wildlife' || safariType === 'custom') ? 'safari' : 'travel';
+            
+            text = `📬 Contact Us Form Inquiry:\n` +
+                   `• Name: ${name}\n` +
+                   `• Email: ${email}\n` +
+                   `• Phone: ${phone}\n` +
+                   `• Safari Type: ${safariType}\n` +
+                   `• Travel Date: ${travelDate}\n` +
+                   `• Guests: ${travelers}\n` +
+                   `• Message: ${message}`;
+        } else if (isBookForm) {
+            // Text inputs
+            const textInputs = Array.from(form.querySelectorAll('input[type="text"]'));
+            name = textInputs[0]?.value || '';
+            email = form.querySelector('input[type="email"]')?.value || '';
+            phone = form.querySelector('input[type="tel"]')?.value || '';
+            const country = textInputs[1]?.value || '';
+            
+            // Checked checkboxes
+            const destinations = Array.from(form.querySelectorAll('input[name="destinations"]:checked')).map(cb => cb.value);
+            const travelTypes = Array.from(form.querySelectorAll('input[name="travel_type"]:checked')).map(cb => cb.value);
+            
+            // Numbers
+            const numInputs = Array.from(form.querySelectorAll('input[type="number"]'));
+            const adults = parseInt(numInputs[0]?.value) || 1;
+            const children = parseInt(numInputs[1]?.value) || 0;
+            
+            // Dates
+            const dateInputs = Array.from(form.querySelectorAll('input[type="date"]'));
+            const arrival = dateInputs[0]?.value || '';
+            const departure = dateInputs[1]?.value || '';
+            
+            // Radios
+            const flexibleDates = form.querySelector('input[name="flexible_dates"]:checked')?.value || 'Yes';
+            const travelStyle = form.querySelector('input[name="travel_style"]:checked')?.value || 'Budget';
+            
+            // Preferences & Special
+            const preferences = Array.from(form.querySelectorAll('input[name="preferences"]:checked')).map(cb => cb.value);
+            const specials = Array.from(form.querySelectorAll('input[name="special"]:checked')).map(cb => cb.value);
+            
+            message = form.querySelector('textarea')?.value || '';
+            
+            categoryId = 'safari';
+            
+            text = `⚡ Safari Booking Request:\n` +
+                   `• Name: ${name}\n` +
+                   `• Email: ${email}\n` +
+                   `• Phone: ${phone}\n` +
+                   `• Country: ${country}\n` +
+                   `• Destinations: ${destinations.join(', ') || 'Not specified'}\n` +
+                   `• Travel Type: ${travelTypes.join(', ') || 'Not specified'}\n` +
+                   `• Travelers: ${adults} Adults, ${children} Children\n` +
+                   `• Dates: ${arrival} to ${departure} (Flexible: ${flexibleDates})\n` +
+                   `• Comfort Level: ${travelStyle}\n` +
+                   `• Preferences: ${preferences.join(', ') || 'None'}\n` +
+                   `• Special Requests: ${specials.join(', ') || 'None'}\n` +
+                   `• Notes: ${message}`;
+                   
+            // Save to century-bookings too!
+            let duration = 7;
+            if (arrival && departure) {
+                const diffTime = Math.abs(new Date(departure) - new Date(arrival));
+                duration = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+            }
+            const guests = adults + children;
+            let dailyRate = 150;
+            if (travelStyle === 'Mid-Range') dailyRate = 300;
+            else if (travelStyle === 'Luxury') dailyRate = 650;
+            else if (travelStyle === 'Ultra-Luxury') dailyRate = 1200;
+            
+            const estimatePrice = dailyRate * duration * guests;
+            
+            const booking = {
+                id: 'BK-' + Date.now(),
+                name: name,
+                email: email,
+                duration: duration,
+                guests: guests,
+                lodging: travelStyle.toLowerCase(),
+                destinations: destinations.length > 0 ? destinations : ['custom'],
+                activities: [],
+                notes: message,
+                estimatePrice: estimatePrice,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                status: 'PENDING'
+            };
+            
+            let bookings = [];
+            try {
+                bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+            } catch(err) {
+                bookings = [];
+            }
+            bookings.push(booking);
+            localStorage.setItem('century-bookings', JSON.stringify(bookings));
+        } else if (isEnquireForm) {
+            name = form.querySelector('[name="name"]')?.value || '';
+            email = form.querySelector('[name="email"]')?.value || '';
+            phone = form.querySelector('[name="phone"]')?.value || '';
+            const guests = form.querySelector('[name="guests"]')?.value || '';
+            const travelDate = form.querySelector('[name="travel_date"]')?.value || '';
+            const destination = form.querySelector('[name="destination"]')?.value || '';
+            const experience = form.querySelector('[name="experience_type"]')?.value || '';
+            const budget = form.querySelector('[name="budget"]')?.value || '';
+            message = form.querySelector('[name="message"]')?.value || '';
+            
+            categoryId = 'pricing';
+            
+            text = `📋 Quote Enquiry:\n` +
+                   `• Name: ${name}\n` +
+                   `• Email: ${email}\n` +
+                   `• Phone: ${phone}\n` +
+                   `• Guests: ${guests}\n` +
+                   `• Travel Date: ${travelDate}\n` +
+                   `• Destination: ${destination}\n` +
+                   `• Experience: ${experience}\n` +
+                   `• Budget: ${budget}\n` +
+                   `• Message: ${message}`;
+        } else if (isSafariPageBookingForm) {
+            name = form.querySelector('input[placeholder*="Name"], input[type="text"]:first-of-type')?.value || '';
+            email = form.querySelector('input[type="email"]')?.value || '';
+            phone = form.querySelector('input[type="tel"]')?.value || '';
+            const country = form.querySelector('input[placeholder*="Country"], input[placeholder*="Your Country"]')?.value || '';
+            const numInputs = Array.from(form.querySelectorAll('input[type="number"]'));
+            const adults = parseInt(numInputs[0]?.value) || 1;
+            const children = parseInt(numInputs[1]?.value) || 0;
+            const travelDate = form.querySelector('input[type="date"]')?.value || '';
+            message = form.querySelector('textarea')?.value || '';
+            
+            const packageName = document.querySelector('.trip-hero h1')?.textContent || document.title.split('|')[0].trim() || 'Safari Package';
+            
+            categoryId = 'safari';
+            
+            text = `🦁 Safari Booking Request:\n` +
+                   `• Package: ${packageName}\n` +
+                   `• Name: ${name}\n` +
+                   `• Email: ${email}\n` +
+                   `• Phone: ${phone}\n` +
+                   `• Country: ${country}\n` +
+                   `• Travelers: ${adults} Adults, ${children} Children\n` +
+                   `• Travel Date: ${travelDate}\n` +
+                   `• Special Requests: ${message}`;
+                   
+            const durationMatch = packageName.match(/(\d+)-Day/i);
+            const duration = durationMatch ? parseInt(durationMatch[1]) : 7;
+            const guests = adults + children;
+            const estimatePrice = 250 * duration * guests;
+            
+            const booking = {
+                id: 'BK-' + Date.now(),
+                name: name,
+                email: email,
+                duration: duration,
+                guests: guests,
+                lodging: 'midrange',
+                destinations: [packageName.toLowerCase().includes('zanzibar') ? 'zanzibar' : 'serengeti'],
+                activities: [],
+                notes: `Package: ${packageName}. Special requests: ${message}`,
+                estimatePrice: estimatePrice,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                status: 'PENDING'
+            };
+            
+            let bookings = [];
+            try {
+                bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+            } catch(err) {
+                bookings = [];
+            }
+            bookings.push(booking);
+            localStorage.setItem('century-bookings', JSON.stringify(bookings));
         } else {
             // General forms fallback
-            alert('Thank you! Your inquiry has been sent successfully. Our consultants will contact you shortly.');
+            email = form.querySelector('input[type="email"]')?.value || '';
+            name = form.querySelector('input[type="text"]')?.value || '';
+            message = form.querySelector('textarea')?.value || '';
+            
+            if (email || name || message) {
+                text = `💬 General Form Submission:\n` +
+                       `• Name: ${name || 'N/A'}\n` +
+                       `• Email: ${email || 'N/A'}\n` +
+                       `• Message: ${message || 'N/A'}`;
+            }
+        }
+        
+        // Save conversation if text was generated
+        if (text) {
+            let conversations = [];
+            try {
+                conversations = JSON.parse(localStorage.getItem('century-conversations')) || [];
+            } catch(err) {
+                conversations = [];
+            }
+            
+            const visitorIdVal = name && email ? `${name} (${email})` : (localStorage.getItem('century-visitor-id') || 'visitor-' + Date.now());
+            
+            let department = 'info';
+            if (categoryId === 'safari') department = 'booking';
+            else if (categoryId === 'pricing') department = 'sales';
+            else if (categoryId === 'problem' || categoryId === 'support') department = 'support';
+
+            const conv = {
+                id: 'conv-' + Date.now(),
+                visitorId: visitorIdVal,
+                categoryId: categoryId,
+                department: department,
+                messages: [{
+                    id: 'msg-' + Date.now(),
+                    sender: 'visitor',
+                    text: text,
+                    timestamp: Date.now()
+                }],
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+                status: 'open',
+                unreadByStaff: true
+            };
+            conversations.push(conv);
+            localStorage.setItem('century-conversations', JSON.stringify(conversations));
+
+            // Trigger mailto route to configured department email address
+            const getRouteEmail = () => {
+                const defaults = {
+                    info: 'info@centuryadventures.com',
+                    booking: 'bookings@centuryadventures.com',
+                    support: 'support@centuryadventures.com',
+                    sales: 'sales@centuryadventures.com'
+                };
+                try {
+                    const saved = JSON.parse(localStorage.getItem('century-routing-emails')) || defaults;
+                    if (isBookForm || isSafariPageBookingForm) return saved.booking || defaults.booking;
+                    if (isEnquireForm) return saved.sales || defaults.sales;
+                    return saved.info || defaults.info;
+                } catch(e) {
+                    if (isBookForm || isSafariPageBookingForm) return defaults.booking;
+                    if (isEnquireForm) return defaults.sales;
+                    return defaults.info;
+                }
+            };
+            const routeEmail = getRouteEmail();
+            const subjectPrefix = isBookForm || isSafariPageBookingForm ? 'Safari Booking Request' : (isEnquireForm ? 'Quote Inquiry' : 'Contact Inquiry');
+            const mailSubject = `${subjectPrefix} - Century Adventures`;
+            const mailBody = `${text}\n\nVisitor ID: ${visitorIdVal}`;
+            
+            window.open(`mailto:${routeEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`, '_self');
+        }
+        
+        // Show alerts
+        let alertMsg = '';
+        if (isBookForm || isSafariPageBookingForm || isEnquireForm || form.classList.contains('booking-form') || form.id === 'mainBookingForm') {
+            alertMsg = lang === 'sw' 
+                ? 'Asante kwa ombi lako! Ombi lako limepokelewa. Wataalamu wetu wa safari watawasiliana nawe ndani ya saa 24 ili kukusaidia kupanga safari yako.'
+                : 'Thank you for your enquiry! Your request has been received. Our safari experts will contact you within 24 hours to help plan your adventure.';
+            alert(alertMsg);
+            form.reset();
+        } else if (form.classList.contains('pay-form')) {
+            alertMsg = lang === 'sw'
+                ? 'Asante! Maelezo yako salama ya malipo yamewasilishwa kwa uhakiki. Tutashughulikia uhifadhi wako mara moja na kukutumia barua pepe ya uthibitisho.'
+                : 'Thank you! Your secure payment details have been submitted for verification. We will process your booking immediately and send a confirmation email.';
+            alert(alertMsg);
+            form.reset();
+        } else {
+            alertMsg = lang === 'sw'
+                ? 'Asante! Ujumbe wako umetumwa kwa mafanikio. Washauri wetu watawasiliana nawe hivi karibuni.'
+                : 'Thank you! Your inquiry has been sent successfully. Our consultants will contact you shortly.';
+            alert(alertMsg);
             form.reset();
         }
     });
@@ -1811,6 +2099,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const formatTime = (ts) => { const d = new Date(ts); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
         const formatDate = (ts) => { const d = new Date(ts); const today = new Date(); if (d.toDateString() === today.toDateString()) return 'Today'; const y = new Date(today); y.setDate(y.getDate() - 1); if (d.toDateString() === y.toDateString()) return 'Yesterday'; return d.toLocaleDateString([], { month: 'short', day: 'numeric' }); };
 
+        const getRoutingEmails = () => {
+            const defaults = {
+                info: 'info@centuryadventures.com',
+                booking: 'bookings@centuryadventures.com',
+                support: 'support@centuryadventures.com',
+                sales: 'sales@centuryadventures.com'
+            };
+            try {
+                return JSON.parse(localStorage.getItem('century-routing-emails')) || defaults;
+            } catch(e) {
+                return defaults;
+            }
+        };
+
         // ── Hide old assistant if present ──
         document.body.classList.add('comm-center-active');
         const oldFloat = document.getElementById('assistantFloatBtn');
@@ -1842,7 +2144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="comm-header-brand">
                         <span class="brand-icon">🦁</span>
                         <div>
-                            <h3>Safari Expert</h3>
+                            <h3>Safari Support Center</h3>
                             <span class="brand-status"><span class="comm-float-dot"></span> Online</span>
                         </div>
                     </div>
@@ -1850,9 +2152,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="comm-header-tabs">
                     <div class="comm-tab active" data-view="home"><i class="fas fa-home"></i> Home</div>
-                    <div class="comm-tab" data-view="messages"><i class="fas fa-comments"></i> Messages</div>
+                    <div class="comm-tab" data-view="support"><i class="fas fa-comments"></i> Support</div>
                     <div class="comm-tab" data-view="quote"><i class="fas fa-file-invoice-dollar"></i> Quote</div>
                     <div class="comm-tab" data-view="report"><i class="fas fa-exclamation-triangle"></i> Report</div>
+                    <div class="comm-tab" data-view="chats"><i class="fas fa-history"></i> History</div>
                 </div>
             </div>
 
@@ -1860,67 +2163,96 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- HOME VIEW -->
                 <div class="comm-view active" id="viewHome">
                     <div class="comm-home-greeting">
-                        <h4>Welcome to Century Adventures</h4>
-                        <p>How can we help you today?</p>
+                        <h4>💬 Safari Support Center</h4>
+                        <p style="font-weight: 600; margin-top: 4px; color: var(--accent-gold, #c5a044); font-size: 0.82rem;">Need help? Our team is ready to assist you.</p>
+                        <p style="font-size: 0.75rem; opacity: 0.9; margin-top: 6px; line-height: 1.4;">Get answers, request a quote, report an issue, or chat with our safari experts.</p>
                     </div>
                     
                     <div class="comm-home-menu">
-                        <div class="comm-menu-item" data-action="chat-safari">
-                            <i class="fas fa-compass comm-menu-icon"></i>
-                            <span>Plan My Safari</span>
+                        <div class="comm-menu-item" data-action="view-support">
+                            <i class="fas fa-comments comm-menu-icon" style="color: var(--accent-gold);"></i>
+                            <span>💬 Safari Support</span>
                             <i class="fas fa-chevron-right comm-menu-arrow"></i>
                         </div>
                         <div class="comm-menu-item" data-action="view-quote">
-                            <i class="fas fa-file-invoice-dollar comm-menu-icon"></i>
-                            <span>Request a Quote</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </div>
-                        <a href="https://wa.me/255747115390" target="_blank" class="comm-menu-item">
-                            <i class="fab fa-whatsapp comm-menu-icon"></i>
-                            <span>WhatsApp Us</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </a>
-                        <div class="comm-menu-item" data-action="chat-general">
-                            <i class="fas fa-envelope comm-menu-icon"></i>
-                            <span>Contact Our Team</span>
+                            <i class="fas fa-file-invoice-dollar comm-menu-icon" style="color: var(--accent-gold);"></i>
+                            <span>📋 Request a Quote</span>
                             <i class="fas fa-chevron-right comm-menu-arrow"></i>
                         </div>
                         <div class="comm-menu-item" data-action="view-report">
-                            <i class="fas fa-exclamation-triangle comm-menu-icon"></i>
-                            <span>Report an Issue</span>
+                            <i class="fas fa-exclamation-triangle comm-menu-icon" style="color: var(--accent-gold);"></i>
+                            <span>⚠️ Report an Issue</span>
+                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                        </div>
+                        <div class="comm-menu-item" data-action="view-chats">
+                            <i class="fas fa-history comm-menu-icon" style="color: var(--accent-gold);"></i>
+                            <span>👤 My Conversations</span>
                             <i class="fas fa-chevron-right comm-menu-arrow"></i>
                         </div>
                     </div>
 
-                    <div class="comm-menu-divider"></div>
-
-                    <div class="comm-immediate-assistance">
-                        <div class="comm-assistance-title">Need immediate assistance?</div>
-                        <div class="comm-assistance-grid">
-                            <a href="tel:+255747115390" class="comm-assistance-btn btn-call">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Call Us</span>
+                    <div style="background: linear-gradient(135deg, rgba(0, 66, 37, 0.05), rgba(139, 94, 60, 0.05)); border: 1px solid rgba(0, 66, 37, 0.1); border-radius: 14px; padding: 14px; margin-top: 15px;">
+                        <h5 style="margin: 0 0 4px; color: #004225; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+                            🦁 Live Safari Expert
+                        </h5>
+                        <div style="font-size: 0.65rem; color: #25d366; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background: #25d366; border-radius: 50%; display: inline-block;"></span> Online • Ready to Help
+                        </div>
+                        <p style="font-size: 0.72rem; margin: 0 0 10px; color: #555;">Need immediate assistance?</p>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff;" data-action="view-support">
+                                <i class="fas fa-comments comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
+                                <span style="font-size: 0.75rem; font-weight: 600;">💬 Chat with a Safari Expert</span>
+                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
+                            </div>
+                            <a href="mailto:info@centuryadventures.com" class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff; text-decoration: none; color: inherit;">
+                                <i class="far fa-envelope comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
+                                <span style="font-size: 0.75rem; font-weight: 600;">📧 Send an Email</span>
+                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
                             </a>
-                            <a href="https://wa.me/255747115390" target="_blank" class="comm-assistance-btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                            <a href="mailto:info@centuryadventures.com" class="comm-assistance-btn btn-email">
-                                <i class="far fa-envelope"></i>
-                                <span>Email Us</span>
+                            <a href="tel:+255747115390" class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff; text-decoration: none; color: inherit;">
+                                <i class="fas fa-phone-alt comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
+                                <span style="font-size: 0.75rem; font-weight: 600;">📞 Request a Call Back</span>
+                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- MESSAGES VIEW -->
-                <div class="comm-view" id="viewMessages">
-                    <div id="commConvList" class="comm-conv-list"></div>
+                <!-- SUPPORT VIEW -->
+                <div class="comm-view" id="viewSupport">
+                    <div class="comm-home-greeting">
+                        <h4>💬 Safari Support</h4>
+                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">Chat directly with our Century Adventures team. Send questions about safari bookings, destinations, travel plans, accommodation, volunteer programs, or general inquiries.</p>
+                    </div>
+                    <form class="comm-form" id="supportForm">
+                        <h5 style="margin-bottom: 10px; color: #004225; font-size: 0.85rem; font-weight: 700;">Start a New Message</h5>
+                        <label>Message Subject</label>
+                        <select name="subject" required>
+                            <option value="">Select subject...</option>
+                            <option value="Safari Bookings">Safari Bookings</option>
+                            <option value="Destinations">Destinations</option>
+                            <option value="Travel Plans">Travel Plans</option>
+                            <option value="Accommodation">Accommodation</option>
+                            <option value="Volunteer Programs">Volunteer Programs</option>
+                            <option value="General Inquiries">General Inquiries</option>
+                        </select>
+                        <label>Your Message</label>
+                        <textarea name="message" placeholder="Type your message details here..." required></textarea>
+                        <button type="submit" class="comm-form-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                    <div class="comm-form-success" id="supportSuccess" style="display:none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Message sent!</strong><br>Opening chat session...</p>
+                    </div>
                 </div>
 
                 <!-- QUOTE VIEW -->
                 <div class="comm-view" id="viewQuote">
-                    <div class="comm-home-greeting"><h4>Request a Quote</h4><p>We'll respond within 24 hours</p></div>
+                    <div class="comm-home-greeting">
+                        <h4>📋 Request a Quote</h4>
+                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">Get a personalized safari quotation. Tell us your destination(s), travel dates, number of travelers, budget range, and special requests.</p>
+                    </div>
                     <form class="comm-form" id="quoteForm">
                         <label>Destinations of Interest</label>
                         <select name="destination">
@@ -1951,7 +2283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <input type="email" name="email" placeholder="your@email.com">
                         <label>Additional Details</label>
                         <textarea name="details" placeholder="Tell us about your dream safari..."></textarea>
-                        <button type="submit" class="comm-form-submit"><i class="fas fa-paper-plane"></i> Send Quote Request</button>
+                        <button type="submit" class="comm-form-submit"><i class="fas fa-file-invoice-dollar"></i> Get My Custom Safari Quote</button>
                     </form>
                     <div class="comm-form-success" id="quoteSuccess" style="display:none;">
                         <i class="fas fa-check-circle"></i>
@@ -1961,27 +2293,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <!-- REPORT VIEW -->
                 <div class="comm-view" id="viewReport">
-                    <div class="comm-home-greeting"><h4>Report an Issue</h4><p>We take all reports seriously</p></div>
+                    <div class="comm-home-greeting">
+                        <h4>⚠️ Report an Issue</h4>
+                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">We take every report seriously and respond as quickly as possible.</p>
+                    </div>
                     <form class="comm-form" id="reportForm">
-                        <label>Issue Category</label>
-                        <select name="issue_type">
-                            <option value="">Select issue type...</option>
-                            <option value="website">Website Problem</option>
-                            <option value="booking">Booking Issue</option>
-                            <option value="payment">Payment Problem</option>
-                            <option value="guide">Guide Complaint</option>
-                            <option value="service">Service Concern</option>
-                            <option value="other">Other</option>
+                        <label>Issue Type</label>
+                        <select name="issue_type" required>
+                            <option value="">Select a category...</option>
+                            <option value="Booking Issue">Booking Issue</option>
+                            <option value="Payment Issue">Payment Issue</option>
+                            <option value="Website Problem">Website Problem</option>
+                            <option value="Customer Service Concern">Customer Service Concern</option>
+                            <option value="Safari Experience Feedback">Safari Experience Feedback</option>
+                            <option value="Other">Other</option>
                         </select>
-                        <label>Your Email</label>
-                        <input type="email" name="email" placeholder="your@email.com">
+                        <label>Your Email Address</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
                         <label>Describe the Issue</label>
-                        <textarea name="description" placeholder="Please describe your issue in detail..."></textarea>
+                        <textarea name="description" placeholder="Please provide as much detail as possible so we can assist you effectively." required></textarea>
                         <button type="submit" class="comm-form-submit"><i class="fas fa-flag"></i> Submit Report</button>
                     </form>
                     <div class="comm-form-success" id="reportSuccess" style="display:none;">
                         <i class="fas fa-check-circle"></i>
                         <p><strong>Report submitted!</strong><br>Our support team will review and contact you soon.</p>
+                    </div>
+                </div>
+
+                <!-- CHATS VIEW -->
+                <div class="comm-view" id="viewChats">
+                    <div class="comm-home-greeting">
+                        <h4>👤 My Conversations</h4>
+                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">View and continue your conversations with our team. Here you can read replies, continue discussions, track quote requests, follow booking updates, and receive support.</p>
+                    </div>
+                    <div id="commConvList" class="comm-conv-list"></div>
+                    
+                    <!-- Privacy card -->
+                    <div style="background: rgba(0, 66, 37, 0.05); border: 1px solid rgba(0, 66, 37, 0.1); border-radius: 12px; padding: 12px; margin-top: 15px; font-size: 0.72rem; line-height: 1.4; color: #1b4332;">
+                        <div style="font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-lock" style="color: var(--accent-gold);"></i> Privacy &amp; Security
+                        </div>
+                        <ul style="list-style-type: none; padding-left: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                            <li>✅ Only you and Century Adventures staff can view your messages.</li>
+                            <li>✅ No customer can access another customer's conversation.</li>
+                            <li>✅ All inquiries are handled confidentially.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -1998,14 +2354,14 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.querySelectorAll('.comm-menu-item[data-action]').forEach(item => {
             item.addEventListener('click', () => {
                 const action = item.dataset.action;
-                if (action === 'chat-safari') {
-                    openChat('safari');
-                } else if (action === 'chat-general') {
-                    openChat('general');
+                if (action === 'view-support') {
+                    switchView('viewSupport');
                 } else if (action === 'view-quote') {
                     switchView('viewQuote');
                 } else if (action === 'view-report') {
                     switchView('viewReport');
+                } else if (action === 'view-chats') {
+                    switchView('viewChats');
                 }
             });
         });
@@ -2013,6 +2369,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // ── State ──
         let activeConvId = null;
         let chatViewEl = null;
+        let lastMsgCount = 0;
 
         // ── View Switching ──
         const switchView = (viewId) => {
@@ -2024,8 +2381,8 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.querySelectorAll('.comm-tab').forEach(t => t.classList.remove('active'));
             const tab = panel.querySelector(`.comm-tab[data-view="${viewId.replace('view', '').toLowerCase()}"]`);
             if (tab) tab.classList.add('active');
-            // Refresh messages list if switching to messages
-            if (viewId === 'viewMessages') renderConversationList();
+            // Refresh messages list if switching to chats
+            if (viewId === 'viewChats') renderConversationList();
         };
 
         // ── Tab Navigation ──
@@ -2037,7 +2394,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ── Open/Close Panel ──
-        const openPanel = () => { panel.classList.add('active'); floatBtn.classList.add('panel-open'); };
+        const openPanel = () => { 
+            panel.classList.add('active'); 
+            floatBtn.classList.add('panel-open'); 
+            const emailLink = panel.querySelector('a[href*="mailto:"]');
+            if (emailLink) emailLink.href = 'mailto:' + getRoutingEmails().info;
+        };
         const closePanel = () => { panel.classList.remove('active'); floatBtn.classList.remove('panel-open'); };
         window.openSafariSupport = openPanel;
         floatBtn.addEventListener('click', openPanel);
@@ -2100,6 +2462,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Render messages
             renderMessages(conv);
+            lastMsgCount = conv.messages.length;
 
             // Back button
             chatViewEl.querySelector('#chatBack').addEventListener('click', () => {
@@ -2114,16 +2477,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!text) return;
                 addMessage(conv.id, 'visitor', text);
                 inputEl.value = '';
-                // Auto-reply after 1.5s
-                setTimeout(() => {
-                    const replies = [
-                        `Thank you for reaching out about ${cat.label}! 🦁 Our team has received your message and will respond shortly. In the meantime, feel free to WhatsApp us at +255 747 115 390 for instant assistance.`,
-                        `Karibu! We've noted your inquiry about ${cat.label}. A Century Adventures specialist will get back to you within a few hours. Asante sana! 🌍`,
-                        `Thank you! Your message regarding ${cat.label} has been forwarded to our expert team. We typically respond within 2-4 hours during business hours. 🏕️`
-                    ];
-                    const reply = replies[Math.floor(Math.random() * replies.length)];
-                    addMessage(conv.id, 'staff', reply);
-                }, 1500);
             };
             chatViewEl.querySelector('#chatSend').addEventListener('click', sendMsg);
             inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
@@ -2139,9 +2492,13 @@ document.addEventListener('DOMContentLoaded', () => {
             conv.messages.push(msg);
             conv.updatedAt = Date.now();
             if (sender === 'staff') conv.unread = (conv.unread || 0) + 1;
+            if (sender === 'visitor') conv.unreadByStaff = true;
             saveConversations(convs);
             // Re-render if active
-            if (activeConvId === convId && chatViewEl) renderMessages(conv);
+            if (activeConvId === convId && chatViewEl) {
+                renderMessages(conv);
+                lastMsgCount = conv.messages.length;
+            }
             updateBadge();
 
             // If visitor message, trigger email notification link
@@ -2151,7 +2508,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const body = encodeURIComponent(`Category: ${cat.label}\nVisitor ID: ${visitorId}\nMessage: ${text}\n\nSent from Century Adventures Communication Center`);
                 // Create a hidden mailto trigger
                 const mailLink = document.createElement('a');
-                mailLink.href = `mailto:info@centuryadventures.com?subject=${subject}&body=${body}`;
+                const emails = getRoutingEmails();
+                let targetEmail = emails.info;
+                if (cat.id === 'safari') targetEmail = emails.booking;
+                else if (cat.id === 'pricing') targetEmail = emails.sales;
+                else if (cat.id === 'problem') targetEmail = emails.support;
+                mailLink.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
                 mailLink.style.display = 'none';
                 document.body.appendChild(mailLink);
                 // Don't auto-trigger mailto (too intrusive), instead log for admin
@@ -2275,6 +2637,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'conv-' + Date.now(),
                 visitorId,
                 categoryId: 'pricing',
+                department: 'sales',
                 messages: [{
                     id: 'msg-' + Date.now(),
                     sender: 'visitor',
@@ -2291,28 +2654,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open mailto with quote details
             const subject = encodeURIComponent('Quote Request - Century Adventures');
             const body = encodeURIComponent(`Quote Request from Century Adventures Website\n\nDestination: ${dest}\nTravel Dates: ${dates}\nNumber of Travelers: ${travelers}\nBudget Range: ${budget}\nEmail: ${email}\nAdditional Details: ${details}\n\nVisitor ID: ${visitorId}`);
-            window.open(`mailto:info@centuryadventures.com?subject=${subject}&body=${body}`, '_self');
+            const emails = getRoutingEmails();
+            window.open(`mailto:${emails.sales}?subject=${subject}&body=${body}`, '_self');
 
             form.style.display = 'none';
             document.getElementById('quoteSuccess').style.display = 'block';
-
-            // Add auto-reply
-            setTimeout(() => {
-                const convs2 = loadConversations();
-                const c = convs2.find(x => x.id === conv.id);
-                if (c) {
-                    c.messages.push({
-                        id: 'msg-' + Date.now(),
-                        sender: 'staff',
-                        text: `Thank you for your quote request! 🌍 Our travel specialists will prepare a personalized quotation and send it to ${email || 'your email'} within 24 hours. For faster response, WhatsApp us at +255 747 115 390.`,
-                        timestamp: Date.now()
-                    });
-                    c.unread = 1;
-                    c.updatedAt = Date.now();
-                    saveConversations(convs2);
-                    updateBadge();
-                }
-            }, 2000);
 
             // Reset form after 4 seconds
             setTimeout(() => {
@@ -2337,6 +2683,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 'conv-' + Date.now(),
                 visitorId,
                 categoryId: 'problem',
+                department: 'support',
                 messages: [{
                     id: 'msg-' + Date.now(),
                     sender: 'visitor',
@@ -2353,24 +2700,76 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open mailto
             const subject = encodeURIComponent(`Issue Report - ${issueType} - Century Adventures`);
             const body = encodeURIComponent(`Issue Report from Century Adventures Website\n\nIssue Type: ${issueType}\nEmail: ${email}\nDescription: ${description}\n\nVisitor ID: ${visitorId}`);
-            window.open(`mailto:support@centuryadventures.com?subject=${subject}&body=${body}`, '_self');
+            const emails = getRoutingEmails();
+            window.open(`mailto:${emails.support}?subject=${subject}&body=${body}`, '_self');
 
             form.style.display = 'none';
             document.getElementById('reportSuccess').style.display = 'block';
 
-            setTimeout(() => {
-                const convs2 = loadConversations();
-                const c = convs2.find(x => x.id === conv.id);
-                if (c) {
-                    c.messages.push({ id: 'msg-' + Date.now(), sender: 'staff', text: `We've received your report about "${issueType}". Our support team is reviewing it and will contact you at ${email || 'your email'} shortly. We take all feedback seriously. 🛠️`, timestamp: Date.now() });
-                    c.unread = 1;
-                    c.updatedAt = Date.now();
-                    saveConversations(convs2);
-                    updateBadge();
-                }
-            }, 2000);
-
             setTimeout(() => { form.reset(); form.style.display = 'flex'; document.getElementById('reportSuccess').style.display = 'none'; }, 4000);
+        });
+
+        // ── Support Form ──
+        document.getElementById('supportForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            const subject = data.get('subject') || 'General Inquiry';
+            const message = data.get('message') || '';
+
+            // Map subject to category ID
+            let categoryId = 'general';
+            if (subject === 'Safari Bookings') categoryId = 'safari';
+            else if (subject === 'Accommodation') categoryId = 'accommodation';
+            else if (subject === 'Volunteer Programs') categoryId = 'volunteer';
+
+            let department = 'info';
+            if (categoryId === 'safari') department = 'booking';
+            else if (categoryId === 'accommodation') department = 'info';
+            else if (categoryId === 'volunteer') department = 'info';
+
+            const convs = loadConversations();
+            const conv = {
+                id: 'conv-' + Date.now(),
+                visitorId,
+                categoryId,
+                department,
+                messages: [{
+                    id: 'msg-' + Date.now(),
+                    sender: 'visitor',
+                    text: `💬 Subject: ${subject}\n\n${message}`,
+                    timestamp: Date.now()
+                }],
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+                status: 'open',
+                unreadByStaff: true
+            };
+            convs.push(conv);
+            saveConversations(convs);
+
+            // Open mailto trigger for notification
+            const emails = getRoutingEmails();
+            let targetEmail = emails.info;
+            if (categoryId === 'safari') targetEmail = emails.booking;
+            else if (categoryId === 'accommodation') targetEmail = emails.info;
+            else if (categoryId === 'volunteer') targetEmail = emails.info;
+
+            const mailSubject = encodeURIComponent(`[Century Adventures Support] ${subject}`);
+            const mailBody = encodeURIComponent(`New Inquiry from Century Adventures Support Center:\n\nSubject: ${subject}\nMessage: ${message}\n\nVisitor ID: ${visitorId}`);
+            window.open(`mailto:${targetEmail}?subject=${mailSubject}&body=${mailBody}`, '_self');
+
+            form.style.display = 'none';
+            const successEl = document.getElementById('supportSuccess');
+            successEl.style.display = 'block';
+
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'flex';
+                successEl.style.display = 'none';
+                activeConvId = conv.id;
+                renderChatView(conv);
+            }, 1500);
         });
 
         // ── WhatsApp/Chaty offset (maintain compatibility) ──
@@ -2387,6 +2786,21 @@ document.addEventListener('DOMContentLoaded', () => {
         adjustFloatSpacing();
         const observer = new MutationObserver(adjustFloatSpacing);
         observer.observe(document.body, { childList: true, subtree: true });
+
+        // ── Real-Time Polling for Admin Replies ──
+        setInterval(() => {
+            if (panel.classList.contains('active') && activeConvId && chatViewEl && chatViewEl.classList.contains('active')) {
+                const convs = loadConversations();
+                const activeConv = convs.find(c => c.id === activeConvId);
+                if (activeConv) {
+                    const currentCount = activeConv.messages.length;
+                    if (currentCount !== lastMsgCount) {
+                        lastMsgCount = currentCount;
+                        renderMessages(activeConv);
+                    }
+                }
+            }
+        }, 1500);
     };
 
     // ── Read More: Auto-collapse long descriptive text sections ──
@@ -2427,9 +2841,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = document.createElement('button');
                 const lang = localStorage.getItem('century-lang') || 'en';
                 btn.className = 'read-more-btn';
-                btn.setAttribute('data-en', 'Read More');
-                btn.setAttribute('data-sw', 'Soma Zaidi');
-                btn.innerHTML = `<span>${lang === 'sw' ? 'Soma Zaidi' : 'Read More'}</span> <i class="fas fa-chevron-down"></i>`;
+                btn.innerHTML = `<span data-en="Read More" data-sw="Soma Zaidi">${lang === 'sw' ? 'Soma Zaidi' : 'Read More'}</span> <i class="fas fa-chevron-down"></i>`;
 
                 wrapper.appendChild(contentDiv);
                 wrapper.appendChild(fade);
@@ -2438,20 +2850,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 btn.addEventListener('click', () => {
                     const isExpanded = contentDiv.classList.contains('expanded');
+                    const span = btn.querySelector('span');
                     if (isExpanded) {
                         contentDiv.classList.remove('expanded');
                         contentDiv.classList.add('collapsed');
                         fade.style.opacity = '1';
                         btn.classList.remove('expanded-state');
                         const currentLang = localStorage.getItem('century-lang') || 'en';
-                        btn.querySelector('span').textContent = currentLang === 'sw' ? 'Soma Zaidi' : 'Read More';
+                        if (span) {
+                            span.textContent = currentLang === 'sw' ? 'Soma Zaidi' : 'Read More';
+                            span.setAttribute('data-en', 'Read More');
+                            span.setAttribute('data-sw', 'Soma Zaidi');
+                        }
                     } else {
                         contentDiv.classList.remove('collapsed');
                         contentDiv.classList.add('expanded');
                         fade.style.opacity = '0';
                         btn.classList.add('expanded-state');
                         const currentLang = localStorage.getItem('century-lang') || 'en';
-                        btn.querySelector('span').textContent = currentLang === 'sw' ? 'Funga' : 'Read Less';
+                        if (span) {
+                            span.textContent = currentLang === 'sw' ? 'Funga' : 'Read Less';
+                            span.setAttribute('data-en', 'Read Less');
+                            span.setAttribute('data-sw', 'Funga');
+                        }
                     }
                 });
             });

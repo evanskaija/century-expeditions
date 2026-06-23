@@ -563,9 +563,9 @@
             <div class="footer-col">
                 <div class="tripadvisor-card">
                     <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor">
-                    <h4 data-en="Give Feedback Century Travel" data-sw="Toa Maoni Century Travel">Give Feedback Century Travel</h4>
+                    <h4 data-en="Give Feedback Century-adventures" data-sw="Toa Maoni Century-adventures">Give Feedback Century-adventures</h4>
                     <p data-en="Ranked #1 on TripAdvisor" data-sw="Imeorodheshwa #1 TripAdvisor">Ranked #1 on TripAdvisor</p>
-                    <a href="https://www.tripadvisor.com/UserReviewEdit-g1602943-d23659702-Mukuta_Travels_Tours-Dar_es_Salaam_Dar_es_Salaam_Region.html" target="_blank" class="btn btn-small" data-en="Read More Reviews" data-sw="Soma Maoni Zaidi">Read More Reviews</a>
+                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="TripAdvisor Give Feedback Century-adventures" data-sw="TripAdvisor Toa Maoni Century-adventures">TripAdvisor Give Feedback Century-adventures</a>
                 </div>
             </div>
         </div>
@@ -573,7 +573,7 @@
             <div class="social-links">
                 <a href="https://www.facebook.com/profile.php?id=61577731823809"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/255747115390"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:info@centuryadventures.com"><i class="fas fa-envelope"></i></a>
@@ -655,6 +655,33 @@
                 }
                 bookings.push(booking);
                 localStorage.setItem('century-bookings', JSON.stringify(bookings));
+
+                // Also create a conversation for Admin Messages
+                let conversations = [];
+                try {
+                    conversations = JSON.parse(localStorage.getItem('century-conversations')) || [];
+                } catch(err) {
+                    conversations = [];
+                }
+                const destString = booking.destinations.join(', ');
+                const activitiesString = booking.activities.join(', ');
+                const conv = {
+                    id: 'conv-' + Date.now(),
+                    visitorId: `${booking.name} (${booking.email})`,
+                    categoryId: 'safari',
+                    messages: [{
+                        id: 'msg-' + Date.now(),
+                        sender: 'visitor',
+                        text: `🦁 Custom Safari Plan Submitted:\n• Name: ${booking.name}\n• Email: ${booking.email}\n• Duration: ${booking.duration} Days\n• Guests: ${booking.guests}\n• Lodging: ${booking.lodging}\n• Destinations: ${destString || 'None selected'}\n• Activities: ${activitiesString || 'None selected'}\n• Notes: ${booking.notes || 'N/A'}\n• Estimate Price: ${booking.estimatePrice}`,
+                        timestamp: Date.now()
+                    }],
+                    createdAt: Date.now(),
+                    updatedAt: Date.now(),
+                    status: 'open',
+                    unreadByStaff: true
+                };
+                conversations.push(conv);
+                localStorage.setItem('century-conversations', JSON.stringify(conversations));
 
                 // Also save/update user profile session so they see their name in the dashboard
                 localStorage.setItem('century-user-profile', JSON.stringify({

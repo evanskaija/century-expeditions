@@ -19,9 +19,9 @@
         <div class="auth-card">
             <img src="assets/logo.png" alt="Century Logo">
             <h2>Staff Authentication</h2>
-            <p>Please enter the Safari Support passcode to access the admin panel.</p>
+            <p>Please enter the passcode to access the Century Adventures admin panel.</p>
             <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
-                <input type="password" id="passcode" placeholder="••••••••" required autofocus>
+                <input type="password" id="passcode" placeholder="••••••••" required autofocus style="letter-spacing: 4px; text-align: center;">
                 <button type="submit">Authenticate</button>
                 <div id="authError" class="auth-error">Incorrect passcode. Please try again.</div>
             </form>
@@ -33,106 +33,198 @@
 
     <!-- Main Workspace -->
     <div class="dashboard-container" id="adminWorkspace" style="display: none;">
-        <!-- Admin Sidebar -->
+        <!-- Admin Sidebar (Icon-Only Floating style matching image) -->
         <aside class="dashboard-sidebar">
-            <div class="dash-logo" style="padding: 20px; text-align: center;">
-                <img src="assets/logo.png" alt="Logo" style="max-height: 50px;">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 30px;">
+                <!-- Small branding placeholder -->
+                <div style="width: 42px; height: 42px; background: rgba(92, 92, 252, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #5c5cfc; font-size: 18px;">
+                    🦁
+                </div>
+                <nav class="dash-nav">
+                    <ul>
+                        <li class="active"><a href="admin-dashboard.html" title="Dashboard"><i class="fas fa-th-large"></i></a></li>
+                        <li><a href="admin-messages.html" title="Messages"><i class="fas fa-comments"></i></a></li>
+                        <li><a href="admin-tours.html" title="Manage Tours"><i class="fas fa-map-marked-alt"></i></a></li>
+                        <li><a href="admin-customers.html" title="Customers"><i class="fas fa-users"></i></a></li>
+                        <li><a href="admin-settings.html" title="Settings"><i class="fas fa-cog"></i></a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav class="dash-nav">
-                <ul>
-                    <li class="active"><a href="admin-dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                    <li><a href="admin-messages.html"><i class="fas fa-comments"></i> Messages</a></li>
-                    <li><a href="#"><i class="fas fa-map-marked-alt"></i> Manage Tours</a></li>
-                    <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+            <!-- Bottom Sidebar Actions -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%;">
+                <a href="#" onclick="handleLogout()" title="Logout" style="width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #8c9ba5; font-size: 18px; transition: all 0.2s;"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <header class="dash-header" style="border-bottom: 1px solid #2d2d2d; padding-bottom: 20px; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <!-- Header Card -->
+            <header class="dash-header-card" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <h1 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px; color: white;">Century <span style="color: var(--accent-gold);">Admin</span></h1>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #888888;">Platform Overview & Statistics</p>
+                    <h1>Dashboard</h1>
+                    <p>Track safari bookings, revenue, and client communications</p>
                 </div>
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="text-align: right;">
-                        <strong style="color: white; display: block; font-size: 14px;">Administrator</strong>
-                        <span style="font-size: 11px; color: var(--accent-gold);">Super User</span>
+                    <div style="text-align: right; margin-right: 10px;">
+                        <strong style="color: #0f172a; display: block; font-size: 14px;">Administrator</strong>
+                        <span style="font-size: 11px; color: #5c5cfc; font-weight: 600; display: block; margin-top: 2px;">Super User</span>
                     </div>
-                    <img src="assets/user1.jpg" alt="Admin" class="profile-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                    <button onclick="handleLogout()" style="background: none; border: 1px solid #2d2d2d; color: #e0e0e0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; margin-left: 10px; transition: all 0.2s;">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
+                    <img src="assets/user1.jpg" alt="Admin" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 </div>
             </header>
 
-            <!-- Admin Stats -->
-            <section class="dash-stats" style="margin-bottom: 40px;">
-                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
-                    <div class="stat-icon" style="color: #4caf50; background: rgba(76, 175, 80, 0.1);"><i class="fas fa-dollar-sign"></i></div>
-                    <div class="stat-meta">
-                        <h3 style="color: white; margin: 0; font-size: 20px;">$84,200</h3>
-                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">Monthly Revenue</p>
-                    </div>
+            <!-- Revenue Forecast Section (Light pastel blue card matching reference image) -->
+            <section class="forecast-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;">Revenue Forecast & Booking Flow</h3>
+                    <span style="background: rgba(255,255,255,0.4); padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;">Live Forecast</span>
                 </div>
-                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
-                    <div class="stat-icon" style="color: #2196f3; background: rgba(33, 150, 243, 0.1);"><i class="fas fa-suitcase"></i></div>
-                    <div class="stat-meta">
-                        <h3 id="bookingsCount" style="color: white; margin: 0; font-size: 20px;">12</h3>
-                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">New Bookings</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- Left: Subcards -->
+                    <div style="display: flex; flex-direction: column; gap: 20px; justify-content: space-between;">
+                        <div class="sub-card-white">
+                            <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Active Bookings Value</span>
+                            <div style="font-size: 32px; font-weight: 800; margin: 10px 0 5px 0; color: #0f172a;" id="thisMonthRevenue">$84,200</div>
+                            <span style="color: #22c55e; font-size: 11px; font-weight: 600;"><i class="fas fa-arrow-up"></i> +12.4% vs last month</span>
+                        </div>
+                        <div class="sub-card-purple">
+                            <span style="color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Projected Annual Sales</span>
+                            <div style="font-size: 32px; font-weight: 800; margin: 10px 0 5px 0;" id="projectedRevenue">$247,500</div>
+                            <span style="color: rgba(255,255,255,0.8); font-size: 11px; font-weight: 500;">Based on dynamic planner selections</span>
+                        </div>
                     </div>
-                </div>
-                <div class="dash-stat-card" style="background: #1e1e1e; border: 1px solid #2d2d2d;">
-                    <div class="stat-icon" style="color: #f44336; background: rgba(244, 67, 54, 0.1);"><i class="fas fa-comments"></i></div>
-                    <div class="stat-meta">
-                        <h3 id="pendingCount" style="color: white; margin: 0; font-size: 20px;">0</h3>
-                        <p style="color: #888888; margin: 5px 0 0 0; font-size: 12px;">Pending Enquiries</p>
+                    
+                    <!-- Right: Bar Chart Card -->
+                    <div class="sub-card-white" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                            <div>
+                                <span style="background: rgba(92, 92, 252, 0.1); color: #5c5cfc; padding: 2px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase;">Avg. Monthly</span>
+                                <div style="font-size: 24px; font-weight: 800; margin: 5px 0 2px 0; color: #0f172a;">$49.8K</div>
+                                <span style="color: #64748b; font-size: 11px;">Estimated monthly bookings run-rate</span>
+                            </div>
+                            <div style="font-size: 11px; color: #94a3b8; border: 1px solid #e2e8f0; padding: 4px 8px; border-radius: 8px; cursor: pointer;">
+                                Filter <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Simple visual bar chart using styled HTML/CSS -->
+                        <div style="display: flex; justify-content: space-between; align-items: flex-end; height: 110px; padding-top: 15px; border-bottom: 1px solid #f1f5f9; gap: 8px;">
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 50px; background: linear-gradient(180deg, #5c5cfc, #adcbfb); border-radius: 4px;"></div>
+                                <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Jan</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 75px; background: linear-gradient(180deg, #5c5cfc, #adcbfb); border-radius: 4px;"></div>
+                                <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Feb</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 40px; background: linear-gradient(180deg, #5c5cfc, #adcbfb); border-radius: 4px;"></div>
+                                <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Mar</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 95px; background: linear-gradient(180deg, #5c5cfc, #34d399); border-radius: 4px; box-shadow: 0 4px 10px rgba(52, 211, 153, 0.25);"></div>
+                                <span style="font-size: 9px; color: #0f172a; font-weight: 700;">Apr</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 80px; background: linear-gradient(180deg, #5c5cfc, #adcbfb); border-radius: 4px;"></div>
+                                <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">May</span>
+                            </div>
+                            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                <div style="width: 10px; height: 65px; background: linear-gradient(180deg, #5c5cfc, #adcbfb); border-radius: 4px;"></div>
+                                <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Jun</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Data Table -->
-            <div class="dash-card" style="background: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 12px; padding: 25px;">
-                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h3 style="color: white; margin: 0;">Recent Booking Inquiries</h3>
-                    <button class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 12px;">Export Data</button>
+            <!-- Bottom Section Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                <!-- Left: Department Chart (contrasting dark card matching reference image) -->
+                <div class="spend-card-dark" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 320px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="margin: 0;">Inquiries by Department</h3>
+                            <span style="font-size: 11px; color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 8px;">Weekly traffic</span>
+                        </div>
+                        <p style="font-size: 12px; color: #94a3b8; margin: 0 0 15px 0; line-height: 1.4;">Communication logs and records mapped to four departments.</p>
+                    </div>
+
+                    <!-- Custom SVG Donut Chart showing 4 places -->
+                    <div style="display: flex; align-items: center; gap: 25px; margin: 10px 0;">
+                        <svg width="100" height="100" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;">
+                            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#2a3347" stroke-width="3"></circle>
+                            <!-- Segment 1: Info (25% -> stroke-dasharray 25 75) -->
+                            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#5c5cfc" stroke-width="3" stroke-dasharray="25 75" stroke-dashoffset="0"></circle>
+                            <!-- Segment 2: Booking (35% -> stroke-dasharray 35 65) -->
+                            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#34d399" stroke-width="3" stroke-dasharray="35 65" stroke-dashoffset="-25"></circle>
+                            <!-- Segment 3: Support (15% -> stroke-dasharray 15 85) -->
+                            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="15 85" stroke-dashoffset="-60"></circle>
+                            <!-- Segment 4: Sales (25% -> stroke-dasharray 25 75) -->
+                            <circle cx="18" cy="18" r="15.915" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="25 75" stroke-dashoffset="-75"></circle>
+                        </svg>
+                        <div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #5c5cfc; border-radius: 50%;"></span> Info (info@)</span>
+                                <strong id="deptCountInfo" style="color: #ffffff;">0</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #34d399; border-radius: 50%;"></span> Booking (bookings@)</span>
+                                <strong id="deptCountBooking" style="color: #ffffff;">0</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #fbbf24; border-radius: 50%;"></span> Support (support@)</span>
+                                <strong id="deptCountSupport" style="color: #ffffff;">0</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px;">
+                                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #f43f5e; border-radius: 50%;"></span> Sales (sales@)</span>
+                                <strong id="deptCountSales" style="color: #ffffff;">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inbox Shortcuts -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 15px;">
+                        <a href="admin-messages.html?dept=booking" style="background: rgba(255,255,255,0.05); color: #ffffff; text-decoration: none; padding: 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-align: center; border: 1px solid rgba(255,255,255,0.04); transition: all 0.2s;">View Booking Logs</a>
+                        <a href="admin-messages.html?dept=sales" style="background: #5c5cfc; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-align: center; box-shadow: 0 4px 12px rgba(92, 92, 252, 0.2); border: 1px solid transparent; transition: all 0.2s;">View Sales Inbox</a>
+                    </div>
                 </div>
-                <div style="overflow-x: auto;">
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th style="color: #888888; font-size: 12px;">ID</th>
-                                <th style="color: #888888; font-size: 12px;">Customer</th>
-                                <th style="color: #888888; font-size: 12px;">Duration / Package</th>
-                                <th style="color: #888888; font-size: 12px;">Date</th>
-                                <th style="color: #888888; font-size: 12px;">Estimated Price</th>
-                                <th style="color: #888888; font-size: 12px;">Status</th>
-                                <th style="color: #888888; font-size: 12px;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#BK-9021</td>
-                                <td>Sarah Johnson</td>
-                                <td>7-Day Serengeti</td>
-                                <td>15 Sept 2026</td>
-                                <td>$2,450</td>
-                                <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PAID</span></td>
-                                <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
-                            </tr>
-                            <tr>
-                                <td>#BK-9022</td>
-                                <td>Michael Smith</td>
-                                <td>12-Day Southern</td>
-                                <td>20 Oct 2026</td>
-                                <td>$5,221</td>
-                                <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PENDING</span></td>
-                                <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <!-- Right: Recent Inquiries (Transactions list styled like reference image) -->
+                <div class="dash-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3 style="margin: 0;">Recent Booking Inquiries</h3>
+                            <button onclick="window.location.href='admin-messages.html'" class="btn btn-primary btn-sm" style="padding: 6px 14px; font-size: 11px; background: #5c5cfc; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;">View Inbox</button>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Duration / Package</th>
+                                        <th>Estimated Value</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: 500;">Sarah Johnson</td>
+                                        <td>7-Day Serengeti</td>
+                                        <td style="color: #5c5cfc; font-weight: 600;">$2,450</td>
+                                        <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PAID</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: 500;">Michael Smith</td>
+                                        <td>12-Day Southern</td>
+                                        <td style="color: #5c5cfc; font-weight: 600;">$5,221</td>
+                                        <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PENDING</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -154,7 +246,8 @@
         function handleAuth(e) {
             e.preventDefault();
             const passcode = document.getElementById('passcode').value;
-            if (passcode === 'centuryadmin' || passcode === 'admin123') {
+            const correctPasscode = localStorage.getItem('century-admin-passcode') || 'centuryadmin';
+            if (passcode === correctPasscode || passcode === 'admin123') {
                 sessionStorage.setItem('century_admin_authenticated', 'true');
                 showWorkspace();
             } else {
@@ -185,9 +278,27 @@
                 conversations = [];
             }
 
-            // Calculate pending enquiries (status === 'open')
-            const pendingCount = conversations.filter(c => c.status === 'open').length;
-            document.getElementById('pendingCount').textContent = pendingCount;
+            // Mappings function
+            function getConversationDepartment(c) {
+                if (c.department) return c.department;
+                if (c.categoryId === 'safari') return 'booking';
+                if (c.categoryId === 'pricing') return 'sales';
+                if (c.categoryId === 'problem' || c.categoryId === 'support') return 'support';
+                return 'info';
+            }
+
+            const depts = { info: 0, booking: 0, support: 0, sales: 0 };
+            conversations.forEach(c => {
+                const d = getConversationDepartment(c);
+                if (depts[d] !== undefined) {
+                    depts[d]++;
+                }
+            });
+
+            document.getElementById('deptCountInfo').textContent = depts.info;
+            document.getElementById('deptCountBooking').textContent = depts.booking;
+            document.getElementById('deptCountSupport').textContent = depts.support;
+            document.getElementById('deptCountSales').textContent = depts.sales;
 
             // Load bookings
             let bookings = [];
@@ -197,9 +308,17 @@
                 bookings = [];
             }
 
-            document.getElementById('bookingsCount').textContent = bookings.length > 0 ? bookings.length : 12;
+            // Estimate total bookings revenue
+            let totalValue = 0;
+            bookings.forEach(b => {
+                totalValue += (parseInt(b.estimatePrice) || 0);
+            });
+            if (totalValue > 0) {
+                document.getElementById('thisMonthRevenue').textContent = '$' + totalValue.toLocaleString();
+                document.getElementById('projectedRevenue').textContent = '$' + (totalValue * 3).toLocaleString();
+            }
 
-            // Update recent bookings table dynamically if custom plan data is available
+            // Update recent bookings table dynamically
             const tableBody = document.querySelector('.admin-table tbody');
             if (tableBody && bookings.length > 0) {
                 let html = '';
@@ -216,13 +335,10 @@
 
                     html += `
                         <tr>
-                            <td>#BK-${9020 + idx}</td>
-                            <td style="color: white; font-weight: 500;">${b.name || 'Sarah Johnson'}</td>
+                            <td style="font-weight: 500;">${b.name || 'Sarah Johnson'}</td>
                             <td>${b.duration || 7} Days (${destText})</td>
-                            <td>${b.date || new Date().toLocaleDateString()}</td>
-                            <td style="color: var(--accent-gold); font-weight: 600;">${amountStr}</td>
+                            <td style="color: #5c5cfc; font-weight: 600;">${amountStr}</td>
                             <td><span class="status-badge" style="background:${statusBg}; color:${statusColor}; padding: 2px 8px; border-radius: 4px; font-size: 11px;">${statusText}</span></td>
-                            <td><i class="fas fa-ellipsis-v" style="color: #888888;"></i></td>
                         </tr>
                     `;
                 });
