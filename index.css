@@ -10346,19 +10346,19 @@ body.admin-theme {
 
 /* ── Premium Admin Dashboard Enhancements (Light/Dark Indigo Theme) ── */
 :root {
-    --admin-bg: #eaeef6;
-    --admin-bg-gradient: radial-gradient(circle at top right, #dae4f5, #eaeef6);
+    --admin-bg: #ffffff;
+    --admin-bg-gradient: radial-gradient(circle at top right, #f8fafc, #ffffff);
     --admin-card-bg: #ffffff;
-    --admin-card-border: rgba(0, 0, 0, 0.06);
+    --admin-card-border: rgba(0, 0, 0, 0.08);
     --admin-text-primary: #000000;
     --admin-text-secondary: #000000;
     --admin-text-muted: #1e293b;
     --admin-input-bg: #ffffff;
     --admin-input-border: #cbd5e1;
-    --admin-shadow: rgba(0, 0, 0, 0.02);
+    --admin-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     --admin-sidebar-bg: #ffffff;
     --admin-sidebar-border: rgba(0, 0, 0, 0.06);
-    --admin-sidebar-shadow: rgba(0, 0, 0, 0.03);
+    --admin-sidebar-shadow: rgba(0, 0, 0, 0.02);
     --admin-table-row-border: #e2e8f0;
 }
 
