@@ -10922,3 +10922,95 @@ body.admin-theme {
         margin-left: auto !important;
     }
 }
+
+/* Dark Mode Override Rules for Inline Colors & Message Panels */
+body.admin-theme.dark-mode [style*="color: #0f172a"], 
+body.admin-theme.dark-mode [style*="color:#0f172a"],
+body.admin-theme.dark-mode [style*="color: #1e293b"], 
+body.admin-theme.dark-mode [style*="color:#1e293b"],
+body.admin-theme.dark-mode [style*="color: #000000"], 
+body.admin-theme.dark-mode [style*="color:#000000"],
+body.admin-theme.dark-mode [style*="color: black"], 
+body.admin-theme.dark-mode [style*="color:black"] {
+    color: var(--admin-text-primary) !important;
+}
+
+body.admin-theme.dark-mode [style*="color: #334155"], 
+body.admin-theme.dark-mode [style*="color:#334155"],
+body.admin-theme.dark-mode [style*="color: #475569"], 
+body.admin-theme.dark-mode [style*="color:#475569"] {
+    color: var(--admin-text-secondary) !important;
+}
+
+/* Light Mode specific fallback overrides (black text) */
+body.admin-theme:not(.dark-mode) [style*="color: #0f172a"], 
+body.admin-theme:not(.dark-mode) [style*="color:#0f172a"] {
+    color: #0f172a !important;
+}
+body.admin-theme:not(.dark-mode) [style*="color: #334155"], 
+body.admin-theme:not(.dark-mode) [style*="color:#334155"] {
+    color: #334155 !important;
+}
+
+/* Message Inbox Panel Dark Mode Support */
+body.admin-theme.dark-mode .inbox-list-pane,
+body.admin-theme.dark-mode .chat-header,
+body.admin-theme.dark-mode .chat-input-bar,
+body.admin-theme.dark-mode .inbox-scroll,
+body.admin-theme.dark-mode .inbox-dept-tabs,
+body.admin-theme.dark-mode .conv-card {
+    background: var(--admin-card-bg) !important;
+    border-color: var(--admin-card-border) !important;
+    color: var(--admin-text-primary) !important;
+}
+
+body.admin-theme.dark-mode .chat-pane,
+body.admin-theme.dark-mode .chat-messages-area,
+body.admin-theme.dark-mode .chat-empty-state {
+    background: var(--admin-bg) !important;
+    color: var(--admin-text-primary) !important;
+}
+
+body.admin-theme.dark-mode .incoming .admin-msg-bubble {
+    background: var(--admin-card-bg) !important;
+    color: var(--admin-text-primary) !important;
+    border-color: var(--admin-card-border) !important;
+}
+
+body.admin-theme.dark-mode .conv-visitor-id {
+    color: var(--admin-text-primary) !important;
+}
+
+body.admin-theme.dark-mode .conv-card:hover {
+    background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Authentication Overlay Dark Mode Support */
+body.admin-theme.dark-mode .auth-overlay {
+    background: rgba(15, 23, 42, 0.97) !important;
+}
+body.admin-theme.dark-mode .auth-card {
+    background: var(--admin-card-bg) !important;
+    border-color: var(--admin-card-border) !important;
+    color: var(--admin-text-primary) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3) !important;
+}
+body.admin-theme.dark-mode .auth-card h2 {
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme.dark-mode .auth-card p {
+    color: var(--admin-text-muted) !important;
+}
+body.admin-theme.dark-mode .auth-form input {
+    background: var(--admin-input-bg) !important;
+    border-color: var(--admin-input-border) !important;
+    color: var(--admin-text-primary) !important;
+}
+
+/* General clean up for table rows in mobile cards mode */
+@media (max-width: 768px) {
+    body.admin-theme.dark-mode table.admin-table tr {
+        background: var(--admin-card-bg) !important;
+        border-color: var(--admin-card-border) !important;
+    }
+}
