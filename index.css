@@ -10683,3 +10683,34 @@ body.admin-theme {
     background: #5c5cfc;
     color: #ffffff;
 }
+
+/* Responsive updates for the general Admin Workspace layout on mobile size */
+@media (max-width: 768px) {
+    .admin-theme .dashboard-container {
+        padding: 10px !important;
+        gap: 15px !important;
+        flex-direction: column !important;
+    }
+    .admin-theme .dash-header-card {
+        padding: 15px 20px !important;
+        border-radius: 18px !important;
+    }
+    .admin-theme .dash-header-card h1 {
+        font-size: 22px !important;
+        text-align: center;
+    }
+    .admin-theme .dash-header-card p {
+        font-size: 12px !important;
+        text-align: center;
+    }
+    .admin-theme .dash-card {
+        padding: 15px !important;
+        border-radius: 18px !important;
+    }
+    .admin-theme .dash-card .card-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center !important;
+        text-align: center;
+    }
+}
