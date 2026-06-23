@@ -10350,16 +10350,16 @@ body.admin-theme {
     --admin-bg-gradient: radial-gradient(circle at top right, #dae4f5, #eaeef6);
     --admin-card-bg: #ffffff;
     --admin-card-border: rgba(0, 0, 0, 0.06);
-    --admin-text-primary: #0f172a;
-    --admin-text-secondary: #334155;
-    --admin-text-muted: #64748b;
-    --admin-input-bg: #f8fafc;
-    --admin-input-border: #e2e8f0;
+    --admin-text-primary: #000000;
+    --admin-text-secondary: #000000;
+    --admin-text-muted: #1e293b;
+    --admin-input-bg: #ffffff;
+    --admin-input-border: #cbd5e1;
     --admin-shadow: rgba(0, 0, 0, 0.02);
     --admin-sidebar-bg: #ffffff;
     --admin-sidebar-border: rgba(0, 0, 0, 0.06);
     --admin-sidebar-shadow: rgba(0, 0, 0, 0.03);
-    --admin-table-row-border: #f1f5f9;
+    --admin-table-row-border: #e2e8f0;
 }
 
 body.admin-theme.dark-mode {
@@ -10944,12 +10944,14 @@ body.admin-theme.dark-mode [style*="color:#475569"] {
 
 /* Light Mode specific fallback overrides (black text) */
 body.admin-theme:not(.dark-mode) [style*="color: #0f172a"], 
-body.admin-theme:not(.dark-mode) [style*="color:#0f172a"] {
-    color: #0f172a !important;
-}
+body.admin-theme:not(.dark-mode) [style*="color:#0f172a"],
+body.admin-theme:not(.dark-mode) [style*="color: #1e293b"], 
+body.admin-theme:not(.dark-mode) [style*="color:#1e293b"],
 body.admin-theme:not(.dark-mode) [style*="color: #334155"], 
-body.admin-theme:not(.dark-mode) [style*="color:#334155"] {
-    color: #334155 !important;
+body.admin-theme:not(.dark-mode) [style*="color:#334155"],
+body.admin-theme:not(.dark-mode) [style*="color: #475569"], 
+body.admin-theme:not(.dark-mode) [style*="color:#475569"] {
+    color: #000000 !important;
 }
 
 /* Message Inbox Panel Dark Mode Support */
