@@ -11016,3 +11016,51 @@ body.admin-theme.dark-mode .auth-form input {
         border-color: var(--admin-card-border) !important;
     }
 }
+
+/* Force every content to be white with black words in Light Mode */
+body.admin-theme:not(.dark-mode) .forecast-card {
+    background: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-card-border) !important;
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme:not(.dark-mode) .forecast-card h3 {
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme:not(.dark-mode) .forecast-card span {
+    color: var(--admin-text-muted) !important;
+}
+body.admin-theme:not(.dark-mode) .forecast-card .sub-card-white {
+    border: 1px solid var(--admin-card-border) !important;
+    box-shadow: none !important;
+}
+
+body.admin-theme:not(.dark-mode) .spend-card-dark {
+    background: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-card-border) !important;
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme:not(.dark-mode) .spend-card-dark h3 {
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme:not(.dark-mode) .spend-card-dark span,
+body.admin-theme:not(.dark-mode) .spend-card-dark strong {
+    color: var(--admin-text-primary) !important;
+}
+body.admin-theme:not(.dark-mode) .spend-card-dark a {
+    color: #5c5cfc !important;
+    background: rgba(92, 92, 252, 0.05) !important;
+    border-color: rgba(92, 92, 252, 0.15) !important;
+    box-shadow: none !important;
+}
+
+body.admin-theme:not(.dark-mode) .chat-pane,
+body.admin-theme:not(.dark-mode) .chat-messages-area,
+body.admin-theme:not(.dark-mode) .chat-empty-state {
+    background: #ffffff !important;
+}
+body.admin-theme:not(.dark-mode) .chat-input-bar textarea {
+    background: #ffffff !important;
+}
+body.admin-theme:not(.dark-mode) .incoming .admin-msg-bubble {
+    background: #f8fafc !important;
+}
