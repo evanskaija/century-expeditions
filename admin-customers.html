@@ -195,12 +195,12 @@
 
                 return `
                     <tr>
-                        <td style="color: #0f172a; font-weight: 600;"><i class="fas fa-user" style="margin-right: 8px; color: #64748b; font-size: 11px;"></i> ${c.name}</td>
-                        <td style="font-family: monospace; font-size: 13px;">${c.email}</td>
-                        <td style="color: #334155;">${c.source}</td>
-                        <td style="color: ${tierColor}; font-weight: 600;">${c.tier}</td>
-                        <td><span class="status-badge" style="background: ${statusBg}; color: ${statusColor}; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${c.status}</span></td>
-                        <td>
+                        <td data-label="Customer Name" style="color: #0f172a; font-weight: 600;"><i class="fas fa-user" style="margin-right: 8px; color: #64748b; font-size: 11px;"></i> ${c.name}</td>
+                        <td data-label="Contact Email" style="font-family: monospace; font-size: 13px;">${c.email}</td>
+                        <td data-label="Planned Trip / Source" style="color: #334155;">${c.source}</td>
+                        <td data-label="Tier" style="color: ${tierColor}; font-weight: 600;">${c.tier}</td>
+                        <td data-label="Status"><span class="status-badge" style="background: ${statusBg}; color: ${statusColor}; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${c.status}</span></td>
+                        <td data-label="Actions">
                             <button onclick="contactCustomer('${c.name}', '${c.email}')" style="background: none; border: none; color: #5c5cfc; cursor: pointer; font-size: 14px;" title="Email Client"><i class="fas fa-envelope-open-text"></i></button>
                         </td>
                     </tr>

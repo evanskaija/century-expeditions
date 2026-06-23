@@ -169,22 +169,22 @@
                 <input type="hidden" id="editTourId">
                 <div style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="color: #64748b; font-size: 12px; font-weight: 600;">Tour Title</label>
-                    <input type="text" id="tourTitle" required style="padding: 10px; border-radius: 8px;">
+                    <input type="text" id="tourTitle" required>
                 </div>
                 <div class="form-row">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
                         <label style="color: #64748b; font-size: 12px; font-weight: 600;">Duration (Days)</label>
-                        <input type="number" id="tourDuration" required min="1" style="padding: 10px; border-radius: 8px;">
+                        <input type="number" id="tourDuration" required min="1">
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
                         <label style="color: #64748b; font-size: 12px; font-weight: 600;">Base Cost (USD)</label>
-                        <input type="text" id="tourPrice" required placeholder="e.g. $2,450" style="padding: 10px; border-radius: 8px;">
+                        <input type="text" id="tourPrice" required placeholder="e.g. $2,450">
                     </div>
                 </div>
                 <div class="form-row">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
                         <label style="color: #64748b; font-size: 12px; font-weight: 600;">Difficulty</label>
-                        <select id="tourDifficulty" style="padding: 10px; border-radius: 8px;">
+                        <select id="tourDifficulty">
                             <option value="Easy">Easy</option>
                             <option value="Moderate">Moderate</option>
                             <option value="Challenging">Challenging</option>
@@ -192,7 +192,7 @@
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 5px;">
                         <label style="color: #64748b; font-size: 12px; font-weight: 600;">Cover Image URL</label>
-                        <input type="text" id="tourImage" placeholder="assets/images/..." style="padding: 10px; border-radius: 8px;">
+                        <input type="text" id="tourImage" placeholder="assets/images/...">
                     </div>
                 </div>
                 <button type="submit" class="btn-primary" style="margin-top: 10px; padding: 12px; font-weight: bold; width: 100%; justify-content: center;">Save Safari Package</button>
@@ -265,12 +265,12 @@
             const tbody = document.getElementById('toursTableBody');
             tbody.innerHTML = tours.map(tour => `
                 <tr>
-                    <td><img src="${tour.image || 'assets/logo.png'}" alt="Tour" style="width: 60px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;"></td>
-                    <td style="color: #0f172a; font-weight: 500;">${tour.title}</td>
-                    <td>${tour.duration} Days</td>
-                    <td style="color: #5c5cfc; font-weight: 600;">${tour.price}</td>
-                    <td><span class="status-badge" style="background: #f1f5f9; color: #475569; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${tour.difficulty}</span></td>
-                    <td>
+                    <td data-label="Image"><img src="${tour.image || 'assets/logo.png'}" alt="Tour" style="width: 60px; height: 40px; object-fit: cover; border-radius: 8px; border: 1px solid #e2e8f0;"></td>
+                    <td data-label="Package Title" style="color: #0f172a; font-weight: 500;">${tour.title}</td>
+                    <td data-label="Duration">${tour.duration} Days</td>
+                    <td data-label="Base Cost" style="color: #5c5cfc; font-weight: 600;">${tour.price}</td>
+                    <td data-label="Difficulty"><span class="status-badge" style="background: #f1f5f9; color: #475569; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">${tour.difficulty}</span></td>
+                    <td data-label="Actions">
                         <button onclick="openEditModal('${tour.id}')" style="background: none; border: none; color: #5c5cfc; cursor: pointer; margin-right: 10px; font-size: 14px;"><i class="fas fa-edit"></i></button>
                         <button onclick="deleteTour('${tour.id}')" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 14px;"><i class="fas fa-trash-alt"></i></button>
                     </td>

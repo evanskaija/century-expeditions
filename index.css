@@ -10691,26 +10691,126 @@ body.admin-theme {
         gap: 15px !important;
         flex-direction: column !important;
     }
+    
+    /* Premium Bottom Navigation Bar on Mobile */
+    .admin-theme .dashboard-sidebar {
+        position: fixed !important;
+        bottom: 15px !important;
+        left: 15px !important;
+        right: 15px !important;
+        top: auto !important;
+        width: calc(100% - 30px) !important;
+        height: 64px !important;
+        flex-direction: row !important;
+        padding: 0 15px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08) !important;
+        z-index: 1000 !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    .admin-theme .dashboard-sidebar > div {
+        flex-direction: row !important;
+        width: auto !important;
+        gap: 15px !important;
+    }
+    .admin-theme .dashboard-sidebar .dash-nav {
+        margin-top: 0 !important;
+        width: auto !important;
+    }
+    .admin-theme .dashboard-sidebar .dash-nav ul {
+        flex-direction: row !important;
+        gap: 6px !important;
+    }
+    .admin-theme .dashboard-sidebar .dash-nav ul li a,
+    .admin-theme .dashboard-sidebar a[title="Logout"] {
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 14px !important;
+        font-size: 16px !important;
+    }
+    /* Hide branding logo and active indicator helper on mobile navbar */
+    .admin-theme .dashboard-sidebar > div:first-child > div:first-child,
+    .admin-theme .dash-nav ul li a::after {
+        display: none !important;
+    }
+    
+    .admin-theme .dashboard-main {
+        padding-bottom: 95px !important; /* Space for bottom navbar */
+    }
+
+    /* Centered Header Layout on Mobile */
     .admin-theme .dash-header-card {
         padding: 15px 20px !important;
         border-radius: 18px !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+        text-align: center !important;
     }
     .admin-theme .dash-header-card h1 {
         font-size: 22px !important;
-        text-align: center;
     }
     .admin-theme .dash-header-card p {
         font-size: 12px !important;
-        text-align: center;
     }
+    .admin-theme .dash-header-card > div:last-child {
+        text-align: center !important;
+    }
+
     .admin-theme .dash-card {
         padding: 15px !important;
         border-radius: 18px !important;
     }
     .admin-theme .dash-card .card-header {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: column !important;
+        gap: 10px !important;
         align-items: center !important;
-        text-align: center;
+        text-align: center !important;
+    }
+
+    /* Transform Admin Tables to Stacked Mobile Cards */
+    .admin-theme table.admin-table, 
+    .admin-theme table.admin-table thead, 
+    .admin-theme table.admin-table tbody, 
+    .admin-theme table.admin-table th, 
+    .admin-theme table.admin-table td, 
+    .admin-theme table.admin-table tr {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .admin-theme table.admin-table thead {
+        display: none !important;
+    }
+    .admin-theme table.admin-table tr {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        margin-bottom: 15px !important;
+        padding: 12px 16px !important;
+        background: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02) !important;
+    }
+    .admin-theme table.admin-table td {
+        border-bottom: 1px solid #f1f5f9 !important;
+        padding: 10px 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        text-align: right !important;
+    }
+    .admin-theme table.admin-table td:last-child {
+        border-bottom: none !important;
+    }
+    .admin-theme table.admin-table td::before {
+        content: attr(data-label) !important;
+        font-weight: 600 !important;
+        color: #64748b !important;
+        font-size: 12px !important;
+        text-align: left !important;
+        margin-right: 15px !important;
+    }
+    .admin-theme table.admin-table td[data-label="Image"] img {
+        margin-left: auto !important;
     }
 }
