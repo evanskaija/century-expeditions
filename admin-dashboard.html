@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
+    <script src="admin-common.js" defer></script>
 </head>
 <body class="dashboard-body admin-theme">
 
@@ -194,9 +195,15 @@
                 <!-- Right: Recent Inquiries (Transactions list styled like reference image) -->
                 <div class="dash-card" style="display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; gap: 10px; flex-wrap: wrap;">
                             <h3 style="margin: 0;">Recent Booking Inquiries</h3>
-                            <button onclick="window.location.href='admin-messages.html'" class="btn btn-primary btn-sm" style="padding: 6px 14px; font-size: 11px; background: #5c5cfc; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;">View Inbox</button>
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <div class="search-container" style="max-width: 180px;">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="bookingSearchInput" oninput="filterBookingsTable()" placeholder="Search inquiries...">
+                                </div>
+                                <button onclick="window.location.href='admin-messages.html'" class="btn btn-primary btn-sm" style="padding: 6px 14px; font-size: 11px; background: #5c5cfc; color: white; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.2s;">View Inbox</button>
+                            </div>
                         </div>
                         <div style="overflow-x: auto;">
                             <table class="admin-table">
@@ -210,20 +217,45 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="font-weight: 500;">Sarah Johnson</td>
-                                        <td>7-Day Serengeti</td>
-                                        <td style="color: #5c5cfc; font-weight: 600;">$2,450</td>
-                                        <td><span class="status-badge" style="background:#e8f5e9; color:#2e7d32; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PAID</span></td>
+                                        <td data-label="Customer" style="font-weight: 500;">Sarah Johnson</td>
+                                        <td data-label="Duration / Package">7-Day Serengeti</td>
+                                        <td data-label="Estimated Value" style="color: #5c5cfc; font-weight: 600;">$2,450</td>
+                                        <td data-label="Status"><span class="status-badge" style="background:#e8f5e9; color:#2e7d32; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PAID</span></td>
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: 500;">Michael Smith</td>
-                                        <td>12-Day Southern</td>
-                                        <td style="color: #5c5cfc; font-weight: 600;">$5,221</td>
-                                        <td><span class="status-badge" style="background:#fff3e0; color:#ef6c00; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PENDING</span></td>
+                                        <td data-label="Customer" style="font-weight: 500;">Michael Smith</td>
+                                        <td data-label="Duration / Package">12-Day Southern</td>
+                                        <td data-label="Estimated Value" style="color: #5c5cfc; font-weight: 600;">$5,221</td>
+                                        <td data-label="Status"><span class="status-badge" style="background:#fff3e0; color:#ef6c00; padding: 2px 8px; border-radius: 4px; font-size: 11px;">PENDING</span></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Reporting & Exports Card -->
+                <div class="dash-card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 320px;">
+                    <div>
+                        <h3 style="margin: 0; margin-bottom: 12px;"><i class="fas fa-chart-line" style="color: #5c5cfc; margin-right: 8px;"></i> System Reports & Exports</h3>
+                        <p style="color: var(--admin-text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;">
+                            Compile and download analytical database exports for Century Adventures bookings, client registries, and chat records.
+                        </p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <button onclick="exportBookingsCSV()" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; padding: 11px;">
+                                <i class="fas fa-file-csv"></i> Export Booking Requests (CSV)
+                            </button>
+                            <button onclick="exportCustomersCSV()" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; padding: 11px; background: #0f766e; box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);">
+                                <i class="fas fa-users"></i> Export Client Registry (CSV)
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; border-top: 1px solid var(--admin-card-border); padding-top: 15px;">
+                        <button onclick="window.print()" class="btn" style="width: 100%; border: 1px dashed var(--admin-input-border); background: none; color: var(--admin-text-primary); padding: 10px; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s;">
+                            <i class="fas fa-print"></i> Print Executive PDF Summary
+                        </button>
                     </div>
                 </div>
             </div>
@@ -335,14 +367,95 @@
 
                     html += `
                         <tr>
-                            <td style="font-weight: 500;">${b.name || 'Sarah Johnson'}</td>
-                            <td>${b.duration || 7} Days (${destText})</td>
-                            <td style="color: #5c5cfc; font-weight: 600;">${amountStr}</td>
-                            <td><span class="status-badge" style="background:${statusBg}; color:${statusColor}; padding: 2px 8px; border-radius: 4px; font-size: 11px;">${statusText}</span></td>
+                            <td data-label="Customer" style="font-weight: 500;">${b.name || 'Sarah Johnson'}</td>
+                            <td data-label="Duration / Package">${b.duration || 7} Days (${destText})</td>
+                            <td data-label="Estimated Value" style="color: #5c5cfc; font-weight: 600;">${amountStr}</td>
+                            <td data-label="Status"><span class="status-badge" style="background:${statusBg}; color:${statusColor}; padding: 2px 8px; border-radius: 4px; font-size: 11px;">${statusText}</span></td>
                         </tr>
                     `;
                 });
                 tableBody.innerHTML = html;
+            }
+        }
+
+        // Live filtration for bookings inquiries
+        function filterBookingsTable() {
+            const q = document.getElementById('bookingSearchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.admin-table tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
+        }
+
+        // CSV Reporting utilities
+        function exportBookingsCSV() {
+            let bookings = [];
+            try {
+                bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+            } catch(e) {}
+            
+            if (bookings.length === 0) {
+                bookings = [
+                    { name: 'Sarah Johnson', email: 'sarah.j@example.com', duration: 7, estimatePrice: 2450, status: 'PAID' },
+                    { name: 'Michael Smith', email: 'michael.smith@example.com', duration: 12, estimatePrice: 5221, status: 'PENDING' }
+                ];
+            }
+            
+            let csv = 'Name,Email,Duration(Days),Destinations,Estimated Price,Status\n';
+            bookings.forEach(b => {
+                const dests = b.destinations ? b.destinations.join(';') : 'Serengeti';
+                csv += `"${b.name || ''}","${b.email || ''}",${b.duration || 0},"${dests}",${b.estimatePrice || 0},"${b.status || ''}"\n`;
+            });
+            
+            downloadCSVFile(csv, 'Century_Adventures_Bookings.csv');
+        }
+
+        function exportCustomersCSV() {
+            const defaults = [
+                { name: 'Sarah Johnson', email: 'sarah.j@example.com', source: '7-Day Serengeti Booking', tier: 'Premium Member', status: 'Active' },
+                { name: 'Michael Smith', email: 'michael.smith@example.com', source: '12-Day Southern Inquirer', tier: 'Explorer (Standard)', status: 'Active' },
+                { name: 'David Beckham', email: 'david.b@example.co.uk', source: 'Zanzibar Escapes Member', tier: 'VIP Elite', status: 'Pending Review' },
+                { name: 'Alice Walker', email: 'walker.alice@outlook.com', source: 'Kilimanjaro General Quote', tier: 'Explorer (Standard)', status: 'Inquiry Closed' }
+            ];
+            
+            let bookings = [];
+            try {
+                bookings = JSON.parse(localStorage.getItem('century-bookings')) || [];
+            } catch(e) {}
+            
+            let list = [...defaults];
+            bookings.forEach(b => {
+                if (!list.some(c => c.email.toLowerCase() === b.email.toLowerCase())) {
+                    list.unshift({
+                        name: b.name || 'Anonymous Client',
+                        email: b.email || 'no-email@example.com',
+                        source: `${b.duration} Days`,
+                        tier: 'Explorer (Standard)',
+                        status: 'Active'
+                    });
+                }
+            });
+            
+            let csv = 'Name,Email,Trip Source,Membership Tier,Status\n';
+            list.forEach(c => {
+                csv += `"${c.name}","${c.email}","${c.source}","${c.tier}","${c.status}"\n`;
+            });
+            
+            downloadCSVFile(csv, 'Century_Adventures_Customers.csv');
+        }
+
+        function downloadCSVFile(csvContent, fileName) {
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", fileName);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         }
     </script>

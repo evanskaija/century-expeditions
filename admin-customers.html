@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
+    <script src="admin-common.js" defer></script>
 </head>
 <body class="dashboard-body admin-theme">
 
@@ -71,9 +72,15 @@
 
             <!-- Customer Table -->
             <div class="dash-card">
-                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
                     <h3 style="margin: 0; color: #0f172a;">Registered Accounts & Enquiries</h3>
-                    <button onclick="clearRegistry()" style="background: none; border: 1px solid #ef4444; color: #ef4444; padding: 6px 14px; font-size: 12px; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.2s;">Reset Registry</button>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="customerSearchInput" oninput="filterCustomersTable()" placeholder="Search clients...">
+                        </div>
+                        <button onclick="clearRegistry()" style="background: none; border: 1px solid #ef4444; color: #ef4444; padding: 6px 14px; font-size: 12px; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.2s;">Reset Registry</button>
+                    </div>
                 </div>
                 <div style="overflow-x: auto;">
                     <table class="admin-table">
@@ -222,6 +229,15 @@
                 localStorage.removeItem('century-bookings');
                 renderCustomers();
             }
+        }
+
+        function filterCustomersTable() {
+            const q = document.getElementById('customerSearchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.admin-table tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
         }
     </script>
 </body>

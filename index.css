@@ -10344,14 +10344,49 @@ body.admin-theme {
     display: none;
 }
 
-/* ── Premium Admin Dashboard Enhancements (Light Indigo Theme) ── */
+/* ── Premium Admin Dashboard Enhancements (Light/Dark Indigo Theme) ── */
+:root {
+    --admin-bg: #eaeef6;
+    --admin-bg-gradient: radial-gradient(circle at top right, #dae4f5, #eaeef6);
+    --admin-card-bg: #ffffff;
+    --admin-card-border: rgba(0, 0, 0, 0.06);
+    --admin-text-primary: #0f172a;
+    --admin-text-secondary: #334155;
+    --admin-text-muted: #64748b;
+    --admin-input-bg: #f8fafc;
+    --admin-input-border: #e2e8f0;
+    --admin-shadow: rgba(0, 0, 0, 0.02);
+    --admin-sidebar-bg: #ffffff;
+    --admin-sidebar-border: rgba(0, 0, 0, 0.06);
+    --admin-sidebar-shadow: rgba(0, 0, 0, 0.03);
+    --admin-table-row-border: #f1f5f9;
+}
+
+body.admin-theme.dark-mode {
+    --admin-bg: #0f172a;
+    --admin-bg-gradient: radial-gradient(circle at top right, #1e293b, #0f172a);
+    --admin-card-bg: #1e293b;
+    --admin-card-border: rgba(255, 255, 255, 0.08);
+    --admin-text-primary: #f8fafc;
+    --admin-text-secondary: #cbd5e1;
+    --admin-text-muted: #94a3b8;
+    --admin-input-bg: #0f172a;
+    --admin-input-border: #334155;
+    --admin-shadow: rgba(0, 0, 0, 0.2);
+    --admin-sidebar-bg: #1e293b;
+    --admin-sidebar-border: rgba(255, 255, 255, 0.08);
+    --admin-sidebar-shadow: rgba(0, 0, 0, 0.3);
+    --admin-table-row-border: #334155;
+}
+
 body.admin-theme {
-    background: #eaeef6 !important;
-    background-image: radial-gradient(circle at top right, #dae4f5, #eaeef6) !important;
+    background: var(--admin-bg) !important;
+    background-image: var(--admin-bg-gradient) !important;
     font-family: 'Inter', sans-serif;
-    color: #1e293b !important;
+    color: var(--admin-text-secondary) !important;
     min-height: 100vh;
     margin: 0;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Floating Rounded Narrow Sidebar */
@@ -10365,12 +10400,12 @@ body.admin-theme {
 
 .admin-theme .dashboard-sidebar {
     width: 80px !important;
-    background: #ffffff !important;
-    border: 1px solid rgba(0,0,0,0.06) !important;
+    background: var(--admin-sidebar-bg) !important;
+    border: 1px solid var(--admin-sidebar-border) !important;
     border-radius: 28px !important;
     height: calc(100vh - 40px) !important;
-    padding: 30px 0 !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
+    padding: 25px 0 !important;
+    box-shadow: 0 10px 30px var(--admin-sidebar-shadow) !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10379,6 +10414,7 @@ body.admin-theme {
     flex-shrink: 0;
     position: sticky;
     top: 20px;
+    transition: all 0.3s ease;
 }
 
 .admin-theme .dash-logo {
@@ -10387,7 +10423,7 @@ body.admin-theme {
 
 .admin-theme .dash-nav {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .admin-theme .dash-nav ul {
@@ -10396,7 +10432,7 @@ body.admin-theme {
     margin: 0 !important;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 15px;
     align-items: center;
     width: 100%;
 }
@@ -10415,7 +10451,7 @@ body.admin-theme {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8c9ba5 !important;
+    color: var(--admin-text-muted) !important;
     font-size: 18px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
@@ -10423,9 +10459,7 @@ body.admin-theme {
     border: none !important;
     background: transparent !important;
     position: relative;
-    overflow: hidden;
     white-space: nowrap;
-    text-indent: -9999px;
 }
 
 .admin-theme .dash-nav ul li a i {
@@ -10478,40 +10512,42 @@ body.admin-theme {
 
 /* Header Card */
 .admin-theme .dash-header-card {
-    background: #ffffff !important;
-    border: 1px solid rgba(0,0,0,0.06) !important;
+    background: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-card-border) !important;
     border-radius: 28px !important;
     padding: 25px 35px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+    box-shadow: 0 10px 30px var(--admin-shadow) !important;
+    transition: all 0.3s ease;
 }
 
 .admin-theme .dash-header-card h1 {
     font-size: 28px;
     font-weight: 700;
     margin: 0;
-    color: #0f172a !important;
+    color: var(--admin-text-primary) !important;
 }
 
 .admin-theme .dash-header-card p {
     font-size: 14px;
-    color: #64748b !important;
+    color: var(--admin-text-muted) !important;
     margin: 6px 0 0 0;
 }
 
 /* Premium Admin Cards */
 .admin-theme .dash-card {
-    background: #ffffff !important;
-    border: 1px solid rgba(0,0,0,0.06) !important;
+    background: var(--admin-card-bg) !important;
+    border: 1px solid var(--admin-card-border) !important;
     border-radius: 28px !important;
     padding: 30px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
-    color: #1e293b !important;
+    box-shadow: 0 10px 30px var(--admin-shadow) !important;
+    color: var(--admin-text-secondary) !important;
     position: relative;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 .admin-theme .dash-card h3 {
-    color: #0f172a !important;
+    color: var(--admin-text-primary) !important;
     font-size: 18px;
     font-weight: 700;
     margin-top: 0;
@@ -10535,12 +10571,13 @@ body.admin-theme {
 }
 
 .admin-theme .sub-card-white {
-    background: #ffffff !important;
+    background: var(--admin-card-bg) !important;
     border-radius: 20px !important;
     padding: 20px !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02) !important;
-    color: #0f172a !important;
+    color: var(--admin-text-primary) !important;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 .admin-theme .sub-card-purple {
@@ -10580,17 +10617,17 @@ body.admin-theme {
 .admin-theme table.admin-table th {
     text-align: left;
     padding: 12px 16px;
-    color: #64748b !important;
+    color: var(--admin-text-muted) !important;
     font-size: 12px;
     font-weight: 600;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--admin-input-border);
 }
 
 .admin-theme table.admin-table td {
     padding: 16px;
-    color: #334155 !important;
+    color: var(--admin-text-secondary) !important;
     font-size: 13.5px;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--admin-table-row-border);
 }
 
 .admin-theme table.admin-table tr:last-child td {
@@ -10601,9 +10638,9 @@ body.admin-theme {
 .admin-theme input,
 .admin-theme select,
 .admin-theme textarea {
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    color: #1e293b !important;
+    background: var(--admin-input-bg) !important;
+    border: 1px solid var(--admin-input-border) !important;
+    color: var(--admin-text-primary) !important;
     border-radius: 12px !important;
     padding: 12px 16px !important;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.01) !important;
@@ -10615,7 +10652,7 @@ body.admin-theme {
 .admin-theme textarea:focus {
     border-color: #5c5cfc !important;
     box-shadow: 0 0 0 3px rgba(92, 92, 252, 0.15) !important;
-    background: #ffffff !important;
+    background: var(--admin-card-bg) !important;
 }
 
 /* Scrollbar styles for admin panels */
@@ -10624,14 +10661,85 @@ body.admin-theme {
     height: 6px;
 }
 .admin-theme ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: var(--admin-bg);
 }
 .admin-theme ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: var(--admin-text-muted);
     border-radius: 4px;
 }
 .admin-theme ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: var(--admin-text-secondary);
+}
+
+/* Search container styling */
+.admin-theme .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 250px;
+}
+.admin-theme .search-container i {
+    position: absolute;
+    left: 14px;
+    color: var(--admin-text-muted);
+    font-size: 13px;
+    pointer-events: none;
+}
+.admin-theme .search-container input {
+    width: 100%;
+    padding: 8px 12px 8px 36px !important;
+    font-size: 13px !important;
+    border-radius: 12px !important;
+}
+
+/* Live red notification badge */
+.admin-theme .nav-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ef4444 !important;
+    color: #ffffff !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    min-width: 15px !important;
+    height: 15px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 0 2px var(--admin-sidebar-bg);
+    z-index: 10;
+}
+
+/* Print Styling rules */
+@media print {
+    body.admin-theme {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .admin-theme .dashboard-sidebar,
+    .admin-theme .close-modal,
+    .admin-theme button,
+    .admin-theme .btn-primary,
+    .admin-theme .search-container,
+    .admin-theme .auth-overlay,
+    .admin-theme .dash-nav {
+        display: none !important;
+    }
+    .admin-theme .dashboard-container {
+        display: block !important;
+        padding: 0 !important;
+    }
+    .admin-theme .dashboard-main {
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+    .admin-theme .dash-card, .admin-theme .dash-header-card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 10px 0 !important;
+    }
 }
 
 /* Department Tabs inside messages panel */

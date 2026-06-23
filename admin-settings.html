@@ -88,6 +88,7 @@
             transform: translateY(-1px);
         }
     </style>
+    <script src="admin-common.js" defer></script>
 </head>
 <body class="dashboard-body admin-theme">
 
@@ -147,6 +148,40 @@
             </header>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <!-- Admin Profile Settings -->
+                <div class="dash-card">
+                    <h3 style="border-bottom: 1px solid var(--admin-card-border); padding-bottom: 15px; margin-bottom: 20px;">
+                        <i class="fas fa-user-cog" style="color: #5c5cfc; margin-right: 8px;"></i> Admin Profile Settings
+                    </h3>
+                    <form onsubmit="saveAdminProfile(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                            <img id="avatarPreview" src="assets/user1.jpg" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #5c5cfc;">
+                            <div>
+                                <span style="display: block; font-size: 13px; font-weight: 600; color: var(--admin-text-primary);">Profile Preview</span>
+                                <span style="font-size: 11px; color: var(--admin-text-muted);">Avatar updates instantly across headers</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: var(--admin-text-muted); font-size: 12px; font-weight: 600;">Display Name</label>
+                            <input type="text" id="adminInputName" required placeholder="e.g. Administrator">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="color: var(--admin-text-muted); font-size: 12px; font-weight: 600;">Avatar Source</label>
+                            <select id="adminInputAvatarType" onchange="toggleAvatarInput()">
+                                <option value="assets/user1.jpg">Safari Guide Preset 1</option>
+                                <option value="assets/user2.jpg">Safari Guide Preset 2</option>
+                                <option value="assets/logo.png">Century Adventures Brand Preset</option>
+                                <option value="custom">Custom Web Image URL</option>
+                            </select>
+                        </div>
+                        <div id="customAvatarUrlWrapper" style="display: none; flex-direction: column; gap: 5px;">
+                            <label style="color: var(--admin-text-muted); font-size: 12px; font-weight: 600;">Custom Image URL</label>
+                            <input type="text" id="adminInputAvatarUrl" oninput="updateAvatarPreview(this.value)" placeholder="https://example.com/avatar.jpg">
+                        </div>
+                        <button type="submit" class="btn-primary" style="margin-top: 5px; width: 100%;">Save Profile Settings</button>
+                    </form>
+                </div>
+
                 <!-- Security Settings -->
                 <div class="dash-card">
                     <h3 style="border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px;">
@@ -266,7 +301,67 @@
             document.getElementById('emailBooking').value = current.booking || defaults.booking;
             document.getElementById('emailSupport').value = current.support || defaults.support;
             document.getElementById('emailSales').value = current.sales || defaults.sales;
+
+            // Load admin profile settings
+            const adminName = localStorage.getItem('century-admin-name') || 'Administrator';
+            const adminAvatar = localStorage.getItem('century-admin-avatar') || 'assets/user1.jpg';
+            document.getElementById('adminInputName').value = adminName;
+            
+            const avatarSelect = document.getElementById('adminInputAvatarType');
+            const customWrapper = document.getElementById('customAvatarUrlWrapper');
+            const customInput = document.getElementById('adminInputAvatarUrl');
+            
+            if (adminAvatar === 'assets/user1.jpg' || adminAvatar === 'assets/user2.jpg' || adminAvatar === 'assets/logo.png') {
+                avatarSelect.value = adminAvatar;
+                customWrapper.style.display = 'none';
+            } else {
+                avatarSelect.value = 'custom';
+                customWrapper.style.display = 'flex';
+                customInput.value = adminAvatar;
+            }
+            document.getElementById('avatarPreview').src = adminAvatar;
         });
+
+        function toggleAvatarInput() {
+            const select = document.getElementById('adminInputAvatarType');
+            const customWrapper = document.getElementById('customAvatarUrlWrapper');
+            const preview = document.getElementById('avatarPreview');
+            
+            if (select.value === 'custom') {
+                customWrapper.style.display = 'flex';
+                preview.src = document.getElementById('adminInputAvatarUrl').value || 'assets/user1.jpg';
+            } else {
+                customWrapper.style.display = 'none';
+                preview.src = select.value;
+            }
+        }
+
+        function updateAvatarPreview(val) {
+            if (val.trim()) {
+                document.getElementById('avatarPreview').src = val.trim();
+            }
+        }
+
+        function saveAdminProfile(e) {
+            e.preventDefault();
+            const name = document.getElementById('adminInputName').value.trim();
+            const select = document.getElementById('adminInputAvatarType').value;
+            let avatar = select;
+            if (select === 'custom') {
+                avatar = document.getElementById('adminInputAvatarUrl').value.trim();
+            }
+            
+            if (!avatar) avatar = 'assets/user1.jpg';
+            
+            localStorage.setItem('century-admin-name', name);
+            localStorage.setItem('century-admin-avatar', avatar);
+            
+            if (typeof updateAdminProfile === 'function') {
+                updateAdminProfile();
+            }
+            
+            alert('Admin Profile settings updated successfully!');
+        }
 
         function saveRoutingEmails(e) {
             e.preventDefault();
