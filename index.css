@@ -12368,7 +12368,7 @@ body.home-page .whatsapp-widget {
         display: none !important;
     }
     .experiences-section .marquee-arrow {
-        display: none !important;
+        display: flex !important;
     }
     /* Swipe indicator styling */
     .swipe-indicators {
@@ -12664,50 +12664,13 @@ body.home-page .whatsapp-widget {
     /* 13. SAVED SAFARIS & 14. COMPARE TOURS & 15. SAFARI SUPPORT & 16. WHATSAPP */
     /* Floating action widgets alignment */
     .compare-bar {
-        position: fixed !important;
-        bottom: -120px !important;
-        left: 15px !important;
-        right: auto !important;
-        width: 200px !important;
-        max-width: 200px !important;
-        border-radius: 12px !important;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15) !important;
-        z-index: 100004 !important;
-        padding: 10px !important;
-        flex-direction: column !important;
-        gap: 8px !important;
-    }
-    .compare-bar.active {
-        bottom: 15px !important;
+        display: none !important;
     }
     .wishlist-float {
-        position: fixed !important;
-        left: 15px !important;
-        right: auto !important;
-        bottom: 15px !important;
-        z-index: 100003 !important;
-        border-radius: 50% !important;
-    }
-    .wishlist-float.shifted-up {
-        bottom: 85px !important; /* Shifts above compare-bar */
+        display: none !important;
     }
     .wishlist-drawer {
-        position: fixed !important;
-        bottom: 80px !important; /* Floats above Compare Tours bar */
-        top: auto !important;
-        left: 5% !important;
-        right: auto !important;
-        width: 90% !important;
-        max-width: 90% !important;
-        height: 60vh !important;
-        border-radius: 16px !important; /* Premium rounded corners (16px) */
-        z-index: 100008 !important;
-        transform: translateY(105%) !important;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3) !important;
-    }
-    .wishlist-drawer.active {
-        transform: translateY(0) !important;
+        display: none !important;
     }
 
     /* Safari Support Center (Bottom Right) */
@@ -13080,6 +13043,82 @@ body.home-page .whatsapp-widget {
     }
     .trip-hero h1 {
         font-size: 1.5rem !important;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FINAL MOBILE OPTIMIZATIONS (USER REQUEST ADJUSTMENTS)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    /* 1. Hide compare checkboxes in tour cards */
+    .tours-section .safari-card .compare-checkbox-label {
+        display: none !important;
+    }
+
+    /* 2. Instagram Photo grid - 3 items per line horizontal */
+    .instagram-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: repeat(2, auto) !important;
+        gap: 8px !important;
+    }
+
+    /* 3. Floating widgets layout (WhatsApp on left, Safari Expert on right, rounded) */
+    .whatsapp-float,
+    .whatsapp-widget,
+    #chaty-widget-0,
+    .chaty-widget,
+    [class*="chaty-widget"],
+    [id*="chaty-widget"] {
+        position: fixed !important;
+        bottom: 16px !important;
+        left: 16px !important;
+        right: auto !important;
+        z-index: 100005 !important;
+        border-radius: 50% !important;
+        width: 52px !important;
+        height: 52px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3) !important;
+    }
+    
+    .whatsapp-float span {
+        display: none !important;
+    }
+
+    .comm-float,
+    .assistant-float {
+        position: fixed !important;
+        bottom: 16px !important;
+        right: 16px !important;
+        left: auto !important;
+        z-index: 100006 !important;
+        border-radius: 50% !important;
+        width: 52px !important;
+        height: 52px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 15px rgba(0, 66, 37, 0.3) !important;
+    }
+
+    .comm-float-text {
+        display: none !important;
+    }
+
+    /* Adjust support panel to open cleanly on the right */
+    .comm-panel,
+    .assistant-card {
+        position: fixed !important;
+        bottom: 80px !important;
+        right: 16px !important;
+        left: auto !important;
+        width: 320px !important;
+        max-width: calc(100vw - 32px) !important;
+        z-index: 100007 !important;
     }
 }
 
