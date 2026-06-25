@@ -14,6 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!header) return;
 
         header.innerHTML = `
+        const currentLang = localStorage.getItem('century-lang') || 'en';
+        const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('century-theme') || 'light';
+
+        const langHeaderLabel = currentLang === 'en' ? 'SWAHILI' : 'ENGLISH';
+        const langMobileLabel = currentLang === 'en' ? 'Swahili' : 'English';
+
+        const themeHeaderLabel = currentTheme === 'dark' ? 'LIGHT' : 'DARK';
+        const themeHeaderIconClass = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        const themeMobileIcon = currentTheme === 'dark' ? '☀️' : '🌙';
+        const themeMobileLabel = currentLang === 'sw' 
+            ? (currentTheme === 'dark' ? 'Mwanga' : 'Giza') 
+            : (currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode');
+
+        header.innerHTML = `
             <div class="container header-content">
                 <div class="logo">
                     <a href="index.html" class="logo-wrap">
@@ -22,64 +36,141 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 </div>
                 <nav class="nav">
-                    <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
-                    <ul>
-                        <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
-                        <li class="mobile-only-action mobile-menu-controls">
-                            <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SWAHILI</button>
-                            <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
-                        </li>
-                        <li><a href="index.html" id="nav-home" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                        <li class="dropdown">
-                            <a href="safaris.html" id="nav-safaris" data-en="Safaris" data-sw="Safari">Safaris <i class="fas fa-chevron-down"></i></a>
-                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="6-day-northern-tanzania-highlights.html" data-en="6 Day Northern Tanzania Safari" data-sw="Siku 6 Safari ya Kaskazini">6 Day Northern Tanzania Safari</a></li>
-                                <li><a href="10-days-luxury-safari-zanzibar.html" data-en="10 Days Luxury &amp; Zanzibar Retreat" data-sw="Siku 10 Safari na Zanzibar">10 Days Luxury &amp; Zanzibar Retreat</a></li>
-                                <li><a href="10-days-tanzania-great-migration.html" data-en="10 Days Great Migration Safari" data-sw="Siku 10 Uhamiaji Mkuu">10 Days Great Migration Safari</a></li>
-                                <li><a href="12-days-best-of-south-and-north.html" data-en="12 Days South &amp; North Safari" data-sw="Siku 12 Kusini na Kaskazini">12 Days South &amp; North Safari</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="destinations.html" id="nav-destinations" data-en="Destinations" data-sw="Maeneo">Destinations <i class="fas fa-chevron-down"></i></a>
-                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="katavi.html" data-en="Katavi National Park" data-sw="Hifadhi ya Katavi">Katavi National Park</a></li>
-                                <li><a href="selous.html" data-en="Selous Game Reserve" data-sw="Hifadhi ya Selous">Selous Game Reserve</a></li>
-                                <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
-                                <li><a href="mikumi.html" data-en="Mikumi National Park" data-sw="Hifadhi ya Mikumi">Mikumi National Park</a></li>
-                                <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
-                                <li><a href="gombe.html" data-en="Gombe Stream National Park" data-sw="Hifadhi ya Gombe">Gombe Stream National Park</a></li>
-                                <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
-                                <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
-                                <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="experiences.html" id="nav-experiences" data-en="Experiences" data-sw="Uzoefu">Experiences <i class="fas fa-chevron-down"></i></a>
-                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="honeymoon-safaris.html" data-en="Honeymoon Safaris" data-sw="Safari za Fungate">Honeymoon Safaris</a></li>
-                                <li><a href="family-safaris.html" data-en="Family Safaris" data-sw="Safari za Familia">Family Safaris</a></li>
-                                <li><a href="migration-safaris.html" data-en="Migration Safaris" data-sw="Safari za Uhamiaji">Migration Safaris</a></li>
-                                <li><a href="volunteer.html" data-en="Volunteer in Tanzania" data-sw="Kujitolea Tanzania">Volunteer in Tanzania</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="about.html" id="nav-about" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
-                        <li class="dropdown">
-                            <a href="#" id="nav-resources" data-en="Travel Guide" data-sw="Mwongozo wa Safari">Travel Guide <i class="fas fa-chevron-down"></i></a>
-                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                            <ul class="dropdown-menu">
-                                <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Taarifa za Visa">Visa Information</a></li>
-                                <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                                <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                                <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
-                                <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari za Wanawake">Solo Female Travel</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                        <li class="mobile-only-action book-now-item"><a href="enquire.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA SASA">BOOK NOW</a></li>
-                    </ul>
+                    <!-- Mobile Menu Header -->
+                    <div class="mobile-menu-header">
+                        <div class="mobile-menu-logo">
+                            <img src="assets/logo.png" alt="Century Adventures Logo">
+                            <span class="mobile-brand-name">CENTURY ADVENTURES</span>
+                        </div>
+                        <button class="mobile-menu-close-btn" id="nav-close-btn" aria-label="Close navigation menu">✕</button>
+                    </div>
+
+                    <!-- Scrollable content wrapper for mobile -->
+                    <div class="mobile-menu-scroll">
+                        <!-- User Action Buttons -->
+                        <div class="mobile-user-actions">
+                            <button class="action-btn lang-toggle" onclick="toggleLang(event)">
+                                <span class="btn-icon">🌐</span> <span class="btn-text lang-text">${langMobileLabel}</span>
+                            </button>
+                            <button class="action-btn theme-toggle" onclick="toggleTheme(event)">
+                                <span class="btn-icon theme-icon">${themeMobileIcon}</span> <span class="btn-text theme-text">${themeMobileLabel}</span>
+                            </button>
+                            <a href="tel:+255747115390" class="action-btn call-btn">
+                                <span class="btn-icon">📞</span> <span class="btn-text" data-en="Call Us" data-sw="Tupigie">Call Us</span>
+                            </a>
+                            <a href="mailto:info@century-adventures.com" class="action-btn email-btn">
+                                <span class="btn-icon">📧</span> <span class="btn-text" data-en="Email Us" data-sw="Tuandikie">Email Us</span>
+                            </a>
+                        </div>
+
+                        <!-- Main Navigation Menu -->
+                        <ul class="nav-menu-list">
+                            <li>
+                                <a href="index.html" id="nav-home">
+                                    <span class="nav-item-content"><span class="nav-item-icon">🏠</span> <span class="nav-item-text" data-en="Home" data-sw="Nyumbani">Home</span></span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="safaris.html" id="nav-safaris">
+                                    <span class="nav-item-content"><span class="nav-item-icon">🦁</span> <span class="nav-item-text" data-en="Safaris" data-sw="Safari">Safaris</span></span>
+                                    <i class="fas fa-chevron-down caret-icon"></i>
+                                </a>
+                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="6-day-northern-tanzania-highlights.html" data-en="6 Day Northern Tanzania Safari" data-sw="Siku 6 Safari ya Kaskazini">6 Day Northern Tanzania Safari</a></li>
+                                    <li><a href="10-days-luxury-safari-zanzibar.html" data-en="10 Days Luxury &amp; Zanzibar Retreat" data-sw="Siku 10 Safari na Zanzibar">10 Days Luxury &amp; Zanzibar Retreat</a></li>
+                                    <li><a href="10-days-tanzania-great-migration.html" data-en="10 Days Great Migration Safari" data-sw="Siku 10 Uhamiaji Mkuu">10 Days Great Migration Safari</a></li>
+                                    <li><a href="12-days-best-of-south-and-north.html" data-en="12 Days South &amp; North Safari" data-sw="Siku 12 Kusini na Kaskazini">12 Days South &amp; North Safari</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="destinations.html" id="nav-destinations">
+                                    <span class="nav-item-content"><span class="nav-item-icon">📍</span> <span class="nav-item-text" data-en="Destinations" data-sw="Maeneo">Destinations</span></span>
+                                    <i class="fas fa-chevron-down caret-icon"></i>
+                                </a>
+                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="katavi.html" data-en="Katavi National Park" data-sw="Hifadhi ya Katavi">Katavi National Park</a></li>
+                                    <li><a href="selous.html" data-en="Selous Game Reserve" data-sw="Hifadhi ya Selous">Selous Game Reserve</a></li>
+                                    <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
+                                    <li><a href="mikumi.html" data-en="Mikumi National Park" data-sw="Hifadhi ya Mikumi">Mikumi National Park</a></li>
+                                    <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
+                                    <li><a href="gombe.html" data-en="Gombe Stream National Park" data-sw="Hifadhi ya Gombe">Gombe Stream National Park</a></li>
+                                    <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
+                                    <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
+                                    <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="experiences.html" id="nav-experiences">
+                                    <span class="nav-item-content"><span class="nav-item-icon">✨</span> <span class="nav-item-text" data-en="Experiences" data-sw="Uzoefu">Experiences</span></span>
+                                    <i class="fas fa-chevron-down caret-icon"></i>
+                                </a>
+                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Safaris" data-sw="Safari za Fungate">Honeymoon Safaris</a></li>
+                                    <li><a href="family-safaris.html" data-en="Family Safaris" data-sw="Safari za Familia">Family Safaris</a></li>
+                                    <li><a href="migration-safaris.html" data-en="Migration Safaris" data-sw="Safari za Uhamiaji">Migration Safaris</a></li>
+                                    <li><a href="volunteer.html" data-en="Volunteer in Tanzania" data-sw="Kujitolea Tanzania">Volunteer in Tanzania</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about.html" id="nav-about">
+                                    <span class="nav-item-content"><span class="nav-item-icon">ℹ️</span> <span class="nav-item-text" data-en="About Us" data-sw="Kuhusu Sisi">About Us</span></span>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" id="nav-resources">
+                                    <span class="nav-item-content"><span class="nav-item-icon">🧭</span> <span class="nav-item-text" data-en="Travel Guide" data-sw="Mwongozo wa Safari">Travel Guide</span></span>
+                                    <i class="fas fa-chevron-down caret-icon"></i>
+                                </a>
+                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Taarifa za Visa">Visa Information</a></li>
+                                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
+                                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
+                                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
+                                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari za Wanawake">Solo Female Travel</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="contact.html" id="nav-contact">
+                                    <span class="nav-item-content"><span class="nav-item-icon">📞</span> <span class="nav-item-text" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</span></span>
+                                </a>
+                            </li>
+                            <li class="mobile-only-action book-now-item">
+                                <a href="enquire.html" id="nav-book">
+                                    <span class="nav-item-content"><span class="nav-item-icon">📅</span> <span class="nav-item-text" data-en="Book Now" data-sw="Weka Sasa">Book Now</span></span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Mobile Contact Shortcuts -->
+                        <div class="mobile-menu-contacts">
+                            <a href="tel:+255747115390" class="contact-shortcut">
+                                <span class="shortcut-icon">📞</span> <span class="shortcut-text">+255 747 115 390</span>
+                            </a>
+                            <a href="mailto:info@century-adventures.com" class="contact-shortcut">
+                                <span class="shortcut-icon">📧</span> <span class="shortcut-text">info@century-adventures.com</span>
+                            </a>
+                            <div class="contact-shortcut">
+                                <span class="shortcut-icon">📍</span> <span class="shortcut-text">Dar es Salaam, Tanzania</span>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Social Links -->
+                        <div class="mobile-menu-socials">
+                            <a href="https://instagram.com/century_adventures" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://wa.me/255747115390" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://tripadvisor.com" target="_blank" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Fixed Book Safari CTA Button -->
+                    <div class="mobile-menu-book-fixed">
+                        <a href="enquire.html" class="fixed-book-btn" data-en="BOOK YOUR SAFARI" data-sw="WEKA SAFARI YAKO">BOOK YOUR SAFARI</a>
+                    </div>
                 </nav>
 
                 <!-- Mobile Hamburger Menu Button (Three Lines) -->
@@ -91,8 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="header-actions">
                     <div class="header-toggles">
-                        <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SWAHILI</button>
-                        <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
+                        <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">${langHeaderLabel}</button>
+                        <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="${themeHeaderIconClass}"></i> ${themeHeaderLabel}</button>
                     </div>
                     <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA SASA">BOOK NOW</a>
                 </div>
@@ -149,8 +240,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const themeBtns = document.querySelectorAll('.theme-toggle');
         themeBtns.forEach(themeBtn => {
             if (themeBtn) {
-                // Update button label text
-                themeBtn.innerHTML = `<i class="${theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}"></i> ${theme === 'dark' ? 'LIGHT' : 'DARK'}`;
+                if (themeBtn.classList.contains('action-btn') || themeBtn.closest('.mobile-user-actions')) {
+                    const icon = theme === 'dark' ? '☀️' : '🌙';
+                    const text = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+                    const lang = localStorage.getItem('century-lang') || 'en';
+                    const localizedText = lang === 'sw' 
+                        ? (theme === 'dark' ? 'Mwanga' : 'Giza') 
+                        : text;
+                    themeBtn.innerHTML = `<span class="btn-icon">${icon}</span> <span class="btn-text theme-text">${localizedText}</span>`;
+                } else {
+                    themeBtn.innerHTML = `<i class="${theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}"></i> ${theme === 'dark' ? 'LIGHT' : 'DARK'}`;
+                }
             }
         });
     };
@@ -772,8 +872,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update lang toggle button label
         const langBtns = document.querySelectorAll('.lang-toggle');
         langBtns.forEach(btn => {
-            btn.textContent = lang === 'en' ? 'SWAHILI' : 'ENGLISH';
+            if (btn.classList.contains('action-btn') || btn.closest('.mobile-user-actions')) {
+                const text = lang === 'en' ? 'Swahili' : 'English';
+                btn.innerHTML = `<span class="btn-icon">🌐</span> <span class="btn-text lang-text">${text}</span>`;
+            } else {
+                btn.textContent = lang === 'en' ? 'SWAHILI' : 'ENGLISH';
+            }
         });
+
+        // Also refresh theme toggle text to translate theme labels immediately
+        updateThemeToggle(localStorage.getItem('century-theme') || 'light');
 
         // Update Read More button labels to match current language
         document.querySelectorAll('.read-more-btn').forEach(btn => {
