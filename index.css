@@ -4373,7 +4373,8 @@ iframe.goog-te-menu-frame {
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;
+    right: auto;
     background: #25d366;
     color: white;
     padding: 12px 25px;
@@ -4400,7 +4401,7 @@ iframe.goog-te-menu-frame {
 
 @media (max-width: 576px) {
     .whatsapp-float span { display: none; }
-    .whatsapp-float { padding: 15px; border-radius: 50%; bottom: 20px; left: 20px; right: auto; }
+    .whatsapp-float { padding: 15px; border-radius: 50%; bottom: 20px; right: 20px; left: auto; }
 }
 
 /* ── Payment Page Styles ── */
@@ -8203,8 +8204,8 @@ iframe.goog-te-menu-frame {
 .whatsapp-widget,
 .whatsapp-float {
     bottom: 30px !important;
-    right: 30px !important;
-    left: auto !important;
+    left: 30px !important;
+    right: auto !important;
     position: fixed !important;
     z-index: 10008 !important;
 }
@@ -8228,14 +8229,14 @@ iframe.goog-te-menu-frame {
     .whatsapp-widget,
     .whatsapp-float {
         bottom: 20px !important;
-        left: 15px !important;
-        right: auto !important;
+        right: 15px !important;
+        left: auto !important;
     }
 
     .assistant-float,
     .comm-float {
-        left: 15px !important;
-        right: auto !important;
+        right: 15px !important;
+        left: auto !important;
     }
 
     .assistant-float {
@@ -8255,14 +8256,14 @@ iframe.goog-te-menu-frame {
     .whatsapp-widget,
     .whatsapp-float {
         bottom: 16px !important;
-        left: 12px !important;
-        right: auto !important;
+        right: 12px !important;
+        left: auto !important;
     }
 
     .assistant-float,
     .comm-float {
-        left: 12px !important;
-        right: auto !important;
+        right: 12px !important;
+        left: auto !important;
     }
 
     .assistant-float {
@@ -8282,7 +8283,8 @@ iframe.goog-te-menu-frame {
 .comm-float {
     position: fixed;
     bottom: 24px;
-    right: 24px;
+    left: 24px;
+    right: auto;
     z-index: 10010;
     display: flex;
     align-items: center;
@@ -8366,7 +8368,8 @@ iframe.goog-te-menu-frame {
 .comm-panel {
     position: fixed;
     bottom: 92px;
-    right: 24px;
+    left: 24px;
+    right: auto;
     width: 380px;
     max-height: 600px;
     height: calc(100vh - 180px);
@@ -8930,9 +8933,9 @@ iframe.goog-te-menu-frame {
 @media (max-width: 768px) {
     .comm-float {
         bottom: 16px;
-        left: 14px;
-        right: auto;
-        padding: 12px 16px 12px 14px;
+        right: 14px;
+        left: auto;
+        padding: 12px 14px 12px 16px;
     }
     .comm-float-text {
         display: none;
