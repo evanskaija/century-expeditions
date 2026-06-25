@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.querySelector('header.header');
         if (!header) return;
 
-        header.innerHTML = `
         const currentLang = localStorage.getItem('century-lang') || 'en';
         const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('century-theme') || 'light';
 
