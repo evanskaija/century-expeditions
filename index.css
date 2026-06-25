@@ -12943,34 +12943,37 @@ body.home-page .whatsapp-widget {
     }
 
     /* 5. DESTINATION CARDS HEIGHT ADJUSTMENT & TEXT SIZE REDUCTIONS */
+    .destinations-grid-home {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
     .destination-card-new,
     .destinations-grid-home .destination-card {
-        height: 220px !important;
+        height: 190px !important;
     }
     .dest-card-overlay,
     .destinations-grid-home .destination-card .card-overlay {
-        padding: 14px !important;
+        padding: 12px !important;
     }
     .destination-card-new h3,
     .destinations-grid-home .destination-card h3 {
-        font-size: 1.1rem !important;
+        font-size: 1.05rem !important;
         margin-bottom: 2px !important;
     }
     .destination-card-new p,
     .destinations-grid-home .destination-card p {
-        font-size: 0.65rem !important;
-        margin: 2px 0 4px 0 !important;
+        font-size: 0.62rem !important;
+        margin: 2px 0 6px 0 !important;
         letter-spacing: 0.5px !important;
     }
     .destination-card-new span,
     .destinations-grid-home .destination-card span {
-        font-size: 0.72rem !important;
-        line-height: 1.35 !important;
-        margin-bottom: 10px !important;
+        display: none !important; /* Hide description for cleaner 2-column layout */
     }
     .btn-outline-dest {
-        font-size: 0.68rem !important;
-        padding: 5px 12px !important;
+        font-size: 0.65rem !important;
+        padding: 4px 10px !important;
+        border-radius: 4px !important;
     }
 
     /* 6. TOP SAFARIS (TOURS) VERTICAL COMPACT CARD RE-ARRANGEMENT */
