@@ -30,7 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
                         </li>
                         <li><a href="index.html" id="nav-home" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                        <li><a href="about.html" id="nav-about" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
+                        <li class="dropdown">
+                            <a href="safaris.html" id="nav-safaris" data-en="Safaris" data-sw="Safari">Safaris <i class="fas fa-chevron-down"></i></a>
+                            <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
+                            <ul class="dropdown-menu">
+                                <li><a href="6-day-northern-tanzania-highlights.html" data-en="6 Day Northern Tanzania Safari" data-sw="Siku 6 Safari ya Kaskazini">6 Day Northern Tanzania Safari</a></li>
+                                <li><a href="10-days-luxury-safari-zanzibar.html" data-en="10 Days Luxury &amp; Zanzibar Retreat" data-sw="Siku 10 Safari na Zanzibar">10 Days Luxury &amp; Zanzibar Retreat</a></li>
+                                <li><a href="10-days-tanzania-great-migration.html" data-en="10 Days Great Migration Safari" data-sw="Siku 10 Uhamiaji Mkuu">10 Days Great Migration Safari</a></li>
+                                <li><a href="12-days-best-of-south-and-north.html" data-en="12 Days South &amp; North Safari" data-sw="Siku 12 Kusini na Kaskazini">12 Days South &amp; North Safari</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="destinations.html" id="nav-destinations" data-en="Destinations" data-sw="Maeneo">Destinations <i class="fas fa-chevron-down"></i></a>
                             <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
@@ -50,36 +59,26 @@ document.addEventListener('DOMContentLoaded', () => {
                             <a href="experiences.html" id="nav-experiences" data-en="Experiences" data-sw="Uzoefu">Experiences <i class="fas fa-chevron-down"></i></a>
                             <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
                             <ul class="dropdown-menu">
-                                <li><a href="experiences.html" data-en="Special Experiences" data-sw="Uzoefu Maalum">Special Experiences</a></li>
-                                <li><a href="activities.html" data-en="Safari Activities" data-sw="Shughuli za Safari">Safari Activities</a></li>
-                                <li><a href="accommodations.html" data-en="Lodging & Camps" data-sw="Malazi na Kambi">Lodging & Camps</a></li>
-                                <li><a href="planner.html" data-en="Custom Trip Planner" data-sw="Kupanga Safari">Custom Trip Planner</a></li>
+                                <li><a href="honeymoon-safaris.html" data-en="Honeymoon Safaris" data-sw="Safari za Fungate">Honeymoon Safaris</a></li>
                                 <li><a href="family-safaris.html" data-en="Family Safaris" data-sw="Safari za Familia">Family Safaris</a></li>
                                 <li><a href="migration-safaris.html" data-en="Migration Safaris" data-sw="Safari za Uhamiaji">Migration Safaris</a></li>
-                                <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                                <li><a href="volunteer.html" data-en="Volunteer in Tanzania" data-sw="Kujitolea Tanzania">Volunteer in Tanzania</a></li>
                             </ul>
                         </li>
+                        <li><a href="about.html" id="nav-about" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
                         <li class="dropdown">
-                            <a href="#" id="nav-resources" data-en="Travel Advice" data-sw="Ushauri wa Safari">Travel Advice <i class="fas fa-chevron-down"></i></a>
+                            <a href="#" id="nav-resources" data-en="Travel Guide" data-sw="Mwongozo wa Safari">Travel Guide <i class="fas fa-chevron-down"></i></a>
                             <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
                             <ul class="dropdown-menu">
-                                <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
-                                <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
-                                <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
-                                <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
-                                <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
+                                <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Taarifa za Visa">Visa Information</a></li>
                                 <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                                <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
-                                <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
+                                <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
                                 <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
-                                <li><a href="dar-es-salaam-highlights.html" data-en="Dar es Salaam Highlights" data-sw="Kuhusu Dar es Salaam">Dar es Salaam Highlights</a></li>
+                                <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari za Wanawake">Solo Female Travel</a></li>
                             </ul>
                         </li>
-                        <li><a href="safaris.html" id="nav-safaris" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
-                        <li><a href="volunteer.html" id="nav-volunteer" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
-                        <li><a href="vehicles.html" id="nav-vehicles" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
                         <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                        <li class="mobile-only-action book-now-item"><a href="book.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
+                        <li class="mobile-only-action book-now-item"><a href="enquire.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA SASA">BOOK NOW</a></li>
                     </ul>
                 </nav>
 
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">SWAHILI</button>
                         <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="fas fa-moon"></i> DARK</button>
                     </div>
-                    <a href="book.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a>
+                    <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA SASA">BOOK NOW</a>
                 </div>
             </div>
         `;
@@ -930,13 +929,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Observe .animate-in elements (existing)
-    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.animate-in').forEach(el => {
+        if (el.closest('.marquee-track')) return;
+        observer.observe(el);
+    });
 
     // Observe scroll-reveal elements
-    document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => observer.observe(el));
+    document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => {
+        if (el.closest('.marquee-track')) return;
+        observer.observe(el);
+    });
 
     // ── Auto-apply scroll-reveal to all elements across the entire website ──
     document.querySelectorAll('section, .section, .itinerary-day, .info-col, .link-col, .tripadvisor-card, .footer-col, .about-content, .contact-grid > div, .form-container, .safari-card, .package-card, .blog-card, .detail-card, .faq-item, .gallery-item, .card, .container > p, .container > img').forEach((el) => {
+        if (el.closest('.marquee-track')) return;
         if (!el.classList.contains('scroll-reveal') && !el.classList.contains('scroll-reveal-left') && !el.classList.contains('scroll-reveal-right') && !el.classList.contains('scroll-reveal-scale')) {
             el.classList.add('scroll-reveal');
         }
@@ -945,12 +951,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Section headings animate in
     document.querySelectorAll('.section h2, .section .sub-heading, .section .section-desc').forEach(el => {
+        if (el.closest('.marquee-track')) return;
         el.classList.add('scroll-reveal');
         observer.observe(el);
     });
 
     // Why Us items stagger
     document.querySelectorAll('.why-us-item').forEach((el, i) => {
+        if (el.closest('.marquee-track')) return;
         el.classList.add('scroll-reveal');
         el.style.transitionDelay = `${i * 0.1}s`;
         observer.observe(el);
@@ -1160,6 +1168,29 @@ document.addEventListener('DOMContentLoaded', () => {
             let paused = false;
             let resumeTimeout = null;
 
+            // Setup dots for experiences if applicable
+            const isExperiences = wrapper.closest('.experiences-section');
+            const expDots = isExperiences ? document.querySelectorAll('#experiences-indicators .indicator-dot') : [];
+            let lastActiveDotIndex = -1;
+
+            const updateExpDots = (currentX) => {
+                if (expDots.length === 0) return;
+                const currentCardWidth = getCardWidth();
+                // Find offset relative to halfWidth for infinite loop
+                const offset = Math.abs(currentX) % halfWidth;
+                const index = Math.round(offset / currentCardWidth) % expDots.length;
+                if (index !== lastActiveDotIndex) {
+                    lastActiveDotIndex = index;
+                    expDots.forEach((dot, idx) => {
+                        if (idx === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+            };
+
             const setPosition = (x) => {
                 posX = x;
                 // Infinite seamless loop logic:
@@ -1179,6 +1210,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 track.style.transform = `translateX(${posX}px)`;
+
+                // Update indicator dots for experiences
+                if (isExperiences) {
+                    updateExpDots(posX);
+                }
             };
 
             // Setup initial position
@@ -1313,6 +1349,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 rightArrow.addEventListener('click', (e) => {
                     e.preventDefault();
                     scrollMarquee('right');
+                });
+            }
+
+            // Click dots for experiences
+            if (isExperiences && expDots.length > 0) {
+                expDots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.dataset.index || '0');
+                        paused = true;
+                        isAnimating = true;
+                        clearTimeout(resumeTimeout);
+
+                        const currentCardWidth = getCardWidth();
+                        const currentCardIndex = Math.round(posX / currentCardWidth);
+                        const diff = index - (Math.abs(currentCardIndex) % expDots.length);
+                        targetX = (currentCardIndex - diff) * currentCardWidth;
+
+                        resumeTimeout = setTimeout(() => {
+                            isAnimating = false;
+                            targetX = null;
+                            paused = false;
+                        }, 4000);
+                    });
                 });
             }
 
@@ -1962,6 +2021,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.position = 'relative';
             }
 
+            const btn = card.querySelector('.btn-card, .btn');
+            if (btn && card.classList.contains('safari-card')) {
+                btn.setAttribute('data-en', 'BOOK NOW');
+                btn.setAttribute('data-sw', 'WEKA SASA');
+                const lang = localStorage.getItem('century-lang') || 'en';
+                btn.textContent = lang === 'sw' ? 'WEKA SASA' : 'BOOK NOW';
+            }
+
             const heartBtn = document.createElement('button');
             heartBtn.type = 'button';
             heartBtn.className = 'wishlist-heart-btn';
@@ -1987,9 +2054,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('century-wishlist', JSON.stringify(wishlist));
                 updateWishlistUI();
             });
-            card.appendChild(heartBtn);
-
-            // Compare Tour logic removed
+            // Inject Compare Checkbox
+            const content = card.querySelector('.safari-content, .package-content') || card;
+            if (content) {
+                const compareLabel = document.createElement('label');
+                compareLabel.className = 'compare-checkbox-label';
+                compareLabel.style.display = 'flex';
+                compareLabel.style.alignItems = 'center';
+                compareLabel.style.gap = '8px';
+                compareLabel.style.marginTop = '10px';
+                compareLabel.style.cursor = 'pointer';
+                compareLabel.innerHTML = `<input type="checkbox"> <span data-en="Compare" data-sw="Linganisha">Compare</span>`;
+                
+                const checkbox = compareLabel.querySelector('input');
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        if (compareList.length >= 3) {
+                            checkbox.checked = false;
+                            alert(localStorage.getItem('century-lang') === 'sw' ? 'Unaweza kulinganisha hadi safari 3 kwa wakati mmoja.' : 'You can compare up to 3 tours at a time.');
+                            return;
+                        }
+                        compareList.push({ title, link, img, price });
+                    } else {
+                        compareList = compareList.filter(item => item.title !== title);
+                    }
+                    updateCompareBar();
+                });
+                
+                checkbox.checked = compareList.some(item => item.title === title);
+                content.appendChild(compareLabel);
+                card._compareCheckbox = checkbox;
+            }
         });
 
         const updateCompareBar = () => {
@@ -1997,11 +2092,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const bar = document.getElementById('compareBar');
             const text = document.getElementById('compareBarText');
 
-            const assistantBtn = document.getElementById('assistantFloatBtn');
+            const wishlistFloat = document.querySelector('.wishlist-float');
             if (compareList.length > 0) {
                 bar.classList.add('active');
-                // Shift the assistant float up so compare bar does not overlap it
-                if (assistantBtn) assistantBtn.classList.add('shifted-up');
+                // Shift the wishlist float up so compare bar does not overlap it
+                if (wishlistFloat) wishlistFloat.classList.add('shifted-up');
                 const lang = localStorage.getItem('century-lang') || 'en';
                 if (lang === 'sw') {
                     text.textContent = `${compareList.length} safari zilizochaguliwa kwa ajili ya kulinganisha`;
@@ -2011,8 +2106,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = compareList.length < 2;
             } else {
                 bar.classList.remove('active');
-                // Restore assistant float position
-                if (assistantBtn) assistantBtn.classList.remove('shifted-up');
+                // Restore wishlist float position
+                if (wishlistFloat) wishlistFloat.classList.remove('shifted-up');
             }
         };
 
@@ -2169,7 +2264,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="brand-status"><span class="comm-float-dot"></span> Online</span>
                         </div>
                     </div>
-                    <button class="comm-header-close" id="commClose">&times;</button>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <button class="comm-header-minimize" id="commMinimize" style="background:none; border:none; color:white; font-size:1rem; cursor:pointer; opacity:0.8; padding: 4px; line-height: 1;" aria-label="Minimize Support"><i class="fas fa-minus" style="font-size: 0.8rem;"></i></button>
+                        <button class="comm-header-close" id="commClose" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer; opacity:0.8; padding: 4px; line-height: 1;" aria-label="Close Support">&times;</button>
+                    </div>
                 </div>
                 <div class="comm-header-tabs">
                     <div class="comm-tab active" data-view="home"><i class="fas fa-home"></i> Home</div>
@@ -2432,13 +2530,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const openPanel = () => { 
             panel.classList.add('active'); 
             floatBtn.classList.add('panel-open'); 
+            document.body.classList.add('comm-panel-open');
             const emailLink = panel.querySelector('a[href*="mailto:"]');
             if (emailLink) emailLink.href = 'mailto:' + getRoutingEmails().info;
         };
-        const closePanel = () => { panel.classList.remove('active'); floatBtn.classList.remove('panel-open'); };
+        const closePanel = () => { 
+            panel.classList.remove('active'); 
+            floatBtn.classList.remove('panel-open'); 
+            document.body.classList.remove('comm-panel-open');
+        };
         window.openSafariSupport = openPanel;
         floatBtn.addEventListener('click', openPanel);
         document.getElementById('commClose').addEventListener('click', closePanel);
+        document.getElementById('commMinimize')?.addEventListener('click', closePanel);
         document.addEventListener('click', (e) => {
             if (panel.classList.contains('active') && !panel.contains(e.target) && !floatBtn.contains(e.target)) {
                 closePanel();
@@ -2825,6 +2929,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ── WhatsApp/Chaty offset (maintain compatibility) ──
         const adjustFloatSpacing = () => {
+            if (window.innerWidth <= 992) {
+                // On mobile, CSS handles positioning:
+                // Support button is at bottom (15px), WhatsApp is above it (90px)
+                floatBtn.style.bottom = '';
+                panel.style.bottom = '';
+                return;
+            }
             const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
             if (chatyWidget) {
                 floatBtn.style.bottom = '90px';
@@ -3055,16 +3166,111 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Collapsible Footer Sections on Mobile
-        document.querySelectorAll('.footer-col.collapsible h3').forEach(header => {
+        document.querySelectorAll('.footer-col').forEach(col => {
+            const header = col.querySelector('h3');
+            if (!header || col.querySelector('.tripadvisor-card')) return;
+            col.classList.add('collapsible');
             if (header.dataset.hasCollapsibleListener) return;
             header.dataset.hasCollapsibleListener = "true";
             header.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    const parent = header.parentElement;
-                    parent.classList.toggle('active');
+                if (window.innerWidth <= 992) {
+                    col.classList.toggle('active');
                 }
             });
         });
+
+        // Welcome Read More toggle
+        const btnWelcomeReadMore = document.getElementById('welcome-read-more-btn');
+        const welcomeTextMore = document.querySelector('.welcome-read-more-content');
+        if (btnWelcomeReadMore && welcomeTextMore) {
+            btnWelcomeReadMore.addEventListener('click', function() {
+                const isExpanded = welcomeTextMore.classList.toggle('expanded');
+                const lang = localStorage.getItem('century-lang') || 'en';
+                if (isExpanded) {
+                    this.textContent = lang === 'sw' ? 'Soma Kidogo' : 'Read Less';
+                    this.setAttribute('data-en', 'Read Less');
+                    this.setAttribute('data-sw', 'Soma Kidogo');
+                } else {
+                    this.textContent = lang === 'sw' ? 'Soma Zaidi' : 'Read More';
+                    this.setAttribute('data-en', 'Read More');
+                    this.setAttribute('data-sw', 'Soma Zaidi');
+                }
+            });
+        }
+
+        // Testimonials Auto-slideshow on mobile
+        let testimonialInterval;
+        let testimonialsPaused = false;
+        let testimonialsResumeTimeout = null;
+
+        const initTestimonialsSlider = () => {
+            const grid = document.querySelector('.testimonials-grid-home');
+            const cards = document.querySelectorAll('.testimonial-card-home');
+            if (cards.length === 0) return;
+
+            if (window.innerWidth > 992) {
+                if (testimonialInterval) {
+                    clearInterval(testimonialInterval);
+                    testimonialInterval = null;
+                }
+                if (testimonialsResumeTimeout) {
+                    clearTimeout(testimonialsResumeTimeout);
+                    testimonialsResumeTimeout = null;
+                }
+                cards.forEach(card => card.classList.remove('active'));
+                return;
+            }
+            
+            let currentIndex = 0;
+            cards.forEach((card, index) => {
+                if (index === 0) card.classList.add('active');
+                else card.classList.remove('active');
+            });
+            
+            if (testimonialInterval) clearInterval(testimonialInterval);
+
+            const nextSlide = () => {
+                if (testimonialsPaused) return;
+                if (cards[currentIndex]) cards[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % cards.length;
+                if (cards[currentIndex]) cards[currentIndex].classList.add('active');
+            };
+
+            testimonialInterval = setInterval(nextSlide, 5000);
+
+            // Add interaction listeners to grid container if they haven't been added yet
+            if (grid && !grid.dataset.interactionListenersRegistered) {
+                grid.dataset.interactionListenersRegistered = "true";
+
+                const pauseSlider = () => {
+                    testimonialsPaused = true;
+                    if (testimonialsResumeTimeout) {
+                        clearTimeout(testimonialsResumeTimeout);
+                        testimonialsResumeTimeout = null;
+                    }
+                };
+
+                const resumeSlider = () => {
+                    if (testimonialsResumeTimeout) clearTimeout(testimonialsResumeTimeout);
+                    testimonialsResumeTimeout = setTimeout(() => {
+                        testimonialsPaused = false;
+                    }, 4000);
+                };
+
+                grid.addEventListener('mouseenter', pauseSlider);
+                grid.addEventListener('touchstart', pauseSlider, { passive: true });
+                grid.addEventListener('mouseleave', resumeSlider);
+                grid.addEventListener('touchend', resumeSlider, { passive: true });
+            }
+        };
+        initTestimonialsSlider();
+        window.addEventListener('resize', initTestimonialsSlider);
+
+        // Experiences Swipe Indicators for Mobile
+        const initExperiencesSlider = () => {
+            // Disabled: replaced by JS infinite marquee engine integration
+        };
+        initExperiencesSlider();
     };
 
     // Initialize additions
