@@ -12874,4 +12874,185 @@ body.home-page .whatsapp-widget {
     }
 }
 
+/* ==========================================================================
+   ADDITIONAL PREMIUM MOBILE OPTIMIZATIONS (FONTS, SPACING, GRIDS & ARRANGE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* 1. SECTION SPACING REDUCTION */
+    .section, section {
+        padding: 40px 0 !important;
+    }
+    
+    /* 2. WELCOME SECTION LAYFIX (GRID TO 1-COLUMN) */
+    .welcome-section .container > div[style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 28px !important;
+    }
+    
+    /* 3. INSTAGRAM SECTION HEADER LAYOUT FIX */
+    .instagram-section .container > div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 16px !important;
+        margin-bottom: 24px !important;
+    }
+    .instagram-section .container > div[style*="display: flex"] h2 {
+        text-align: center !important;
+    }
+
+    /* 4. FOOTER FEATURES BAR GRID STYLING (MATCH HERO FEATURES BAR) */
+    .footer-features-bar {
+        padding: 24px 0 !important;
+        background-color: #1a2219 !important;
+    }
+    .footer-features-content {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 16px !important;
+        flex-direction: unset !important;
+        align-items: unset !important;
+    }
+    .footer-feature-item {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        padding: 14px 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        min-width: 0 !important;
+        padding-left: 0 !important;
+    }
+    .footer-feature-item:last-child {
+        grid-column: span 2 !important;
+    }
+    .footer-feature-item i {
+        font-size: 1.3rem !important;
+        color: var(--accent-gold, #c5a044) !important;
+    }
+    .footer-feature-item span {
+        font-size: 0.72rem !important;
+        letter-spacing: 1px !important;
+        font-weight: 600 !important;
+    }
+
+    /* 5. DESTINATION CARDS HEIGHT ADJUSTMENT */
+    .destination-card-new,
+    .destinations-grid-home .destination-card {
+        height: 245px !important;
+    }
+
+    /* 6. TOP SAFARIS (TOURS) VERTICAL COMPACT CARD RE-ARRANGEMENT */
+    .tours-section .safari-card {
+        width: 285px !important;
+        min-width: 285px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 12px !important;
+        border-radius: 16px !important;
+        gap: 12px !important;
+        box-sizing: border-box !important;
+    }
+    .tours-section .safari-card > div[style*="position: relative"] {
+        width: 100% !important;
+        height: 165px !important;
+        flex-shrink: 0 !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+    }
+    .tours-section .safari-card img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    .tours-section .safari-card .safari-content {
+        padding: 4px 4px 8px 4px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .tours-section .safari-card .safari-content h3 {
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+        margin: 0 !important;
+    }
+    .tours-section .safari-card .safari-content .rating {
+        display: flex !important;
+        font-size: 0.8rem !important;
+        margin-bottom: 2px !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+    .tours-section .safari-card .safari-badge,
+    .tours-section .safari-card .best-seller-tag {
+        display: block !important;
+    }
+    .tours-section .safari-card .safari-content .price {
+        font-size: 0.82rem !important;
+        margin: 0 !important;
+    }
+    .tours-section .safari-card .safari-content .price span {
+        font-size: 1.15rem !important;
+    }
+    .tours-section .safari-card .safari-content .btn-card {
+        padding: 10px 20px !important;
+        font-size: 0.8rem !important;
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        margin-top: 4px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* 1. SECTIONS EXTRA COMPACT SPACING */
+    .section, section {
+        padding: 30px 0 !important;
+    }
+
+    /* 2. TRAVEL ADVICE MOBILE GRID (1 COLUMN FOR PHONES) */
+    .travel-advice-section .tips-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    .travel-advice-section .tip-item-pro {
+        padding: 20px 16px !important;
+    }
+    .travel-advice-section .tip-info-pro p {
+        -webkit-line-clamp: 3 !important;
+        height: auto !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* 3. HERO FONTS REDUCTION FOR SMALLEST MOBILE VIEWPORTS */
+    .hero h1 span:first-child {
+        font-size: clamp(26px, 7.5vw, 32px) !important;
+    }
+    .hero h1 span:last-child {
+        font-size: clamp(13px, 3.8vw, 15px) !important;
+        margin-top: 6px !important;
+    }
+    .hero-tagline {
+        font-size: clamp(12px, 3vw, 14px) !important;
+    }
+    .hero-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.5 !important;
+    }
+    .trip-hero h1 {
+        font-size: 1.5rem !important;
+    }
+}
+
 
