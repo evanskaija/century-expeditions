@@ -1,8 +1,8 @@
 (() => {
-const root=document.documentElement, motion=matchMedia('(prefers-reduced-motion: reduce)'), device=matchMedia('(prefers-color-scheme: dark)');
+const root=document.documentElement, motion=matchMedia('(prefers-reduced-motion: reduce)');
 const saved=()=>{try{return localStorage.getItem('century-theme');}catch{return null;}};
-function sync(){const mode=saved();root.dataset.theme=['light','dark'].includes(mode)?mode:device.matches?'dark':'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.setAttribute('aria-label',root.dataset.theme==='dark'?'Switch to light mode':'Switch to dark mode');b.setAttribute('aria-pressed',String(root.dataset.theme==='dark'));});}
-sync();device.addEventListener('change',()=>{if(!saved()){sync();document.querySelectorAll('.theme-toggle').forEach(b=>b.innerHTML='<i class="fas fa-'+(root.dataset.theme==='dark'?'sun':'moon')+'" aria-hidden="true"></i>');}});
+function sync(){const mode=saved();root.dataset.theme=['light','dark'].includes(mode)?mode:'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.setAttribute('aria-label',root.dataset.theme==='dark'?'Switch to light mode':'Switch to dark mode');b.setAttribute('aria-pressed',String(root.dataset.theme==='dark'));});}
+sync();
 // Classify existing light surfaces without replacing photographs or dark image overlays.
 const classified=new WeakSet();
 function classify(scope){const all=[scope,...scope.querySelectorAll('*')];all.forEach(el=>{if(!(el instanceof HTMLElement)||classified.has(el)||el.closest('script,style,svg'))return;classified.add(el);const cs=getComputedStyle(el),rgb=cs.backgroundColor.match(/[\d.]+/g);if(rgb&&rgb.length>=3&&(rgb.length<4||Number(rgb[3])>.15)&&(Number(rgb[0])+Number(rgb[1])+Number(rgb[2]))/3>155)el.classList.add('site-light-surface');if(cs.backgroundImage.includes('gradient')&&!cs.backgroundImage.includes('url(')&&/rgba?\((?:2[0-5]\d|1[6-9]\d)/.test(cs.backgroundImage))el.classList.add('site-light-gradient');});}

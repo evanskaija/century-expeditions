@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initTheme = () => {
         let savedTheme;
         try { savedTheme = localStorage.getItem('century-theme'); } catch {}
-        if (!['light','dark'].includes(savedTheme)) savedTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (!['light','dark'].includes(savedTheme)) savedTheme = 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeToggle(savedTheme);
     };
@@ -831,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Real-time tab synchronization event listener
     window.addEventListener('storage', (e) => {
         if (e.key === 'century-theme') {
-            const newTheme = e.newValue || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const newTheme = ['light','dark'].includes(e.newValue) ? e.newValue : 'light';
             document.documentElement.setAttribute('data-theme', newTheme);
             updateThemeToggle(newTheme);
         } else if (e.key === 'century-lang') {
