@@ -1,0 +1,65 @@
+.zanzibar-page { --sg-paper:#fcfaf5; }
+.zanzibar-page .sg-hero { background-image:url('assets/zanzibar-beach-v1.png'); background-position:center; height:67vh; min-height:560px; max-height:720px; }
+.zanzibar-page .sg-hero p { max-width:750px; }
+.zanzibar-page .sg-facts .sg-wrap { grid-template-columns:repeat(3,1fr); }
+.zanzibar-page .sg-fact { justify-content:center; padding:10px 22px; }
+.zanzibar-page .sg-fact:last-child { border:0; }
+.zanzibar-page .sg-fact > i { display:grid; place-items:center; width:60px; height:60px; border:1px solid #b59657; border-radius:50%; font-size:24px; flex-shrink:0; }
+.zanzibar-page .sg-overview { padding:65px 0 55px; }
+.zanzibar-page .sg-split { gap:55px; }
+.zanzibar-page .sg-portrait > img { object-position:70% center; }
+.zanzibar-page .sg-main .zn-gallery h2 { display:flex; align-items:center; gap:20px; font:11px 'Inter',sans-serif!important; letter-spacing:2px; text-transform:uppercase; color:#a5803e; margin:0 0 20px; }
+.zn-gallery h2::after { content:''; height:1px; background:#cbb47f; flex:1; }
+.zn-gallery .sg-tiles { gap:20px; }.zn-gallery .sg-tile { height:300px; border:1px solid #b69a60; padding:3px; }
+.zn-explore { padding:25px 0 40px; }
+.zanzibar-page .sg-main .zn-explore h2,.zanzibar-page .sg-main .sg-planning h2 { text-align:center; justify-content:center; font-size:36px!important; margin-bottom:30px; }
+.zanzibar-page .sg-planning h2::before { display:none; }
+.zn-explore-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.zn-experience { position:relative; border:1px solid #dcc8a1; border-radius:4px; padding:7px; text-align:center; background:#fffdf8; }
+.zn-experience > img { width:100%; height:190px; object-fit:cover; }
+.zn-experience:nth-child(2) > img { object-position:center 20%; }
+.zn-experience > i { position:relative; display:grid; place-items:center; width:60px; height:60px; border-radius:50%; border:1px solid #b59657; background:#fffdf8; color:#a5803e; font-size:24px; margin:-30px auto 0; box-shadow:0 0 0 5px #fffdf8; }
+.zn-experience > div { padding:20px 22px 12px; }
+.zn-experience h3 { font-size:24px; margin:0 0 14px; }.zanzibar-page .sg-main .zn-experience p { font-size:13px!important; margin:0; }
+.zanzibar-page .sg-planning { border:0; background:transparent; padding-top:0; }
+.zanzibar-page .sg-cta { padding:55px 0; background-image:linear-gradient(90deg,rgba(6,32,24,.92),rgba(6,32,24,.3)),url('assets/zanzibar-beach-v1.png'); }
+.zanzibar-page .sg-cta h2 { max-width:1050px; font-size:38px!important; }
+[data-theme='dark'] .zn-experience,[data-theme='dark'] .zn-experience > i { background:#203b30; }[data-theme='dark'] .zn-experience > i { box-shadow:0 0 0 5px #203b30; }
+@media(max-width:992px) { .zanzibar-page .sg-fact { padding:8px 10px; gap:12px; }.zanzibar-page .sg-fact > i { width:44px; height:44px; font-size:21px; }.zn-explore-grid { grid-template-columns:1fr; }.zn-experience > img { height:260px; } }
+@media(max-width:640px) { .zanzibar-page .sg-hero { min-height:650px; height:80svh; background-position:64% center; }.zanzibar-page .sg-fact { padding:5px; }.zanzibar-page .sg-fact strong { font-size:14px; }.zanzibar-page .sg-fact > i { width:40px; height:40px; font-size:19px; }.zanzibar-page .sg-overview { padding:42px 0; }.zn-gallery .sg-tiles { gap:15px; }.zn-gallery .sg-tile { height:240px; }.zanzibar-page .sg-main .zn-explore h2,.zanzibar-page .sg-main .sg-planning h2 { font-size:29px!important; }.zanzibar-page .sg-cta h2 { font-size:32px!important; }.zanzibar-page .sg-cta-actions { flex-direction:column; align-items:flex-start; gap:20px; } }
+
+.zanzibar-page .sg-hero { text-align:center; }
+.zanzibar-page .sg-hero .sg-breadcrumb { justify-content:center; }
+.zanzibar-page .sg-hero h1 { max-width:none; font-size:clamp(48px,5.6vw,80px)!important; }
+.zanzibar-page .sg-hero p { margin-left:auto; margin-right:auto; }
+.zanzibar-page .sg-hero::before { background:linear-gradient(rgba(10,28,22,.15),rgba(10,28,22,.42)); }
+.zanzibar-page .sg-portrait > img { object-position:center; }
+.zanzibar-page .sg-main .zn-explore h2,.zanzibar-page .sg-main .sg-planning h2 { font-family:'Inter',sans-serif!important; font-size:11px!important; text-transform:uppercase; letter-spacing:2px; font-weight:600; }
+.zn-gallery .sg-tile { height:auto; border:0; padding:0; }.zn-gallery .sg-tile img { height:280px; }.zn-gallery .sg-tile::after { display:none; }
+.zn-gallery .sg-tile figcaption { position:static; text-align:center; color:var(--sg-ink); padding:15px 8px 0; font-size:17px; }.zn-gallery .sg-tile figcaption span { color:#a5803e; }
+.zn-experience { border-radius:0; }
+.zanzibar-page .sg-cta { background-image:linear-gradient(90deg,rgba(6,32,24,.95),rgba(6,32,24,.3)),url('assets/zanzibar-beach-v1.png'); }
+@media(max-width:640px) { .zanzibar-page .sg-hero h1 { font-size:48px!important; }.zn-gallery .sg-tile img { height:240px; }.zanzibar-page .sg-hero { background-position:60% center; } }
+.zanzibar-page .sg-hero { text-align:left; background-position:center; }
+.zanzibar-page .sg-hero .sg-breadcrumb { justify-content:flex-start; }
+.zanzibar-page .sg-hero h1 { max-width:720px; font-size:clamp(48px,5.5vw,76px)!important; }
+.zanzibar-page .sg-hero p { margin-left:0; }
+.zanzibar-page .sg-hero::before { background:linear-gradient(90deg,rgba(6,28,22,.6),rgba(6,28,22,.05)); }
+.zn-gallery .sg-tile figcaption { text-align:left; }
+.zn-experience { text-align:left; }
+.zn-experience > i { display:none; }
+.zn-experience > div { padding:20px 14px; }
+.zanzibar-page .sg-main .zn-explore h2,.zanzibar-page .sg-main .sg-planning h2 { text-align:left; justify-content:flex-start; }
+@media(max-width:640px) { .zanzibar-page .sg-hero h1 { font-size:48px!important; } }
+.zanzibar-page .sg-hero { min-height:580px; background-position:center 48%; }
+.zanzibar-page .sg-hero h1 { font-size:clamp(64px,7vw,100px)!important; }
+.zanzibar-page .sg-hero::before { background:linear-gradient(90deg,rgba(0,50,57,.5),rgba(0,50,57,0)); }
+.zn-gallery .sg-tile { position:relative; }
+.zn-gallery .sg-tile::after { display:block; background:linear-gradient(transparent 45%,rgba(0,35,34,.65)); }
+.zn-gallery .sg-tile figcaption { position:absolute; left:0; bottom:0; color:white; padding:24px; z-index:2; }
+.zn-gallery .sg-tile figcaption span { color:white; font-size:28px; }
+.zanzibar-page .sg-portrait .sg-inset { height:240px; width:220px; object-fit:cover; }
+.zanzibar-page .sg-cta { padding:80px 0; background-image:linear-gradient(90deg,rgba(5,30,30,.88),rgba(5,30,30,.05)),url('assets/zanzibar-sunset-v1.png'); }
+.zanzibar-page .sg-cta p { max-width:520px; }
+.zn-experience > img { height:220px; }
+@media(max-width:640px) { .zanzibar-page .sg-hero h1 { font-size:64px!important; }.zanzibar-page .sg-portrait .sg-inset { width:44%; height:180px; }.zn-experience > img { height:240px; } }

@@ -1,0 +1,29 @@
+.ruaha-page { --sg-paper:#fcfaf4; }
+.ruaha-page .sg-hero { background-image:url('assets/ruaha-hero-v1.png'); background-position:center; height:67vh; min-height:560px; max-height:720px; }
+.ruaha-page .sg-hero p { max-width:750px; }
+.ruaha-page .sg-facts .sg-wrap { grid-template-columns:repeat(3,1fr); }
+.ruaha-page .sg-fact { justify-content:center; padding:10px 22px; }
+.ruaha-page .sg-fact:last-child { border:0; }
+.ruaha-page .sg-fact > i { color:#af893f; font-size:35px; }
+.ruaha-page .sg-overview { padding:65px 0 55px; }
+.ruaha-page .sg-split { gap:55px; }
+.ruaha-page .sg-portrait > img { object-position:75% center; }
+.rh-gallery-label { display:flex; align-items:center; gap:20px; font:11px 'Inter',sans-serif!important; letter-spacing:2px; text-transform:uppercase; color:#a5803e; margin:0 0 20px; }
+.rh-gallery-label::after { content:''; height:1px; background:#cbb47f; flex:1; }
+.ruaha-page .sg-main .rh-gallery-label { font-family:'Inter',sans-serif!important; font-size:11px!important; letter-spacing:2px!important; text-transform:uppercase!important; }
+.rh-gallery .sg-tiles { gap:20px; }.rh-gallery .sg-tile { height:auto; }.rh-gallery .sg-tile img { height:280px; }.rh-gallery .sg-tile::after { display:none; }
+.rh-gallery .sg-tile figcaption { position:static; text-align:center; color:var(--sg-ink); font-size:17px; padding:16px 8px; }.rh-gallery .sg-tile figcaption span { color:#a5803e; }
+.rh-explore { padding:38px 0 45px; background:#f5f1e8; }
+.ruaha-page .sg-main .rh-explore h2,.ruaha-page .sg-main .sg-planning h2 { text-align:center; justify-content:center; font-size:36px!important; margin-bottom:30px; }
+.ruaha-page .sg-planning h2::before { display:none; }
+.rh-explore-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.rh-explore .sg-plan-card { flex-direction:column; align-items:center; text-align:center; border-radius:0; gap:14px; padding:28px 24px; background:transparent; }
+.rh-explore .sg-plan-card > i { border:0; height:42px; width:60px; font-size:34px; }
+.rh-explore .sg-plan-card h3 { font-size:23px; }
+.ruaha-page .sg-planning { border:0; background:transparent; padding-top:45px; }
+.ruaha-page .sg-cta { padding:55px 0; text-align:center; background-image:linear-gradient(rgba(6,28,20,.45),rgba(6,28,20,.7)),url('assets/ruaha-hero-v1.png'); }
+.ruaha-page .sg-cta h2 { max-width:1000px; margin-left:auto; margin-right:auto; }
+.ruaha-page .sg-cta .sg-eyebrow,.ruaha-page .sg-cta-actions { justify-content:center; }.ruaha-page .sg-cta .sg-eyebrow::after { display:none; }
+[data-theme='dark'] .rh-explore { background:#182f26; }
+@media(max-width:992px) { .ruaha-page .sg-fact { padding:8px 10px; gap:12px; }.rh-explore-grid { grid-template-columns:1fr; }.rh-explore .sg-plan-card { padding:24px; } }
+@media(max-width:640px) { .ruaha-page .sg-hero { min-height:650px; height:80svh; background-position:65% center; }.ruaha-page .sg-fact { padding:5px; }.ruaha-page .sg-fact strong { font-size:14px; }.ruaha-page .sg-fact > i { font-size:26px; }.ruaha-page .sg-overview { padding:42px 0; }.rh-gallery .sg-tiles { gap:15px; }.rh-gallery .sg-tile img { height:240px; }.ruaha-page .sg-main .rh-explore h2,.ruaha-page .sg-main .sg-planning h2 { font-size:29px!important; }.ruaha-page .sg-cta h2 { font-size:34px!important; }.ruaha-page .sg-cta-actions { flex-direction:column; gap:20px; } }

@@ -1,0 +1,7 @@
+.ngorongoro-page .sg-hero { background-image:url('assets/dest-hero-bg.jpg'); background-position:center 48%; }
+.ngorongoro-page .sg-hero h1 { max-width:1000px; font-size:clamp(52px,5.8vw,82px)!important; }
+.ngorongoro-page .sg-hero::before { background:linear-gradient(90deg,rgba(9,29,24,.69),rgba(9,29,24,.14) 80%),linear-gradient(0deg,rgba(8,28,20,.2),transparent 60%); }
+.ngorongoro-page .sg-cta { background-image:linear-gradient(90deg,rgba(7,38,28,.94),rgba(7,38,28,.55)),url('assets/dest-hero-bg.jpg'); background-position:center 60%; }
+.ngorongoro-page .sg-fact { padding-left:20px; padding-right:20px; }
+.ngorongoro-page .sg-fact:first-child { padding-left:0; }
+@media(max-width:640px) { .ngorongoro-page .sg-hero h1 { font-size:clamp(40px,10vw,57px)!important; letter-spacing:-1.7px; overflow-wrap:normal; }.ngorongoro-page .sg-hero { background-position:60% center; }.ngorongoro-page .sg-fact,.ngorongoro-page .sg-fact:first-child { padding:5px; }.ngorongoro-page .sg-fact strong { font-size:14px; } }

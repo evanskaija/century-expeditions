@@ -1,5 +1,30 @@
 // Century Adventures - Premium Safari Interactivity
 
+// Canonical Redirect to HTTPS & www (excluding local development)
+if (!['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+    if (window.location.hostname === 'century-adventures.com') {
+        window.location.replace('https://www.century-adventures.com' + window.location.pathname + window.location.search + window.location.hash);
+    } else if (window.location.protocol === 'http:') {
+        window.location.replace('https://' + window.location.hostname + window.location.pathname + window.location.search + window.location.hash);
+    }
+}
+
+// Force clear service worker and cache for development updates
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+        for (let registration of registrations) {
+            registration.unregister();
+        }
+    });
+}
+if ('caches' in window) {
+    caches.keys().then(names => {
+        for (let name of names) {
+            caches.delete(name);
+        }
+    });
+}
+
 // ── Global: Mobile Menu Toggle (called via onclick from HTML) ──
 function toggleMobileMenu() {
     // Rely on DOM click event listener to prevent double-trigger issues
@@ -8,193 +33,109 @@ function toggleMobileMenu() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Century Adventures experience initialized!');
     
+    // Pre-fill destination parameter on enquire.html page based on referrer or URL query
+    if (window.location.pathname.includes('enquire.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        let destParam = urlParams.get('destination');
+        if (!destParam && document.referrer) {
+            try {
+                const refUrl = new URL(document.referrer);
+                const refPath = refUrl.pathname.toLowerCase();
+                if (refPath.includes('serengeti')) destParam = 'serengeti';
+                else if (refPath.includes('ngorongoro')) destParam = 'ngorongoro';
+                else if (refPath.includes('tarangire')) destParam = 'tarangire';
+                else if (refPath.includes('manyara')) destParam = 'manyara';
+                else if (refPath.includes('zanzibar')) destParam = 'zanzibar';
+                else if (refPath.includes('kilimanjaro')) destParam = 'kilimanjaro';
+            } catch(e) {
+                // Ignore parsing errors
+            }
+        }
+        if (destParam) {
+            const destSelect = document.querySelector('select[name="destination"]');
+            if (destSelect) {
+                destSelect.value = destParam.toLowerCase();
+            }
+        }
+    }
     // Standard Header Injection for Unified Navigation & Toggles
     const injectHeader = () => {
         const header = document.querySelector('header.header');
         if (!header) return;
+        header.style.setProperty('background', '#0b1a13', 'important');
+        header.style.setProperty('background-color', '#0b1a13', 'important');
 
-        const currentLang = localStorage.getItem('century-lang') || 'en';
-        const currentTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('century-theme') || 'light';
-
-        const langHeaderLabel = currentLang === 'en' ? 'SWAHILI' : 'ENGLISH';
-        const langMobileLabel = currentLang === 'en' ? 'Swahili' : 'English';
-
-        const themeHeaderLabel = currentTheme === 'dark' ? 'LIGHT' : 'DARK';
-        const themeHeaderIconClass = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        const themeMobileIcon = currentTheme === 'dark' ? '☀️' : '🌙';
-        const themeMobileLabel = currentLang === 'sw' 
-            ? (currentTheme === 'dark' ? 'Mwanga' : 'Giza') 
-            : (currentTheme === 'dark' ? 'Light Mode' : 'Dark Mode');
-
-        header.innerHTML = `
-            <div class="container header-content">
-                <div class="logo">
-                    <a href="index.html" class="logo-wrap">
-                        <img src="assets/logo.png" alt="Century Adventures Logo">
-                        <span class="brand-name">CENTURY ADVENTURES<span>Safari &amp; Tours</span></span>
+        // If the header already contains the unified luxury header, do not overwrite it
+        if (!header.querySelector('.header-container')) {
+            header.className = 'header luxury-header';
+            header.id = 'main-header';
+            header.innerHTML = `
+                <div class="container header-container">
+                    <!-- Brand / Logo on Left -->
+                    <a href="index.html" class="header-brand" aria-label="Century Expeditions Home">
+                        <div class="brand-logo-wrap">
+                            <img src="assets/logo.png" alt="Century Expeditions Logo" class="brand-logo-img">
+                        </div>
+                        <div class="brand-text-stack">
+                            <span class="brand-name">CENTURY EXPEDITIONS</span>
+                            <span class="brand-tagline" data-en="TANZANIA SAFARI EXPERTS" data-sw="WATAALAMU WA SAFARI">TANZANIA SAFARI EXPERTS</span>
+                        </div>
                     </a>
-                </div>
-                <nav class="nav">
-                    <!-- Mobile Menu Header -->
-                    <div class="mobile-menu-header">
-                        <div class="mobile-menu-logo">
-                            <img src="assets/logo.png" alt="Century Adventures Logo">
-                            <span class="mobile-brand-name">CENTURY ADVENTURES</span>
-                        </div>
-                        <button class="mobile-menu-close-btn" id="nav-close-btn" aria-label="Close navigation menu">✕</button>
-                    </div>
 
-                    <!-- Scrollable content wrapper for mobile -->
-                    <div class="mobile-menu-scroll">
-                        <!-- User Action Buttons -->
-                        <div class="mobile-user-actions">
-                            <button class="action-btn lang-toggle" onclick="toggleLang(event)">
-                                <span class="btn-icon">🌐</span> <span class="btn-text lang-text">${langMobileLabel}</span>
-                            </button>
-                            <button class="action-btn theme-toggle" onclick="toggleTheme(event)">
-                                <span class="btn-icon theme-icon">${themeMobileIcon}</span> <span class="btn-text theme-text">${themeMobileLabel}</span>
-                            </button>
-                            <a href="tel:+255747115390" class="action-btn call-btn">
-                                <span class="btn-icon">📞</span> <span class="btn-text" data-en="Call Us" data-sw="Tupigie">Call Us</span>
-                            </a>
-                            <a href="mailto:info@century-adventures.com" class="action-btn email-btn">
-                                <span class="btn-icon">📧</span> <span class="btn-text" data-en="Email Us" data-sw="Tuandikie">Email Us</span>
-                            </a>
-                        </div>
-
-                        <!-- Main Navigation Menu -->
-                        <ul class="nav-menu-list">
-                            <li>
-                                <a href="index.html" id="nav-home">
-                                    <span class="nav-item-content"><span class="nav-item-icon">🏠</span> <span class="nav-item-text" data-en="Home" data-sw="Nyumbani">Home</span></span>
-                                </a>
+                    <!-- Navigation Links in Center -->
+                    <nav class="nav">
+                        <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
+                        <ul class="nav-links">
+                            <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                            <li class="mobile-only-action mobile-menu-controls">
+                                <button class="toggle-btn lang-box-btn" onclick="toggleLang(event)" aria-label="Toggle language">
+                                    <span class="lang-flag-icon">🇬🇧</span> <span class="lang-code-text">EN</span> <i class="fas fa-chevron-down lang-chevron"></i>
+                                </button>
+                                <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle theme">
+                                    <i class="fas fa-moon"></i> <span class="toggle-text">DARK</span>
+                                </button>
                             </li>
-                            <li class="dropdown">
-                                <a href="safaris.html" id="nav-safaris">
-                                    <span class="nav-item-content"><span class="nav-item-icon">🦁</span> <span class="nav-item-text" data-en="Safaris" data-sw="Safari">Safaris</span></span>
-                                    <i class="fas fa-chevron-down caret-icon"></i>
-                                </a>
-                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="6-day-northern-tanzania-highlights.html" data-en="6 Day Northern Tanzania Safari" data-sw="Siku 6 Safari ya Kaskazini">6 Day Northern Tanzania Safari</a></li>
-                                    <li><a href="10-days-luxury-safari-zanzibar.html" data-en="10 Days Luxury &amp; Zanzibar Retreat" data-sw="Siku 10 Safari na Zanzibar">10 Days Luxury &amp; Zanzibar Retreat</a></li>
-                                    <li><a href="10-days-tanzania-great-migration.html" data-en="10 Days Great Migration Safari" data-sw="Siku 10 Uhamiaji Mkuu">10 Days Great Migration Safari</a></li>
-                                    <li><a href="12-days-best-of-south-and-north.html" data-en="12 Days South &amp; North Safari" data-sw="Siku 12 Kusini na Kaskazini">12 Days South &amp; North Safari</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="destinations.html" id="nav-destinations">
-                                    <span class="nav-item-content"><span class="nav-item-icon">📍</span> <span class="nav-item-text" data-en="Destinations" data-sw="Maeneo">Destinations</span></span>
-                                    <i class="fas fa-chevron-down caret-icon"></i>
-                                </a>
-                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="katavi.html" data-en="Katavi National Park" data-sw="Hifadhi ya Katavi">Katavi National Park</a></li>
-                                    <li><a href="selous.html" data-en="Selous Game Reserve" data-sw="Hifadhi ya Selous">Selous Game Reserve</a></li>
-                                    <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
-                                    <li><a href="mikumi.html" data-en="Mikumi National Park" data-sw="Hifadhi ya Mikumi">Mikumi National Park</a></li>
-                                    <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
-                                    <li><a href="gombe.html" data-en="Gombe Stream National Park" data-sw="Hifadhi ya Gombe">Gombe Stream National Park</a></li>
-                                    <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
-                                    <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
-                                    <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="experiences.html" id="nav-experiences">
-                                    <span class="nav-item-content"><span class="nav-item-icon">✨</span> <span class="nav-item-text" data-en="Experiences" data-sw="Uzoefu">Experiences</span></span>
-                                    <i class="fas fa-chevron-down caret-icon"></i>
-                                </a>
-                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Safaris" data-sw="Safari za Fungate">Honeymoon Safaris</a></li>
-                                    <li><a href="family-safaris.html" data-en="Family Safaris" data-sw="Safari za Familia">Family Safaris</a></li>
-                                    <li><a href="migration-safaris.html" data-en="Migration Safaris" data-sw="Safari za Uhamiaji">Migration Safaris</a></li>
-                                    <li><a href="volunteer.html" data-en="Volunteer in Tanzania" data-sw="Kujitolea Tanzania">Volunteer in Tanzania</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about.html" id="nav-about">
-                                    <span class="nav-item-content"><span class="nav-item-icon">ℹ️</span> <span class="nav-item-text" data-en="About Us" data-sw="Kuhusu Sisi">About Us</span></span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" id="nav-resources">
-                                    <span class="nav-item-content"><span class="nav-item-icon">🧭</span> <span class="nav-item-text" data-en="Travel Guide" data-sw="Mwongozo wa Safari">Travel Guide</span></span>
-                                    <i class="fas fa-chevron-down caret-icon"></i>
-                                </a>
-                                <span class="mobile-dropdown-toggle"><i class="fas fa-chevron-down"></i></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Taarifa za Visa">Visa Information</a></li>
-                                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
-                                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari za Wanawake">Solo Female Travel</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="contact.html" id="nav-contact">
-                                    <span class="nav-item-content"><span class="nav-item-icon">📞</span> <span class="nav-item-text" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</span></span>
-                                </a>
-                            </li>
-                            <li class="mobile-only-action book-now-item">
-                                <a href="enquire.html" id="nav-book">
-                                    <span class="nav-item-content"><span class="nav-item-icon">📅</span> <span class="nav-item-text" data-en="Book Now" data-sw="Weka Sasa">Book Now</span></span>
-                                </a>
-                            </li>
+                            <li><a href="index.html" id="nav-home" data-en="Home" data-sw="Nyumbani"><i class="fas fa-home nav-home-icon"></i> <span data-en="HOME" data-sw="NYUMBANI">HOME</span></a></li>
+                            <li><a href="safaris.html" id="nav-safaris" data-en="Safaris" data-sw="Safari">SAFARIS</a></li>
+                            <li><a href="destinations.html" id="nav-destinations" data-en="Destinations" data-sw="Maeneo">DESTINATIONS</a></li>
+                            <li><a href="about.html" id="nav-about" data-en="About Us" data-sw="Kuhusu Sisi">ABOUT US</a></li>
+                            
+                            <li><a href="contact.html" id="nav-contact" data-en="Contact Us" data-sw="Wasiliana Nasi">CONTACT US</a></li>
+                            
                         </ul>
+                    </nav>
 
-                        <!-- Mobile Contact Shortcuts -->
-                        <div class="mobile-menu-contacts">
-                            <a href="tel:+255747115390" class="contact-shortcut">
-                                <span class="shortcut-icon">📞</span> <span class="shortcut-text">+255 747 115 390</span>
-                            </a>
-                            <a href="mailto:info@century-adventures.com" class="contact-shortcut">
-                                <span class="shortcut-icon">📧</span> <span class="shortcut-text">info@century-adventures.com</span>
-                            </a>
-                            <div class="contact-shortcut">
-                                <span class="shortcut-icon">📍</span> <span class="shortcut-text">Dar es Salaam, Tanzania</span>
-                            </div>
+                    <!-- Right Utility Actions: Language + Theme + Book Now -->
+                    <div class="header-actions">
+                        <div class="header-toggles">
+                            <button class="toggle-btn lang-box-btn" onclick="toggleLang(event)" aria-label="Toggle language">
+                                <span class="lang-flag-icon">🇬🇧</span> <span class="lang-code-text">EN</span> <i class="fas fa-chevron-down lang-chevron"></i>
+                            </button>
+                            <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle theme">
+                                <i class="fas fa-moon"></i> <span class="toggle-text">DARK</span>
+                            </button>
                         </div>
-
-                        <!-- Mobile Social Links -->
-                        <div class="mobile-menu-socials">
-                            <a href="https://instagram.com/century_adventures" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://wa.me/255747115390" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                            <a href="https://tripadvisor.com" target="_blank" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
-                        </div>
+                        <a href="contact.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">
+                            <span data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</span>
+                        </a>
                     </div>
 
-                    <!-- Fixed Book Safari CTA Button -->
-                    <div class="mobile-menu-book-fixed">
-                        <a href="enquire.html" class="fixed-book-btn" data-en="BOOK YOUR SAFARI" data-sw="WEKA SAFARI YAKO">BOOK YOUR SAFARI</a>
-                    </div>
-                </nav>
-
-                <!-- Mobile Hamburger Menu Button (Three Lines) -->
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-
-                <div class="header-actions">
-                    <div class="header-toggles">
-                        <button class="toggle-btn lang-toggle" onclick="toggleLang(event)">${langHeaderLabel}</button>
-                        <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)"><i class="${themeHeaderIconClass}"></i> ${themeHeaderLabel}</button>
-                    </div>
-                    <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA SASA">BOOK NOW</a>
+                    <!-- Mobile Hamburger Toggle -->
+                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </button>
                 </div>
-            </div>
-        `;
+            `;
+        }
 
         // Highlight active page
         const path = window.location.pathname;
         const page = path.split('/').pop() || 'index.html';
 
         const homeLinks = ['index.html', ''];
-        const destinations = ['katavi.html', 'selous.html', 'ruaha.html', 'mikumi.html', 'serengeti.html', 'gombe.html', 'ngorongoro.html', 'manyara.html', 'tarangire.html'];
+        const destinations = ['destinations.html'];
 
         if (homeLinks.includes(page)) {
             const el = document.getElementById('nav-home');
@@ -208,18 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (page === 'safaris.html') {
             const el = document.getElementById('nav-safaris');
             if (el) el.classList.add('active');
-        } else if (['experiences.html', 'activities.html', 'accommodations.html', 'planner.html', 'family-safaris.html', 'migration-safaris.html', 'zanzibar-beach.html'].includes(page)) {
-            const el = document.getElementById('nav-experiences');
-            if (el) el.classList.add('active');
-        } else if (['blog.html', 'faq.html', 'gallery.html', 'testimonials.html', 'best-time-to-visit-tanzania.html', 'health-safety-tanzania.html', 'obtaining-visa-tanzania.html', 'solo-female-travel-tanzania.html', 'what-to-wear-safari.html', 'dar-es-salaam-highlights.html', 'advice-template.html'].includes(page)) {
-            const el = document.getElementById('nav-resources');
-            if (el) el.classList.add('active');
-        } else if (page === 'volunteer.html') {
-            const el = document.getElementById('nav-volunteer');
-            if (el) el.classList.add('active');
-        } else if (page === 'vehicles.html') {
-            const el = document.getElementById('nav-vehicles');
-            if (el) el.classList.add('active');
         } else if (page === 'contact.html') {
             const el = document.getElementById('nav-contact');
             if (el) el.classList.add('active');
@@ -230,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Theme Switcher Logic
     const initTheme = () => {
-        const savedTheme = localStorage.getItem('century-theme') || 'light';
+        let savedTheme;
+        try { savedTheme = localStorage.getItem('century-theme'); } catch {}
+        if (!['light','dark'].includes(savedTheme)) savedTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         updateThemeToggle(savedTheme);
     };
@@ -239,17 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const themeBtns = document.querySelectorAll('.theme-toggle');
         themeBtns.forEach(themeBtn => {
             if (themeBtn) {
-                if (themeBtn.classList.contains('action-btn') || themeBtn.closest('.mobile-user-actions')) {
-                    const icon = theme === 'dark' ? '☀️' : '🌙';
-                    const text = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
-                    const lang = localStorage.getItem('century-lang') || 'en';
-                    const localizedText = lang === 'sw' 
-                        ? (theme === 'dark' ? 'Mwanga' : 'Giza') 
-                        : text;
-                    themeBtn.innerHTML = `<span class="btn-icon">${icon}</span> <span class="btn-text theme-text">${localizedText}</span>`;
-                } else {
-                    themeBtn.innerHTML = `<i class="${theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}"></i> ${theme === 'dark' ? 'LIGHT' : 'DARK'}`;
-                }
+                // Update button label text
+                themeBtn.innerHTML = themeBtn.closest('.mobile-panel-controls') ? `<i class="${theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}" aria-hidden="true"></i><span class="menu-mode-label">${theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>` : `<i class="${theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}"></i> <span class="toggle-text">${theme === 'dark' ? 'LIGHT' : 'DARK'}</span>`;
+                themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+                themeBtn.setAttribute('aria-pressed', String(theme === 'dark'));
             }
         });
     };
@@ -263,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('century-theme', newTheme);
+        try { localStorage.setItem('century-theme', newTheme); } catch {}
         updateThemeToggle(newTheme);
     };
 
@@ -871,16 +795,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update lang toggle button label
         const langBtns = document.querySelectorAll('.lang-toggle');
         langBtns.forEach(btn => {
-            if (btn.classList.contains('action-btn') || btn.closest('.mobile-user-actions')) {
-                const text = lang === 'en' ? 'Swahili' : 'English';
-                btn.innerHTML = `<span class="btn-icon">🌐</span> <span class="btn-text lang-text">${text}</span>`;
-            } else {
-                btn.textContent = lang === 'en' ? 'SWAHILI' : 'ENGLISH';
-            }
+            btn.innerHTML = lang === 'en'
+                ? '<span class="lang-label active">EN</span><span class="lang-divider">/</span><span class="lang-label">SW</span>'
+                : '<span class="lang-label">EN</span><span class="lang-divider">/</span><span class="lang-label active">SW</span>';
         });
 
-        // Also refresh theme toggle text to translate theme labels immediately
-        updateThemeToggle(localStorage.getItem('century-theme') || 'light');
+        // Update TANAPA-style boxed language toggle
+        const langBoxBtns = document.querySelectorAll('.lang-box-btn');
+        langBoxBtns.forEach(btn => {
+            btn.innerHTML = lang === 'en'
+                ? '<span class="lang-flag-icon">🇬🇧</span> <span class="lang-code-text">EN</span> <i class="fas fa-chevron-down lang-chevron"></i>'
+                : '<span class="lang-flag-icon">🇹🇿</span> <span class="lang-code-text">SW</span> <i class="fas fa-chevron-down lang-chevron"></i>';
+        });
 
         // Update Read More button labels to match current language
         document.querySelectorAll('.read-more-btn').forEach(btn => {
@@ -905,7 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Real-time tab synchronization event listener
     window.addEventListener('storage', (e) => {
         if (e.key === 'century-theme') {
-            const newTheme = e.newValue || 'light';
+            const newTheme = e.newValue || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.setAttribute('data-theme', newTheme);
             updateThemeToggle(newTheme);
         } else if (e.key === 'century-lang') {
@@ -952,6 +878,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function openMenu() {
         if (!nav || !mobileToggle) return;
         nav.classList.add('active');
+        mobileToggle.setAttribute('aria-expanded','true');
+        mobileToggle.setAttribute('aria-controls',nav.id || 'mobileNavDrawer');
         mobileToggle.classList.add('open');
         navOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -960,6 +888,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         if (!nav || !mobileToggle) return;
         nav.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded','false');
         mobileToggle.classList.remove('open');
         navOverlay.classList.remove('active');
         document.body.style.overflow = '';
@@ -967,6 +896,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hamburger click — stop propagation so document handler doesn't fire immediately
     if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded','false');
         mobileToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             nav.classList.contains('active') ? closeMenu() : openMenu();
@@ -984,13 +914,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Click dark overlay to close
     navOverlay.addEventListener('click', () => closeMenu());
+    document.addEventListener('keydown',e=>{if(!nav?.classList.contains('active'))return;if(e.key==='Escape'){closeMenu();mobileToggle?.focus();}if(e.key==='Tab'){const items=[...nav.querySelectorAll('a,button')].filter(el=>el.getClientRects().length);const first=items[0],last=items.at(-1);if(e.shiftKey&&(document.activeElement===first||!nav.contains(document.activeElement))){e.preventDefault();last?.focus();}else if(!e.shiftKey&&(document.activeElement===last||!nav.contains(document.activeElement))){e.preventDefault();first?.focus();}}});
+    window.addEventListener('resize',()=>{if(innerWidth>1100)closeMenu();},{passive:true});
 
     // Click anywhere outside nav to close
     document.addEventListener('click', (e) => {
         if (nav && nav.classList.contains('active')) {
-            // Prevent drawer from closing if click target is detached from DOM
             if (!e.target.isConnected) return;
-            
             if (!nav.contains(e.target) && mobileToggle && !mobileToggle.contains(e.target)) {
                 closeMenu();
             }
@@ -1020,100 +950,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Intersection Observer for ALL scroll animations──
-    const observerOptions = {
-        threshold: 0.08,
-        rootMargin: '0px 0px -40px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe .animate-in elements (existing)
-    document.querySelectorAll('.animate-in').forEach(el => {
-        if (el.closest('.marquee-track')) return;
-        observer.observe(el);
-    });
-
-    // Observe scroll-reveal elements
-    document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => {
-        if (el.closest('.marquee-track')) return;
-        observer.observe(el);
-    });
-
-    // ── Auto-apply scroll-reveal to all elements across the entire website ──
-    document.querySelectorAll('section, .section, .itinerary-day, .info-col, .link-col, .tripadvisor-card, .footer-col, .about-content, .contact-grid > div, .form-container, .safari-card, .package-card, .blog-card, .detail-card, .faq-item, .gallery-item, .card, .container > p, .container > img').forEach((el) => {
-        if (el.closest('.marquee-track')) return;
-        if (!el.classList.contains('scroll-reveal') && !el.classList.contains('scroll-reveal-left') && !el.classList.contains('scroll-reveal-right') && !el.classList.contains('scroll-reveal-scale')) {
-            el.classList.add('scroll-reveal');
-        }
-        observer.observe(el);
-    });
-
-    // Section headings animate in
-    document.querySelectorAll('.section h2, .section .sub-heading, .section .section-desc').forEach(el => {
-        if (el.closest('.marquee-track')) return;
-        el.classList.add('scroll-reveal');
-        observer.observe(el);
-    });
-
-    // Why Us items stagger
-    document.querySelectorAll('.why-us-item').forEach((el, i) => {
-        if (el.closest('.marquee-track')) return;
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
-    // Destination cards
-    document.querySelectorAll('.destination-card').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.12}s`;
-        observer.observe(el);
-    });
-
-    // Tip cards
-    document.querySelectorAll('.tip-card').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
-    // Feature cards
-    document.querySelectorAll('.feature-card').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
-    // Testimonials
-    document.querySelectorAll('.testimonial-card').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.12}s`;
-        observer.observe(el);
-    });
-
-    // About section
-    const aboutImg = document.querySelector('.about-image');
-    if (aboutImg) { aboutImg.classList.add('scroll-reveal-left'); observer.observe(aboutImg); }
-    const aboutText = document.querySelector('.about-text');
-    if (aboutText) { aboutText.classList.add('scroll-reveal-right'); observer.observe(aboutText); }
-
-    // Contact items
-    document.querySelectorAll('.contact-item-box').forEach((el, i) => {
-        el.classList.add('scroll-reveal');
-        el.style.transitionDelay = `${i * 0.1}s`;
-        observer.observe(el);
-    });
-
     // Auto-scroll logic for horizontal grids
     const setupAutoScroll = (selector, step) => {
+        if(matchMedia('(pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches)return;
         const grid = document.querySelector(selector);
         if (grid) {
             let scrollAmount = 0;
@@ -1268,35 +1107,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let targetX = null;
             let isDragging = false;
             let isAnimating = false;
+            let isHovered = false;
+            let currentSpeed = baseSpeed;
             let startX = 0;
             let startTranslateX = 0;
             let lastX = 0;
             let velocity = 0;
             let paused = false;
             let resumeTimeout = null;
-
-            // Setup dots for experiences if applicable
-            const isExperiences = wrapper.closest('.experiences-section');
-            const expDots = isExperiences ? document.querySelectorAll('#experiences-indicators .indicator-dot') : [];
-            let lastActiveDotIndex = -1;
-
-            const updateExpDots = (currentX) => {
-                if (expDots.length === 0) return;
-                const currentCardWidth = getCardWidth();
-                // Find offset relative to halfWidth for infinite loop
-                const offset = Math.abs(currentX) % halfWidth;
-                const index = Math.round(offset / currentCardWidth) % expDots.length;
-                if (index !== lastActiveDotIndex) {
-                    lastActiveDotIndex = index;
-                    expDots.forEach((dot, idx) => {
-                        if (idx === index) {
-                            dot.classList.add('active');
-                        } else {
-                            dot.classList.remove('active');
-                        }
-                    });
-                }
-            };
 
             const setPosition = (x) => {
                 posX = x;
@@ -1317,11 +1135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 track.style.transform = `translateX(${posX}px)`;
-
-                // Update indicator dots for experiences
-                if (isExperiences) {
-                    updateExpDots(posX);
-                }
             };
 
             // Setup initial position
@@ -1348,8 +1161,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         setPosition(posX + dx * 0.15 * dt);
                     }
                 } else if (!paused) {
-                    // Standard smooth auto-scrolling
-                    setPosition(posX + baseSpeed * dt);
+                    // Standard smooth auto-scrolling with silky hover deceleration/acceleration
+                    const targetSpeed = isHovered ? 0 : baseSpeed;
+                    currentSpeed += (targetSpeed - currentSpeed) * Math.min(0.08 * dt, 1);
+                    if (Math.abs(currentSpeed) > 0.005) {
+                        setPosition(posX + currentSpeed * dt);
+                    }
                 }
 
                 requestAnimationFrame(animateLoop);
@@ -1459,36 +1276,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Click dots for experiences
-            if (isExperiences && expDots.length > 0) {
-                expDots.forEach(dot => {
-                    dot.addEventListener('click', () => {
-                        const index = parseInt(dot.dataset.index || '0');
-                        paused = true;
-                        isAnimating = true;
-                        clearTimeout(resumeTimeout);
-
-                        const currentCardWidth = getCardWidth();
-                        const currentCardIndex = Math.round(posX / currentCardWidth);
-                        const diff = index - (Math.abs(currentCardIndex) % expDots.length);
-                        targetX = (currentCardIndex - diff) * currentCardWidth;
-
-                        resumeTimeout = setTimeout(() => {
-                            isAnimating = false;
-                            targetX = null;
-                            paused = false;
-                        }, 4000);
-                    });
-                });
-            }
-
-            // Hover control (Pause on hover for desktop)
+            // Hover control (Smooth slow/pause on hover for desktop)
             wrapper.addEventListener('mouseenter', () => {
-                if (!isDragging) paused = true;
+                if (!isDragging) isHovered = true;
             });
             wrapper.addEventListener('mouseleave', () => {
-                if (!isDragging && !isAnimating && targetX === null) {
-                    paused = false;
+                if (!isDragging) {
+                    isHovered = false;
+                    if (!isAnimating && targetX === null) {
+                        paused = false;
+                    }
                 }
             });
         });
@@ -1621,14 +1418,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>Serengeti: 28°C</span>
         </div>
     `;
-    // document.body.appendChild(weatherSection); // Available for dynamic injection
-
     // ── Global Form Submission Handler ──
     document.addEventListener('submit', (e) => {
+        const form = e.target;
+        
         // Prevent actual page navigation/reload
         e.preventDefault();
-        
-        const form = e.target;
         
         // Skip assistant widget forms as they are handled by their own listeners
         if (form.id === 'quoteForm' || form.id === 'reportForm' || form.id === 'supportForm') {
@@ -1648,6 +1443,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isBookForm = window.location.pathname.includes('book.html') && form.id === 'mainBookingForm';
         const isEnquireForm = window.location.pathname.includes('enquire.html') && form.id === 'mainBookingForm';
         const isSafariPageBookingForm = form.classList.contains('booking-form') && !isBookForm && !isContactForm;
+        const isCustomExperienceForm = form.classList.contains('custom-experience-form') || form.id === 'customExperienceForm';
         
         if (isContactForm) {
             name = form.querySelector('#name')?.value || '';
@@ -1657,8 +1453,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const travelDate = form.querySelector('#travel_date')?.value || '';
             const travelers = form.querySelector('#travelers')?.value || '';
             message = form.querySelector('#message')?.value || '';
-            
-            categoryId = (safariType === 'wildlife' || safariType === 'custom') ? 'safari' : 'travel';
+            // Contact page messages must always go to General Contact (admin@) department
+            categoryId = 'general';
             
             text = `📬 Contact Us Form Inquiry:\n` +
                    `• Name: ${name}\n` +
@@ -1667,6 +1463,20 @@ document.addEventListener('DOMContentLoaded', () => {
                    `• Safari Type: ${safariType}\n` +
                    `• Travel Date: ${travelDate}\n` +
                    `• Guests: ${travelers}\n` +
+                   `• Message: ${message}`;
+        } else if (isCustomExperienceForm) {
+            name = form.querySelector('[name="name"]')?.value || '';
+            email = form.querySelector('[name="email"]')?.value || '';
+            phone = form.querySelector('[name="phone"]')?.value || '';
+            const style = form.querySelector('[name="experience_style"]')?.value || '';
+            message = form.querySelector('[name="message"]')?.value || '';
+            
+            categoryId = 'sales';
+            text = `✨ Custom Experience Request:\n` +
+                   `• Name: ${name}\n` +
+                   `• Email: ${email}\n` +
+                   `• Phone: ${phone}\n` +
+                   `• Experience Style: ${style}\n` +
                    `• Message: ${message}`;
         } else if (isBookForm) {
             // Text inputs
@@ -1800,7 +1610,7 @@ document.addEventListener('DOMContentLoaded', () => {
                    `• Travelers: ${adults} Adults, ${children} Children\n` +
                    `• Travel Date: ${travelDate}\n` +
                    `• Special Requests: ${message}`;
-                   
+                    
             const durationMatch = packageName.match(/(\d+)-Day/i);
             const duration = durationMatch ? parseInt(durationMatch[1]) : 7;
             const guests = adults + children;
@@ -1856,9 +1666,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let department = 'info';
             if (categoryId === 'safari') department = 'booking';
-            else if (categoryId === 'pricing') department = 'sales';
+            else if (categoryId === 'pricing' || categoryId === 'sales') department = 'sales';
             else if (categoryId === 'problem' || categoryId === 'support') department = 'support';
-
+ 
             const conv = {
                 id: 'conv-' + Date.now(),
                 visitorId: visitorIdVal,
@@ -1877,52 +1687,249 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             conversations.push(conv);
             localStorage.setItem('century-conversations', JSON.stringify(conversations));
+ 
+            // Disable button and add loading spinner
+            const submitBtn = form.querySelector('button[type="submit"]');
+            let originalBtnHtml = '';
+            if (submitBtn) {
+                originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.classList.add('btn-loading');
+                submitBtn.disabled = true;
+            }
 
-            // Trigger mailto route to configured department email address
-            const getRouteEmail = () => {
-                const defaults = {
-                    info: 'info@centuryadventures.com',
-                    booking: 'bookings@centuryadventures.com',
-                    support: 'support@centuryadventures.com',
-                    sales: 'sales@centuryadventures.com'
-                };
-                try {
-                    const saved = JSON.parse(localStorage.getItem('century-routing-emails')) || defaults;
-                    if (isBookForm || isSafariPageBookingForm) return saved.booking || defaults.booking;
-                    if (isEnquireForm) return saved.sales || defaults.sales;
-                    return saved.info || defaults.info;
-                } catch(e) {
-                    if (isBookForm || isSafariPageBookingForm) return defaults.booking;
-                    if (isEnquireForm) return defaults.sales;
-                    return defaults.info;
-                }
+            // Construct payload based on the form type
+            let payload = {
+                name: name,
+                email: email,
+                phone: phone,
+                message: message,
+                conv_id: conv.id,
+                _elapsed: 99,
+                website: ""
             };
-            const routeEmail = getRouteEmail();
-            const subjectPrefix = isBookForm || isSafariPageBookingForm ? 'Safari Booking Request' : (isEnquireForm ? 'Quote Inquiry' : 'Contact Inquiry');
-            const mailSubject = `${subjectPrefix} - Century Adventures`;
-            const mailBody = `${text}\n\nVisitor ID: ${visitorIdVal}`;
-            
-            window.open(`mailto:${routeEmail}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`, '_self');
-        }
-        
-        // Show alerts
-        let alertMsg = '';
-        if (isBookForm || isSafariPageBookingForm || isEnquireForm || form.classList.contains('booking-form') || form.id === 'mainBookingForm') {
-            alertMsg = lang === 'sw' 
-                ? 'Asante kwa ombi lako! Ombi lako limepokelewa. Wataalamu wetu wa safari watawasiliana nawe ndani ya saa 24 ili kukusaidia kupanga safari yako.'
-                : 'Thank you for your enquiry! Your request has been received. Our safari experts will contact you within 24 hours to help plan your adventure.';
-            alert(alertMsg);
-            form.reset();
+
+            if (isContactForm) {
+                payload.form_name = form.querySelector('input[name="form_name"]')?.value || 'Contact Us Form';
+                payload.form_type = 'contact';
+                payload.subject = form.querySelector('input[name="subject"]')?.value || form.querySelector('#safari_type')?.value || 'Contact Us';
+                payload.safari_type = form.querySelector('#safari_type')?.value || '';
+                payload.travel_date = form.querySelector('#travel_date')?.value || '';
+                payload.travelers = form.querySelector('#travelers')?.value || '';
+            } else if (isCustomExperienceForm) {
+                payload.form_name = 'Custom Tour Request Form';
+                payload.form_type = 'booking';
+                payload.subject = 'Package Booking';
+                payload.safari = form.querySelector('[name="experience_style"]')?.value || 'Custom Experience';
+                payload.experience_style = payload.safari;
+            } else if (isBookForm) {
+                payload.form_name = 'Booking Request Form';
+                const textInputs = Array.from(form.querySelectorAll('input[type="text"]'));
+                const country = textInputs[1]?.value || '';
+                const destinations = Array.from(form.querySelectorAll('input[name="destinations"]:checked')).map(cb => cb.value);
+                const numInputs = Array.from(form.querySelectorAll('input[type="number"]'));
+                const adults = parseInt(numInputs[0]?.value) || 1;
+                const children = parseInt(numInputs[1]?.value) || 0;
+                const dateInputs = Array.from(form.querySelectorAll('input[type="date"]'));
+                const arrival = dateInputs[0]?.value || '';
+                const departure = dateInputs[1]?.value || '';
+                const travelStyle = form.querySelector('input[name="travel_style"]:checked')?.value || 'Budget';
+
+                payload.form_type = 'booking';
+                payload.subject = 'Book Now';
+                payload.safari = destinations.join(', ') || 'Custom Safari';
+                payload.country = country;
+                payload.arrival_date = arrival;
+                payload.departure_date = departure;
+                payload.adults = adults;
+                payload.children = children;
+                payload.lodging = travelStyle;
+            } else if (isEnquireForm) {
+                payload.form_name = 'Safari Inquiry Form';
+                const guests = form.querySelector('[name="guests"]')?.value || '';
+                const travelDate = form.querySelector('[name="travel_date"]')?.value || '';
+                const destination = form.querySelector('[name="destination"]')?.value || '';
+                const experience = form.querySelector('[name="experience_type"]')?.value || '';
+                const budget = form.querySelector('[name="budget"]')?.value || '';
+
+                payload.form_type = 'enquiry';
+                
+                // If it is one of the destination keywords, make that the subject
+                const dests = ['serengeti', 'ngorongoro', 'tarangire', 'manyara', 'zanzibar', 'kilimanjaro'];
+                let subVal = 'Request Quote';
+                if (destination && dests.includes(destination.toLowerCase())) {
+                    // Capitalize first letter
+                    subVal = destination.charAt(0).toUpperCase() + destination.slice(1);
+                }
+                payload.subject = subVal;
+                payload.safari = destination || experience || 'General Safari Enquiry';
+                payload.date = travelDate;
+                payload.guests = guests;
+                payload.budget = budget;
+                payload.experience_type = experience;
+            } else if (isSafariPageBookingForm) {
+                payload.form_name = 'Safari Inquiry Form';
+                const country = form.querySelector('input[placeholder*="Country"], input[placeholder*="Your Country"]')?.value || '';
+                const numInputs = Array.from(form.querySelectorAll('input[type="number"]'));
+                const adults = parseInt(numInputs[0]?.value) || 1;
+                const children = parseInt(numInputs[1]?.value) || 0;
+                const travelDate = form.querySelector('input[type="date"]')?.value || '';
+                const packageName = document.querySelector('.trip-hero h1')?.textContent || document.title.split('|')[0].trim() || 'Safari Package';
+
+                payload.form_type = 'booking';
+                payload.subject = 'Book Now';
+                payload.safari = packageName;
+                payload.country = country;
+                payload.arrival_date = travelDate;
+                payload.adults = adults;
+                payload.children = children;
+                payload.lodging = 'midrange';
+            } else {
+                payload.form_name = 'Contact Form';
+                payload.form_type = 'contact';
+                payload.subject = 'Contact Us';
+            }
+
+            // Add Web3Forms configuration parameters
+            payload.access_key = form.querySelector('input[name="access_key"]')?.value || '6d284837-3b82-4940-8af1-5dea38d4bc25';
+            payload.from_name = form.querySelector('input[name="from_name"]')?.value || 'Century Adventures Website';
+            payload.to_email = form.querySelector('input[name="to_email"]')?.value || 'admin@century-adventures.com';
+            payload.replyto = email;
+            payload.submission_time = new Date().toLocaleString("en-US", { timeZone: "Africa/Nairobi" }) + " (EAT)";
+
+            const formSubject = form.querySelector('input[name="subject"]')?.value;
+            const formName = form.querySelector('input[name="form_name"]')?.value;
+
+            if (formName) {
+                payload.form_name = formName;
+            }
+
+            if (formSubject) {
+                payload.subject = formSubject;
+            } else {
+                if (!payload.subject) {
+                    payload.subject = `New ${payload.form_name || 'Enquiry'} from ${name || 'Visitor'}`;
+                } else {
+                    payload.subject = `[${payload.form_name || 'Enquiry'}] ${payload.subject} from ${name || 'Visitor'}`;
+                }
+            }
+
+            payload.source_page = window.location.href;
+
+            // POST form to Web3Forms API
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(async res => {
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(`HTTP ${res.status}: ${text || 'Response error'}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    let successMsg = '';
+                    if (isBookForm || isSafariPageBookingForm || isEnquireForm) {
+                        successMsg = lang === 'sw'
+                            ? 'Asante kwa ombi lako! Ombi lako limepokelewa. Wataalamu wetu wa safari watawasiliana nawe ndani ya saa 24 ili kukusaidia kupanga safari yako.'
+                            : 'Thank you for contacting Century Adventures. We have received your enquiry and will respond shortly.';
+                    } else if (isCustomExperienceForm) {
+                        successMsg = lang === 'sw'
+                            ? 'Asante! Ombi lako la uzoefu maalum limepokelewa. Washauri wetu watawasiliana nawe ndani ya saa 24.'
+                            : 'Thank you! Your custom experience request has been received. Our travel planners will contact you within 24 hours.';
+                    } else {
+                        successMsg = lang === 'sw'
+                            ? 'Asante! Ujumbe wako umetumwa kwa mafanikio. Washauri wetu watawasiliana nawe hivi karibuni.'
+                            : 'Thank you! Your inquiry has been sent successfully. Our consultants will contact you shortly.';
+                    }
+                    
+                    if (isContactForm) {
+                        const successAlert = document.getElementById("contact-success-alert");
+                        if (successAlert) {
+                            successAlert.style.display = "flex";
+                            successAlert.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+                        } else {
+                            alert(successMsg);
+                        }
+                        const errorAlert = document.getElementById("contact-error-alert");
+                        if (errorAlert) {
+                            errorAlert.style.display = "none";
+                        }
+                    } else {
+                        alert(successMsg);
+                    }
+                    form.reset();
+                } else {
+                    let errMsg = data.message || (lang === 'sw' ? 'Kuna hitilafu iliyotokea. Tafadhali jaribu tena.' : 'Something went wrong. Please try again.');
+                    if (isContactForm) {
+                        const errorAlert = document.getElementById("contact-error-alert");
+                        if (errorAlert) {
+                            const errorSpan = errorAlert.querySelector('span');
+                            if (errorSpan) {
+                                errorSpan.textContent = errMsg;
+                            }
+                            errorAlert.style.display = "flex";
+                            errorAlert.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+                        } else {
+                            alert(errMsg);
+                        }
+                        const successAlert = document.getElementById("contact-success-alert");
+                        if (successAlert) {
+                            successAlert.style.display = "none";
+                        }
+                    } else {
+                        alert(errMsg);
+                    }
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                let errMsg = `❌ Error: ${err.message}`;
+                if (isContactForm) {
+                    const errorAlert = document.getElementById("contact-error-alert");
+                    if (errorAlert) {
+                        const errorSpan = errorAlert.querySelector('span');
+                        if (errorSpan) {
+                            errorSpan.textContent = errMsg;
+                        }
+                        errorAlert.style.display = "flex";
+                        errorAlert.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+                    } else {
+                        alert(errMsg);
+                    }
+                    const successAlert = document.getElementById("contact-success-alert");
+                    if (successAlert) {
+                        successAlert.style.display = "none";
+                    }
+                } else {
+                    alert(errMsg);
+                }
+            })
+            .finally(() => {
+                if (submitBtn) {
+                    submitBtn.innerHTML = originalBtnHtml;
+                    submitBtn.classList.remove('btn-loading');
+                    submitBtn.disabled = false;
+                }
+            });
         } else if (form.classList.contains('pay-form')) {
-            alertMsg = lang === 'sw'
+            const alertMsg = lang === 'sw'
                 ? 'Asante! Maelezo yako salama ya malipo yamewasilishwa kwa uhakiki. Tutashughulikia uhifadhi wako mara moja na kukutumia barua pepe ya uthibitisho.'
                 : 'Thank you! Your secure payment details have been submitted for verification. We will process your booking immediately and send a confirmation email.';
-            alert(alertMsg);
-            form.reset();
-        } else {
-            alertMsg = lang === 'sw'
-                ? 'Asante! Ujumbe wako umetumwa kwa mafanikio. Washauri wetu watawasiliana nawe hivi karibuni.'
-                : 'Thank you! Your inquiry has been sent successfully. Our consultants will contact you shortly.';
             alert(alertMsg);
             form.reset();
         }
@@ -2128,14 +2135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.position = 'relative';
             }
 
-            const btn = card.querySelector('.btn-card, .btn');
-            if (btn && card.classList.contains('safari-card')) {
-                btn.setAttribute('data-en', 'BOOK NOW');
-                btn.setAttribute('data-sw', 'WEKA SASA');
-                const lang = localStorage.getItem('century-lang') || 'en';
-                btn.textContent = lang === 'sw' ? 'WEKA SASA' : 'BOOK NOW';
-            }
-
             const heartBtn = document.createElement('button');
             heartBtn.type = 'button';
             heartBtn.className = 'wishlist-heart-btn';
@@ -2161,37 +2160,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('century-wishlist', JSON.stringify(wishlist));
                 updateWishlistUI();
             });
-            // Inject Compare Checkbox
-            const content = card.querySelector('.safari-content, .package-content') || card;
-            if (content) {
-                const compareLabel = document.createElement('label');
-                compareLabel.className = 'compare-checkbox-label';
-                compareLabel.style.display = 'flex';
-                compareLabel.style.alignItems = 'center';
-                compareLabel.style.gap = '8px';
-                compareLabel.style.marginTop = '10px';
-                compareLabel.style.cursor = 'pointer';
-                compareLabel.innerHTML = `<input type="checkbox"> <span data-en="Compare" data-sw="Linganisha">Compare</span>`;
-                
-                const checkbox = compareLabel.querySelector('input');
-                checkbox.addEventListener('change', () => {
-                    if (checkbox.checked) {
-                        if (compareList.length >= 3) {
-                            checkbox.checked = false;
-                            alert(localStorage.getItem('century-lang') === 'sw' ? 'Unaweza kulinganisha hadi safari 3 kwa wakati mmoja.' : 'You can compare up to 3 tours at a time.');
-                            return;
-                        }
-                        compareList.push({ title, link, img, price });
-                    } else {
-                        compareList = compareList.filter(item => item.title !== title);
-                    }
-                    updateCompareBar();
-                });
-                
-                checkbox.checked = compareList.some(item => item.title === title);
-                content.appendChild(compareLabel);
-                card._compareCheckbox = checkbox;
-            }
+            card.appendChild(heartBtn);
+
+            // Compare Tour logic removed
         });
 
         const updateCompareBar = () => {
@@ -2199,11 +2170,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const bar = document.getElementById('compareBar');
             const text = document.getElementById('compareBarText');
 
-            const wishlistFloat = document.querySelector('.wishlist-float');
+            const assistantBtn = document.getElementById('assistantFloatBtn');
             if (compareList.length > 0) {
                 bar.classList.add('active');
-                // Shift the wishlist float up so compare bar does not overlap it
-                if (wishlistFloat) wishlistFloat.classList.add('shifted-up');
+                // Shift the assistant float up so compare bar does not overlap it
+                if (assistantBtn) assistantBtn.classList.add('shifted-up');
                 const lang = localStorage.getItem('century-lang') || 'en';
                 if (lang === 'sw') {
                     text.textContent = `${compareList.length} safari zilizochaguliwa kwa ajili ya kulinganisha`;
@@ -2213,8 +2184,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = compareList.length < 2;
             } else {
                 bar.classList.remove('active');
-                // Restore wishlist float position
-                if (wishlistFloat) wishlistFloat.classList.remove('shifted-up');
+                // Restore assistant float position
+                if (assistantBtn) assistantBtn.classList.remove('shifted-up');
             }
         };
 
@@ -2274,803 +2245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWishlistUI();
     };
 
-    // ── Premium Safari Assistant Widget Injection ──
-    const initCommunicationCenter = () => {
-        // ── Data Layer: localStorage persistence ──
-        const VISITOR_KEY = 'century-visitor-id';
-        const CONV_KEY = 'century-conversations';
-        const getVisitorId = () => {
-            let id = localStorage.getItem(VISITOR_KEY);
-            if (!id) { id = 'visitor-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6); localStorage.setItem(VISITOR_KEY, id); }
-            return id;
-        };
-        let visitorId = getVisitorId();
-        const identifyVisitor = (name, email) => {
-            if (!name || !email) return;
-            const newId = `${name.trim()} (${email.trim()})`;
-            const oldId = localStorage.getItem(VISITOR_KEY) || visitorId;
-            if (oldId !== newId) {
-                localStorage.setItem(VISITOR_KEY, newId);
-                visitorId = newId;
-                
-                const convs = loadConversations();
-                let updated = false;
-                convs.forEach(c => {
-                    if (c.visitorId === oldId) {
-                        c.visitorId = newId;
-                        updated = true;
-                    }
-                });
-                if (updated) {
-                    saveConversations(convs);
-                }
-            }
-        };
-        const loadConversations = () => { try { return JSON.parse(localStorage.getItem(CONV_KEY)) || []; } catch(e) { return []; } };
-        const saveConversations = (convs) => { localStorage.setItem(CONV_KEY, JSON.stringify(convs)); };
-        const CATEGORIES = [
-            { id: 'safari', emoji: '🦁', label: 'Safari Booking' },
-            { id: 'pricing', emoji: '💰', label: 'Pricing & Quotations' },
-            { id: 'travel', emoji: '🌍', label: 'Travel Information' },
-            { id: 'accommodation', emoji: '🏨', label: 'Accommodation' },
-            { id: 'volunteer', emoji: '🤝', label: 'Volunteer Programs' },
-            { id: 'support', emoji: '🛠', label: 'Technical Support' },
-            { id: 'problem', emoji: '⚠️', label: 'Report a Problem' },
-            { id: 'general', emoji: '📞', label: 'General Inquiry' }
-        ];
-        const getCatByID = (id) => CATEGORIES.find(c => c.id === id) || CATEGORIES[7];
-        const formatTime = (ts) => { const d = new Date(ts); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); };
-        const formatDate = (ts) => { const d = new Date(ts); const today = new Date(); if (d.toDateString() === today.toDateString()) return 'Today'; const y = new Date(today); y.setDate(y.getDate() - 1); if (d.toDateString() === y.toDateString()) return 'Yesterday'; return d.toLocaleDateString([], { month: 'short', day: 'numeric' }); };
 
-        const getRoutingEmails = () => {
-            const defaults = {
-                info: 'info@centuryadventures.com',
-                booking: 'bookings@centuryadventures.com',
-                support: 'support@centuryadventures.com',
-                sales: 'sales@centuryadventures.com'
-            };
-            try {
-                return JSON.parse(localStorage.getItem('century-routing-emails')) || defaults;
-            } catch(e) {
-                return defaults;
-            }
-        };
-
-        // ── Hide old assistant if present ──
-        document.body.classList.add('comm-center-active');
-        const oldFloat = document.getElementById('assistantFloatBtn');
-        if (oldFloat) oldFloat.style.display = 'none';
-        const oldCard = document.getElementById('assistantCard');
-        if (oldCard) oldCard.style.display = 'none';
-
-        // ── Create Floating Button ──
-        const floatBtn = document.createElement('div');
-        floatBtn.className = 'comm-float';
-        floatBtn.id = 'commFloatBtn';
-        floatBtn.innerHTML = `
-            <span class="comm-float-icon">🦁</span>
-            <div class="comm-float-text">
-                <span class="comm-float-title">Safari Expert</span>
-                <span class="comm-float-status"><span class="comm-float-dot"></span> Online • Ready to Help</span>
-            </div>
-            <span class="comm-float-badge" id="commBadge">0</span>
-        `;
-        document.body.appendChild(floatBtn);
-
-        // ── Create Chat Panel ──
-        const panel = document.createElement('div');
-        panel.className = 'comm-panel';
-        panel.id = 'commPanel';
-        panel.innerHTML = `
-            <div class="comm-header">
-                <div class="comm-header-top">
-                    <div class="comm-header-brand">
-                        <span class="brand-icon">🦁</span>
-                        <div>
-                            <h3>Safari Support Center</h3>
-                            <span class="brand-status"><span class="comm-float-dot"></span> Online</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 8px; align-items: center;">
-                        <button class="comm-header-minimize" id="commMinimize" style="background:none; border:none; color:white; font-size:1rem; cursor:pointer; opacity:0.8; padding: 4px; line-height: 1;" aria-label="Minimize Support"><i class="fas fa-minus" style="font-size: 0.8rem;"></i></button>
-                        <button class="comm-header-close" id="commClose" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer; opacity:0.8; padding: 4px; line-height: 1;" aria-label="Close Support">&times;</button>
-                    </div>
-                </div>
-                <div class="comm-header-tabs">
-                    <div class="comm-tab active" data-view="home"><i class="fas fa-home"></i> Home</div>
-                    <div class="comm-tab" data-view="support"><i class="fas fa-comments"></i> Support</div>
-                    <div class="comm-tab" data-view="quote"><i class="fas fa-file-invoice-dollar"></i> Quote</div>
-                    <div class="comm-tab" data-view="report"><i class="fas fa-exclamation-triangle"></i> Report</div>
-                    <div class="comm-tab" data-view="chats"><i class="fas fa-history"></i> History</div>
-                </div>
-            </div>
-
-            <div class="comm-body" id="commBody">
-                <!-- HOME VIEW -->
-                <div class="comm-view active" id="viewHome">
-                    <div class="comm-home-greeting">
-                        <h4>💬 Safari Support Center</h4>
-                        <p style="font-weight: 600; margin-top: 4px; color: var(--accent-gold, #c5a044); font-size: 0.82rem;">Need help? Our team is ready to assist you.</p>
-                        <p style="font-size: 0.75rem; opacity: 0.9; margin-top: 6px; line-height: 1.4;">Get answers, request a quote, report an issue, or chat with our safari experts.</p>
-                    </div>
-                    
-                    <div class="comm-home-menu">
-                        <div class="comm-menu-item" data-action="view-support">
-                            <i class="fas fa-comments comm-menu-icon" style="color: var(--accent-gold);"></i>
-                            <span>💬 Safari Support</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </div>
-                        <div class="comm-menu-item" data-action="view-quote">
-                            <i class="fas fa-file-invoice-dollar comm-menu-icon" style="color: var(--accent-gold);"></i>
-                            <span>📋 Request a Quote</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </div>
-                        <div class="comm-menu-item" data-action="view-report">
-                            <i class="fas fa-exclamation-triangle comm-menu-icon" style="color: var(--accent-gold);"></i>
-                            <span>⚠️ Report an Issue</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </div>
-                        <div class="comm-menu-item" data-action="view-chats">
-                            <i class="fas fa-history comm-menu-icon" style="color: var(--accent-gold);"></i>
-                            <span>👤 My Conversations</span>
-                            <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, rgba(0, 66, 37, 0.05), rgba(139, 94, 60, 0.05)); border: 1px solid rgba(0, 66, 37, 0.1); border-radius: 14px; padding: 14px; margin-top: 15px;">
-                        <h5 style="margin: 0 0 4px; color: #004225; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px;">
-                            🦁 Live Safari Expert
-                        </h5>
-                        <div style="font-size: 0.65rem; color: #25d366; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;">
-                            <span style="width: 6px; height: 6px; background: #25d366; border-radius: 50%; display: inline-block;"></span> Online • Ready to Help
-                        </div>
-                        <p style="font-size: 0.72rem; margin: 0 0 10px; color: #555;">Need immediate assistance?</p>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <div class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff;" data-action="view-support">
-                                <i class="fas fa-comments comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
-                                <span style="font-size: 0.75rem; font-weight: 600;">💬 Chat with a Safari Expert</span>
-                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                            </div>
-                            <a href="mailto:info@centuryadventures.com" class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff; text-decoration: none; color: inherit;">
-                                <i class="far fa-envelope comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
-                                <span style="font-size: 0.75rem; font-weight: 600;">📧 Send an Email</span>
-                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                            </a>
-                            <a href="tel:+255747115390" class="comm-menu-item" style="padding: 10px 12px; margin: 0; background: #fff; text-decoration: none; color: inherit;">
-                                <i class="fas fa-phone-alt comm-menu-icon" style="color: var(--accent-gold); font-size: 0.95rem;"></i>
-                                <span style="font-size: 0.75rem; font-weight: 600;">📞 Request a Call Back</span>
-                                <i class="fas fa-chevron-right comm-menu-arrow"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SUPPORT VIEW -->
-                <div class="comm-view" id="viewSupport">
-                    <div class="comm-home-greeting">
-                        <h4>💬 Safari Support</h4>
-                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">Chat directly with our Century Adventures team. Send questions about safari bookings, destinations, travel plans, accommodation, volunteer programs, or general inquiries.</p>
-                    </div>
-                    <form class="comm-form" id="supportForm">
-                        <h5 style="margin-bottom: 10px; color: #004225; font-size: 0.85rem; font-weight: 700;">Start a New Message</h5>
-                        <label>Your Name</label>
-                        <input type="text" name="name" placeholder="Your Full Name" required>
-                        <label>Your Email Address</label>
-                        <input type="email" name="email" placeholder="your@email.com" required>
-                        <label>Your Phone Number</label>
-                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
-                        <label>Message Subject</label>
-                        <select name="subject" required>
-                            <option value="">Select subject...</option>
-                            <option value="Safari Bookings">Safari Bookings</option>
-                            <option value="Destinations">Destinations</option>
-                            <option value="Travel Plans">Travel Plans</option>
-                            <option value="Accommodation">Accommodation</option>
-                            <option value="Volunteer Programs">Volunteer Programs</option>
-                            <option value="General Inquiries">General Inquiries</option>
-                        </select>
-                        <label>Your Message</label>
-                        <textarea name="message" placeholder="Type your message details here..." required></textarea>
-                        <button type="submit" class="comm-form-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-                    </form>
-                    <div class="comm-form-success" id="supportSuccess" style="display:none;">
-                        <i class="fas fa-check-circle"></i>
-                        <p><strong>Message sent!</strong><br>Opening chat session...</p>
-                    </div>
-                </div>
-
-                <!-- QUOTE VIEW -->
-                <div class="comm-view" id="viewQuote">
-                    <div class="comm-home-greeting">
-                        <h4>📋 Request a Quote</h4>
-                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">Get a personalized safari quotation. Tell us your destination(s), travel dates, number of travelers, budget range, and special requests.</p>
-                    </div>
-                    <form class="comm-form" id="quoteForm">
-                        <label>Your Name</label>
-                        <input type="text" name="name" placeholder="Your Full Name" required>
-                        <label>Your Email</label>
-                        <input type="email" name="email" placeholder="your@email.com" required>
-                        <label>Your Phone Number</label>
-                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
-                        <label>Destinations of Interest</label>
-                        <select name="destination">
-                            <option value="">Select destination...</option>
-                            <option value="Serengeti">Serengeti National Park</option>
-                            <option value="Ngorongoro">Ngorongoro Crater</option>
-                            <option value="Kilimanjaro">Mount Kilimanjaro</option>
-                            <option value="Zanzibar">Zanzibar Beach</option>
-                            <option value="Tarangire">Tarangire National Park</option>
-                            <option value="Selous">Selous Game Reserve</option>
-                            <option value="Multiple">Multiple Destinations</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <label>Travel Dates</label>
-                        <input type="text" name="dates" placeholder="e.g., June 15 - June 22, 2026">
-                        <label>Number of Travelers</label>
-                        <input type="number" name="travelers" min="1" max="50" placeholder="e.g., 4">
-                        <label>Budget Range (USD)</label>
-                        <select name="budget">
-                            <option value="">Select budget range...</option>
-                            <option value="1000-3000">$1,000 - $3,000</option>
-                            <option value="3000-5000">$3,000 - $5,000</option>
-                            <option value="5000-10000">$5,000 - $10,000</option>
-                            <option value="10000+">$10,000+</option>
-                            <option value="flexible">Flexible</option>
-                        </select>
-                        <label>Additional Details</label>
-                        <textarea name="details" placeholder="Tell us about your dream safari..."></textarea>
-                        <button type="submit" class="comm-form-submit"><i class="fas fa-file-invoice-dollar"></i> Get My Custom Safari Quote</button>
-                    </form>
-                    <div class="comm-form-success" id="quoteSuccess" style="display:none;">
-                        <i class="fas fa-check-circle"></i>
-                        <p><strong>Quote request sent!</strong><br>Our team will respond within 24 hours via email.</p>
-                    </div>
-                </div>
-
-                <!-- REPORT VIEW -->
-                <div class="comm-view" id="viewReport">
-                    <div class="comm-home-greeting">
-                        <h4>⚠️ Report an Issue</h4>
-                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">We take every report seriously and respond as quickly as possible.</p>
-                    </div>
-                    <form class="comm-form" id="reportForm">
-                        <label>Your Name</label>
-                        <input type="text" name="name" placeholder="Your Full Name" required>
-                        <label>Your Email Address</label>
-                        <input type="email" name="email" placeholder="your@email.com" required>
-                        <label>Your Phone Number</label>
-                        <input type="tel" name="phone" placeholder="e.g., +255 747 115 390">
-                        <label>Issue Type</label>
-                        <select name="issue_type" required>
-                            <option value="">Select a category...</option>
-                            <option value="Booking Issue">Booking Issue</option>
-                            <option value="Payment Issue">Payment Issue</option>
-                            <option value="Website Problem">Website Problem</option>
-                            <option value="Customer Service Concern">Customer Service Concern</option>
-                            <option value="Safari Experience Feedback">Safari Experience Feedback</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <label>Describe the Issue</label>
-                        <textarea name="description" placeholder="Please provide as much detail as possible so we can assist you effectively." required></textarea>
-                        <button type="submit" class="comm-form-submit"><i class="fas fa-flag"></i> Submit Report</button>
-                    </form>
-                    <div class="comm-form-success" id="reportSuccess" style="display:none;">
-                        <i class="fas fa-check-circle"></i>
-                        <p><strong>Report submitted!</strong><br>Our support team will review and contact you soon.</p>
-                    </div>
-                </div>
-
-                <!-- CHATS VIEW -->
-                <div class="comm-view" id="viewChats">
-                    <div class="comm-home-greeting">
-                        <h4>👤 My Conversations</h4>
-                        <p style="font-size: 0.75rem; line-height: 1.4; margin-top: 5px;">View and continue your conversations with our team. Here you can read replies, continue discussions, track quote requests, follow booking updates, and receive support.</p>
-                    </div>
-                    <div id="commConvList" class="comm-conv-list"></div>
-                    
-                    <!-- Privacy card -->
-                    <div style="background: rgba(0, 66, 37, 0.05); border: 1px solid rgba(0, 66, 37, 0.1); border-radius: 12px; padding: 12px; margin-top: 15px; font-size: 0.72rem; line-height: 1.4; color: #1b4332;">
-                        <div style="font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-                            <i class="fas fa-lock" style="color: var(--accent-gold);"></i> Privacy &amp; Security
-                        </div>
-                        <ul style="list-style-type: none; padding-left: 0; margin: 0; display: flex; flex-direction: column; gap: 4px;">
-                            <li>✅ Only you and Century Adventures staff can view your messages.</li>
-                            <li>✅ No customer can access another customer's conversation.</li>
-                            <li>✅ All inquiries are handled confidentially.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- CHAT VIEW (injected dynamically) -->
-            </div>
-
-            <div class="comm-panel-footer">
-                <span>🔒 Your conversations are private &amp; secure</span>
-            </div>
-        `;
-        document.body.appendChild(panel);
-
-        // ── Home Menu Click Handlers ──
-        panel.querySelectorAll('.comm-menu-item[data-action]').forEach(item => {
-            item.addEventListener('click', () => {
-                const action = item.dataset.action;
-                if (action === 'view-support') {
-                    switchView('viewSupport');
-                } else if (action === 'view-quote') {
-                    switchView('viewQuote');
-                } else if (action === 'view-report') {
-                    switchView('viewReport');
-                } else if (action === 'view-chats') {
-                    switchView('viewChats');
-                }
-            });
-        });
-
-        // ── State ──
-        let activeConvId = null;
-        let chatViewEl = null;
-        let lastMsgCount = 0;
-
-        // ── View Switching ──
-        const switchView = (viewId) => {
-            panel.querySelectorAll('.comm-view').forEach(v => v.classList.remove('active'));
-            if (chatViewEl) chatViewEl.classList.remove('active');
-            const view = document.getElementById(viewId);
-            if (view) view.classList.add('active');
-            // Update tabs
-            panel.querySelectorAll('.comm-tab').forEach(t => t.classList.remove('active'));
-            const tab = panel.querySelector(`.comm-tab[data-view="${viewId.replace('view', '').toLowerCase()}"]`);
-            if (tab) tab.classList.add('active');
-            // Refresh messages list if switching to chats
-            if (viewId === 'viewChats') renderConversationList();
-        };
-
-        // ── Tab Navigation ──
-        panel.querySelectorAll('.comm-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const viewName = tab.dataset.view;
-                switchView('view' + viewName.charAt(0).toUpperCase() + viewName.slice(1));
-            });
-        });
-
-        // ── Open/Close Panel ──
-        const openPanel = () => { 
-            panel.classList.add('active'); 
-            floatBtn.classList.add('panel-open'); 
-            document.body.classList.add('comm-panel-open');
-            const emailLink = panel.querySelector('a[href*="mailto:"]');
-            if (emailLink) emailLink.href = 'mailto:' + getRoutingEmails().info;
-        };
-        const closePanel = () => { 
-            panel.classList.remove('active'); 
-            floatBtn.classList.remove('panel-open'); 
-            document.body.classList.remove('comm-panel-open');
-        };
-        window.openSafariSupport = openPanel;
-        floatBtn.addEventListener('click', openPanel);
-        document.getElementById('commClose').addEventListener('click', closePanel);
-        document.getElementById('commMinimize')?.addEventListener('click', closePanel);
-        document.addEventListener('click', (e) => {
-            if (panel.classList.contains('active') && !panel.contains(e.target) && !floatBtn.contains(e.target)) {
-                closePanel();
-            }
-        });
-
-        // ── Open Chat for Category ──
-        const openChat = (categoryId) => {
-            const convs = loadConversations();
-            let conv = convs.find(c => c.categoryId === categoryId && c.visitorId === visitorId);
-            if (!conv) {
-                conv = {
-                    id: 'conv-' + Date.now(),
-                    visitorId,
-                    categoryId,
-                    messages: [],
-                    createdAt: Date.now(),
-                    updatedAt: Date.now(),
-                    status: 'open'
-                };
-                convs.push(conv);
-                saveConversations(convs);
-            }
-            activeConvId = conv.id;
-            renderChatView(conv);
-        };
-
-        // ── Render Chat View ──
-        const renderChatView = (conv) => {
-            const cat = getCatByID(conv.categoryId);
-            // Remove old chat view if exists
-            if (chatViewEl) chatViewEl.remove();
-
-            chatViewEl = document.createElement('div');
-            chatViewEl.className = 'comm-chat-view active';
-            chatViewEl.innerHTML = `
-                <div class="comm-chat-header-bar">
-                    <button class="comm-chat-back" id="chatBack"><i class="fas fa-arrow-left"></i></button>
-                    <div>
-                        <div class="comm-chat-category-label">${cat.emoji} ${cat.label}</div>
-                        <div class="comm-chat-category-tag">Private Conversation</div>
-                    </div>
-                </div>
-                <div class="comm-chat-messages" id="chatMessages"></div>
-                <div class="comm-input-bar">
-                    <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
-                    <button class="comm-input-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            `;
-
-            // Hide other views and show chat
-            panel.querySelectorAll('.comm-view').forEach(v => v.classList.remove('active'));
-            panel.querySelectorAll('.comm-tab').forEach(t => t.classList.remove('active'));
-            const body = document.getElementById('commBody');
-            body.appendChild(chatViewEl);
-
-            // Render messages
-            renderMessages(conv);
-            lastMsgCount = conv.messages.length;
-
-            // Back button
-            chatViewEl.querySelector('#chatBack').addEventListener('click', () => {
-                chatViewEl.classList.remove('active');
-                switchView('viewHome');
-            });
-
-            // Send message
-            const inputEl = chatViewEl.querySelector('#chatInput');
-            const sendMsg = () => {
-                const text = inputEl.value.trim();
-                if (!text) return;
-                addMessage(conv.id, 'visitor', text);
-                inputEl.value = '';
-            };
-            chatViewEl.querySelector('#chatSend').addEventListener('click', sendMsg);
-            inputEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMsg(); });
-            inputEl.focus();
-        };
-
-        // ── Add Message ──
-        const addMessage = (convId, sender, text) => {
-            const convs = loadConversations();
-            const conv = convs.find(c => c.id === convId);
-            if (!conv) return;
-            const msg = { id: 'msg-' + Date.now(), sender, text, timestamp: Date.now() };
-            conv.messages.push(msg);
-            conv.updatedAt = Date.now();
-            if (sender === 'staff') conv.unread = (conv.unread || 0) + 1;
-            if (sender === 'visitor') conv.unreadByStaff = true;
-            saveConversations(convs);
-            // Re-render if active
-            if (activeConvId === convId && chatViewEl) {
-                renderMessages(conv);
-                lastMsgCount = conv.messages.length;
-            }
-            updateBadge();
-
-            // If visitor message, trigger email notification link
-            if (sender === 'visitor') {
-                const cat = getCatByID(conv.categoryId);
-                const subject = encodeURIComponent(`[Century Adventures] ${cat.label} Inquiry from ${visitorId}`);
-                const body = encodeURIComponent(`Category: ${cat.label}\nVisitor ID: ${visitorId}\nMessage: ${text}\n\nSent from Century Adventures Communication Center`);
-                // Create a hidden mailto trigger
-                const mailLink = document.createElement('a');
-                const emails = getRoutingEmails();
-                let targetEmail = emails.info;
-                if (cat.id === 'safari') targetEmail = emails.booking;
-                else if (cat.id === 'pricing') targetEmail = emails.sales;
-                else if (cat.id === 'problem') targetEmail = emails.support;
-                mailLink.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-                mailLink.style.display = 'none';
-                document.body.appendChild(mailLink);
-                // Don't auto-trigger mailto (too intrusive), instead log for admin
-                console.log(`📩 New message to staff: [${cat.label}] "${text}"`);
-                mailLink.remove();
-            }
-        };
-
-        // ── Render Messages ──
-        const renderMessages = (conv) => {
-            const container = chatViewEl.querySelector('#chatMessages');
-            if (!container) return;
-            container.innerHTML = '';
-            const cat = getCatByID(conv.categoryId);
-
-            // Welcome message if no messages
-            if (conv.messages.length === 0) {
-                container.innerHTML = `
-                    <div class="comm-msg staff">
-                        <span>👋 Welcome to ${cat.label}! How can we help you today? Just type your question below.</span>
-                        <span class="comm-msg-time">Now</span>
-                    </div>
-                `;
-                return;
-            }
-
-            let lastDate = '';
-            conv.messages.forEach(msg => {
-                const dateStr = formatDate(msg.timestamp);
-                if (dateStr !== lastDate) {
-                    lastDate = dateStr;
-                    const dateSep = document.createElement('div');
-                    dateSep.className = 'comm-msg-date-sep';
-                    dateSep.textContent = dateStr;
-                    container.appendChild(dateSep);
-                }
-                const bubble = document.createElement('div');
-                bubble.className = `comm-msg ${msg.sender}`;
-                bubble.innerHTML = `<span>${msg.text}</span><span class="comm-msg-time">${formatTime(msg.timestamp)}</span>`;
-                container.appendChild(bubble);
-            });
-
-            // Scroll to bottom
-            container.scrollTop = container.scrollHeight;
-
-            // Mark as read
-            const convs = loadConversations();
-            const updConv = convs.find(c => c.id === conv.id);
-            if (updConv) { updConv.unread = 0; saveConversations(convs); updateBadge(); }
-        };
-
-        // ── Render Conversation List ──
-        const renderConversationList = () => {
-            const list = document.getElementById('commConvList');
-            const convs = loadConversations().filter(c => c.visitorId === visitorId);
-            list.innerHTML = '';
-
-            if (convs.length === 0) {
-                list.innerHTML = `<div class="comm-empty-state"><i class="fas fa-comments"></i><p>No conversations yet.<br>Start one from the Home tab!</p></div>`;
-                return;
-            }
-
-            // Sort by most recent
-            convs.sort((a, b) => b.updatedAt - a.updatedAt);
-
-            convs.forEach(conv => {
-                const cat = getCatByID(conv.categoryId);
-                const lastMsg = conv.messages[conv.messages.length - 1];
-                const preview = lastMsg ? (lastMsg.text.length > 40 ? lastMsg.text.substring(0, 40) + '...' : lastMsg.text) : 'No messages yet';
-                const timeStr = lastMsg ? formatTime(lastMsg.timestamp) : '';
-                const unread = conv.unread || 0;
-
-                const item = document.createElement('div');
-                item.className = 'comm-conv-item';
-                item.innerHTML = `
-                    <span class="comm-conv-emoji">${cat.emoji}</span>
-                    <div class="comm-conv-info">
-                        <div class="comm-conv-title">${cat.label}</div>
-                        <div class="comm-conv-preview">${preview}</div>
-                    </div>
-                    <div class="comm-conv-meta">
-                        <span class="comm-conv-time">${timeStr}</span>
-                        ${unread > 0 ? `<span class="comm-conv-unread">${unread}</span>` : ''}
-                    </div>
-                `;
-                item.addEventListener('click', () => {
-                    activeConvId = conv.id;
-                    renderChatView(conv);
-                });
-                list.appendChild(item);
-            });
-        };
-
-        // ── Badge Update ──
-        const updateBadge = () => {
-            const convs = loadConversations().filter(c => c.visitorId === visitorId);
-            const totalUnread = convs.reduce((sum, c) => sum + (c.unread || 0), 0);
-            const badge = document.getElementById('commBadge');
-            if (badge) {
-                badge.textContent = totalUnread;
-                badge.classList.toggle('has-unread', totalUnread > 0);
-            }
-        };
-        updateBadge();
-
-        // ── Quote Form ──
-        document.getElementById('quoteForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const data = new FormData(form);
-            const name = data.get('name') || 'Not provided';
-            const email = data.get('email') || 'Not provided';
-            const phone = data.get('phone') || 'Not provided';
-            const dest = data.get('destination') || 'Not specified';
-            const dates = data.get('dates') || 'Not specified';
-            const travelers = data.get('travelers') || 'Not specified';
-            const budget = data.get('budget') || 'Not specified';
-            const details = data.get('details') || '';
-
-            // Update visitor identity so identity changes persist
-            identifyVisitor(name, email);
-
-            // Create a conversation for quote
-            const convs = loadConversations();
-            const conv = {
-                id: 'conv-' + Date.now(),
-                visitorId,
-                categoryId: 'pricing',
-                department: 'sales',
-                messages: [{
-                    id: 'msg-' + Date.now(),
-                    sender: 'visitor',
-                    text: `📋 Quote Request:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Destination: ${dest}\n• Dates: ${dates}\n• Travelers: ${travelers}\n• Budget: ${budget}\n${details ? '• Details: ' + details : ''}`,
-                    timestamp: Date.now()
-                }],
-                createdAt: Date.now(),
-                updatedAt: Date.now(),
-                status: 'open'
-            };
-            convs.push(conv);
-            saveConversations(convs);
-
-            // Open mailto with quote details
-            const subject = encodeURIComponent('Quote Request - Century Adventures');
-            const body = encodeURIComponent(`Quote Request from Century Adventures Website\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDestination: ${dest}\nTravel Dates: ${dates}\nNumber of Travelers: ${travelers}\nBudget Range: ${budget}\nAdditional Details: ${details}\n\nVisitor ID: ${visitorId}`);
-            const emails = getRoutingEmails();
-            window.open(`mailto:${emails.sales}?subject=${subject}&body=${body}`, '_self');
-
-            form.style.display = 'none';
-            document.getElementById('quoteSuccess').style.display = 'block';
-
-            // Reset form after 4 seconds
-            setTimeout(() => {
-                form.reset();
-                form.style.display = 'flex';
-                document.getElementById('quoteSuccess').style.display = 'none';
-            }, 4000);
-        });
-
-        // ── Report Form ──
-        document.getElementById('reportForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const data = new FormData(form);
-            const name = data.get('name') || 'Not provided';
-            const email = data.get('email') || 'Not provided';
-            const phone = data.get('phone') || 'Not provided';
-            const issueType = data.get('issue_type') || 'Not specified';
-            const description = data.get('description') || '';
-
-            // Update visitor identity so identity changes persist
-            identifyVisitor(name, email);
-
-            // Create a conversation for report
-            const convs = loadConversations();
-            const conv = {
-                id: 'conv-' + Date.now(),
-                visitorId,
-                categoryId: 'problem',
-                department: 'support',
-                messages: [{
-                    id: 'msg-' + Date.now(),
-                    sender: 'visitor',
-                    text: `⚠️ Issue Report:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Type: ${issueType}\n• Description: ${description}`,
-                    timestamp: Date.now()
-                }],
-                createdAt: Date.now(),
-                updatedAt: Date.now(),
-                status: 'open'
-            };
-            convs.push(conv);
-            saveConversations(convs);
-
-            // Open mailto
-            const subject = encodeURIComponent(`Issue Report - ${issueType} - Century Adventures`);
-            const body = encodeURIComponent(`Issue Report from Century Adventures Website\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nIssue Type: ${issueType}\nDescription: ${description}\n\nVisitor ID: ${visitorId}`);
-            const emails = getRoutingEmails();
-            window.open(`mailto:${emails.support}?subject=${subject}&body=${body}`, '_self');
-
-            form.style.display = 'none';
-            document.getElementById('reportSuccess').style.display = 'block';
-
-            setTimeout(() => { form.reset(); form.style.display = 'flex'; document.getElementById('reportSuccess').style.display = 'none'; }, 4000);
-        });
-
-        // ── Support Form ──
-        document.getElementById('supportForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const data = new FormData(form);
-            const name = data.get('name') || 'Not provided';
-            const email = data.get('email') || 'Not provided';
-            const phone = data.get('phone') || 'Not provided';
-            const subject = data.get('subject') || 'General Inquiry';
-            const message = data.get('message') || '';
-
-            // Update visitor identity so identity changes persist
-            identifyVisitor(name, email);
-
-            // Map subject to category ID
-            let categoryId = 'general';
-            if (subject === 'Safari Bookings') categoryId = 'safari';
-            else if (subject === 'Accommodation') categoryId = 'accommodation';
-            else if (subject === 'Volunteer Programs') categoryId = 'volunteer';
-
-            let department = 'info';
-            if (categoryId === 'safari') department = 'booking';
-            else if (categoryId === 'accommodation') department = 'info';
-            else if (categoryId === 'volunteer') department = 'info';
-
-            const convs = loadConversations();
-            const conv = {
-                id: 'conv-' + Date.now(),
-                visitorId,
-                categoryId,
-                department,
-                messages: [{
-                    id: 'msg-' + Date.now(),
-                    sender: 'visitor',
-                    text: `💬 Safari Support Inquiry:\n• Name: ${name}\n• Email: ${email}\n• Phone: ${phone}\n• Subject: ${subject}\n\n${message}`,
-                    timestamp: Date.now()
-                }],
-                createdAt: Date.now(),
-                updatedAt: Date.now(),
-                status: 'open',
-                unreadByStaff: true
-            };
-            convs.push(conv);
-            saveConversations(convs);
-
-            // Open mailto trigger for notification
-            const emails = getRoutingEmails();
-            let targetEmail = emails.info;
-            if (categoryId === 'safari') targetEmail = emails.booking;
-            else if (categoryId === 'accommodation') targetEmail = emails.info;
-            else if (categoryId === 'volunteer') targetEmail = emails.info;
-
-            const mailSubject = encodeURIComponent(`[Century Adventures Support] ${subject}`);
-            const mailBody = encodeURIComponent(`New Inquiry from Century Adventures Support Center:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\nMessage: ${message}\n\nVisitor ID: ${visitorId}`);
-            window.open(`mailto:${targetEmail}?subject=${mailSubject}&body=${mailBody}`, '_self');
-
-            form.style.display = 'none';
-            const successEl = document.getElementById('supportSuccess');
-            successEl.style.display = 'block';
-
-            setTimeout(() => {
-                form.reset();
-                form.style.display = 'flex';
-                successEl.style.display = 'none';
-                activeConvId = conv.id;
-                renderChatView(conv);
-            }, 1500);
-        });
-
-        // ── WhatsApp/Chaty offset (maintain compatibility) ──
-        const adjustFloatSpacing = () => {
-            if (window.innerWidth <= 992) {
-                // On mobile, CSS handles positioning:
-                // Support button is at bottom (15px), WhatsApp is above it (90px)
-                floatBtn.style.bottom = '';
-                panel.style.bottom = '';
-                return;
-            }
-            const chatyWidget = document.querySelector('.chaty-widget, #chaty-widget-0, [class*="chaty-widget"], [id*="chaty-widget"], .whatsapp-widget, .whatsapp-float');
-            if (chatyWidget) {
-                floatBtn.style.bottom = '90px';
-                panel.style.bottom = '158px';
-            } else {
-                floatBtn.style.bottom = '';
-                panel.style.bottom = '';
-            }
-        };
-        adjustFloatSpacing();
-        const observer = new MutationObserver(adjustFloatSpacing);
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // ── Real-Time Polling for Admin Replies ──
-        setInterval(() => {
-            if (panel.classList.contains('active') && activeConvId && chatViewEl && chatViewEl.classList.contains('active')) {
-                const convs = loadConversations();
-                const activeConv = convs.find(c => c.id === activeConvId);
-                if (activeConv) {
-                    const currentCount = activeConv.messages.length;
-                    if (currentCount !== lastMsgCount) {
-                        lastMsgCount = currentCount;
-                        renderMessages(activeConv);
-                    }
-                }
-            }
-        }, 1500);
-    };
 
     // ── Read More: Auto-collapse long descriptive text sections ──
     const initReadMore = () => {
@@ -3273,118 +2448,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Collapsible Footer Sections on Mobile
-        document.querySelectorAll('.footer-col').forEach(col => {
-            const header = col.querySelector('h3');
-            if (!header || col.querySelector('.tripadvisor-card')) return;
-            col.classList.add('collapsible');
+        document.querySelectorAll('.footer-col.collapsible h3').forEach(header => {
             if (header.dataset.hasCollapsibleListener) return;
             header.dataset.hasCollapsibleListener = "true";
             header.addEventListener('click', () => {
-                if (window.innerWidth <= 992) {
-                    col.classList.toggle('active');
+                if (window.innerWidth <= 768) {
+                    const parent = header.parentElement;
+                    parent.classList.toggle('active');
                 }
             });
         });
-
-        // Welcome Read More toggle
-        const btnWelcomeReadMore = document.getElementById('welcome-read-more-btn');
-        const welcomeTextMore = document.querySelector('.welcome-read-more-content');
-        if (btnWelcomeReadMore && welcomeTextMore) {
-            btnWelcomeReadMore.addEventListener('click', function() {
-                const isExpanded = welcomeTextMore.classList.toggle('expanded');
-                const lang = localStorage.getItem('century-lang') || 'en';
-                if (isExpanded) {
-                    this.textContent = lang === 'sw' ? 'Soma Kidogo' : 'Read Less';
-                    this.setAttribute('data-en', 'Read Less');
-                    this.setAttribute('data-sw', 'Soma Kidogo');
-                } else {
-                    this.textContent = lang === 'sw' ? 'Soma Zaidi' : 'Read More';
-                    this.setAttribute('data-en', 'Read More');
-                    this.setAttribute('data-sw', 'Soma Zaidi');
-                }
-            });
-        }
-
-        // Testimonials Auto-slideshow on mobile
-        let testimonialInterval;
-        let testimonialsPaused = false;
-        let testimonialsResumeTimeout = null;
-
-        const initTestimonialsSlider = () => {
-            const grid = document.querySelector('.testimonials-grid-home');
-            const cards = document.querySelectorAll('.testimonial-card-home');
-            if (cards.length === 0) return;
-
-            if (window.innerWidth > 992) {
-                if (testimonialInterval) {
-                    clearInterval(testimonialInterval);
-                    testimonialInterval = null;
-                }
-                if (testimonialsResumeTimeout) {
-                    clearTimeout(testimonialsResumeTimeout);
-                    testimonialsResumeTimeout = null;
-                }
-                cards.forEach(card => card.classList.remove('active'));
-                return;
-            }
-            
-            let currentIndex = 0;
-            cards.forEach((card, index) => {
-                if (index === 0) card.classList.add('active');
-                else card.classList.remove('active');
-            });
-            
-            if (testimonialInterval) clearInterval(testimonialInterval);
-
-            const nextSlide = () => {
-                if (testimonialsPaused) return;
-                if (cards[currentIndex]) cards[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % cards.length;
-                if (cards[currentIndex]) cards[currentIndex].classList.add('active');
-            };
-
-            testimonialInterval = setInterval(nextSlide, 5000);
-
-            // Add interaction listeners to grid container if they haven't been added yet
-            if (grid && !grid.dataset.interactionListenersRegistered) {
-                grid.dataset.interactionListenersRegistered = "true";
-
-                const pauseSlider = () => {
-                    testimonialsPaused = true;
-                    if (testimonialsResumeTimeout) {
-                        clearTimeout(testimonialsResumeTimeout);
-                        testimonialsResumeTimeout = null;
-                    }
-                };
-
-                const resumeSlider = () => {
-                    if (testimonialsResumeTimeout) clearTimeout(testimonialsResumeTimeout);
-                    testimonialsResumeTimeout = setTimeout(() => {
-                        testimonialsPaused = false;
-                    }, 4000);
-                };
-
-                grid.addEventListener('mouseenter', pauseSlider);
-                grid.addEventListener('touchstart', pauseSlider, { passive: true });
-                grid.addEventListener('mouseleave', resumeSlider);
-                grid.addEventListener('touchend', resumeSlider, { passive: true });
-            }
-        };
-        initTestimonialsSlider();
-        window.addEventListener('resize', initTestimonialsSlider);
-
-        // Experiences Swipe Indicators for Mobile
-        const initExperiencesSlider = () => {
-            // Disabled: replaced by JS infinite marquee engine integration
-        };
-        initExperiencesSlider();
     };
 
     // Initialize additions
     initHeroSlideshow();
     optimizeImages();
     initWishlistAndCompare();
-    initCommunicationCenter();
+
     initReadMore();
     initMobileOptimizations();
 
@@ -3392,29 +2472,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLang = localStorage.getItem('century-lang') || 'en';
     applyLang(currentLang);
 
-    // Register PWA Service Worker (with forced update check)
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js')
-                .then(registration => {
-                    console.log('Century Adventures PWA Service Worker registered:', registration.scope);
-                    // Check for updates every time the page loads
-                    registration.update();
-                    // When a new SW is found, tell it to activate immediately
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'activated') {
-                                console.log('New Century Adventures SW activated – refreshing for latest content.');
-                            }
-                        });
-                    });
-                })
-                .catch(error => {
-                    console.error('Century Adventures PWA Service Worker registration failed:', error);
-                });
-        });
-    }
+    // PWA Service Worker Registration suspended for development cache clearance
 
     console.log("Century Adventures Exceptional Features: Weather, Currency, Wishlist & Comparison Engines Ready.");
 });

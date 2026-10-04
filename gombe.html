@@ -1,259 +1,156 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="assets/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gombe Stream National Park | Century Adventures</title>
-    <meta name="description" content="Explore Gombe Stream National Park. Trek to see wild chimpanzees in this untamed place of lush forests and clear lake views.">
-    <link rel="stylesheet" href="index.css">
+    <title>Gombe Stream National Park | Century Expeditions</title>
+    <meta name="description" content="Explore Gombe Stream National Park: forested lakeshores, chimpanzee encounters and guided forest trails. Plan your safari with Century Expeditions.">
+    <link rel="canonical" href="https://www.century-adventures.com/gombe.html">
+    <meta property="og:title" content="Gombe Stream National Park | Century Expeditions">
+    <meta property="og:description" content="Forest trails. Lakeside beauty. Discover Gombe Stream National Park with Century Expeditions.">
+    <meta property="og:image" content="https://www.century-adventures.com/assets/gombe-hero-v1.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        (function() {
-            const theme = localStorage.getItem('century-theme') || 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Gombe Stream National Park | Century Adventures">
-    <meta property="og:description" content="Explore Gombe Stream National Park. Trek to see wild chimpanzees in this untamed place of lush forests and clear lake views.">
-    <meta property="og:image" content="assets/logo.png">
-    <meta property="og:site_name" content="Century Adventures">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="assets/logo.png">
-    <meta name="twitter:title" content="Gombe Stream National Park | Century Adventures">
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <div class="scroll-progress"></div>
+    <link rel="stylesheet" href="index.css?v=7">
+    <link rel="stylesheet" href="serengeti.css">
+    <link rel="stylesheet" href="gombe.css">
+    
+<link rel="stylesheet" href="site-effects.css"><script>try { const mode = localStorage.getItem("century-theme"); document.documentElement.dataset.theme = ["light","dark"].includes(mode) ? mode : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch { document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }</script><link rel="stylesheet" href="site-responsive.css"><link rel="stylesheet" href="mobile-reference.css"></head>
+<body class="serengeti-page gombe-page">
+<a class="sg-skip" href="#gombe-content">Skip to content</a>
+<header class="luxury-header-editorial" id="editorial-header">
+        <div class="container">
+            <a href="index.html" class="editorial-logo" aria-label="Century Expeditions Home">
+                <img src="assets/logo.png" alt="Century Expeditions Logo" class="editorial-logo-img">
+                <span class="editorial-logo-text">Century Expeditions</span>
+            </a>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.png" alt="Century Adventures Logo"></a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                    <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="active" data-en="Destinations" data-sw="Maeneo">Destinations <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="katavi.html" data-en="Katavi National Park" data-sw="Hifadhi ya Katavi">Katavi National Park</a></li>
-                            <li><a href="selous.html" data-en="Selous Game Reserve" data-sw="Hifadhi ya Selous">Selous Game Reserve</a></li>
-                            <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
-                            <li><a href="mikumi.html" data-en="Mikumi National Park" data-sw="Hifadhi ya Mikumi">Mikumi National Park</a></li>
-                            <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
-                            <li><a href="gombe.html" data-en="Gombe Stream National Park" data-sw="Hifadhi ya Gombe">Gombe Stream National Park</a></li>
-                            <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
-                            <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
-                            <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="safaris.html" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
-                    <li><a href="experiences.html" data-en="Experiences" data-sw="Uzoefu">Experiences</a></li>
-                    <li><a href="volunteer.html" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
-                    <li><a href="vehicles.html" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
-                    <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                </ul>
+            <nav class="editorial-nav-links" id="editorialNav">
+                <a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a>
+                <a href="destinations.html" class="active" data-en="Destinations" data-sw="Maeneo">Destinations</a>
+                <a href="safaris.html"  data-en="Safaris" data-sw="Safari">Safaris</a>
+                <a href="about.html"  data-en="About" data-sw="Kuhusu Sisi">About</a>
             </nav>
 
-            <!-- Mobile Hamburger Menu -->
-            <button class="mobile-toggle" id="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <div class="header-actions">
+            <div class="editorial-header-actions">
                 <div class="header-toggles">
-                    <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
-                    <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <button class="toggle-btn lang-toggle" onclick="toggleLang(event)" aria-label="Toggle language"><span class="lang-label active">EN</span><span class="lang-divider">/</span><span class="lang-label">SW</span></button>
+                    <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i> <span class="toggle-text">DARK</span></button>
                 </div>
-                <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="ENQUIRE" data-sw="ULIZA">ENQUIRE</a>
+                <a href="contact.html" class="editorial-contact-btn" data-en="Contact &rarr;" data-sw="Wasiliana &rarr;">Contact <i class="fas fa-arrow-right"></i></a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Navigation Menu Dropdown Drawer -->
+        <nav class="nav" id="mobileNavDrawer">
+            <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
+            <ul>
+                <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                <li><a href="safaris.html" data-en="Safaris" data-sw="Safari">Safaris</a></li>
+                <li><a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a></li>
+                <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
+                <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
+                <li class="mobile-only-action book-now-item"><a href="contact.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
+            </ul>
+        </nav>
     </header>
-
-    
-    <!-- Page Hero -->
-    <section class="hero page-hero" style="background-image: url('assets/lion10.jpg'); height: 60vh;">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 data-en="Gombe Stream National Park" data-sw="Hifadhi ya Taifa ya Gombe">Gombe Stream National Park</h1>
-            <p class="hero-tagline" data-en="An untamed place of lush forests and clear lake views." data-sw="Mahali pa mwituni penye misitu minene na mionekano wazi ya ziwa.">An untamed place of lush forests and clear lake views.</p>
-        </div>
-    </section>
-
-    <!-- Content -->
-    <section class="section about-intro">
-        <div class="container">
-            <div class="experts-grid">
-                <div class="experts-text">
-                    <span class="sub-heading" data-en="OVERVIEW" data-sw="MUHTASARI">OVERVIEW</span>
-                    <h2 data-en="Tanzania's Smallest National Park" data-sw="Hifadhi ya Taifa Ndogo Zaidi Tanzania">Tanzania's Smallest National Park</h2>
-                    
-                        <p data-en="Spanning just over 14 square miles on the eastern shores of Lake Tanganyika, Gombe Stream is Tanzania's smallest national park. It is one of three places where you can see chimpanzees in Tanzania." data-sw="Ikienea zaidi ya maili za mraba 14 kwenye mwambao wa mashariki wa Ziwa Tanganyika, Gombe Stream ni hifadhi ya taifa ndogo zaidi Tanzania. Ni moja ya sehemu tatu ambapo unaweza kuona sokwe nchini Tanzania.">Spanning just over 14 square miles on the eastern shores of Lake Tanganyika, Gombe Stream is Tanzania's smallest national park. It is one of three places where you can see chimpanzees in Tanzania.</p>
-                    
-                        <p data-en="The park's diverse topography comprises vast grasslands, dense woodland areas and tropical rain forest, bisected by steep valleys, rivers and streams of water. Famously, this is the site where Jane Goodall completed most of her pioneering chimpanzee research." data-sw="Mandhari mbalimbali ya hifadhi hiyo inajumuisha nyanda za majani kubwa, maeneo yenye misitu minene na msitu wa mvua wa kitropiki, uliogawanywa na mabonde yenye mwinuko, mito na vijito vya maji. Inajulikana, hapa ndipo mahali ambapo Jane Goodall alikamilisha utafiti wake mwingi wa upainia wa sokwe.">The park's diverse topography comprises vast grasslands, dense woodland areas and tropical rain forest, bisected by steep valleys, rivers and streams of water. Famously, this is the site where Jane Goodall completed most of her pioneering chimpanzee research.</p>
-                    
-                        <p data-en="The resident primatologist spent many years in Gombe observing the behaviour of Chimpanzees, an endangered species. Thanks to Jane Goodall, Many of the chimpanzee troops here are habituated (used to humans), meaning you can trek to see them up-close in their natural forest habitat." data-sw="Mtaalamu wa wanyama wanaoishi alitumia miaka mingi huko Gombe akichunguza tabia ya Sokwe, spishi iliyo hatarini kutoweka. Shukrani kwa Jane Goodall, Makundi mengi ya sokwe hapa wamezoea binadamu, ikimaanisha unaweza kutembea ili kuwaona kwa ukaribu katika makazi yao ya asili ya msitu.">The resident primatologist spent many years in Gombe observing the behaviour of Chimpanzees, an endangered species. Thanks to Jane Goodall, Many of the chimpanzee troops here are habituated (used to humans), meaning you can trek to see them up-close in their natural forest habitat.</p>
-                    
-                </div>
-                <div class="experts-image" style="display: flex; flex-direction: column; gap: 20px;">
-                    <img src="assets/century3.jpg" alt="Landscape" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wildlife -->
-    <section class="section" style="background-color: var(--section-bg);">
-        <div class="container">
-            <div class="experts-grid" style="align-items: center;">
-                <div class="experts-image" style="order: -1;">
-                    <img src="assets/KTA13Serengeti Nationa.webp" alt="Wildlife" style="border-radius: 10px;">
-                </div>
-                <div class="experts-text">
-                    <span class="sub-heading" data-en="WILDLIFE" data-sw="WANYAMAPORI">WILDLIFE</span>
-                    <h2 data-en="Rare Primates" data-sw="Primates Adimu">Rare Primates</h2>
-                    
-                        <p data-en="Gombe is home to many rare primates alongside chimpanzees. There are olive baboons, red colobus, red-tailed monkeys, blue monkeys, and vervet monkeys." data-sw="Gombe ni nyumbani kwa primates wengi adimu pamoja na sokwe. Kuna nyani wa mizeituni, colobus nyekundu, nyani wenye mikia myekundu, nyani wa bluu, na nyani wa vervet.">Gombe is home to many rare primates alongside chimpanzees. There are olive baboons, red colobus, red-tailed monkeys, blue monkeys, and vervet monkeys.</p>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Travel Tips -->
-    <section class="section travel-tips-section">
-        <div class="container">
-            <h2 data-en="Planning Your Visit" data-sw="Kupanga Ziara Yako" style="text-align: center; margin-bottom: 40px;">Planning Your Visit</h2>
-            <div class="tips-grid">
-                
-                <div class="tip-card animate-in">
-                    <div class="tip-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h3 data-en="Best time to visit" data-sw="Wakati mzuri wa kutembelea">Best time to visit</h3>
-                    <p data-en="The best time to visit Gombe Stream National Park is from June to September, during the dry season. Trekking through the forest is easier, and the likelihood of seeing the chimps increases." data-sw="Wakati mzuri wa kutembelea ni kuanzia Juni hadi Septemba, wakati wa kiangazi. Kutembea msituni ni rahisi, na uwezekano wa kuona sokwe huongezeka.">The best time to visit Gombe Stream National Park is from June to September, during the dry season. Trekking through the forest is easier, and the likelihood of seeing the chimps increases.</p>
-                </div>
-                
-                <div class="tip-card animate-in">
-                    <div class="tip-icon"><i class="fas fa-plane"></i></div>
-                    <h3 data-en="Getting There" data-sw="Kufika Huko">Getting There</h3>
-                    <p data-en="From Dar es Salaam the best way is by domestic flight to Kigoma (approx 2 hours). From Arusha, shared charter flights operate twice a week. Driving is not recommended due to rough terrain." data-sw="Kutoka Dar es Salaam njia bora ni kwa ndege ya ndani hadi Kigoma. Kutoka Arusha, ndege za kukodi zinafanya kazi mara mbili kwa wiki. Kuendesha gari haipendekezi.">From Dar es Salaam the best way is by domestic flight to Kigoma (approx 2 hours). From Arusha, shared charter flights operate twice a week. Driving is not recommended due to rough terrain.</p>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-<!-- Footer Contact Info -->
-    <div class="footer-top">
-        <div class="container">
-            <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
-            <a href="enquire.html" class="btn enquire-btn" data-en="CONTACT US TODAY!" data-sw="WASILIANA NASI LEO!">CONTACT US TODAY!</a>
-        </div>
-    </div>
-
-    <!-- Final Call to Action -->
-    <section class="section cta-section" style="background: var(--primary-gradient); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <div class="container" style="position: relative; z-index: 2;">
-            <span class="sub-heading" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px;" data-en="YOUR JOURNEY TO AFRICA STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR JOURNEY TO AFRICA STARTS HERE</span>
-            <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: white; margin: 10px 0 16px;" data-en="Are you ready to explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Are you ready to explore Tanzania?</h2>
-            
-            <p class="cta-description" style="max-width: 650px; margin: 0 auto 25px; font-size:0.9rem; line-height: 1.65; opacity: 0.9;">
-                <span class="cta-hide-mobile" data-en="Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. " data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa machweo, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. ">Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. </span>
-                <span data-en="Let Century Adventures make those dreams come true." data-sw="Ruhusu Century Adventures kufanya ndoto hizo ziwe kweli.">Let Century Adventures make those dreams come true.</span>
-            </p>
-
-            <div class="cta-action-grid" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="enquire.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
-                <a href="enquire.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
-            </div>
-            
-            <div style="margin-top: 18px;">
-                <a href="contact.html" style="color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;" data-en="Contact Our Experts &rarr;" data-sw="Wasiliana na Wataalamu Wetu &rarr;">Contact Our Experts &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
+<main class="sg-main" id="gombe-content">
+<section class="sg-hero" aria-labelledby="gombe-title"><div class="sg-wrap"><nav class="sg-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Tanzania</a><span aria-hidden="true">/</span><a href="destinations.html">Destinations</a><span aria-hidden="true">/</span><span aria-current="page">Gombe</span></nav><h1 id="gombe-title">Gombe Stream National Park</h1><p>Forest trails. Chimpanzee encounters.<br>Lakeside beauty.</p><a class="sg-button" href="#overview">Explore Gombe <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></section>
+<section class="sg-facts" aria-label="Gombe highlights"><div class="sg-wrap"><div class="sg-fact"><i class="fa-solid fa-paw" aria-hidden="true"></i><div><strong>Chimpanzees</strong><span>Forest encounters</span></div></div><div class="sg-fact"><i class="fa-solid fa-water" aria-hidden="true"></i><div><strong>Lake Tanganyika</strong><span>Scenic shores</span></div></div><div class="sg-fact"><i class="fa-solid fa-leaf" aria-hidden="true"></i><div><strong>Guided Forest Walks</strong><span>Discover the details</span></div></div></div></section>
+<section class="sg-overview" id="overview" aria-labelledby="overview-title"><div class="sg-wrap sg-split"><div class="sg-copy"><div class="sg-eyebrow">Overview</div><h2 id="overview-title">A Forest Sanctuary by the Lake</h2><p>Discover a remarkable landscape of forested hills and clear lakeside scenery in western Tanzania.</p><p>Gombe offers an intimate wilderness experience, where guided forest excursions and the shores of Lake Tanganyika create a distinctive journey into nature.</p><details class="sg-details"><summary>Read more about Gombe</summary><p>Take time to notice the forest: rustling leaves, birdsong and glimpses of life in the canopy. Combine guided trails with quiet moments beside the lake, with an itinerary tailored to your interests.</p></details></div><div class="sg-portrait"><img src="assets/gombe-chimp-v1.png" alt="Chimpanzee and youngster surrounded by green forest" loading="lazy" width="650" height="430"><img class="sg-inset" src="assets/gombe-hero-v1.png" alt="Forested hills meeting the blue waters of Lake Tanganyika" loading="lazy" width="320" height="200"></div></div></section>
+<section class="gb-gallery sg-wrap" aria-labelledby="gallery-title"><h2 id="gallery-title">Gombe Gallery</h2><div class="sg-tiles"><figure class="sg-tile"><img src="assets/gombe-hero-v1.png" alt="Forested lakeshore and distant mountains" loading="lazy" width="900" height="480"><figcaption><span>Landscape</span>Lake Tanganyika</figcaption></figure><figure class="sg-tile"><img src="assets/gombe-chimp-v1.png" alt="Adult chimpanzee with a youngster in the forest" loading="lazy" width="900" height="480"><figcaption><span>Wildlife</span>Chimpanzees</figcaption></figure></div></section>
+<section class="sg-migration" id="wildlife" aria-labelledby="wildlife-title"><div class="sg-wrap sg-split"><img class="sg-migration-photo" src="assets/gombe-chimp-v1.png" alt="Chimpanzees resting among green foliage" loading="lazy" width="650" height="420"><div class="sg-copy"><div class="sg-eyebrow">Wildlife</div><h2 id="wildlife-title">Discover the World of Chimpanzees</h2><p>Join an experienced guide to explore forest trails in search of chimpanzees and other wildlife.</p><p>Observe quietly and follow your guide's instructions, allowing space for natural behaviour. Every excursion offers the chance to discover the forest's rich sights and sounds.</p><details class="sg-details"><summary>More about forest encounters</summary><p>Walking routes and sightings vary from day to day. Your guide helps you explore at a suitable pace, respecting wildlife and the forest environment.</p></details><a class="sg-link" href="safaris.html">Discover our safari journeys <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div></section>
+<section class="gb-explore" aria-labelledby="explore-title"><div class="sg-wrap"><h2 id="explore-title">Ways to Experience Gombe</h2><div class="gb-explore-grid"><article class="gb-experience"><img src="assets/gombe-chimp-v1.png" alt="Chimpanzees in their forest habitat" loading="lazy" width="500" height="300"><i class="fa-solid fa-shoe-prints" aria-hidden="true"></i><div><h3>Chimpanzee Trekking</h3><p>Explore forest trails with a guide in search of remarkable primates.</p></div></article><article class="gb-experience"><img src="assets/gombe-hero-v1.png" alt="Lush forest along the lakeshore" loading="lazy" width="500" height="300"><i class="fa-solid fa-leaf" aria-hidden="true"></i><div><h3>Forest Walks</h3><p>Discover leafy pathways, birdlife and the smaller wonders of the forest.</p></div></article><article class="gb-experience"><img src="assets/gombe-hero-v1.png" alt="Clear blue lake below forested mountains" loading="lazy" width="500" height="300"><i class="fa-solid fa-water" aria-hidden="true"></i><div><h3>Lakeside Moments</h3><p>Enjoy peaceful scenery along Lake Tanganyika's shores.</p></div></article></div></div></section>
+<section class="sg-planning" aria-labelledby="planning-title"><div class="sg-wrap"><h2 id="planning-title">Planning Your Visit</h2><div class="sg-planning-grid"><article class="sg-plan-card"><i class="fa-regular fa-compass" aria-hidden="true"></i><div><h3>Your Forest Adventure</h3><p>Prepare for walking on uneven forest trails. Our team can explain suitable clothing, fitness considerations and park requirements.</p></div></article><article class="sg-plan-card"><i class="fa-solid fa-ship" aria-hidden="true"></i><div><h3>Getting There</h3><p>Coordinate your journey through Kigoma, with boat transfers arranged to suit your itinerary.</p></div></article></div><p class="sg-note">Forest routes, travel connections and wildlife encounters vary with your dates and conditions.</p></div></section>
+<section class="sg-cta" aria-labelledby="cta-title"><div class="sg-wrap"><div class="sg-eyebrow">Need help planning?</div><h2 id="cta-title">Let Our Experts Design Your Perfect Safari</h2><p>A personalised itinerary built around your budget, travel dates and preferences.</p><div class="sg-cta-actions"><a class="sg-button" href="contact.html?destination=gombe">Plan My Trip <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="sg-email" href="mailto:bookings@century-adventures.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i>bookings@century-adventures.com</a></div></div></section>
+</main>
+<footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col info-col">
-                <h3 data-en="CONTACT US" data-sw="WASILIANA NASI">CONTACT US</h3>
-                <p><strong>Century Adventures</strong></p>
-                <p data-en="Asasi Tower, 4th Floor" data-sw="Asasi Tower, Ghorofa ya 4">Asasi Tower, 4th Floor</p>
-                <p data-en="Ohio Street" data-sw="Mtaa wa Ohio">Ohio Street</p>
-                <p><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank" style="color: inherit;">+255 747 115 390</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@centuryadventures.com" style="color: inherit;">info@centuryadventures.com</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@centuryadventures.com" style="color: inherit;">bookings@centuryadventures.com</a></p>
+                <div class="footer-brand-wrap">
+                    <img src="assets/logo.png" alt="Century Expeditions Logo" class="footer-logo">
+                    <h3 class="footer-brand-title">CENTURY EXPEDITIONS</h3>
+                </div>
+                <p class="footer-tagline" data-en="Tanzania's Premier Luxury Safari &amp; Adventure Specialists." data-sw="Wataalamu Wakuu wa Safari za Kifahari na Matukio Tanzania.">Tanzania's Premier Luxury Safari &amp; Adventure Specialists.</p>
+                <div class="footer-contact-details">
+                    <p><i class="fas fa-map-marker-alt"></i> Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania</p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank">+255 747 115 390</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@century-adventures.com">bookings@century-adventures.com</a></p>
+                </div>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="POPULAR PLACES" data-sw="MAENEO MAARUFU">POPULAR PLACES</h3>
                 <ul>
                     <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
+                    <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
                     <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                    <li><a href="selous.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
+                    <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
                     <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
+                    <li><a href="nyerere.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
                     <li><a href="mikumi.html" data-en="Mikumi Park" data-sw="Hifadhi ya Mikumi">Mikumi Park</a></li>
-                    <li><a href="ngorongoro.html" data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</a></li>
-                    <li><a href="manyara.html" data-en="Manyara National Park" data-sw="Hifadhi ya Manyara">Manyara National Park</a></li>
                 </ul>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL EXPERIENCE" data-sw="UZOEFU WA KUSAFIRI">TRAVEL EXPERIENCE</h3>
                 <ul>
-                    <li><a href="family-safaris.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
-                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
-                    <li><a href="migration-safaris.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
+                    <li><a href="packages.html" data-en="Safari Packages &amp; Itineraries" data-sw="Vifurushi na Ratiba za Safari">Safari Packages &amp; Itineraries</a></li>
+                    <li><a href="family.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
+                    <li><a href="honeymoon.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
+                    <li><a href="migration.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
                     <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
-                    <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                    <li><a href="zanzibar.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                    <li><a href="vehicles.html" data-en="Safari 4x4 Vehicles" data-sw="Magari ya Safari 4x4">Safari 4x4 Vehicles</a></li>
                 </ul>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h3>
                 <ul>
-                    <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
-                    <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
+                    <li><a href="booking-payment.html" data-en="Booking &amp; Payment Information" data-sw="Taarifa za Kuhifadhi na Malipo">Booking &amp; Payment Information</a></li>
+                    <li><a href="travel-guide.html" data-en="Tanzania Travel Guide" data-sw="Mwongozo wa Kusafiri Tanzania">Tanzania Travel Guide</a></li>
                     <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
-                    <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
-                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
-                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
-                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
+                    <li><a href="health-safety.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+
+            <div class="footer-col trust-col">
                 <div class="tripadvisor-card">
-                    <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor">
-                    <h4 data-en="TripAdvisor Century Adventures" data-sw="TripAdvisor Century Adventures">TripAdvisor Century Adventures</h4>
-                    <p data-en="Ranked #1 on TripAdvisor" data-sw="Imeorodheshwa #1 TripAdvisor">Ranked #1 on TripAdvisor</p>
-                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="TripAdvisor Give Feedback Century Adventures" data-sw="TripAdvisor Toa Maoni Century Adventures">TripAdvisor Give Feedback Century Adventures</a>
+                    <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor Rating">
+                    <h4 data-en="TripAdvisor Excellence" data-sw="TripAdvisor Ubora">TripAdvisor Excellence</h4>
+                    <p data-en="Ranked #1 Safari Operator" data-sw="Imeorodheshwa #1 Nchini Tanzania">Ranked #1 Safari Operator</p>
+                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="Give Feedback" data-sw="Toa Maoni">Give Feedback</a>
+                </div>
+                <div class="footer-trust-badges">
+                    <span class="trust-badge-pill"><i class="fa-solid fa-shield-halved"></i> 100% Licensed &amp; Insured</span>
+                    <span class="trust-badge-pill"><i class="fa-solid fa-tree"></i> TANAPA Partner</span>
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom container">
+            <p>&copy; 2012 - 2026 Century Expeditions Ltd. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=61577731823809"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/255747115390"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@centuryadventures.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61577731823809" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/255747115390" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:bookings@century-adventures.com" aria-label="Email Us"><i class="fas fa-envelope"></i></a>
             </div>
-            <p>&copy; Copyright 2012 - 2026 | Century Adventures</p>
         </div>
     </footer>
-
-    <script src="index.js"></script>
-</body>
+<script src="index.js"></script>
+<script src="site-effects.js"></script><script src="mobile-reference.js"></script></body>
 </html>
-
-

@@ -1,287 +1,156 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="assets/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katavi National Park | Century Adventures</title>
-    <meta name="description" content="Explore Katavi National Park with Century Adventures. Remote wilderness, large wildlife populations, and untouched landscapes in Tanzania.">
-    <link rel="stylesheet" href="index.css">
+    <title>Katavi National Park | Century Expeditions</title>
+    <meta name="description" content="Explore Katavi National Park: remote western Tanzania wilderness, seasonal floodplains, buffalo and hippos. Plan your safari with Century Expeditions.">
+    <link rel="canonical" href="https://www.century-adventures.com/katavi.html">
+    <meta property="og:title" content="Katavi National Park | Century Expeditions">
+    <meta property="og:description" content="Remote wilderness. Wild encounters. Discover Katavi National Park with Century Expeditions.">
+    <meta property="og:image" content="https://www.century-adventures.com/assets/katavi-hero-v1.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="assets/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        (function() {
-            const theme = localStorage.getItem('century-theme') || 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Katavi National Park | Century Adventures">
-    <meta property="og:description" content="Explore Katavi National Park with Century Adventures. Remote wilderness, large wildlife populations, and untouched landscapes in Tanzania.">
-    <meta property="og:image" content="assets/logo.png">
-    <meta property="og:site_name" content="Century Adventures">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="assets/logo.png">
-    <meta name="twitter:title" content="Katavi National Park | Century Adventures">
-    <link rel="manifest" href="manifest.json">
-</head>
-<body>
-    <div class="scroll-progress"></div>
+    <link rel="stylesheet" href="index.css?v=7">
+    <link rel="stylesheet" href="serengeti.css">
+    <link rel="stylesheet" href="katavi.css">
+    
+<link rel="stylesheet" href="site-effects.css"><script>try { const mode = localStorage.getItem("century-theme"); document.documentElement.dataset.theme = ["light","dark"].includes(mode) ? mode : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch { document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }</script><link rel="stylesheet" href="site-responsive.css"><link rel="stylesheet" href="mobile-reference.css"></head>
+<body class="serengeti-page katavi-page">
+<a class="sg-skip" href="#katavi-content">Skip to content</a>
+<header class="luxury-header-editorial" id="editorial-header">
+        <div class="container">
+            <a href="index.html" class="editorial-logo" aria-label="Century Expeditions Home">
+                <img src="assets/logo.png" alt="Century Expeditions Logo" class="editorial-logo-img">
+                <span class="editorial-logo-text">Century Expeditions</span>
+            </a>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.png" alt="Century Adventures Logo"></a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                    <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="active" data-en="Destinations" data-sw="Maeneo">Destinations <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="katavi.html" data-en="Katavi National Park" data-sw="Hifadhi ya Katavi">Katavi National Park</a></li>
-                            <li><a href="selous.html" data-en="Selous Game Reserve" data-sw="Hifadhi ya Selous">Selous Game Reserve</a></li>
-                            <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
-                            <li><a href="mikumi.html" data-en="Mikumi National Park" data-sw="Hifadhi ya Mikumi">Mikumi National Park</a></li>
-                            <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
-                            <li><a href="gombe.html" data-en="Gombe Stream National Park" data-sw="Hifadhi ya Gombe">Gombe Stream National Park</a></li>
-                            <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
-                            <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
-                            <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="safaris.html" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
-                    <li><a href="experiences.html" data-en="Experiences" data-sw="Uzoefu">Experiences</a></li>
-                    <li><a href="volunteer.html" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
-                    <li><a href="vehicles.html" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
-                    <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                </ul>
+            <nav class="editorial-nav-links" id="editorialNav">
+                <a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a>
+                <a href="destinations.html" class="active" data-en="Destinations" data-sw="Maeneo">Destinations</a>
+                <a href="safaris.html"  data-en="Safaris" data-sw="Safari">Safaris</a>
+                <a href="about.html"  data-en="About" data-sw="Kuhusu Sisi">About</a>
             </nav>
 
-            <!-- Mobile Hamburger Menu -->
-            <button class="mobile-toggle" id="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <div class="header-actions">
+            <div class="editorial-header-actions">
                 <div class="header-toggles">
-                    <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
-                    <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <button class="toggle-btn lang-toggle" onclick="toggleLang(event)" aria-label="Toggle language"><span class="lang-label active">EN</span><span class="lang-divider">/</span><span class="lang-label">SW</span></button>
+                    <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i> <span class="toggle-text">DARK</span></button>
                 </div>
-                <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="ENQUIRE" data-sw="ULIZA">ENQUIRE</a>
+                <a href="contact.html" class="editorial-contact-btn" data-en="Contact &rarr;" data-sw="Wasiliana &rarr;">Contact <i class="fas fa-arrow-right"></i></a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Navigation Menu Dropdown Drawer -->
+        <nav class="nav" id="mobileNavDrawer">
+            <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
+            <ul>
+                <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                <li><a href="safaris.html" data-en="Safaris" data-sw="Safari">Safaris</a></li>
+                <li><a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a></li>
+                <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
+                <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
+                <li class="mobile-only-action book-now-item"><a href="contact.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Page Hero -->
-    <section class="hero page-hero" style="background-image: url('assets/KTA13Serengeti Nationa.webp'); height: 60vh;">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 data-en="Katavi National Park" data-sw="Hifadhi ya Taifa ya Katavi">Katavi National Park</h1>
-            <p class="hero-tagline" data-en="The untouched wilderness of Western Tanzania." data-sw="Nyika isiyoguswa ya Magharibi mwa Tanzania.">The untouched wilderness of Western Tanzania.</p>
-        </div>
-    </section>
-
-    <!-- Katavi Content -->
-    <section class="section about-intro">
-        <div class="container">
-            <div class="experts-grid">
-                <div class="experts-text">
-                    <span class="sub-heading" data-en="UNSPOILT WILDERNESS" data-sw="PORI LISILOGUSWA">UNSPOILT WILDERNESS</span>
-                    <h2 data-en="The Remote Beauty of Katavi" data-sw="Uzuri wa Mbali wa Katavi">The Remote Beauty of Katavi</h2>
-                    <p data-en="Known for its diverse landscapes and abundance of game, Katavi National Park's drawcard is its remoteness. This has ensured that the area has remained completely unspoilt. With so few visitors around, a Katavi safari is guaranteed to make you feel like the only people on earth! With large populations of elephants, lions, hippos and more, game viewing is beyond spectacular, especially during the dry season when water sources dwindle."
-                       data-sw="Inajulikana kwa mandhari yake mbalimbali na wingi wa wanyama, kivutio kikubwa cha Hifadhi ya Taifa ya Katavi ni umbali wake. Hii imehakikisha kwamba eneo hili limebaki halijaharibiwa kabisa. Kutokana na wageni wachache, safari ya Katavi inakuhakikishia kuhisi kama ninyi ndio watu pekee duniani! Ukiwa na idadi kubwa ya tembo, simba, viboko na wengine, kuangalia wanyama ni jambo la kushangaza, hasa wakati wa kiangazi vyanzo vya maji vinapopungua.">
-                       Known for its diverse landscapes and abundance of game, Katavi National Park's drawcard is its remoteness. This has ensured that the area has remained completely unspoilt. With so few visitors around, a Katavi safari is guaranteed to make you feel like the only people on earth! With large populations of elephants, lions, hippos and more, game viewing is beyond spectacular, especially during the dry season when water sources dwindle.
-                    </p>
-                    
-                    <p data-en="There are only 3 permanent camps in Katavi National Park: Mbali Mbali Katavi Lodge, Chada on the Chada Plain, and the Foxes on the Katuma Plain. Each camp has the capacity to host 12 visitors, a limit which adds to the sense of exclusivity. Katavi National Park is home to an abundance of wildlife, including wildebeest, giraffes, elephants, zebras, African buffaloes, lions, leopards, and cheetahs."
-                       data-sw="Kuna kambi 3 tu za kudumu katika Hifadhi ya Taifa ya Katavi: Mbali Mbali Katavi Lodge, Chada kwenye Uwanda wa Chada, na Foxes kwenye Uwanda wa Katuma. Kila kambi ina uwezo wa kupokea wageni 12, kikomo ambacho kinaongeza hisia za kipekee. Hifadhi ya Taifa ya Katavi ni nyumbani kwa wingi wa wanyamapori, ikiwa ni pamoja na nyumbu, twiga, tembo, punda milia, nyati wa Afrika, simba, chui, na duma.">
-                       There are only 3 permanent camps in Katavi National Park: Mbali Mbali Katavi Lodge, Chada on the Chada Plain, and the Foxes on the Katuma Plain. Each camp has the capacity to host 12 visitors, a limit which adds to the sense of exclusivity. Katavi National Park is home to an abundance of wildlife, including wildebeest, giraffes, elephants, zebras, African buffaloes, lions, leopards, and cheetahs.
-                    </p>
-
-                    <p data-en="Crocodiles and hippos are frequently spotted on the banks of the Katuma River. During the dry season, hippos relax in mud-holes and cover themselves in mud sunscreen to protect their sensitive skin. Katavi is also a refuge for wild dogs, a critically endangered species."
-                       data-sw="Mamba na viboko huonekana mara kwa mara kwenye kingo za Mto Katuma. Wakati wa kiangazi, viboko hupumzika kwenye mashimo ya matope na kujifunika na matope kama mafuta ya kujikinga na jua ili kulinda ngozi zao nyeti. Katavi pia ni kimbilio la mbwa mwitu, spishi iliyo hatarini kutoweka.">
-                       Crocodiles and hippos are frequently spotted on the banks of the Katuma River. During the dry season, hippos relax in mud-holes and cover themselves in mud sunscreen to protect their sensitive skin. Katavi is also a refuge for wild dogs, a critically endangered species.
-                    </p>
-                </div>
-                <div class="experts-image" style="display: flex; flex-direction: column; gap: 20px;">
-                    <img src="assets/07TMMT-IM1507-mara-mara-tented-lodge-1475.jpg" alt="Katavi Landscape" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <img src="assets/KTA13Serengeti Nationa.webp" alt="Katavi Wildlife" style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location & Circuit -->
-    <section class="section" style="background-color: var(--section-bg);">
-        <div class="container">
-            <div class="experts-grid" style="align-items: center;">
-                <div class="experts-image" style="order: -1;">
-                    <img src="assets/elwphant.jpg" alt="Safari in Katavi" style="border-radius: 10px;">
-                </div>
-                <div class="experts-text">
-                    <span class="sub-heading" data-en="WESTERN SAFARI CIRCUIT" data-sw="MZUNGUKO WA SAFARI WA MAGHARIBI">WESTERN SAFARI CIRCUIT</span>
-                    <h2 data-en="Location & Accessibility" data-sw="Mahali & Ufikivu">Location & Accessibility</h2>
-                    <p data-en="Katavi National Park lies on the western safari circuit, alongside Lake Tanganyika, the Mahale Mountains, and Gombe Stream National Park. The western safari circuit is rarely visited due to the high cost of travelling to this secluded location."
-                       data-sw="Hifadhi ya Taifa ya Katavi iko kwenye mzunguko wa safari wa magharibi, kando ya Ziwa Tanganyika, Milima ya Mahale, na Hifadhi ya Taifa ya Gombe Stream. Mzunguko wa safari wa magharibi hutembelewa mara chache kwa sababu ya gharama kubwa za kusafiri kwenda eneo hili lililojitenga.">
-                       Katavi National Park lies on the western safari circuit, alongside Lake Tanganyika, the Mahale Mountains, and Gombe Stream National Park. The western safari circuit is rarely visited due to the high cost of travelling to this secluded location.
-                    </p>
-                    <p data-en="However, the circuit is renowned for offering excellent wildlife viewing opportunities in its untarnished wilderness. The western safari circuit is primarily accessed from Arusha and Dar es Salaam via plane or charter."
-                       data-sw="Hata hivyo, mzunguko huo unajulikana sana kwa kutoa fursa nzuri za kuona wanyamapori katika nyika yake isiyoharibiwa. Mzunguko wa safari wa magharibi hufikiwa hasa kutoka Arusha na Dar es Salaam kwa ndege au kukodi.">
-                       However, the circuit is renowned for offering excellent wildlife viewing opportunities in its untarnished wilderness. The western safari circuit is primarily accessed from Arusha and Dar es Salaam via plane or charter.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Getting There & When to Visit -->
-    <section class="section travel-tips-section">
-        <div class="container">
-            <h2 data-en="Planning Your Visit" data-sw="Kupanga Ziara Yako" style="text-align: center; margin-bottom: 40px;">Planning Your Visit</h2>
-            <div class="tips-grid">
-                <!-- By Air -->
-                <div class="tip-card animate-in">
-                    <div class="tip-icon"><i class="fas fa-plane"></i></div>
-                    <h3 data-en="By Air" data-sw="Kwa Ndege">By Air</h3>
-                    <p data-en="By far the easiest way to reach Katavi is via twice-weekly scheduled flights from Dar es Salaam. Chartered flights can also be arranged from Arusha or any major city. The flight takes approximately 2–3 hours."
-                       data-sw="Kwa mbali, njia rahisi zaidi ya kufika Katavi ni kwa ndege zinazopangwa mara mbili kwa wiki kutoka Dar es Salaam. Ndege za kukodi pia zinaweza kupangwa kutoka Arusha au mji wowote mkubwa.">
-                        By far the easiest way to reach Katavi is via twice-weekly scheduled flights from Dar es Salaam. Chartered flights can also be arranged from Arusha or any major city. The flight takes approximately 2–3 hours.
-                    </p>
-                </div>
-                <!-- By Road -->
-                <div class="tip-card animate-in">
-                    <div class="tip-icon"><i class="fas fa-car"></i></div>
-                    <h3 data-en="By Road" data-sw="Kwa Barabara">By Road</h3>
-                    <p data-en="Katavi National Park is a two- to three-day drive from Dar es Salaam — a definite adventure in itself. The road from Arusha is even more challenging. This route is best suited for experienced overlanders and is only recommended in the dry season."
-                       data-sw="Hifadhi ya Katavi iko mwendo wa siku mbili hadi tatu kwa gari kutoka Dar es Salaam — adventure nzuri yenyewe. Barabara kutoka Arusha ni ngumu zaidi. Njia hii inafaa zaidi kwa wasafiri wenye uzoefu wa safari za barabara na inapendekezwa tu wakati wa kiangazi.">
-                        Katavi National Park is a two- to three-day drive from Dar es Salaam — a definite adventure in itself. The road from Arusha is even more challenging. This route is best suited for experienced overlanders and is only recommended in the dry season.
-                    </p>
-                </div>
-                <div class="tip-card animate-in">
-                    <div class="tip-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h3 data-en="When to visit" data-sw="Wakati wa kutembelea">When to visit</h3>
-                    <p data-en="The best time to visit Katavi National Park is during the annual dry season from June to December. During the dry season, the Katuma River is one of the only water sources within the surrounding area, and you will have spectacular wildlife viewing opportunities around the river."
-                       data-sw="Wakati mzuri wa kutembelea Hifadhi ya Taifa ya Katavi ni wakati wa kiangazi cha kila mwaka kuanzia Juni hadi Desemba. Wakati wa kiangazi, Mto Katuma ni mojawapo ya vyanzo pekee vya maji ndani ya eneo linalozunguka, na utakuwa na fursa nzuri za kuona wanyamapori karibu na mto.">
-                       The best time to visit Katavi National Park is during the annual dry season from June to December. During the dry season, the Katuma River is one of the only water sources within the surrounding area, and you will have spectacular wildlife viewing opportunities around the river.
-                    </p>
-                    <p data-en="Hundreds of hippos and crocodiles gather around the scarce waterholes, and thousands of topis, impalas, and zebras pass through the plains. Even in peak season, you will feel like you have Katavi all to yourself."
-                       data-sw="Mamia ya viboko na mamba hukusanyika karibu na mashimo machache ya maji, na maelfu ya nyati, swala, na punda milia hupitia kwenye tambarare. Hata wakati wa msimu wa kilele, utahisi kama unayo Katavi peke yako.">
-                       Hundreds of hippos and crocodiles gather around the scarce waterholes, and thousands of topis, impalas, and zebras pass through the plains. Even in peak season, you will feel like you have Katavi all to yourself.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Contact Info -->
-    <div class="footer-top">
-        <div class="container">
-            <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
-            <a href="enquire.html" class="btn enquire-btn" data-en="CONTACT US TODAY!" data-sw="WASILIANA NASI LEO!">CONTACT US TODAY!</a>
-        </div>
-    </div>
-
-    <!-- Final Call to Action -->
-    <section class="section cta-section" style="background: var(--primary-gradient); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <div class="container" style="position: relative; z-index: 2;">
-            <span class="sub-heading" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px;" data-en="YOUR JOURNEY TO AFRICA STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR JOURNEY TO AFRICA STARTS HERE</span>
-            <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: white; margin: 10px 0 16px;" data-en="Are you ready to explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Are you ready to explore Tanzania?</h2>
-            
-            <p class="cta-description" style="max-width: 650px; margin: 0 auto 25px; font-size:0.9rem; line-height: 1.65; opacity: 0.9;">
-                <span class="cta-hide-mobile" data-en="Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. " data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa machweo, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. ">Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. </span>
-                <span data-en="Let Century Adventures make those dreams come true." data-sw="Ruhusu Century Adventures kufanya ndoto hizo ziwe kweli.">Let Century Adventures make those dreams come true.</span>
-            </p>
-
-            <div class="cta-action-grid" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="enquire.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
-                <a href="enquire.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
-            </div>
-            
-            <div style="margin-top: 18px;">
-                <a href="contact.html" style="color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;" data-en="Contact Our Experts &rarr;" data-sw="Wasiliana na Wataalamu Wetu &rarr;">Contact Our Experts &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
+<main class="sg-main" id="katavi-content">
+<section class="sg-hero" aria-labelledby="katavi-title"><div class="sg-wrap"><nav class="sg-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Tanzania</a><span aria-hidden="true">/</span><a href="destinations.html">Destinations</a><span aria-hidden="true">/</span><span aria-current="page">Katavi</span></nav><h1 id="katavi-title">Katavi National Park</h1><p>Remote wilderness. Wild encounters.<br>Africa at its most untamed.</p><a class="sg-button" href="#overview">Explore Katavi <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></section>
+<section class="sg-facts" aria-label="Katavi highlights"><div class="sg-wrap"><div class="sg-fact"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i><div><strong>Remote Wilderness</strong><span>Western Tanzania</span></div></div><div class="sg-fact"><i class="fa-solid fa-seedling" aria-hidden="true"></i><div><strong>Seasonal Floodplains</strong><span>Dramatic landscapes</span></div></div><div class="sg-fact"><i class="fa-solid fa-binoculars" aria-hidden="true"></i><div><strong>Wildlife Encounters</strong><span>Unhurried exploration</span></div></div></div></section>
+<section class="sg-overview" id="overview" aria-labelledby="overview-title"><div class="sg-wrap sg-split"><div class="sg-copy"><div class="sg-eyebrow">Overview</div><h2 id="overview-title">A Journey Into the Wild</h2><p>Discover an expansive landscape of seasonal floodplains, woodland and waterways in western Tanzania.</p><p>Katavi invites adventurous travellers to experience the quieter rhythms of the bush, with remarkable scenery and wildlife encounters far from busy safari routes.</p><details class="sg-details"><summary>Read more about Katavi</summary><p>Allow time to explore at an unhurried pace. The landscape changes with seasonal water levels, bringing different opportunities along the floodplains and woodland edges. Our team can help you choose a camp and itinerary around your interests.</p></details></div><div class="sg-portrait"><img src="assets/katavi-buffalo-v1.png" alt="African buffalo in golden grass with a herd behind" loading="lazy" width="650" height="430"><img class="sg-inset" src="assets/katavi-hero-v1.png" alt="Katavi seasonal floodplain and shallow water at sunrise" loading="lazy" width="320" height="200"></div></div></section>
+<section class="kt-gallery sg-wrap" aria-labelledby="gallery-title"><h2 id="gallery-title">Katavi Gallery</h2><div class="sg-tiles"><figure class="sg-tile"><img src="assets/katavi-hero-v1.png" alt="Golden light over Katavi's seasonal floodplain and woodland" loading="lazy" width="900" height="480"><figcaption><span>Landscape</span>Seasonal Floodplains</figcaption></figure><figure class="sg-tile"><img src="assets/nyerere-hippos-v1.png" alt="Hippo pod resting in shallow water" loading="lazy" width="900" height="480"><figcaption><span>Wildlife</span>Around the Water</figcaption></figure></div></section>
+<section class="sg-migration" id="wildlife" aria-labelledby="wildlife-title"><div class="sg-wrap sg-split"><img class="sg-migration-photo" src="assets/katavi-buffalo-v1.png" alt="Buffalo herd and elephants gathering near a water source" loading="lazy" width="650" height="420"><div class="sg-copy"><div class="sg-eyebrow">Wildlife</div><h2 id="wildlife-title">Wildlife Around the Water</h2><p>Look for buffalo, elephants, hippos and diverse birdlife as your guide explores the park's changing habitats.</p><p>Seasonal water levels shape the landscape and influence where animals gather. Lions and other predators add to the possibilities of every game drive.</p><details class="sg-details"><summary>Discover Katavi's wildlife rhythm</summary><p>Watch the water's edge, pause for birdlife and follow the day's opportunities with your guide. Each visit unfolds differently as animals move through the changing landscape. Time and patience make space for memorable encounters.</p></details><a class="sg-link" href="safaris.html">Discover our safari journeys <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div></section>
+<section class="kt-explore" aria-labelledby="explore-title"><div class="sg-wrap"><h2 id="explore-title">Ways to Experience Katavi</h2><div class="kt-explore-grid"><article class="kt-experience"><img src="assets/mikumi-drive-v1.png" alt="Open safari vehicle in golden grassland" loading="lazy" width="500" height="300"><i class="fa-solid fa-truck" aria-hidden="true"></i><div><h3>Game Drives</h3><p>Explore floodplains and woodland with an experienced safari guide.</p></div></article><article class="kt-experience"><img src="assets/mikumi-bird-v1.png" alt="Colourful lilac-breasted roller perched on a branch" loading="lazy" width="500" height="300"><i class="fa-solid fa-binoculars" aria-hidden="true"></i><div><h3>Birdwatching</h3><p>Discover birdlife around seasonal wetlands and waterways.</p></div></article><article class="kt-experience"><img src="assets/katavi-camp-v1.png" alt="Warmly lit canvas safari tent overlooking wilderness at dusk" loading="lazy" width="500" height="300"><i class="fa-solid fa-tent" aria-hidden="true"></i><div><h3>Wilderness Stays</h3><p>Enjoy peaceful nights surrounded by the sounds of the bush.</p></div></article></div></div></section>
+<section class="sg-planning" aria-labelledby="planning-title"><div class="sg-wrap"><h2 id="planning-title">Planning Your Visit</h2><div class="sg-planning-grid"><article class="sg-plan-card"><i class="fa-regular fa-compass" aria-hidden="true"></i><div><h3>Your Safari Experience</h3><p>Allow time for unhurried exploration. Our team can tailor your stay around your interests and seasonal conditions.</p></div></article><article class="sg-plan-card"><i class="fa-solid fa-plane" aria-hidden="true"></i><div><h3>Getting There</h3><p>Coordinate suitable travel connections and camp transfers with our safari specialists.</p></div></article></div><p class="sg-note">Camp availability, travel connections and wildlife viewing vary with your dates and seasonal conditions.</p></div></section>
+<section class="sg-cta" aria-labelledby="cta-title"><div class="sg-wrap"><div class="sg-eyebrow">Need help planning?</div><h2 id="cta-title">Let Our Experts Design Your Perfect Safari</h2><p>A personalised itinerary built around your budget, travel dates and preferences.</p><div class="sg-cta-actions"><a class="sg-button" href="contact.html?destination=katavi">Plan My Trip <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="sg-email" href="mailto:bookings@century-adventures.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i>bookings@century-adventures.com</a></div></div></section>
+</main>
+<footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col info-col">
-                <h3 data-en="CONTACT US" data-sw="WASILIANA NASI">CONTACT US</h3>
-                <p><strong>Century Adventures</strong></p>
-                <p data-en="Asasi Tower, 4th Floor" data-sw="Asasi Tower, Ghorofa ya 4">Asasi Tower, 4th Floor</p>
-                <p data-en="Ohio Street" data-sw="Mtaa wa Ohio">Ohio Street</p>
-                <p><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank" style="color: inherit;">+255 747 115 390</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@centuryadventures.com" style="color: inherit;">info@centuryadventures.com</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@centuryadventures.com" style="color: inherit;">bookings@centuryadventures.com</a></p>
+                <div class="footer-brand-wrap">
+                    <img src="assets/logo.png" alt="Century Expeditions Logo" class="footer-logo">
+                    <h3 class="footer-brand-title">CENTURY EXPEDITIONS</h3>
+                </div>
+                <p class="footer-tagline" data-en="Tanzania's Premier Luxury Safari &amp; Adventure Specialists." data-sw="Wataalamu Wakuu wa Safari za Kifahari na Matukio Tanzania.">Tanzania's Premier Luxury Safari &amp; Adventure Specialists.</p>
+                <div class="footer-contact-details">
+                    <p><i class="fas fa-map-marker-alt"></i> Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania</p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank">+255 747 115 390</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@century-adventures.com">bookings@century-adventures.com</a></p>
+                </div>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="POPULAR PLACES" data-sw="MAENEO MAARUFU">POPULAR PLACES</h3>
                 <ul>
                     <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
+                    <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Ngorongoro">Ngorongoro Conservation Area</a></li>
                     <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                    <li><a href="selous.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
+                    <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Manyara">Lake Manyara National Park</a></li>
                     <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
+                    <li><a href="nyerere.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
                     <li><a href="mikumi.html" data-en="Mikumi Park" data-sw="Hifadhi ya Mikumi">Mikumi Park</a></li>
-                    <li><a href="ngorongoro.html" data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</a></li>
-                    <li><a href="manyara.html" data-en="Manyara National Park" data-sw="Hifadhi ya Manyara">Manyara National Park</a></li>
                 </ul>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL EXPERIENCE" data-sw="UZOEFU WA KUSAFIRI">TRAVEL EXPERIENCE</h3>
                 <ul>
-                    <li><a href="family-safaris.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
-                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
-                    <li><a href="migration-safaris.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
+                    <li><a href="packages.html" data-en="Safari Packages &amp; Itineraries" data-sw="Vifurushi na Ratiba za Safari">Safari Packages &amp; Itineraries</a></li>
+                    <li><a href="family.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
+                    <li><a href="honeymoon.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
+                    <li><a href="migration.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
                     <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
-                    <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                    <li><a href="zanzibar.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                    <li><a href="vehicles.html" data-en="Safari 4x4 Vehicles" data-sw="Magari ya Safari 4x4">Safari 4x4 Vehicles</a></li>
                 </ul>
             </div>
+
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h3>
                 <ul>
-                    <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
-                    <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
+                    <li><a href="booking-payment.html" data-en="Booking &amp; Payment Information" data-sw="Taarifa za Kuhifadhi na Malipo">Booking &amp; Payment Information</a></li>
+                    <li><a href="travel-guide.html" data-en="Tanzania Travel Guide" data-sw="Mwongozo wa Kusafiri Tanzania">Tanzania Travel Guide</a></li>
                     <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
-                    <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
-                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
-                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
-                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
+                    <li><a href="health-safety.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+
+            <div class="footer-col trust-col">
                 <div class="tripadvisor-card">
-                    <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor">
-                    <h4 data-en="TripAdvisor Century Adventures" data-sw="TripAdvisor Century Adventures">TripAdvisor Century Adventures</h4>
-                    <p data-en="Ranked #1 on TripAdvisor" data-sw="Imeorodheshwa #1 TripAdvisor">Ranked #1 on TripAdvisor</p>
-                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="TripAdvisor Give Feedback Century Adventures" data-sw="TripAdvisor Toa Maoni Century Adventures">TripAdvisor Give Feedback Century Adventures</a>
+                    <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor Rating">
+                    <h4 data-en="TripAdvisor Excellence" data-sw="TripAdvisor Ubora">TripAdvisor Excellence</h4>
+                    <p data-en="Ranked #1 Safari Operator" data-sw="Imeorodheshwa #1 Nchini Tanzania">Ranked #1 Safari Operator</p>
+                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="Give Feedback" data-sw="Toa Maoni">Give Feedback</a>
+                </div>
+                <div class="footer-trust-badges">
+                    <span class="trust-badge-pill"><i class="fa-solid fa-shield-halved"></i> 100% Licensed &amp; Insured</span>
+                    <span class="trust-badge-pill"><i class="fa-solid fa-tree"></i> TANAPA Partner</span>
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom container">
+            <p>&copy; 2012 - 2026 Century Expeditions Ltd. All Rights Reserved.</p>
             <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=61577731823809"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/255747115390"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@centuryadventures.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61577731823809" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/255747115390" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:bookings@century-adventures.com" aria-label="Email Us"><i class="fas fa-envelope"></i></a>
             </div>
-            <p>&copy; Copyright 2012 - 2026 | Century Adventures</p>
         </div>
     </footer>
-
-    <script src="index.js"></script>
-</body>
+<script src="index.js"></script>
+<script src="site-effects.js"></script><script src="mobile-reference.js"></script></body>
 </html>

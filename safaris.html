@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tours &amp; Safaris | Century Adventures Tanzania</title>
     <meta name="description" content="Discover the best of Tanzania with Century Adventures. Browse our hand-crafted safari itineraries designed to showcase incredible wildlife and landscapes.">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=7">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         (function() {
@@ -19,7 +19,675 @@
         })();
     </script>
     <style>
-        /* ══ Page Hero ══ */
+        /* ============================================================
+           EDITORIAL LUXURY HEADER (LOCKED IN ONE PLACE - NEVER MOVES)
+           ============================================================ */
+        .luxury-header-editorial,
+        header.luxury-header-editorial,
+        #editorial-header,
+        .luxury-header-editorial.scrolled,
+        header.luxury-header-editorial.scrolled,
+        #editorial-header.scrolled {
+            position: fixed !important; /* STICKS IN ONE PLACE AT ALL TIMES WHEN SCROLLING DOWN OR UP */
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: 82px !important;
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-bottom: 1.5px solid rgba(212, 175, 55, 0.35) !important;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05) !important;
+            z-index: 2000 !important;
+            transform: none !important;
+            transition: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        [data-theme="dark"] .luxury-header-editorial,
+        [data-theme="dark"] header.luxury-header-editorial,
+        [data-theme="dark"] #editorial-header,
+        [data-theme="dark"] .luxury-header-editorial.scrolled,
+        [data-theme="dark"] header.luxury-header-editorial.scrolled,
+        [data-theme="dark"] #editorial-header.scrolled {
+            background: rgba(8, 20, 14, 0.98) !important;
+            border-bottom: 1.5px solid rgba(212, 175, 55, 0.35) !important;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        .luxury-header-editorial .container {
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 32px;
+            height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .editorial-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none !important;
+            transition: transform 0.3s ease;
+        }
+
+        .editorial-logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .editorial-logo-icon {
+            width: 56px;
+            height: 34px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+        }
+
+        .editorial-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 2.8px;
+            color: #11281e !important;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        [data-theme="dark"] .editorial-logo-text {
+            color: #ffffff !important;
+            text-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+        }
+
+        .editorial-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .editorial-nav-links a {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a2c22 !important;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.25s ease;
+            text-decoration: none !important;
+            letter-spacing: 0.3px;
+        }
+
+        [data-theme="dark"] .editorial-nav-links a {
+            color: #ffffff !important;
+        }
+
+        .editorial-nav-links a:hover {
+            color: #d4af37 !important;
+            transform: translateY(-1px);
+        }
+
+        .editorial-nav-links a.active {
+            font-weight: 700;
+            color: #123126 !important;
+        }
+
+        [data-theme="dark"] .editorial-nav-links a.active {
+            color: #f7d16d !important;
+        }
+
+        .editorial-nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37 0%, #f7d678 100%);
+            border-radius: 3px;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        [data-theme="dark"] .editorial-nav-links a.active::after {
+            background: #f7d16d;
+            box-shadow: 0 0 12px rgba(247, 209, 109, 0.8);
+        }
+
+        .editorial-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .editorial-header-actions .header-toggles {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .editorial-header-actions .toggle-btn {
+            background: #fbf9f4 !important;
+            border: 1px solid rgba(212, 175, 55, 0.45) !important;
+            color: #123126 !important;
+            font-weight: 600 !important;
+            border-radius: 50px !important;
+            padding: 7px 15px !important;
+            font-size: 0.72rem !important;
+            letter-spacing: 0.8px !important;
+            transition: all 0.25s ease !important;
+            cursor: pointer;
+        }
+
+        .editorial-header-actions .toggle-btn:hover {
+            background: #123126 !important;
+            color: #ffffff !important;
+            border-color: #123126 !important;
+        }
+
+        [data-theme="dark"] .editorial-header-actions .toggle-btn {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(212, 175, 55, 0.45) !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .editorial-header-actions .toggle-btn:hover {
+            background: #d4af37 !important;
+            color: #08140e !important;
+            border-color: #d4af37 !important;
+        }
+
+        .editorial-contact-btn {
+            background: #123126 !important;
+            color: #ffffff !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            padding: 11px 26px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(212, 175, 55, 0.4) !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 18px rgba(18, 49, 38, 0.25);
+            text-decoration: none !important;
+        }
+
+        .editorial-contact-btn i {
+            transition: transform 0.25s ease;
+        }
+
+        .editorial-contact-btn:hover {
+            background: #1c4b3a !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(18, 49, 38, 0.35);
+            border-color: #d4af37 !important;
+        }
+
+        .editorial-contact-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        [data-theme="dark"] .editorial-contact-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #bf9426 100%) !important;
+            color: #08140e !important;
+            font-weight: 700;
+            border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        [data-theme="dark"] .editorial-contact-btn:hover {
+            background: #f7d678 !important;
+            box-shadow: 0 8px 28px rgba(247, 214, 120, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           HERO SECTION (MOCKUP EXACT MATCH)
+           ============================================================ */
+        .safari-hero-editorial {
+            position: relative;
+            width: 100%;
+            min-height: calc(84vh - 82px);
+            margin-top: 0 !important;
+            display: flex;
+            align-items: center;
+            background-image: linear-gradient(90deg, rgba(12, 22, 17, 0.72) 0%, rgba(12, 22, 17, 0.42) 48%, rgba(12, 22, 17, 0.05) 85%),
+                              url('assets/safari-hero-bg.jpg');
+            background-size: cover;
+            background-position: center 42%;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .safari-hero-container {
+            max-width: 1320px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 70px 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .safari-hero-content {
+            max-width: 600px;
+        }
+
+        .safari-eyebrow-accent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+            margin-bottom: 16px;
+        }
+
+        .safari-eyebrow-bar {
+            width: 38px;
+            height: 2px;
+            background: #d4af37;
+            border-radius: 2px;
+        }
+
+        .safari-eyebrow-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2.2px;
+            color: #f1bf48;
+            text-transform: uppercase;
+        }
+
+        .safari-editorial-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.12;
+            letter-spacing: -0.5px;
+            margin: 0 0 18px;
+            text-shadow: 0 3px 25px rgba(0, 0, 0, 0.45);
+        }
+
+        .safari-editorial-lead {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1rem, 1.3vw, 1.15rem);
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.94);
+            margin: 0 0 32px;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        .safari-hero-cta {
+            background: #df9f28;
+            color: #17271f !important;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 700;
+            padding: 14px 34px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 24px rgba(223, 159, 40, 0.4);
+            text-decoration: none !important;
+        }
+
+        .safari-hero-cta:hover {
+            background: #f0ac2f;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(223, 159, 40, 0.55);
+            color: #0b1410 !important;
+        }
+
+        /* ============================================================
+           FIND YOUR PERFECT SAFARI SECTION (MOCKUP EXACT MATCH)
+           ============================================================ */
+        .find-perfect-safari-section {
+            background: #f7f4ed;
+            padding: 85px 0 115px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .find-perfect-safari-section {
+            background: #091712;
+        }
+
+        .find-safari-watermark {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .watermark-left-botanical {
+            left: -10px;
+            top: 40px;
+            width: 145px;
+            height: auto;
+            opacity: 0.42;
+        }
+
+        .watermark-right-compass {
+            right: 20px;
+            top: 30px;
+            width: 190px;
+            height: auto;
+            opacity: 0.32;
+        }
+
+        .watermark-right-botanical {
+            right: -10px;
+            bottom: 40px;
+            width: 135px;
+            height: auto;
+            opacity: 0.42;
+        }
+
+        .find-perfect-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .find-perfect-header-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 42px;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .find-perfect-title-col {
+            max-width: 580px;
+        }
+
+        .find-perfect-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.2vw, 2.75rem);
+            font-weight: 800;
+            color: #12281e;
+            line-height: 1.15;
+            margin: 0 0 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        [data-theme="dark"] .find-perfect-title {
+            color: #ffffff;
+        }
+
+        .find-perfect-title-accent {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 55px;
+            height: 3px;
+            background: #d4af37;
+            border-radius: 2px;
+        }
+
+        .find-perfect-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            color: #64736b;
+            margin: 16px 0 0;
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] .find-perfect-subtitle {
+            color: #a4b3aa;
+        }
+
+        .safari-filters-pills {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .safari-filter-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 50px;
+            background: #fbf9f4;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            color: #1a2d23;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] .safari-filter-btn {
+            background: #11241c;
+            border-color: rgba(212, 175, 55, 0.3);
+            color: #e5ede8;
+        }
+
+        .safari-filter-btn:hover {
+            border-color: #d4af37;
+            transform: translateY(-1px);
+        }
+
+        .safari-filter-btn.active {
+            background: #123126 !important;
+            color: #ffffff !important;
+            border-color: #123126 !important;
+            box-shadow: 0 4px 15px rgba(18, 49, 38, 0.25) !important;
+        }
+
+        [data-theme="dark"] .safari-filter-btn.active {
+            background: #194636 !important;
+            border-color: #d4af37 !important;
+            color: #ffffff !important;
+        }
+
+        /* Luxury 3-Card Grid */
+        .safari-editorial-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .safari-luxury-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.55);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+
+        [data-theme="dark"] .safari-luxury-card {
+            background: #0f2219;
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .safari-luxury-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
+            border-color: #d4af37;
+        }
+
+        .safari-card-media {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .safari-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .safari-luxury-card:hover .safari-card-media img {
+            transform: scale(1.06);
+        }
+
+        .safari-card-info {
+            padding: 24px 26px 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .safari-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.38rem;
+            font-weight: 700;
+            color: #12281e;
+            margin: 0 0 6px;
+            line-height: 1.25;
+        }
+
+        [data-theme="dark"] .safari-card-title {
+            color: #ffffff;
+        }
+
+        .safari-card-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: #6d7d74;
+            margin: 0 0 24px;
+        }
+
+        [data-theme="dark"] .safari-card-meta {
+            color: #9cb0a5;
+        }
+
+        .safari-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] .safari-card-footer {
+            border-top-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .safari-card-pricing {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: #55665d;
+        }
+
+        [data-theme="dark"] .safari-card-pricing {
+            color: #b5c7bd;
+        }
+
+        .safari-card-price-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #11281e;
+        }
+
+        [data-theme="dark"] .safari-card-price-value {
+            color: #f7d678;
+        }
+
+        .safari-card-view-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.84rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: #fbf9f4;
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            color: #12281e;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            text-decoration: none !important;
+        }
+
+        [data-theme="dark"] .safari-card-view-btn {
+            background: #142a20;
+            border-color: rgba(212, 175, 55, 0.45);
+            color: #f0f7f3;
+        }
+
+        .safari-card-view-btn:hover {
+            background: #123126;
+            color: #ffffff !important;
+            border-color: #123126;
+            transform: translateX(2px);
+        }
+
+        /* Floating Chat Bubble */
+        .floating-chat-bubble {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #123126;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 25px rgba(18, 49, 38, 0.4);
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none !important;
+        }
+
+        .floating-chat-bubble:hover {
+            transform: scale(1.1) rotate(5deg);
+            background: #194636;
+            box-shadow: 0 12px 30px rgba(18, 49, 38, 0.55);
+        }
+
+        @media (max-width: 1024px) {
+            .safari-editorial-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-header-editorial .editorial-nav-links {
+                display: none;
+            }
+            .safari-editorial-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .safari-hero-editorial {
+                min-height: 70vh;
+            }
+            .find-perfect-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .watermark-left-botanical,
+            .watermark-right-compass,
+            .watermark-right-botanical {
+                display: none;
+            }
+        }
+
+        /* -- Page Hero -- */
         .safaris-page-hero {
             width: 100%;
             height: 38vh;
@@ -30,7 +698,7 @@
             background-position: center 40%;
         }
 
-        /* ══ Intro ══ */
+        /* -- Intro -- */
         .safaris-intro {
             background: var(--bg-color);
             padding: 72px 0 50px;
@@ -50,27 +718,549 @@
             line-height: 1.8;
         }
 
-        /* ══ Animated Marquee Tours Section ══ */
+        /* -- Animated Marquee Tours Section (Spectacular Moving Safari Packages) -- */
         .tours-marquee-section {
-            background: var(--section-bg);
-            padding: 80px 0 90px;
+            background: linear-gradient(180deg, rgba(248, 249, 245, 0.8) 0%, rgba(241, 246, 239, 0.95) 50%, rgba(248, 249, 245, 0.8) 100%);
+            padding: 85px 0 95px;
+            position: relative;
+            overflow: hidden;
         }
-        .tours-marquee-section .sub-heading { display: block; margin-bottom: 14px; }
-        .tours-marquee-section h2 {
-            font-size: clamp(1.8rem, 3vw, 2.6rem);
-            color: var(--primary-green);
-            margin-bottom: 14px;
+        [data-theme="dark"] .tours-marquee-section {
+            background: linear-gradient(180deg, #011a0e 0%, #032415 50%, #011a0e 100%);
         }
-        [data-theme="dark"] .tours-marquee-section h2 { color: #fff; }
-        .tours-marquee-section .section-desc {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 50px;
-            font-size: 1rem;
-            line-height: 1.8;
+        .tours-marquee-section::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            width: 850px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(197, 160, 68, 0.14) 0%, rgba(0, 66, 37, 0.05) 50%, transparent 75%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        [data-theme="dark"] .tours-marquee-section::before {
+            background: radial-gradient(circle, rgba(230, 184, 77, 0.15) 0%, rgba(0, 66, 37, 0.12) 60%, transparent 80%);
         }
 
-        /* ══ Tour Packages Section ══ */
+        .tours-marquee-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        .tours-marquee-header-left {
+            max-width: 660px;
+        }
+        .tours-marquee-section .sub-heading {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            background: rgba(197, 160, 68, 0.12);
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(197, 160, 68, 0.3);
+        }
+        .tours-marquee-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 3.5vw, 2.85rem);
+            color: var(--primary-green);
+            margin-bottom: 14px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+        [data-theme="dark"] .tours-marquee-section h2 { color: #ffffff; }
+        .tours-marquee-section .section-desc {
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            line-height: 1.75;
+            margin: 0;
+        }
+        .tours-marquee-badges-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .marquee-live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(197, 160, 68, 0.35);
+            border-radius: 30px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+        [data-theme="dark"] .marquee-live-indicator {
+            background: rgba(4, 37, 22, 0.88);
+            border-color: rgba(230, 184, 77, 0.3);
+            color: var(--accent-gold);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulseDotLive 2s infinite;
+        }
+        @keyframes pulseDotLive {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Marquee Track and Silky Masking */
+        .tours-marquee-section .marquee-container {
+            position: relative;
+            width: 100%;
+        }
+        .tours-marquee-section .marquee-wrapper {
+            position: relative;
+            padding: 25px 0 40px;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            cursor: grab;
+        }
+        .tours-marquee-section .marquee-wrapper:active {
+            cursor: grabbing;
+        }
+        .tours-marquee-section .marquee-track {
+            display: flex;
+            gap: 28px;
+            align-items: stretch;
+            width: max-content;
+            will-change: transform;
+            padding: 10px 0;
+        }
+
+        /* Spectacular Safari Box Styling */
+        .tours-marquee-section .safari-card.mini-card {
+            width: 350px !important;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 22px;
+            border: 1px solid rgba(197, 160, 68, 0.28);
+            box-shadow: 0 10px 30px -8px rgba(0, 43, 24, 0.08), 0 3px 12px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        opacity 0.35s ease,
+                        filter 0.35s ease;
+            cursor: pointer;
+        }
+        [data-theme="dark"] .tours-marquee-section .safari-card.mini-card {
+            background: #032616;
+            border-color: rgba(230, 184, 77, 0.26);
+            box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Animated Shimmer Light Sweep on Hover */
+        .tours-marquee-section .safari-card.mini-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -160%;
+            width: 80%;
+            height: 200%;
+            background: linear-gradient(
+                65deg,
+                transparent 20%,
+                rgba(255, 255, 255, 0.42) 50%,
+                transparent 80%
+            );
+            transform: rotate(25deg);
+            z-index: 6;
+            pointer-events: none;
+            transition: none;
+        }
+        .tours-marquee-section .safari-card.mini-card:hover::before {
+            left: 200%;
+            transition: left 0.85s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Card Hover Elevation and Atmospheric Glow */
+        .tours-marquee-section .safari-card.mini-card:hover {
+            transform: translateY(-16px) scale(1.025);
+            border-color: rgba(197, 160, 68, 0.85);
+            box-shadow: 0 28px 55px -12px rgba(0, 43, 24, 0.32),
+                        0 0 32px rgba(197, 160, 68, 0.3);
+            z-index: 10;
+        }
+
+        /* Sibling Focus Spotlight (Gently dim others) */
+        .tours-marquee-section .marquee-track:hover .safari-card.mini-card:not(:hover) {
+            opacity: 0.74;
+            filter: saturate(88%) blur(0.2px);
+            transform: scale(0.985);
+        }
+
+        /* Image Box Container & Overlays */
+        .tours-marquee-section .safari-card-img-box {
+            position: relative;
+            height: 215px;
+            overflow: hidden;
+            border-radius: 22px 22px 0 0;
+            background: #031e11;
+        }
+        .tours-marquee-section .safari-card-img-box img,
+        .tours-marquee-section .safari-card.mini-card img {
+            width: 100%;
+            height: 215px !important;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .tours-marquee-section .safari-card.mini-card:hover img {
+            transform: scale(1.1);
+        }
+        .tours-marquee-section .card-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0) 38%,
+                rgba(0, 32, 17, 0.78) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Floating Badges on Image */
+        .tours-marquee-section .card-badge-top-left {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        }
+        .badge-gold {
+            background: linear-gradient(135deg, rgba(230, 184, 77, 0.96), rgba(197, 160, 68, 0.96));
+            color: #022012;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+        }
+        .badge-green {
+            background: linear-gradient(135deg, rgba(0, 66, 37, 0.94), rgba(0, 43, 24, 0.96));
+            color: #f7eed8;
+            border: 1px solid rgba(197, 160, 68, 0.45);
+        }
+        .badge-blue {
+            background: linear-gradient(135deg, rgba(20, 100, 140, 0.94), rgba(12, 60, 90, 0.96));
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .tours-marquee-section .card-duration-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0, 24, 13, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tours-marquee-section .card-duration-badge i {
+            color: var(--accent-gold);
+        }
+
+        .tours-marquee-section .card-rating-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 14px;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(0, 24, 13, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .tours-marquee-section .card-rating-badge i {
+            color: #fbbf24;
+        }
+
+        /* Wishlist Heart Button in moving boxes */
+        .tours-marquee-section .wishlist-heart-btn {
+            top: 14px !important;
+            right: 14px !important;
+            width: 38px !important;
+            height: 38px !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(197, 160, 68, 0.35) !important;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16) !important;
+            color: #ef4444 !important;
+            font-size: 1.05rem !important;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+        }
+        .tours-marquee-section .wishlist-heart-btn:hover {
+            transform: scale(1.18) !important;
+            box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35) !important;
+        }
+        [data-theme="dark"] .tours-marquee-section .wishlist-heart-btn {
+            background: rgba(2, 32, 18, 0.9) !important;
+            border-color: rgba(230, 184, 77, 0.4) !important;
+        }
+
+        /* Card Content Body */
+        .tours-marquee-section .safari-content {
+            padding: 22px 24px 22px !important;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .tours-marquee-section .safari-content h3 {
+            font-family: 'Playfair Display', Georgia, serif !important;
+            font-size: 1.22rem !important;
+            font-weight: 700 !important;
+            color: var(--primary-green) !important;
+            margin-bottom: 8px !important;
+            line-height: 1.35 !important;
+            transition: color 0.3s ease;
+        }
+        [data-theme="dark"] .tours-marquee-section .safari-content h3 {
+            color: #f7eed8 !important;
+        }
+        .tours-marquee-section .safari-card.mini-card:hover .safari-content h3 {
+            color: var(--accent-gold) !important;
+        }
+
+        .tours-marquee-section .safari-route-desc {
+            font-size: 0.85rem !important;
+            color: var(--text-muted) !important;
+            line-height: 1.5 !important;
+            margin-bottom: 14px !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 38px;
+        }
+
+        /* Meta tags pill row */
+        .tours-marquee-section .card-tags-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .tours-marquee-section .safari-tag-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 14px;
+            background: rgba(0, 66, 37, 0.06);
+            color: var(--primary-green);
+            border: 1px solid rgba(0, 66, 37, 0.08);
+        }
+        [data-theme="dark"] .tours-marquee-section .safari-tag-pill {
+            background: rgba(230, 184, 77, 0.1);
+            color: var(--accent-gold);
+            border-color: rgba(230, 184, 77, 0.2);
+        }
+        .tours-marquee-section .safari-tag-pill i {
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+        }
+
+        /* Action and Price Footer */
+        .tours-marquee-section .card-action-row {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(197, 160, 68, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .tours-marquee-section .price-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .tours-marquee-section .price-label-sub {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-muted);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        .tours-marquee-section .price {
+            font-size: 1.18rem !important;
+            font-weight: 800 !important;
+            color: var(--accent-gold) !important;
+            margin-bottom: 0 !important;
+            line-height: 1.2 !important;
+            letter-spacing: -0.3px;
+        }
+        .tours-marquee-section .price small {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* Premium Interactive Button */
+        .tours-marquee-section .btn-card {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #002b18 100%) !important;
+            color: #ffffff !important;
+            padding: 10px 18px !important;
+            font-size: 0.8rem !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.6px !important;
+            border-radius: 12px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            border: 1px solid rgba(197, 160, 68, 0.4) !important;
+            box-shadow: 0 4px 14px rgba(0, 43, 24, 0.25) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            width: auto !important;
+            text-decoration: none !important;
+        }
+        .tours-marquee-section .btn-card .btn-arrow {
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            font-size: 0.78rem;
+        }
+        .tours-marquee-section .btn-card:hover,
+        .tours-marquee-section .safari-card.mini-card:hover .btn-card {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #b88f32 100%) !important;
+            color: #012413 !important;
+            border-color: var(--accent-gold) !important;
+            box-shadow: 0 6px 20px rgba(197, 160, 68, 0.5) !important;
+            transform: translateY(-2px);
+        }
+        .tours-marquee-section .safari-card.mini-card:hover .btn-card .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Control Arrows Enhancement */
+        .tours-marquee-section .marquee-arrow {
+            width: 54px !important;
+            height: 54px !important;
+            border-radius: 50% !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(14px) !important;
+            -webkit-backdrop-filter: blur(14px) !important;
+            border: 2px solid rgba(197, 160, 68, 0.5) !important;
+            color: var(--primary-green) !important;
+            font-size: 1.15rem !important;
+            box-shadow: 0 8px 24px rgba(0, 43, 24, 0.16), 0 0 16px rgba(197, 160, 68, 0.2) !important;
+            z-index: 20 !important;
+            cursor: pointer !important;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        }
+        [data-theme="dark"] .tours-marquee-section .marquee-arrow {
+            background: rgba(3, 38, 22, 0.92) !important;
+            border-color: rgba(230, 184, 77, 0.5) !important;
+            color: var(--accent-gold) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(230, 184, 77, 0.25) !important;
+        }
+        .tours-marquee-section .marquee-arrow:hover {
+            background: var(--accent-gold) !important;
+            color: #012413 !important;
+            border-color: var(--accent-gold) !important;
+            transform: translateY(-50%) scale(1.15) !important;
+            box-shadow: 0 12px 30px rgba(197, 160, 68, 0.5) !important;
+        }
+        .tours-marquee-section .marquee-arrow-left {
+            left: 12px !important;
+        }
+        .tours-marquee-section .marquee-arrow-right {
+            right: 12px !important;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .tours-marquee-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 25px;
+            }
+            .tours-marquee-section {
+                padding: 60px 0 70px;
+            }
+            .tours-marquee-section .safari-card.mini-card {
+                width: 295px !important;
+            }
+            .tours-marquee-section .safari-card-img-box,
+            .tours-marquee-section .safari-card.mini-card img {
+                height: 180px !important;
+            }
+            .tours-marquee-section .safari-content {
+                padding: 16px 18px 18px !important;
+            }
+            .tours-marquee-section .safari-content h3 {
+                font-size: 1.1rem !important;
+            }
+            .tours-marquee-section .marquee-arrow {
+                width: 42px !important;
+                height: 42px !important;
+                font-size: 0.95rem !important;
+            }
+            .tours-marquee-section .marquee-arrow-left { left: 4px !important; }
+            .tours-marquee-section .marquee-arrow-right { right: 4px !important; }
+        }
+
+        /* -- Tour Packages Section -- */
         .tour-packages-section {
             background: var(--bg-color);
             padding: 90px 0;
@@ -83,155 +1273,271 @@
         }
         [data-theme="dark"] .tour-packages-section h2 { color: #fff; }
 
+        /* Simplified 4-Card Packages Grid */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            margin-bottom: 55px;
+        }
+        @media (max-width: 1024px) {
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .packages-grid { grid-template-columns: 1fr; }
         }
 
         .package-card {
             background: var(--card-bg);
             border-radius: 20px;
-            padding: 36px 32px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
+            padding: 28px 24px;
+            border: 1px solid rgba(197, 160, 68, 0.22);
+            box-shadow: 0 8px 25px -6px rgba(0, 43, 24, 0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--primary-green));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         .package-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-gold);
+            box-shadow: 0 20px 40px -10px rgba(0, 43, 24, 0.16), 0 0 20px rgba(197, 160, 68, 0.15);
+            border-color: rgba(197, 160, 68, 0.7);
+        }
+        .package-card:hover::before {
+            opacity: 1;
         }
 
-        .package-icon {
-            font-size: 2.4rem;
+        /* Fixed modern package icon */
+        .package-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
             margin-bottom: 18px;
-            display: block;
-            line-height: 1;
+            transition: transform 0.35s ease;
         }
-        .package-card h3 {
-            font-size: 1.25rem;
+        .package-card:hover .package-icon-wrap {
+            transform: scale(1.1) rotate(4deg);
+        }
+        .icon-wildlife {
+            background: linear-gradient(135deg, rgba(0, 66, 37, 0.12), rgba(197, 160, 68, 0.2));
             color: var(--primary-green);
-            margin-bottom: 10px;
         }
-        [data-theme="dark"] .package-card h3 { color: var(--accent-gold); }
+        .icon-mountain {
+            background: linear-gradient(135deg, rgba(14, 116, 144, 0.12), rgba(3, 105, 161, 0.2));
+            color: #0e7490;
+        }
+        .icon-beach {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.12), rgba(14, 165, 233, 0.2));
+            color: #0d9488;
+        }
+        .icon-cultural {
+            background: linear-gradient(135deg, rgba(180, 83, 9, 0.12), rgba(217, 119, 6, 0.2));
+            color: #b45309;
+        }
+        [data-theme="dark"] .package-icon-wrap {
+            color: var(--accent-gold);
+            border: 1px solid rgba(230, 184, 77, 0.25);
+        }
+
+        .package-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        [data-theme="dark"] .package-card h3 { color: #f7eed8; }
         .package-card > p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 22px;
-            line-height: 1.7;
-        }
-        .package-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
-        .package-list li {
             font-size: 0.88rem;
-            color: var(--text-muted);
-            padding-left: 20px;
-            position: relative;
-            line-height: 1.5;
-        }
-        .package-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 7px;
-            width: 7px;
-            height: 7px;
-            background: var(--accent-gold);
-            border-radius: 50%;
+            margin-bottom: 18px;
+            line-height: 1.6;
         }
 
-        /* ══ Why Choose Us + What's Included ══ */
+        /* Simplified Compact Highlights Pills */
+        .package-pills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(197, 160, 68, 0.25);
+        }
+        .pkg-pill {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(0, 66, 37, 0.05);
+            color: var(--primary-green);
+            border: 1px solid rgba(0, 66, 37, 0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        [data-theme="dark"] .pkg-pill {
+            background: rgba(230, 184, 77, 0.1);
+            color: var(--accent-gold);
+            border-color: rgba(230, 184, 77, 0.2);
+        }
+
+        /* -- Why Choose Us + What's Included (Streamlined & Compact) -- */
         .why-included-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 20px;
+            gap: 28px;
+            margin-top: 10px;
         }
-        @media (max-width: 768px) {
-            .why-included-grid { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .why-included-grid { grid-template-columns: 1fr; gap: 24px; }
         }
 
         .info-panel {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 44px 40px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-soft);
+            border-radius: 22px;
+            padding: 32px 30px;
+            border: 1px solid rgba(197, 160, 68, 0.24);
+            box-shadow: 0 10px 30px -10px rgba(0, 43, 24, 0.07);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .info-panel h3 {
-            font-size: 1.45rem;
-            color: var(--primary-green);
-            margin-bottom: 28px;
+        .info-panel:hover {
+            border-color: rgba(197, 160, 68, 0.6);
+            box-shadow: 0 16px 36px -10px rgba(0, 43, 24, 0.12);
         }
-        [data-theme="dark"] .info-panel h3 { color: var(--accent-gold); }
+        .info-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--primary-green));
+        }
 
-        .why-list {
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .panel-header-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(197, 160, 68, 0.2), rgba(0, 66, 37, 0.12));
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        [data-theme="dark"] .panel-header-icon {
+            background: rgba(230, 184, 77, 0.18);
+            color: var(--accent-gold);
+        }
+        .panel-header h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.35rem;
+            color: var(--primary-green);
+            margin: 0;
+            font-weight: 700;
+        }
+        [data-theme="dark"] .panel-header h3 { color: #f7eed8; }
+
+        /* Compact 2-column feature list */
+        .feature-grid-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 16px;
         }
-        .why-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+        @media (max-width: 580px) {
+            .feature-grid-list { grid-template-columns: 1fr; gap: 12px; }
         }
-        .why-list li .check-icon {
-            width: 26px;
-            height: 26px;
-            background: rgba(0, 66, 37, 0.1);
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(0, 66, 37, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .feature-item:hover {
+            background: rgba(197, 160, 68, 0.08);
+            transform: translateX(3px);
+        }
+        [data-theme="dark"] .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+        [data-theme="dark"] .feature-item:hover {
+            background: rgba(230, 184, 77, 0.1);
+        }
+
+        .item-icon-badge {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            color: var(--primary-green);
-            font-size: 0.7rem;
-            margin-top: 1px;
+            font-size: 0.82rem;
         }
-        [data-theme="dark"] .why-list li .check-icon {
-            background: rgba(242, 201, 76, 0.15);
+        .badge-check {
+            background: rgba(16, 185, 129, 0.15);
+            color: #059669;
+        }
+        .badge-included {
+            background: rgba(197, 160, 68, 0.18);
+            color: var(--accent-gold);
+        }
+        [data-theme="dark"] .badge-check {
+            background: rgba(16, 185, 129, 0.25);
+            color: #34d399;
+        }
+        [data-theme="dark"] .badge-included {
+            background: rgba(230, 184, 77, 0.22);
             color: var(--accent-gold);
         }
 
-        .included-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+        .feature-item span.item-text {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.35;
         }
-        .included-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-        .included-list li i {
-            color: var(--accent-gold);
-            font-size: 1rem;
-            margin-top: 2px;
-            flex-shrink: 0;
-            width: 18px;
+        [data-theme="dark"] .feature-item span.item-text {
+            color: #e6ebdf;
         }
 
-        /* ══ CTA Banner ══ */
+        /* -- CTA Banner -- */
         .safaris-cta {
             background: var(--primary-gradient);
             padding: 80px 30px;
@@ -274,77 +1580,210 @@
         }
     </style>
     <link rel="manifest" href="manifest.json">
-</head>
+<link rel="stylesheet" href="site-effects.css"><script>try { const mode = localStorage.getItem("century-theme"); document.documentElement.dataset.theme = ["light","dark"].includes(mode) ? mode : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch { document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }</script><link rel="stylesheet" href="site-responsive.css"><link rel="stylesheet" href="mobile-reference.css"></head>
 <body>
     <div class="scroll-progress"></div>
+    <!-- Editorial Luxury Header (Fixed) -->
+    <header class="luxury-header-editorial" id="editorial-header">
+        <div class="container">
+            <a href="index.html" class="editorial-logo" aria-label="Century Expeditions Home">
+                <img src="assets/logo.png" alt="Century Expeditions Logo" class="editorial-logo-img">
+                <span class="editorial-logo-text">Century Expeditions</span>
+            </a>
 
-    <!-- ══ Header ══ -->
-    <header class="header" id="mainHeader">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.png" alt="Century Adventures Logo"></a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                    <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="#" data-en="Destinations" data-sw="Maeneo">Destinations <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="katavi.html">Katavi National Park</a></li>
-                            <li><a href="selous.html">Selous Game Reserve</a></li>
-                            <li><a href="ruaha.html">Ruaha National Park</a></li>
-                            <li><a href="mikumi.html">Mikumi National Park</a></li>
-                            <li><a href="serengeti.html">Serengeti National Park</a></li>
-                            <li><a href="gombe.html">Gombe Stream National Park</a></li>
-                            <li><a href="ngorongoro.html">Ngorongoro Conservation Area</a></li>
-                            <li><a href="manyara.html">Lake Manyara National Park</a></li>
-                            <li><a href="tarangire.html">Tarangire National Park</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="safaris.html" class="active" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
-                    <li><a href="experiences.html" data-en="Experiences" data-sw="Uzoefu">Experiences</a></li>
-                    <li><a href="volunteer.html" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
-                    <li><a href="vehicles.html" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a></li>
-                    <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
-                </ul>
+            <nav class="editorial-nav-links" id="editorialNav">
+                <a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a>
+                <a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a>
+                <a href="safaris.html" class="active" data-en="Safaris" data-sw="Safari">Safaris</a>
+                <a href="about.html" data-en="About" data-sw="Kuhusu Sisi">About</a>
             </nav>
-            <button class="mobile-toggle" id="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-            <div class="header-actions">
+
+            <div class="editorial-header-actions">
                 <div class="header-toggles">
-                    <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
-                    <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <button class="toggle-btn lang-toggle" onclick="toggleLang(event)" aria-label="Toggle language"><span class="lang-label active">EN</span><span class="lang-divider">/</span><span class="lang-label">SW</span></button>
+                    <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i> <span class="toggle-text">DARK</span></button>
                 </div>
-                <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="ENQUIRE" data-sw="ULIZA">ENQUIRE</a>
+                <a href="contact.html" class="editorial-contact-btn" data-en="Contact &rarr;" data-sw="Wasiliana &rarr;">Contact <i class="fas fa-arrow-right"></i></a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Navigation Menu Dropdown Drawer -->
+        <nav class="nav" id="mobileNavDrawer">
+            <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
+            <ul>
+                <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                <li><a href="safaris.html" class="active" data-en="Safaris" data-sw="Safari">Safaris</a></li>
+                <li><a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a></li>
+                <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
+                <li><a href="contact.html" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
+                <li class="mobile-only-action book-now-item"><a href="contact.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- ══ Hero ══ -->
-    <div class="safaris-page-hero"></div>
-
-    <!-- ══ Intro ══ -->
-    <section class="safaris-intro">
-        <div class="container">
-            <span class="sub-heading" data-en="OUR SAFARIS" data-sw="SAFARI ZETU">OUR SAFARIS</span>
-            <h1 data-en="Discover the Best of Tanzania" data-sw="Gundua Bora la Tanzania">Discover the Best of Tanzania</h1>
-            <p data-en="We offer a diverse range of safari itineraries meticulously designed to showcase the incredible wildlife and landscapes of Tanzania. Choose from our curated selection or contact us for a tailor-made adventure."
-               data-sw="Tunatoa aina mbalimbali za ratiba za safari zilizoundwa kwa makini kuonyesha wanyamapori wa ajabu na mandhari ya Tanzania. Chagua kutoka kwenye orodha yetu au wasiliana nasi kwa safari ya kipekee.">
-                We offer a diverse range of safari itineraries meticulously designed to showcase the incredible wildlife and landscapes of Tanzania. Choose from our curated selection or contact us for a tailor-made adventure.
-            </p>
+    <!-- -- Hero Section (Mockup Match) -- -->
+    <section class="safari-hero-editorial" id="safari-hero">
+        <div class="safari-hero-container">
+            <div class="safari-hero-content">
+                <div class="safari-eyebrow-accent">
+                    <div class="safari-eyebrow-bar"></div>
+                    <span class="safari-eyebrow-text" data-en="PRIVATE SAFARI JOURNEYS" data-sw="SAFARI BINAFSI">PRIVATE SAFARI JOURNEYS</span>
+                </div>
+                <h1 class="safari-editorial-heading" data-en="Your Tanzania<br>Safari Starts Here" data-sw="Safari Yako ya Tanzania<br>Inaanza Hapa">Your Tanzania<br>Safari Starts Here</h1>
+                <p class="safari-editorial-lead" data-en="Remarkable wildlife. Beautiful landscapes. Your own adventure." data-sw="Wanyamapori wa kipekee. Mandhari nzuri. Safari yako binafsi.">Remarkable wildlife. Beautiful landscapes. Your own adventure.</p>
+                <a href="#find-safari" class="safari-hero-cta" data-en="Explore Safaris &rarr;" data-sw="Chunguza Safari &rarr;">Explore Safaris <i class="fas fa-arrow-right"></i></a>
+            </div>
         </div>
     </section>
 
-    <!-- ══ Animated Tour Cards Marquee ══ -->
+    <!-- -- Find Your Perfect Safari Section (Mockup Match) -- -->
+    <section class="find-perfect-safari-section" id="find-safari">
+        <!-- Botanical & Compass Watermarks -->
+        <svg class="find-safari-watermark watermark-left-botanical" viewBox="0 0 120 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 170 C30 120, 60 80, 110 10" stroke="#c8a35b" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M40 130 C45 110, 65 115, 60 135 C55 140, 42 135, 40 130 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M35 125 C20 115, 15 130, 25 140 C30 142, 33 130, 35 125 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M60 95 C70 75, 90 82, 82 102 C75 107, 62 100, 60 95 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M55 90 C40 80, 33 95, 45 105 C50 107, 53 95, 55 90 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M85 55 C100 38, 118 48, 108 66 C100 70, 88 62, 85 55 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M80 50 C68 40, 60 52, 70 62 C75 64, 78 54, 80 50 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M110 10 C118 2, 125 12, 118 18 C114 20, 111 14, 110 10 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+        </svg>
+
+        <svg class="find-safari-watermark watermark-right-compass" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="85" stroke="#c8a35b" stroke-width="1.2" stroke-dasharray="2 3"/>
+            <circle cx="100" cy="100" r="75" stroke="#c8a35b" stroke-width="1.4"/>
+            <circle cx="100" cy="100" r="55" stroke="#c8a35b" stroke-width="1"/>
+            <polygon points="100,15 104,80 100,75 96,80" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.8"/>
+            <polygon points="100,185 104,120 100,125 96,120" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.8"/>
+            <polygon points="185,100 120,104 125,100 120,96" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.8"/>
+            <polygon points="15,100 80,104 75,100 80,96" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.8"/>
+            <polygon points="160,40 115,85 110,85 115,90" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.6"/>
+            <polygon points="40,160 85,115 90,115 85,110" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.6"/>
+            <polygon points="160,160 115,115 115,110 110,115" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.6"/>
+            <polygon points="40,40 85,85 85,90 90,85" fill="#c8a35b" stroke="#c8a35b" stroke-width="0.6"/>
+            <text x="100" y="32" font-family="'Cinzel', serif" font-size="13" fill="#c8a35b" text-anchor="middle" font-weight="700">N</text>
+            <text x="100" y="178" font-family="'Cinzel', serif" font-size="13" fill="#c8a35b" text-anchor="middle" font-weight="700">S</text>
+            <text x="175" y="105" font-family="'Cinzel', serif" font-size="13" fill="#c8a35b" text-anchor="middle" font-weight="700">E</text>
+            <text x="25" y="105" font-family="'Cinzel', serif" font-size="13" fill="#c8a35b" text-anchor="middle" font-weight="700">W</text>
+            <circle cx="100" cy="100" r="4" fill="#c8a35b"/>
+        </svg>
+
+        <svg class="find-safari-watermark watermark-right-botanical" viewBox="0 0 120 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M110 170 C90 120, 60 80, 10 10" stroke="#c8a35b" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M80 130 C75 110, 55 115, 60 135 C65 140, 78 135, 80 130 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M85 125 C100 115, 105 130, 95 140 C90 142, 87 130, 85 125 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M60 95 C50 75, 30 82, 38 102 C45 107, 58 100, 60 95 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M65 90 C80 80, 87 95, 75 105 C70 107, 67 95, 65 90 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+            <path d="M35 55 C20 38, 2 48, 12 66 C20 70, 32 62, 35 55 Z" stroke="#c8a35b" stroke-width="1.5" fill="none"/>
+        </svg>
+
+        <div class="find-perfect-container">
+            <!-- Section Header Row -->
+            <div class="find-perfect-header-row">
+                <div class="find-perfect-title-col">
+                    <h2 class="find-perfect-title" data-en="Find Your Perfect Safari" data-sw="Pata Safari Yako Kamili">
+                        Find Your Perfect Safari
+                        <span class="find-perfect-title-accent"></span>
+                    </h2>
+                    <p class="find-perfect-subtitle" data-en="Thoughtfully planned journeys, guided by local experts." data-sw="Safari zilizopangwa kwa ustadi, zikiongozwa na wataalamu wazoefu.">
+                        Thoughtfully planned journeys, guided by local experts.
+                    </p>
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="safari-filters-pills">
+                    <button class="safari-filter-btn active" data-filter="all" data-en="All Safaris" data-sw="Safari Zote">All Safaris</button>
+                    <button class="safari-filter-btn" data-filter="wildlife" data-en="Wildlife" data-sw="Wanyamapori">Wildlife</button>
+                    <button class="safari-filter-btn" data-filter="beach" data-en="Safari &amp; Beach" data-sw="Safari &amp; Pwani">Safari &amp; Beach</button>
+                </div>
+            </div>
+
+            <!-- 3 Safari Cards Grid -->
+            <div class="safari-editorial-cards-grid">
+                <!-- Card 1: Northern Tanzania Safari -->
+                <div class="safari-luxury-card" data-category="wildlife">
+                    <div class="safari-card-media">
+                        <img src="assets/safari-card-northern.jpg" alt="Northern Tanzania Safari Lion in Serengeti">
+                    </div>
+                    <div class="safari-card-info">
+                        <h3 class="safari-card-title" data-en="Northern Tanzania Safari" data-sw="Safari ya Kaskazini mwa Tanzania">Northern Tanzania Safari</h3>
+                        <p class="safari-card-meta" data-en="6 days &bull; Serengeti &amp; Ngorongoro" data-sw="Siku 6 &bull; Serengeti &amp; Ngorongoro">6 days &bull; Serengeti &amp; Ngorongoro</p>
+                        <div class="safari-card-footer">
+                            <div class="safari-card-pricing">
+                                <span data-en="From" data-sw="Kuanzia">From</span> <span class="safari-card-price-value">$2,450</span> <span data-en="/ person" data-sw="/ mtu">/ person</span>
+                            </div>
+                            <a href="safaris.html" class="safari-card-view-btn" data-en="View Trip &rarr;" data-sw="Angalia Safari &rarr;">View Trip <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Safari & Zanzibar Retreat -->
+                <div class="safari-luxury-card" data-category="beach">
+                    <div class="safari-card-media">
+                        <img src="assets/safari-card-zanzibar.jpg" alt="Safari and Zanzibar Retreat Turquoise Beach">
+                    </div>
+                    <div class="safari-card-info">
+                        <h3 class="safari-card-title" data-en="Safari &amp; Zanzibar Retreat" data-sw="Safari na Mapumziko ya Zanzibar">Safari &amp; Zanzibar Retreat</h3>
+                        <p class="safari-card-meta" data-en="10 days &bull; Wildlife &amp; island escape" data-sw="Siku 10 &bull; Wanyamapori na kisiwa cha utulivu">10 days &bull; Wildlife &amp; island escape</p>
+                        <div class="safari-card-footer">
+                            <div class="safari-card-pricing">
+                                <span data-en="From" data-sw="Kuanzia">From</span> <span class="safari-card-price-value">$8,522</span> <span data-en="/ person" data-sw="/ mtu">/ person</span>
+                            </div>
+                            <a href="safaris.html" class="safari-card-view-btn" data-en="View Trip &rarr;" data-sw="Angalia Safari &rarr;">View Trip <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Great Migration Safari -->
+                <div class="safari-luxury-card" data-category="wildlife">
+                    <div class="safari-card-media">
+                        <img src="assets/safari-card-migration.jpg" alt="Great Migration Safari River Crossing">
+                    </div>
+                    <div class="safari-card-info">
+                        <h3 class="safari-card-title" data-en="Great Migration Safari" data-sw="Safari ya Uhamiaji Mkuu">Great Migration Safari</h3>
+                        <p class="safari-card-meta" data-en="10 days &bull; Serengeti adventure" data-sw="Siku 10 &bull; Matukio ya Serengeti">10 days &bull; Serengeti adventure</p>
+                        <div class="safari-card-footer">
+                            <div class="safari-card-pricing">
+                                <span data-en="From" data-sw="Kuanzia">From</span> <span class="safari-card-price-value">$7,250</span> <span data-en="/ person" data-sw="/ mtu">/ person</span>
+                            </div>
+                            <a href="safaris.html" class="safari-card-view-btn" data-en="View Trip &rarr;" data-sw="Angalia Safari &rarr;">View Trip <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chat Bubble (Mockup Match) -->
+    <a href="https://wa.me/255747115390" target="_blank" class="floating-chat-bubble" aria-label="Chat with safari specialist on WhatsApp">
+        <i class="fas fa-comment-dots"></i>
+    </a>
+
+    <!-- -- Animated Tour Cards Marquee -- -->
     <section class="tours-marquee-section">
         <div class="container">
-            <span class="sub-heading" data-en="FEATURED TOURS" data-sw="SAFARI BORA">FEATURED TOURS</span>
-            <h2 data-en="Tanzania's Top Safari Packages" data-sw="Safari Bora za Tanzania">Tanzania's Top Safari Packages</h2>
-            <p class="section-desc" data-en="Hand-crafted itineraries for every traveler — from short adventures to epic multi-week safaris across Tanzania's finest parks and coastlines." data-sw="Ratiba zilizoundwa kwa kila msafiri — kutoka safari fupi hadi safari ndefu kupitia mbuga na pwani za Tanzania.">
-                Hand-crafted itineraries for every traveler — from short adventures to epic multi-week safaris across Tanzania's finest parks and coastlines.
-            </p>
+            <div class="tours-marquee-header">
+                <div class="tours-marquee-header-left">
+                    <span class="sub-heading" data-en="FEATURED TOURS" data-sw="SAFARI BORA"><i class="fas fa-compass"></i> FEATURED TOURS</span>
+                    <h2 data-en="Tanzania's Top Safari Packages" data-sw="Safari Bora za Tanzania">Tanzania's Top Safari Packages</h2>
+                    <p class="section-desc" data-en="Hand-crafted itineraries for every traveler — from short adventures to epic multi-week safaris across Tanzania's finest parks and coastlines." data-sw="Ratiba zilizoundwa kwa kila msafiri — kutoka safari fupi hadi safari ndefu kupitia mbuga na pwani za Tanzania.">
+                        Hand-crafted itineraries for every traveler — from short adventures to epic multi-week safaris across Tanzania's finest parks and coastlines.
+                    </p>
+                </div>
+                <div class="tours-marquee-badges-meta">
+                    <div class="marquee-live-indicator">
+                        <span class="pulse-dot"></span>
+                        <span data-en="Hover card to pause • Drag to explore" data-sw="Weka mshale kusimamisha • Buruta kuangalia">Hover card to pause • Drag to explore</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Full-width marquee (no container clipping) -->
@@ -356,183 +1795,488 @@
 
                     <!-- Card 1 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Tanzania Wildlife Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Tanzania Wildlife Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-crown"></i> <span data-en="Signature Safari" data-sw="Safari Teule">Signature Safari</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="12 Days" data-sw="Siku 12">12 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Tanzania Wildlife Safari" data-sw="Safari ya Wanyamapori Tanzania">Tanzania Wildlife Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="12 Days Tanzania Wildlife Safari &amp; Cultural Highlights" data-sw="Siku 12 Safari ya Wanyamapori na Vivutio vya Kitamaduni">12 Days Tanzania Wildlife Safari &amp; Cultural Highlights</p>
-                            <p class="price" data-en="From $ 4,134" data-sw="Kuanzia $ 4,134">From $ 4,134</p>
-                            <a href="12-days-wildlife-safari-cultural-highlights.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="12 Days Tanzania Wildlife Safari &amp; Cultural Highlights" data-sw="Siku 12 Safari ya Wanyamapori na Vivutio vya Kitamaduni">12 Days Tanzania Wildlife Safari &amp; Cultural Highlights</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Big 5</span>
+                                <span class="safari-tag-pill"><i class="fas fa-campground"></i> Luxury Lodge</span>
+                                <span class="safari-tag-pill"><i class="fas fa-users"></i> Maasai Culture</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 4,134" data-sw="Kuanzia $ 4,134">$4,134 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 2 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Ultimate Southern Tanzania Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Ultimate Southern Tanzania Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-compass"></i> <span data-en="Wilderness Pure" data-sw="Hifadhi Halisi">Wilderness Pure</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="9 Days" data-sw="Siku 9">9 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Ultimate Southern Tanzania Safari" data-sw="Safari Bora ya Kusini Tanzania">Ultimate Southern Tanzania Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="9 Days Your Ultimate Southern Tanzania Safari" data-sw="Siku 9 Safari Bora ya Kusini Tanzania">9 Days Your Ultimate Southern Tanzania Safari</p>
-                            <p class="price" data-en="From $ 3,209" data-sw="Kuanzia $ 3,209">From $ 3,209</p>
-                            <a href="9-days-ultimate-southern-tanzania.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="9 Days Your Ultimate Southern Tanzania Safari" data-sw="Siku 9 Safari Bora ya Kusini Tanzania">9 Days Your Ultimate Southern Tanzania Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> Rufiji River</span>
+                                <span class="safari-tag-pill"><i class="fas fa-hippo"></i> Boat Safari</span>
+                                <span class="safari-tag-pill"><i class="fas fa-leaf"></i> Ruaha Park</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,209" data-sw="Kuanzia $ 3,209">$3,209 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 3 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/KTA13Serengeti Nationa.webp" alt="Best of Northern Parks">
+                        <div class="safari-card-img-box">
+                            <img src="assets/KTA13Serengeti Nationa.webp" alt="Best of Northern Parks">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-fire"></i> <span data-en="Best Seller" data-sw="Inayoongoza">Best Seller</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="11 Days" data-sw="Siku 11">11 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Best of Northern Parks" data-sw="Bora ya Mbuga za Kaskazini">Best of Northern Parks</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="11-Days Best of Northern Parks (Comfort) &amp; Zanzibar" data-sw="Siku 11 Bora ya Mbuga za Kaskazini na Zanzibar">11-Days Best of Northern Parks (Comfort) &amp; Zanzibar</p>
-                            <p class="price" data-en="From $ 3,729" data-sw="Kuanzia $ 3,729">From $ 3,729</p>
-                            <a href="11-days-best-of-northern-parks-zanzibar.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="11-Days Best of Northern Parks (Comfort) &amp; Zanzibar" data-sw="Siku 11 Bora ya Mbuga za Kaskazini na Zanzibar">11-Days Best of Northern Parks (Comfort) &amp; Zanzibar</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-tree"></i> Serengeti</span>
+                                <span class="safari-tag-pill"><i class="fas fa-umbrella-beach"></i> Zanzibar</span>
+                                <span class="safari-tag-pill"><i class="fas fa-camera"></i> Tarangire</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,729" data-sw="Kuanzia $ 3,729">$3,729 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 4 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/elwphant.jpg" alt="Tanzania Short Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/elwphant.jpg" alt="Tanzania Short Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-blue"><i class="fas fa-bolt"></i> <span data-en="Short Escape" data-sw="Safari ya Haraka">Short Escape</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="5 Days" data-sw="Siku 5">5 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Tanzania Short Safari" data-sw="Safari Fupi Tanzania">Tanzania Short Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="5 Days Serengeti &amp; Ngorongoro Adventure" data-sw="Siku 5 Serengeti na Ngorongoro">5 Days Serengeti &amp; Ngorongoro Adventure</p>
-                            <p class="price" data-en="From $ 1,850" data-sw="Kuanzia $ 1,850">From $ 1,850</p>
-                            <a href="3-day-serengeti-safari.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="5 Days Serengeti &amp; Ngorongoro Adventure" data-sw="Siku 5 Serengeti na Ngorongoro">5 Days Serengeti &amp; Ngorongoro Adventure</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-mountain"></i> Crater Floor</span>
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Big 5 Focus</span>
+                                <span class="safari-tag-pill"><i class="fas fa-binoculars"></i> Game Drives</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 1,850" data-sw="Kuanzia $ 1,850">$1,850 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 5 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/Zanzibar.jpg" alt="Safari & Zanzibar">
+                        <div class="safari-card-img-box">
+                            <img src="assets/Zanzibar.jpg" alt="Safari & Zanzibar">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-umbrella-beach"></i> <span data-en="Bush & Beach" data-sw="Pori na Pwani">Bush &amp; Beach</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Safari &amp; Zanzibar" data-sw="Safari na Zanzibar">Safari &amp; Zanzibar</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Bush to Beach Luxury Experience" data-sw="Siku 10 Uzoefu wa Anasa wa Msitu hadi Pwani">10 Days Bush to Beach Luxury Experience</p>
-                            <p class="price" data-en="From $ 3,450" data-sw="Kuanzia $ 3,450">From $ 3,450</p>
-                            <a href="10-days-bush-to-beach.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="10 Days Bush to Beach Luxury Experience" data-sw="Siku 10 Uzoefu wa Anasa wa Msitu hadi Pwani">10 Days Bush to Beach Luxury Experience</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Savanna Drive</span>
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> Turquoise Ocean</span>
+                                <span class="safari-tag-pill"><i class="fas fa-cocktail"></i> Luxury Resort</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,450" data-sw="Kuanzia $ 3,450">$3,450 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 6 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/4N1A0305-1-1.jpg" alt="Cultural Heritage Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/4N1A0305-1-1.jpg" alt="Cultural Heritage Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-feather-alt"></i> <span data-en="Cultural Immersion" data-sw="Urithi wa Asili">Cultural Immersion</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="7 Days" data-sw="Siku 7">7 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Cultural Heritage Safari" data-sw="Safari ya Urithi wa Kitamaduni">Cultural Heritage Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="7 Days Maasai Culture &amp; Wildlife" data-sw="Siku 7 Utamaduni wa Maasai na Wanyamapori">7 Days Maasai Culture &amp; Wildlife</p>
-                            <p class="price" data-en="From $ 2,100" data-sw="Kuanzia $ 2,100">From $ 2,100</p>
-                            <a href="6-day-northern-tanzania-highlights.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="7 Days Maasai Culture &amp; Wildlife" data-sw="Siku 7 Utamaduni wa Maasai na Wanyamapori">7 Days Maasai Culture &amp; Wildlife</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-users"></i> Hadzabe Hunters</span>
+                                <span class="safari-tag-pill"><i class="fas fa-campground"></i> Maasai Boma</span>
+                                <span class="safari-tag-pill"><i class="fas fa-landmark"></i> Lake Eyasi</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 2,100" data-sw="Kuanzia $ 2,100">$2,100 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 7 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Great Migration Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Great Migration Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-binoculars"></i> <span data-en="Great Migration" data-sw="Uhamiaji Mkuu">Great Migration</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Great Migration Safari" data-sw="Safari ya Uhamiaji Mkuu">Great Migration Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Tanzania Great Migration Safari" data-sw="Siku 10 Safari ya Uhamiaji Mkuu Tanzania">10 Days Tanzania Great Migration Safari</p>
-                            <p class="price" data-en="From $ 3,772" data-sw="Kuanzia $ 3,772">From $ 3,772</p>
-                            <a href="10-days-tanzania-great-migration.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="10 Days Tanzania Great Migration Safari" data-sw="Siku 10 Safari ya Uhamiaji Mkuu Tanzania">10 Days Tanzania Great Migration Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> River Crossing</span>
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Predator Action</span>
+                                <span class="safari-tag-pill"><i class="fas fa-compass"></i> Mara Plains</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,772" data-sw="Kuanzia $ 3,772">$3,772 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 8 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/Zanzibar.jpg" alt="Luxury Safari & Zanzibar">
+                        <div class="safari-card-img-box">
+                            <img src="assets/15-day-kenya-tanzania.webp" alt="Luxury Safari & Zanzibar">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-gem"></i> <span data-en="Ultra Luxury" data-sw="Anasa Kubwa">Ultra Luxury</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Luxury Safari &amp; Zanzibar" data-sw="Safari ya Anasa na Zanzibar">Luxury Safari &amp; Zanzibar</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Ultimate Luxury Safari and Zanzibar Retreat" data-sw="Siku 10 Safari ya Anasa na Likizo ya Zanzibar">10 Days Ultimate Luxury Safari and Zanzibar Retreat</p>
-                            <p class="price" data-en="From $ 8,522" data-sw="Kuanzia $ 8,522">From $ 8,522</p>
-                            <a href="10-days-luxury-safari-zanzibar.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="10 Days Ultimate Luxury Safari and Zanzibar Retreat" data-sw="Siku 10 Safari ya Anasa na Likizo ya Zanzibar">10 Days Ultimate Luxury Safari and Zanzibar Retreat</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-plane"></i> Fly-In Safari</span>
+                                <span class="safari-tag-pill"><i class="fas fa-hotel"></i> 5-Star Tented</span>
+                                <span class="safari-tag-pill"><i class="fas fa-concierge-bell"></i> Butler Service</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 8,522" data-sw="Kuanzia $ 8,522">$8,522 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Card 9 -->
                     <div class="safari-card mini-card animate-in">
-                        <img src="assets/09TMMT-IM1109-mara-mara-tented-lodge-1475.jpg" alt="Best of South & North">
+                        <div class="safari-card-img-box">
+                            <img src="assets/09TMMT-IM1109-mara-mara-tented-lodge-1475.jpg" alt="Best of South & North">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-map-marked-alt"></i> <span data-en="Grand Circuit" data-sw="Mzunguko Kamili">Grand Circuit</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="12 Days" data-sw="Siku 12">12 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Best of South &amp; North" data-sw="Bora ya Kusini na Kaskazini">Best of South &amp; North</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="12 Days The Best of Southern and Northern Tanzania Safari" data-sw="Siku 12 Bora ya Safari ya Kusini na Kaskazini Tanzania">12 Days The Best of Southern and Northern Tanzania Safari</p>
-                            <p class="price" data-en="From $ 5,221" data-sw="Kuanzia $ 5,221">From $ 5,221</p>
-                            <a href="12-days-best-of-south-and-north.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="12 Days The Best of Southern and Northern Tanzania Safari" data-sw="Siku 12 Bora ya Safari ya Kusini na Kaskazini Tanzania">12 Days The Best of Southern and Northern Tanzania Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-route"></i> All Top Parks</span>
+                                <span class="safari-tag-pill"><i class="fas fa-car-side"></i> Custom 4x4</span>
+                                <span class="safari-tag-pill"><i class="fas fa-binoculars"></i> Max Wildlife</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 5,221" data-sw="Kuanzia $ 5,221">$5,221 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ══ DUPLICATE SET FOR SEAMLESS LOOP ══ -->
+                    <!-- -- DUPLICATE SET FOR SEAMLESS LOOP -- -->
+                    <!-- Duplicate Card 1 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Tanzania Wildlife Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/03TMMT-IM1103-mara-mara-tented-lodge-1475.jpg" alt="Tanzania Wildlife Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-crown"></i> <span data-en="Signature Safari" data-sw="Safari Teule">Signature Safari</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="12 Days" data-sw="Siku 12">12 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Tanzania Wildlife Safari" data-sw="Safari ya Wanyamapori Tanzania">Tanzania Wildlife Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="12 Days Tanzania Wildlife Safari &amp; Cultural Highlights" data-sw="Siku 12 Safari ya Wanyamapori na Vivutio vya Kitamaduni">12 Days Tanzania Wildlife Safari &amp; Cultural Highlights</p>
-                            <p class="price" data-en="From $ 4,134" data-sw="Kuanzia $ 4,134">From $ 4,134</p>
-                            <a href="12-days-wildlife-safari-cultural-highlights.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="12 Days Tanzania Wildlife Safari &amp; Cultural Highlights" data-sw="Siku 12 Safari ya Wanyamapori na Vivutio vya Kitamaduni">12 Days Tanzania Wildlife Safari &amp; Cultural Highlights</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Big 5</span>
+                                <span class="safari-tag-pill"><i class="fas fa-campground"></i> Luxury Lodge</span>
+                                <span class="safari-tag-pill"><i class="fas fa-users"></i> Maasai Culture</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 4,134" data-sw="Kuanzia $ 4,134">$4,134 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 2 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Ultimate Southern Tanzania Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/05TMMT-IM1105-mara-mara-tented-lodge-1475.jpg" alt="Ultimate Southern Tanzania Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-compass"></i> <span data-en="Wilderness Pure" data-sw="Hifadhi Halisi">Wilderness Pure</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="9 Days" data-sw="Siku 9">9 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Ultimate Southern Tanzania Safari" data-sw="Safari Bora ya Kusini Tanzania">Ultimate Southern Tanzania Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="9 Days Your Ultimate Southern Tanzania Safari" data-sw="Siku 9 Safari Bora ya Kusini Tanzania">9 Days Your Ultimate Southern Tanzania Safari</p>
-                            <p class="price" data-en="From $ 3,209" data-sw="Kuanzia $ 3,209">From $ 3,209</p>
-                            <a href="9-days-ultimate-southern-tanzania.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="9 Days Your Ultimate Southern Tanzania Safari" data-sw="Siku 9 Safari Bora ya Kusini Tanzania">9 Days Your Ultimate Southern Tanzania Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> Rufiji River</span>
+                                <span class="safari-tag-pill"><i class="fas fa-hippo"></i> Boat Safari</span>
+                                <span class="safari-tag-pill"><i class="fas fa-leaf"></i> Ruaha Park</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,209" data-sw="Kuanzia $ 3,209">$3,209 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 3 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/KTA13Serengeti Nationa.webp" alt="Best of Northern Parks">
+                        <div class="safari-card-img-box">
+                            <img src="assets/KTA13Serengeti Nationa.webp" alt="Best of Northern Parks">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-fire"></i> <span data-en="Best Seller" data-sw="Inayoongoza">Best Seller</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="11 Days" data-sw="Siku 11">11 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Best of Northern Parks" data-sw="Bora ya Mbuga za Kaskazini">Best of Northern Parks</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="11-Days Best of Northern Parks (Comfort) &amp; Zanzibar" data-sw="Siku 11 Bora ya Mbuga za Kaskazini na Zanzibar">11-Days Best of Northern Parks (Comfort) &amp; Zanzibar</p>
-                            <p class="price" data-en="From $ 3,729" data-sw="Kuanzia $ 3,729">From $ 3,729</p>
-                            <a href="11-days-best-of-northern-parks-zanzibar.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="11-Days Best of Northern Parks (Comfort) &amp; Zanzibar" data-sw="Siku 11 Bora ya Mbuga za Kaskazini na Zanzibar">11-Days Best of Northern Parks (Comfort) &amp; Zanzibar</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-tree"></i> Serengeti</span>
+                                <span class="safari-tag-pill"><i class="fas fa-umbrella-beach"></i> Zanzibar</span>
+                                <span class="safari-tag-pill"><i class="fas fa-camera"></i> Tarangire</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,729" data-sw="Kuanzia $ 3,729">$3,729 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 4 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/elwphant.jpg" alt="Tanzania Short Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/elwphant.jpg" alt="Tanzania Short Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-blue"><i class="fas fa-bolt"></i> <span data-en="Short Escape" data-sw="Safari ya Haraka">Short Escape</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="5 Days" data-sw="Siku 5">5 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Tanzania Short Safari" data-sw="Safari Fupi Tanzania">Tanzania Short Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="5 Days Serengeti &amp; Ngorongoro Adventure" data-sw="Siku 5 Serengeti na Ngorongoro">5 Days Serengeti &amp; Ngorongoro Adventure</p>
-                            <p class="price" data-en="From $ 1,850" data-sw="Kuanzia $ 1,850">From $ 1,850</p>
-                            <a href="3-day-serengeti-safari.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="5 Days Serengeti &amp; Ngorongoro Adventure" data-sw="Siku 5 Serengeti na Ngorongoro">5 Days Serengeti &amp; Ngorongoro Adventure</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-mountain"></i> Crater Floor</span>
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Big 5 Focus</span>
+                                <span class="safari-tag-pill"><i class="fas fa-binoculars"></i> Game Drives</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 1,850" data-sw="Kuanzia $ 1,850">$1,850 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 5 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/Zanzibar.jpg" alt="Safari & Zanzibar">
+                        <div class="safari-card-img-box">
+                            <img src="assets/Zanzibar.jpg" alt="Safari & Zanzibar">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-umbrella-beach"></i> <span data-en="Bush & Beach" data-sw="Pori na Pwani">Bush &amp; Beach</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Safari &amp; Zanzibar" data-sw="Safari na Zanzibar">Safari &amp; Zanzibar</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Bush to Beach Luxury Experience" data-sw="Siku 10 Uzoefu wa Anasa wa Msitu hadi Pwani">10 Days Bush to Beach Luxury Experience</p>
-                            <p class="price" data-en="From $ 3,450" data-sw="Kuanzia $ 3,450">From $ 3,450</p>
-                            <a href="10-days-bush-to-beach.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="10 Days Bush to Beach Luxury Experience" data-sw="Siku 10 Uzoefu wa Anasa wa Msitu hadi Pwani">10 Days Bush to Beach Luxury Experience</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Savanna Drive</span>
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> Turquoise Ocean</span>
+                                <span class="safari-tag-pill"><i class="fas fa-cocktail"></i> Luxury Resort</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,450" data-sw="Kuanzia $ 3,450">$3,450 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 6 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/4N1A0305-1-1.jpg" alt="Cultural Heritage Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/4N1A0305-1-1.jpg" alt="Cultural Heritage Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-feather-alt"></i> <span data-en="Cultural Immersion" data-sw="Urithi wa Asili">Cultural Immersion</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="7 Days" data-sw="Siku 7">7 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Cultural Heritage Safari" data-sw="Safari ya Urithi wa Kitamaduni">Cultural Heritage Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="7 Days Maasai Culture &amp; Wildlife" data-sw="Siku 7 Utamaduni wa Maasai na Wanyamapori">7 Days Maasai Culture &amp; Wildlife</p>
-                            <p class="price" data-en="From $ 2,100" data-sw="Kuanzia $ 2,100">From $ 2,100</p>
-                            <a href="6-day-northern-tanzania-highlights.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="7 Days Maasai Culture &amp; Wildlife" data-sw="Siku 7 Utamaduni wa Maasai na Wanyamapori">7 Days Maasai Culture &amp; Wildlife</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-users"></i> Hadzabe Hunters</span>
+                                <span class="safari-tag-pill"><i class="fas fa-campground"></i> Maasai Boma</span>
+                                <span class="safari-tag-pill"><i class="fas fa-landmark"></i> Lake Eyasi</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 2,100" data-sw="Kuanzia $ 2,100">$2,100 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 7 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Great Migration Safari">
+                        <div class="safari-card-img-box">
+                            <img src="assets/07TMMT-IM1107-mara-mara-tented-lodge-1475.jpg" alt="Great Migration Safari">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-binoculars"></i> <span data-en="Great Migration" data-sw="Uhamiaji Mkuu">Great Migration</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
-                            <h3 data-en="Great Migration Safari" data-sw="Safari ya Uhamiaji Mkuu">Great Migration Safari</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Tanzania Great Migration Safari" data-sw="Siku 10 Safari ya Uhamiaji Mkuu Tanzania">10 Days Tanzania Great Migration Safari</p>
-                            <p class="price" data-en="From $ 3,772" data-sw="Kuanzia $ 3,772">From $ 3,772</p>
-                            <a href="10-days-tanzania-great-migration.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <h3 data-en="Great Migration Safari" data-sw="Safari ya Uhamiaji Mkuu Tanzania">Great Migration Safari</h3>
+                            <p class="safari-route-desc" data-en="10 Days Tanzania Great Migration Safari" data-sw="Siku 10 Safari ya Uhamiaji Mkuu Tanzania">10 Days Tanzania Great Migration Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-water"></i> River Crossing</span>
+                                <span class="safari-tag-pill"><i class="fas fa-paw"></i> Predator Action</span>
+                                <span class="safari-tag-pill"><i class="fas fa-compass"></i> Mara Plains</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 3,772" data-sw="Kuanzia $ 3,772">$3,772 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 8 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/15-day-kenya-tanzania.webp" alt="Luxury Safari & Zanzibar">
+                        <div class="safari-card-img-box">
+                            <img src="assets/15-day-kenya-tanzania.webp" alt="Luxury Safari & Zanzibar">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-gold"><i class="fas fa-gem"></i> <span data-en="Ultra Luxury" data-sw="Anasa Kubwa">Ultra Luxury</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="10 Days" data-sw="Siku 10">10 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Luxury Safari &amp; Zanzibar" data-sw="Safari ya Anasa na Zanzibar">Luxury Safari &amp; Zanzibar</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="10 Days Ultimate Luxury Safari and Zanzibar Retreat" data-sw="Siku 10 Safari ya Anasa na Likizo ya Zanzibar">10 Days Ultimate Luxury Safari and Zanzibar Retreat</p>
-                            <p class="price" data-en="From $ 8,522" data-sw="Kuanzia $ 8,522">From $ 8,522</p>
-                            <a href="10-days-luxury-safari-zanzibar.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="10 Days Ultimate Luxury Safari and Zanzibar Retreat" data-sw="Siku 10 Safari ya Anasa na Likizo ya Zanzibar">10 Days Ultimate Luxury Safari and Zanzibar Retreat</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-plane"></i> Fly-In Safari</span>
+                                <span class="safari-tag-pill"><i class="fas fa-hotel"></i> 5-Star Tented</span>
+                                <span class="safari-tag-pill"><i class="fas fa-concierge-bell"></i> Butler Service</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 8,522" data-sw="Kuanzia $ 8,522">$8,522 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Duplicate Card 9 -->
                     <div class="safari-card mini-card">
-                        <img src="assets/09TMMT-IM1109-mara-mara-tented-lodge-1475.jpg" alt="Best of South & North">
+                        <div class="safari-card-img-box">
+                            <img src="assets/09TMMT-IM1109-mara-mara-tented-lodge-1475.jpg" alt="Best of South & North">
+                            <div class="card-img-overlay"></div>
+                            <span class="card-badge-top-left badge-green"><i class="fas fa-map-marked-alt"></i> <span data-en="Grand Circuit" data-sw="Mzunguko Kamili">Grand Circuit</span></span>
+                            <span class="card-duration-badge"><i class="far fa-clock"></i> <span data-en="12 Days" data-sw="Siku 12">12 Days</span></span>
+                            <span class="card-rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
                         <div class="safari-content">
                             <h3 data-en="Best of South &amp; North" data-sw="Bora ya Kusini na Kaskazini">Best of South &amp; North</h3>
-                            <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px;" data-en="12 Days The Best of Southern and Northern Tanzania Safari" data-sw="Siku 12 Bora ya Safari ya Kusini na Kaskazini Tanzania">12 Days The Best of Southern and Northern Tanzania Safari</p>
-                            <p class="price" data-en="From $ 5,221" data-sw="Kuanzia $ 5,221">From $ 5,221</p>
-                            <a href="12-days-best-of-south-and-north.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI">VIEW TRIP</a>
+                            <p class="safari-route-desc" data-en="12 Days The Best of Southern and Northern Tanzania Safari" data-sw="Siku 12 Bora ya Safari ya Kusini na Kaskazini Tanzania">12 Days The Best of Southern and Northern Tanzania Safari</p>
+                            <div class="card-tags-row">
+                                <span class="safari-tag-pill"><i class="fas fa-route"></i> All Top Parks</span>
+                                <span class="safari-tag-pill"><i class="fas fa-car-side"></i> Custom 4x4</span>
+                                <span class="safari-tag-pill"><i class="fas fa-binoculars"></i> Max Wildlife</span>
+                            </div>
+                            <div class="card-action-row">
+                                <div class="price-group">
+                                    <span class="price-label-sub" data-en="STARTING FROM" data-sw="KUANZIA">STARTING FROM</span>
+                                    <p class="price" data-en="From $ 5,221" data-sw="Kuanzia $ 5,221">$5,221 <small>/ person</small></p>
+                                </div>
+                                <a href="packages.html" class="btn btn-primary btn-card" data-en="VIEW TRIP" data-sw="ANGALIA SAFARI"><span class="btn-text">VIEW TRIP</span> <i class="fas fa-arrow-right btn-arrow"></i></a>
+                            </div>
                         </div>
                     </div>
 
@@ -541,134 +2285,154 @@
         </div>
     </section>
 
-    <!-- ══ Our Tour Packages ══ -->
+    <!-- -- Our Tour Packages -- -->
     <section class="tour-packages-section">
         <div class="container">
-            <span class="sub-heading" data-en="WHAT WE OFFER" data-sw="TUNACHOTOA">WHAT WE OFFER</span>
+            <span class="sub-heading" data-en="WHAT WE OFFER" data-sw="TUNACHOTOA"><i class="fas fa-gem"></i> WHAT WE OFFER</span>
             <h2 data-en="Our Tour Packages" data-sw="Vifurushi Vyetu vya Safari">Our Tour Packages</h2>
 
             <div class="packages-grid">
                 <!-- Wildlife Safaris -->
                 <div class="package-card scroll-reveal">
-                    <span class="package-icon">🦁</span>
-                    <h3 data-en="Wildlife Safaris" data-sw="Safari za Wanyamapori">Wildlife Safaris</h3>
-                    <p data-en="Experience Tanzania's world-famous national parks and witness incredible wildlife in their natural habitat." data-sw="Tembelea mbuga za taifa maarufu za Tanzania na ushuhudie wanyamapori wa ajabu katika mazingira yao ya asili.">
-                        Experience Tanzania's world-famous national parks and witness incredible wildlife in their natural habitat.
-                    </p>
-                    <ul class="package-list">
-                        <li data-en="Serengeti National Park Safari" data-sw="Safari ya Hifadhi ya Serengeti">Serengeti National Park Safari</li>
-                        <li data-en="Ngorongoro Crater Tour" data-sw="Ziara ya Kreta ya Ngorongoro">Ngorongoro Crater Tour</li>
-                        <li data-en="Tarangire National Park Safari" data-sw="Safari ya Hifadhi ya Tarangire">Tarangire National Park Safari</li>
-                        <li data-en="Lake Manyara National Park Tour" data-sw="Ziara ya Hifadhi ya Ziwa Manyara">Lake Manyara National Park Tour</li>
-                        <li data-en="Mikumi National Park Safari" data-sw="Safari ya Hifadhi ya Mikumi">Mikumi National Park Safari</li>
-                    </ul>
+                    <div>
+                        <div class="package-icon-wrap icon-wildlife">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h3 data-en="Wildlife Safaris" data-sw="Safari za Wanyamapori">Wildlife Safaris</h3>
+                        <p data-en="Experience Tanzania's world-famous national parks and witness incredible wildlife in their natural habitat." data-sw="Tembelea mbuga za taifa maarufu za Tanzania na ushuhudie wanyamapori wa ajabu katika mazingira yao ya asili.">
+                            Experience Tanzania's world-famous national parks and witness incredible wildlife in their natural habitat.
+                        </p>
+                    </div>
+                    <div class="package-pills-wrap">
+                        <span class="pkg-pill"><i class="fas fa-leaf"></i> Serengeti</span>
+                        <span class="pkg-pill"><i class="fas fa-mountain"></i> Ngorongoro</span>
+                        <span class="pkg-pill"><i class="fas fa-tree"></i> Tarangire</span>
+                        <span class="pkg-pill"><i class="fas fa-water"></i> Manyara</span>
+                    </div>
                 </div>
 
                 <!-- Mountain Adventures -->
                 <div class="package-card scroll-reveal">
-                    <span class="package-icon">🏔</span>
-                    <h3 data-en="Mountain Adventures" data-sw="Matukio ya Milima">Mountain Adventures</h3>
-                    <p data-en="Challenge yourself with unforgettable trekking experiences through Tanzania's majestic highlands." data-sw="Jijaribu na uzoefu wa kupanda milima usioweza kusahauliwa kupitia nyanda za juu za Tanzania.">
-                        Challenge yourself with unforgettable trekking experiences through Tanzania's majestic highlands.
-                    </p>
-                    <ul class="package-list">
-                        <li data-en="Kilimanjaro Climbing Expeditions" data-sw="Msafara wa Kupanda Kilimanjaro">Kilimanjaro Climbing Expeditions</li>
-                        <li data-en="Mount Meru Trekking" data-sw="Kutembea Mlima Meru">Mount Meru Trekking</li>
-                        <li data-en="Guided Hiking Tours" data-sw="Ziara za Kupanda Milima na Mwongozo">Guided Hiking Tours</li>
-                    </ul>
+                    <div>
+                        <div class="package-icon-wrap icon-mountain">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3 data-en="Mountain Adventures" data-sw="Matukio ya Milima">Mountain Adventures</h3>
+                        <p data-en="Challenge yourself with unforgettable trekking experiences through Tanzania's majestic highlands." data-sw="Jijaribu na uzoefu wa kupanda milima usioweza kusahauliwa kupitia nyanda za juu za Tanzania.">
+                            Challenge yourself with unforgettable trekking experiences through Tanzania's majestic highlands.
+                        </p>
+                    </div>
+                    <div class="package-pills-wrap">
+                        <span class="pkg-pill"><i class="fas fa-hiking"></i> Kilimanjaro</span>
+                        <span class="pkg-pill"><i class="fas fa-route"></i> Mount Meru</span>
+                        <span class="pkg-pill"><i class="fas fa-campground"></i> Highland Treks</span>
+                    </div>
                 </div>
 
                 <!-- Beach Holidays -->
                 <div class="package-card scroll-reveal">
-                    <span class="package-icon">🏝</span>
-                    <h3 data-en="Beach Holidays" data-sw="Likizo za Pwani">Beach Holidays</h3>
-                    <p data-en="Relax and unwind on Tanzania's beautiful coastline with turquoise waters and white sandy beaches." data-sw="Pumzika kwenye pwani nzuri ya Tanzania yenye maji ya bluu na mchanga mweupe.">
-                        Relax and unwind on Tanzania's beautiful coastline with turquoise waters and white sandy beaches.
-                    </p>
-                    <ul class="package-list">
-                        <li data-en="Zanzibar Beach Vacations" data-sw="Likizo za Pwani ya Zanzibar">Zanzibar Beach Vacations</li>
-                        <li data-en="Snorkeling &amp; Diving Tours" data-sw="Ziara za Kuogelea na Kupiga Mbizi">Snorkeling &amp; Diving Tours</li>
-                        <li data-en="Stone Town Cultural Tours" data-sw="Ziara za Kitamaduni za Stone Town">Stone Town Cultural Tours</li>
-                        <li data-en="Island Hopping Experiences" data-sw="Uzoefu wa Kuruka Visiwa">Island Hopping Experiences</li>
-                    </ul>
+                    <div>
+                        <div class="package-icon-wrap icon-beach">
+                            <i class="fas fa-umbrella-beach"></i>
+                        </div>
+                        <h3 data-en="Beach Holidays" data-sw="Likizo za Pwani">Beach Holidays</h3>
+                        <p data-en="Relax and unwind on Tanzania's beautiful coastline with turquoise waters and white sandy beaches." data-sw="Pumzika kwenye pwani nzuri ya Tanzania yenye maji ya bluu na mchanga mweupe.">
+                            Relax and unwind on Tanzania's beautiful coastline with turquoise waters and white sandy beaches.
+                        </p>
+                    </div>
+                    <div class="package-pills-wrap">
+                        <span class="pkg-pill"><i class="fas fa-water"></i> Zanzibar</span>
+                        <span class="pkg-pill"><i class="fas fa-fish"></i> Snorkeling</span>
+                        <span class="pkg-pill"><i class="fas fa-city"></i> Stone Town</span>
+                        <span class="pkg-pill"><i class="fas fa-ship"></i> Island Tours</span>
+                    </div>
                 </div>
 
                 <!-- Cultural Experiences -->
                 <div class="package-card scroll-reveal">
-                    <span class="package-icon">🌍</span>
-                    <h3 data-en="Cultural Experiences" data-sw="Uzoefu wa Kitamaduni">Cultural Experiences</h3>
-                    <p data-en="Discover Tanzania's rich heritage and traditions through immersive cultural encounters." data-sw="Gundua urithi na mila ya Tanzania kupitia mwingiliano wa kina wa kitamaduni.">
-                        Discover Tanzania's rich heritage and traditions through immersive cultural encounters.
-                    </p>
-                    <ul class="package-list">
-                        <li data-en="Maasai Village Visits" data-sw="Ziara za Vijiji vya Maasai">Maasai Village Visits</li>
-                        <li data-en="Local Community Tours" data-sw="Ziara za Jamii za Mitaa">Local Community Tours</li>
-                        <li data-en="Historical &amp; Cultural Sites" data-sw="Maeneo ya Kihistoria na Kitamaduni">Historical &amp; Cultural Sites</li>
-                        <li data-en="Traditional Food Experiences" data-sw="Uzoefu wa Chakula cha Jadi">Traditional Food Experiences</li>
-                    </ul>
+                    <div>
+                        <div class="package-icon-wrap icon-cultural">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3 data-en="Cultural Experiences" data-sw="Uzoefu wa Kitamaduni">Cultural Experiences</h3>
+                        <p data-en="Discover Tanzania's rich heritage and traditions through authentic, respectful cultural encounters." data-sw="Gundua urithi na mila ya Tanzania kupitia mwingiliano wa kina wa kitamaduni.">
+                            Discover Tanzania's rich heritage and traditions through authentic, respectful cultural encounters.
+                        </p>
+                    </div>
+                    <div class="package-pills-wrap">
+                        <span class="pkg-pill"><i class="fas fa-users"></i> Maasai Boma</span>
+                        <span class="pkg-pill"><i class="fas fa-campground"></i> Hadzabe Tribe</span>
+                        <span class="pkg-pill"><i class="fas fa-utensils"></i> Swahili Flavors</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Why Choose Us + What's Included -->
+            <!-- Why Choose Us + What's Included (Streamlined & Compact) -->
             <div class="why-included-grid">
                 <!-- Why Choose Us -->
                 <div class="info-panel scroll-reveal">
-                    <h3 data-en="Why Choose Us?" data-sw="Kwa Nini Tuchague Sisi?">Why Choose Us?</h3>
-                    <ul class="why-list">
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Experienced Professional Guides" data-sw="Waongozaji Wataalamu wenye Uzoefu">Experienced Professional Guides</span>
+                    <div class="panel-header">
+                        <span class="panel-header-icon"><i class="fas fa-shield-alt"></i></span>
+                        <h3 data-en="Why Choose Us?" data-sw="Kwa Nini Tuchague Sisi?">Why Choose Us?</h3>
+                    </div>
+                    <ul class="feature-grid-list">
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="Experienced Professional Guides" data-sw="Waongozaji Wataalamu wenye Uzoefu">Experienced Professional Guides</span>
                         </li>
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Comfortable and Well-Maintained Vehicles" data-sw="Magari ya Starehe na Yaliyohifadhiwa Vizuri">Comfortable and Well-Maintained Vehicles</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="Comfortable 4x4 Safari Vehicles" data-sw="Magari ya Starehe ya 4x4">Comfortable 4x4 Safari Vehicles</span>
                         </li>
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Flexible and Customized Itineraries" data-sw="Ratiba za Kubadilika na Zilizobinafsishwa">Flexible and Customized Itineraries</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="Flexible &amp; Custom Itineraries" data-sw="Ratiba za Kubadilika na Zilizobinafsishwa">Flexible &amp; Custom Itineraries</span>
                         </li>
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Affordable and Competitive Pricing" data-sw="Bei Nafuu na Zinazoshindana">Affordable and Competitive Pricing</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="Fair &amp; Competitive Pricing" data-sw="Bei Nafuu na Zinazoshindana">Fair &amp; Competitive Pricing</span>
                         </li>
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Reliable Customer Support" data-sw="Msaada wa Wateja wa Kuaminika">Reliable Customer Support</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="24/7 Dedicated Support" data-sw="Msaada wa Masaa 24/7">24/7 Dedicated Support</span>
                         </li>
-                        <li>
-                            <span class="check-icon"><i class="fas fa-check"></i></span>
-                            <span data-en="Safe and Memorable Travel Experiences" data-sw="Uzoefu wa Safari Salama na Usiosahaulika">Safe and Memorable Travel Experiences</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-check"><i class="fas fa-check"></i></span>
+                            <span class="item-text" data-en="Safe &amp; Memorable Journeys" data-sw="Safari Salama na Zisizosahaulika">Safe &amp; Memorable Journeys</span>
                         </li>
                     </ul>
                 </div>
 
                 <!-- What's Included -->
                 <div class="info-panel scroll-reveal">
-                    <h3 data-en="What's Included?" data-sw="Nini Kimejumuishwa?">What's Included?</h3>
-                    <ul class="included-list">
-                        <li>
-                            <i class="fas fa-car"></i>
-                            <span data-en="Transportation during the tour" data-sw="Usafiri wakati wa ziara">Transportation during the tour</span>
+                    <div class="panel-header">
+                        <span class="panel-header-icon"><i class="fas fa-check-circle"></i></span>
+                        <h3 data-en="What's Included?" data-sw="Nini Kimejumuishwa?">What's Included?</h3>
+                    </div>
+                    <ul class="feature-grid-list">
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-car-side"></i></span>
+                            <span class="item-text" data-en="All Tour Transportation" data-sw="Usafiri wote wa Ziara">All Tour Transportation</span>
                         </li>
-                        <li>
-                            <i class="fas fa-user-tie"></i>
-                            <span data-en="Professional tour guide" data-sw="Mwongozo wa ziara wa kitaalamu">Professional tour guide</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-user-tie"></i></span>
+                            <span class="item-text" data-en="Licensed Professional Guide" data-sw="Mwongozo wa Kitaalamu wa Leseni">Licensed Professional Guide</span>
                         </li>
-                        <li>
-                            <i class="fas fa-bed"></i>
-                            <span data-en="Accommodation (depending on package)" data-sw="Malazi (kulingana na kifurushi)">Accommodation (depending on package)</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-bed"></i></span>
+                            <span class="item-text" data-en="Quality Accommodations" data-sw="Malazi Bora na Salama">Quality Accommodations</span>
                         </li>
-                        <li>
-                            <i class="fas fa-utensils"></i>
-                            <span data-en="Meals as specified in the itinerary" data-sw="Milo kama ilivyoainishwa kwenye ratiba">Meals as specified in the itinerary</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-utensils"></i></span>
+                            <span class="item-text" data-en="Meals Specified in Itinerary" data-sw="Milo Iliyoainishwa Kwenye Ratiba">Meals Specified in Itinerary</span>
                         </li>
-                        <li>
-                            <i class="fas fa-ticket-alt"></i>
-                            <span data-en="Park entrance fees" data-sw="Ada za kuingia mbugani">Park entrance fees</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-ticket-alt"></i></span>
+                            <span class="item-text" data-en="All Park &amp; Crater Fees" data-sw="Ada Zote za Hifadhi na Kreta">All Park &amp; Crater Fees</span>
                         </li>
-                        <li>
-                            <i class="fas fa-tint"></i>
-                            <span data-en="Drinking water during excursions" data-sw="Maji ya kunywa wakati wa matembezi">Drinking water during excursions</span>
+                        <li class="feature-item">
+                            <span class="item-icon-badge badge-included"><i class="fas fa-tint"></i></span>
+                            <span class="item-text" data-en="Unlimited Drinking Water" data-sw="Maji ya Kunywa Bila Kikomo">Unlimited Drinking Water</span>
                         </li>
                     </ul>
                 </div>
@@ -678,12 +2442,12 @@
 
 
 
-    <!-- ══ Footer ══ -->
+    <!-- -- Footer -- -->
     <!-- Footer Contact Info -->
     <div class="footer-top">
         <div class="container">
             <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
-            <a href="enquire.html" class="btn enquire-btn" data-en="CONTACT US TODAY!" data-sw="WASILIANA NASI LEO!">CONTACT US TODAY!</a>
+            <a href="contact.html" class="btn enquire-btn" data-en="CONTACT US TODAY!" data-sw="WASILIANA NASI LEO!">CONTACT US TODAY!</a>
         </div>
     </div>
 
@@ -699,8 +2463,8 @@
             </p>
 
             <div class="cta-action-grid" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="enquire.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
-                <a href="enquire.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
+                <a href="contact.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
+                <a href="contact.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
             </div>
             
             <div style="margin-top: 18px;">
@@ -711,50 +2475,49 @@
 
     <footer class="footer">
         <div class="container footer-grid">
-            <div class="footer-col info-col">
-                <h3 data-en="CONTACT US" data-sw="WASILIANA NASI">CONTACT US</h3>
-                <p><strong>Century Adventures</strong></p>
-                <p data-en="Asasi Tower, 4th Floor" data-sw="Asasi Tower, Ghorofa ya 4">Asasi Tower, 4th Floor</p>
-                <p data-en="Ohio Street" data-sw="Mtaa wa Ohio">Ohio Street</p>
-                <p><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank" style="color: inherit;">+255 747 115 390</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@centuryadventures.com" style="color: inherit;">info@centuryadventures.com</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@centuryadventures.com" style="color: inherit;">bookings@centuryadventures.com</a></p>
+                        <div class="footer-col info-col">
+                <div class="footer-brand-wrap">
+                    <img src="assets/logo.png" alt="Century Expeditions Logo" class="footer-logo">
+                    <h3 class="footer-brand-title">CENTURY EXPEDITIONS</h3>
+                </div>
+                <p class="footer-tagline" data-en="Tanzania's Premier Luxury Safari &amp; Adventure Specialists." data-sw="Wataalamu Wakuu wa Safari za Kifahari na Matukio Tanzania.">Tanzania's Premier Luxury Safari &amp; Adventure Specialists.</p>
+                <div class="footer-contact-details">
+                    <p><i class="fas fa-map-marker-alt"></i> Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania</p>
+                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank" style="color: inherit;">+255 747 115 390</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@century-adventures.com" style="color: inherit;">bookings@century-adventures.com</a></p>
+                </div>
             </div>
             <div class="footer-col link-col collapsible">
                 <h3 data-en="POPULAR PLACES" data-sw="MAENEO MAARUFU">POPULAR PLACES</h3>
                 <ul>
                     <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
                     <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                    <li><a href="selous.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
+                    <li><a href="nyerere.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
                     <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
                     <li><a href="mikumi.html" data-en="Mikumi Park" data-sw="Hifadhi ya Mikumi">Mikumi Park</a></li>
-                    <li><a href="ngorongoro.html" data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</a></li>
+                    <li><a href="destinations.html" data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</a></li>
                     <li><a href="manyara.html" data-en="Manyara National Park" data-sw="Hifadhi ya Manyara">Manyara National Park</a></li>
                 </ul>
             </div>
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL EXPERIENCE" data-sw="UZOEFU WA KUSAFIRI">TRAVEL EXPERIENCE</h3>
                 <ul>
-                    <li><a href="family-safaris.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
-                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
-                    <li><a href="migration-safaris.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
+                    <li><a href="packages.html" data-en="Safari Packages &amp; Itineraries" data-sw="Vifurushi na Ratiba za Safari">Safari Packages &amp; Itineraries</a></li>
+                    <li><a href="family.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
+                    <li><a href="honeymoon.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
+                    <li><a href="migration.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
                     <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
-                    <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                    <li><a href="zanzibar.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
                 </ul>
             </div>
             <div class="footer-col link-col collapsible">
                 <h3 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h3>
                 <ul>
-                    <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
-                    <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
+                    <li><a href="booking-payment.html" data-en="Booking &amp; Payment Information" data-sw="Taarifa za Kuhifadhi na Malipo">Booking &amp; Payment Information</a></li>
+                    <li><a href="travel-guide.html" data-en="Tanzania Travel Guide" data-sw="Mwongozo wa Kusafiri Tanzania">Tanzania Travel Guide</a></li>
                     <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
-                    <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
-                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
-                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
-                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
+                    <li><a href="health-safety.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
+                    <li><a href="about.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -773,12 +2536,65 @@
                 <a href="https://www.youtube.com/@CenturyAdventures" target="_blank"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/255747115390"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@centuryadventures.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@century-adventures.com&su=General%20Inquiry" target="_blank"><i class="fas fa-envelope"></i></a>
             </div>
             <p>&copy; Copyright 2012 - 2026 | Century Adventures</p>
         </div>
     </footer>
 
     <script src="index.js"></script>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Interactive Filter for Find Your Perfect Safari
+            const filterBtns = document.querySelectorAll('.safari-filter-btn');
+            const safariCards = document.querySelectorAll('.safari-luxury-card');
+
+            filterBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    safariCards.forEach(function(card) {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = 'flex';
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(12px)';
+                            setTimeout(function() {
+                                card.style.transition = 'all 0.35s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 30);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Mobile menu drawer toggle
+            const mobileBtn = document.getElementById('mobile-toggle');
+            const mobileDrawer = document.getElementById('mobileNavDrawer');
+            const closeBtn = document.getElementById('nav-close-btn');
+
+            if (mobileBtn && mobileDrawer) {
+                mobileBtn.addEventListener('click', function() {
+                    const isVisible = mobileDrawer.style.display === 'block';
+                    mobileDrawer.style.display = isVisible ? 'none' : 'block';
+                    if (!isVisible) mobileDrawer.classList.add('active');
+                });
+            }
+
+            if (closeBtn && mobileDrawer) {
+                closeBtn.addEventListener('click', function() {
+                    mobileDrawer.style.display = 'none';
+                    mobileDrawer.classList.remove('active');
+                });
+            }
+        });
+    </script>
+<script src="site-effects.js"></script><script src="mobile-reference.js"></script></body>
 </html>
+

@@ -1,0 +1,14 @@
+Responsive verification
+
+27 pages checked at 9 viewport sizes (243 combinations):
+320 x 568, 568 x 320, 390 x 844, 844 x 390,
+768 x 1024, 1024 x 768, 800 x 1280, 1280 x 800, 1440 x 900.
+
+Final automated layout checks: no unexpected horizontal overflow or header-control overlap.
+Mobile/tablet navigation opened correctly on pages with public navigation.
+Home visual inspection: compact header, readable hero, horizontally scrolling destination cards.
+Phone-width interaction checks passed: destination-strip scrolling, dark-mode toggle and restore,
+menu expansion, Escape dismissal, and touch-control dimensions.
+
+Checks used Chromium browser viewports, not physical devices. Shared scroll animation and
+reduced-motion behavior was checked during the preceding website-wide effects update.

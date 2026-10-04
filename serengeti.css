@@ -1,0 +1,96 @@
+.serengeti-page { --sg-ink:#102b24; --sg-gold:#a5803e; --sg-paper:#fcfaf6; --sg-text:#525754; background:var(--sg-paper); }
+.sg-main { color:var(--sg-ink); font-family:'Inter',sans-serif; }
+.sg-main * { box-sizing:border-box; }
+.sg-main h1,.sg-main h2,.sg-main h3 { font-family:'Playfair Display',Georgia,serif; color:inherit; text-transform:none; letter-spacing:-1.3px; line-height:1.12; }
+.sg-main h2 { font-size:clamp(32px,3.6vw,49px); margin:0 0 22px; }
+.sg-main p { font-size:15px; line-height:1.8; color:var(--sg-text); margin:0 0 20px; }
+.sg-wrap { width:min(1240px,calc(100% - 96px)); margin:0 auto; }
+.sg-eyebrow { display:flex; gap:18px; align-items:center; font-size:10px; font-weight:700; letter-spacing:2.4px; color:var(--sg-gold); text-transform:uppercase; margin-bottom:17px; }
+.sg-eyebrow::after { content:''; width:30px; height:1px; background:currentColor; }
+.sg-hero { min-height:620px; height:76vh; max-height:850px; position:relative; display:flex; align-items:center; background:#605032 url('assets/serengeti-hero-v1.png') center 55%/cover; color:white; }
+.sg-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,24,20,.63),rgba(10,24,20,.16) 65%,transparent),linear-gradient(0deg,rgba(12,25,18,.15),transparent 50%); }
+.sg-hero .sg-wrap { position:relative; padding-top:100px; padding-bottom:60px; }
+.sg-breadcrumb { display:flex; align-items:center; gap:14px; color:#f5efdf; font-size:12px; margin-bottom:29px; }
+.sg-breadcrumb::before { content:''; width:32px; height:1px; background:#d9b565; }
+.sg-breadcrumb a { color:inherit; text-decoration:none; }
+.sg-hero h1 { font-size:clamp(56px,6.3vw,88px); font-weight:500; letter-spacing:-2.6px; margin:0 0 19px; line-height:.98; max-width:700px; }
+.sg-hero p { font-family:'Playfair Display',Georgia,serif; font-size:clamp(20px,2vw,27px); color:#fff6e8; max-width:520px; line-height:1.4; margin-bottom:30px; }
+.sg-button { display:inline-flex; align-items:center; justify-content:center; gap:25px; background:#a4803d; border:1px solid #d7b46a; padding:15px 25px; color:#fff!important; text-decoration:none; font-family:'Playfair Display',Georgia,serif; font-size:16px; transition:background .2s,transform .2s; }
+.sg-button:hover { background:#826229; transform:translateY(-2px); }
+.sg-button i { font-size:12px; }
+.sg-facts { padding:30px 0; border-bottom:1px solid #e9e0d2; background:#f6f3ed; }
+.sg-facts .sg-wrap { display:grid; grid-template-columns:repeat(3,1fr) 100px; align-items:center; }
+.sg-fact { display:flex; gap:23px; align-items:center; padding:9px 30px; border-right:1px solid #d9c5a3; }
+.sg-fact:first-child { padding-left:0; }
+.sg-fact i { font-size:33px; color:var(--sg-gold); }
+.sg-fact strong { display:block; font-family:'Playfair Display',Georgia,serif; font-size:20px; margin-bottom:6px; }
+.sg-fact span { display:block; color:#747975; font-size:9px; text-transform:uppercase; letter-spacing:1.8px; }
+.sg-compass { font-family:Georgia,serif; color:#bba576; text-align:center; opacity:.6; }
+.sg-compass span { display:block; font-size:11px; }.sg-compass i { font-size:56px; font-weight:400; }
+.sg-overview { padding:78px 0 90px; }
+.sg-split { display:grid; grid-template-columns:1fr 1fr; gap:75px; align-items:center; }
+.sg-copy { max-width:540px; }
+.sg-link { display:inline-flex; gap:17px; align-items:center; color:var(--sg-gold)!important; text-decoration:none; font-family:'Playfair Display',Georgia,serif; border-bottom:1px solid #bea472; padding-bottom:4px; font-size:15px; }
+.sg-portrait { position:relative; padding:0 52px 30px 0; }
+.sg-portrait > img { display:block; width:100%; height:350px; object-fit:cover; object-position:center; border:1px solid #b59a66; padding:3px; background:#fff; }
+.sg-portrait .sg-inset { width:47%; height:150px; position:absolute; bottom:0; right:0; border:3px solid #fff; outline:1px solid #b59a66; object-fit:cover; }
+.sg-tiles { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.sg-tile { margin:0; height:300px; position:relative; overflow:hidden; }
+.sg-tile img { width:100%; height:100%; object-fit:cover; transition:transform .6s; }
+.sg-tile:hover img { transform:scale(1.035); }
+.sg-tile::after { content:''; position:absolute; inset:0; background:linear-gradient(transparent 40%,rgba(9,28,20,.65)); }
+.sg-tile figcaption { position:absolute; left:48px; bottom:28px; z-index:1; color:#fff; font:24px 'Playfair Display',Georgia,serif; }
+.sg-tile figcaption span { font:10px 'Inter',sans-serif; display:block; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; color:#e4d5b5; }
+.sg-migration { padding:65px 0; }
+.sg-migration .sg-split { gap:55px; }
+.sg-migration-photo { width:100%; height:360px; object-fit:cover; border:4px solid white; box-shadow:0 0 0 1px #e6ddcd; }
+.sg-details { margin:20px 0; border-bottom:1px solid #daccb4; }
+.sg-details summary { cursor:pointer; color:var(--sg-gold); font:16px 'Playfair Display',Georgia,serif; padding:0 0 14px; }
+.sg-details p { padding-top:12px; }
+.sg-planning { padding:45px 0 35px; background:#f4f1ea; border-top:1px solid #e9e2d5; }
+.sg-planning h2 { font-size:29px; letter-spacing:.2px; display:flex; align-items:center; gap:20px; margin-bottom:25px; }
+.sg-planning h2::before { content:''; width:36px; height:2px; background:#b99754; }
+.sg-planning-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.sg-plan-card { padding:30px; display:flex; gap:24px; border:1px solid #d7bd8a; border-radius:3px; background:#fffefa; }
+.sg-plan-card > i { flex-shrink:0; width:66px; height:66px; border:1px solid #d7bd8a; border-radius:50%; display:grid; place-items:center; color:#a5803e; font-size:27px; }
+.sg-plan-card h3 { font-size:23px; margin:0 0 12px; letter-spacing:-.4px; }
+.sg-plan-card p { font-size:13px; line-height:1.7; margin:0; }
+.sg-planning .sg-note { margin:15px 0 0; text-align:center; font-family:Georgia,serif; font-size:12px; font-style:italic; }
+.sg-cta { padding:65px 0; background:linear-gradient(90deg,rgba(7,38,28,.96),rgba(7,38,28,.73)),url('assets/tourism-serengeti.jpg') center/cover; color:#fff; }
+.sg-cta h2 { max-width:920px; }.sg-cta p { color:#e1e8df; }.sg-cta .sg-eyebrow { color:#dcc28c; }
+.sg-cta-actions { display:flex; align-items:center; gap:30px; flex-wrap:wrap; }
+.sg-email { color:#f3e7cd!important; font-size:14px; text-decoration:none; }.sg-email i { margin-right:10px; color:#d5b66a; }
+.sg-main a:focus-visible,.sg-main summary:focus-visible { outline:3px solid #d2aa5b; outline-offset:5px; }
+.sg-skip { position:fixed; left:20px; top:-100px; z-index:3000; background:#fff; color:#12392c; padding:15px; }.sg-skip:focus { top:15px; }
+[data-theme='dark'] .serengeti-page { --sg-paper:#10251e; --sg-ink:#f4efdf; --sg-text:#c3cdc5; }
+[data-theme='dark'] .sg-facts,[data-theme='dark'] .sg-planning { background:#182f26; }
+[data-theme='dark'] .sg-plan-card { background:#203b30; }
+@media(min-width:993px) { .serengeti-page header.luxury-header-editorial { background:rgba(252,250,246,.98)!important; position:relative!important; top:auto!important; padding:12px 0!important; }.serengeti-page .editorial-nav-links a { color:#183329!important; }.serengeti-page .sg-hero .sg-wrap { padding-top:35px; } }
+@media(max-width:992px) { .sg-wrap { width:calc(100% - 48px); }.sg-split { gap:35px; }.sg-facts .sg-wrap { grid-template-columns:repeat(3,1fr); }.sg-compass { display:none; }.sg-fact { padding:10px 16px; gap:12px; }.sg-fact strong { font-size:17px; }.sg-fact i { font-size:24px; }.sg-portrait { padding-right:25px; }.sg-portrait > img { height:310px; }.sg-plan-card { padding:22px; gap:17px; }.sg-plan-card > i { width:48px; height:48px; font-size:21px; } }
+@media(max-width:640px) { .sg-wrap { width:calc(100% - 40px); }.sg-hero { min-height:650px; height:85svh; max-height:800px; background-position:64% center; }.sg-hero::before { background:linear-gradient(90deg,rgba(8,24,18,.7),rgba(8,24,18,.25)); }.sg-hero .sg-wrap { padding-top:90px; }.sg-hero h1 { font-size:57px; }.sg-hero p { font-size:22px; }.sg-facts { padding:18px 0; }.sg-facts .sg-wrap { gap:10px; }.sg-fact { flex-direction:column; text-align:center; padding:5px 7px; gap:10px; }.sg-fact:first-child { padding-left:7px; }.sg-fact:last-of-type { border:0; }.sg-fact strong { font-size:16px; }.sg-fact span { font-size:7px; line-height:1.6; letter-spacing:1px; }.sg-split { grid-template-columns:1fr; gap:35px; }.sg-overview { padding:45px 0 50px; }.sg-portrait { padding:0 40px 25px 0; }.sg-portrait > img { height:300px; }.sg-portrait .sg-inset { height:125px; }.sg-tiles { grid-template-columns:1fr; }.sg-tile { height:250px; }.sg-tile figcaption { left:25px; }.sg-migration { padding:40px 0; }.sg-migration-photo { height:270px; }.sg-planning-grid { grid-template-columns:1fr; gap:15px; }.sg-planning h2 { font-size:23px; }.sg-plan-card { padding:23px 18px; }.sg-cta { padding:48px 0; }.sg-cta h2 { font-size:36px; }.sg-cta-actions { gap:22px; }.sg-email { font-size:12px; } }
+@media(prefers-reduced-motion:reduce) { .sg-main * { scroll-behavior:auto!important; transition:none!important; } }
+/* The shared stylesheet has global mobile type rules; keep this page's editorial scale. */
+.sg-main h1 { font-size:clamp(56px,6.3vw,88px)!important; line-height:.98!important; }
+.sg-main h2 { font-size:clamp(32px,3.6vw,49px)!important; }
+.sg-main p { font-size:15px!important; line-height:1.8!important; }
+.sg-main .sg-hero p { font-size:clamp(20px,2vw,27px)!important; line-height:1.4!important; }
+.sg-main .sg-plan-card p { font-size:13px!important; line-height:1.7!important; }
+.sg-main .sg-planning h2 { font-size:29px!important; }
+.sg-main .sg-note { font-size:12px!important; }
+.serengeti-page .scroll-reveal,.serengeti-page .scroll-reveal-left,.serengeti-page .scroll-reveal-right,.serengeti-page .scroll-reveal-scale { opacity:1!important; transform:none!important; }
+.sg-main section[id] { scroll-margin-top:100px; }
+.serengeti-page header.luxury-header-editorial { position:fixed!important; top:0!important; padding:0!important; }
+[data-theme='dark'] .serengeti-page header.luxury-header-editorial { background:rgba(8,20,14,.98)!important; }
+[data-theme='dark'] .serengeti-page .editorial-nav-links a { color:#f4efdf!important; }
+@media(max-width:640px) {
+    .sg-main h1 { font-size:57px!important; }
+    .sg-main .sg-hero p { font-size:22px!important; }
+    .sg-main .sg-planning h2 { font-size:23px!important; }
+    .sg-main .sg-cta h2 { font-size:36px!important; }
+    .serengeti-page .editorial-logo-text { max-width:125px; white-space:normal; font-size:10px!important; line-height:1.5; letter-spacing:1px!important; }
+    .serengeti-page .editorial-header-actions { gap:8px; padding-right:48px; }
+    .serengeti-page .header-toggles { margin-right:0; gap:0; padding:4px!important; }
+    .serengeti-page .header-toggles .theme-toggle { width:28px!important; min-width:28px!important; padding:5px!important; }
+    .serengeti-page .header-toggles .toggle-text { display:none!important; }
+    .serengeti-page .header-toggles .lang-toggle { padding:5px 8px!important; }
+}

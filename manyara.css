@@ -1,0 +1,19 @@
+.manyara-page { --sg-paper:#fbf7ed; }
+.manyara-page .sg-hero { background-image:url('assets/manyara-hero-v1.png'); background-position:center; height:67vh; min-height:560px; max-height:720px; }
+.manyara-page .sg-hero::before { background:linear-gradient(90deg,rgba(8,28,24,.58),rgba(8,28,24,.12) 75%),linear-gradient(0deg,rgba(8,28,24,.18),transparent); }
+.manyara-page .sg-facts .sg-wrap { grid-template-columns:repeat(3,1fr); }
+.manyara-page .sg-fact { justify-content:center; padding:10px 22px; }
+.manyara-page .sg-fact:last-child { border:0; }
+.manyara-page .sg-fact > i { display:grid; place-items:center; width:60px; height:60px; border:1px solid #b59657; border-radius:50%; font-size:24px; flex-shrink:0; }
+.manyara-page .sg-overview { padding:65px 0 55px; }
+.manyara-page .sg-split { gap:55px; }
+.manyara-page .sg-portrait > img { object-position:35% center; }
+.my-gallery h2 { display:flex; align-items:center; gap:20px; font:12px 'Inter',sans-serif!important; letter-spacing:2px; text-transform:uppercase; color:#a5803e; margin:0 0 18px; }
+.my-gallery h2::after { content:''; height:1px; background:#cbb47f; flex:1; }
+.my-gallery .sg-tiles { gap:14px; }.my-gallery .sg-tile { height:300px; }
+.manyara-page .sg-planning h2 { justify-content:center; text-transform:none; font-size:34px!important; }
+.manyara-page .sg-cta { text-align:center; padding:50px 0; background-image:linear-gradient(rgba(6,28,25,.65),rgba(6,28,25,.74)),url('assets/manyara-hero-v1.png'); }
+.manyara-page .sg-cta h2 { max-width:1100px; margin-left:auto; margin-right:auto; font-size:36px!important; }
+.manyara-page .sg-cta .sg-eyebrow,.manyara-page .sg-cta-actions { justify-content:center; }.manyara-page .sg-cta .sg-eyebrow::after { display:none; }
+@media(max-width:992px) { .manyara-page .sg-fact { padding:8px 10px; gap:12px; }.manyara-page .sg-fact > i { width:44px; height:44px; font-size:21px; } }
+@media(max-width:640px) { .manyara-page .sg-hero { min-height:640px; height:80svh; background-position:62% center; }.manyara-page .sg-hero h1 { font-size:clamp(44px,11vw,57px)!important; }.manyara-page .sg-fact { padding:5px; }.manyara-page .sg-fact strong { font-size:14px; }.manyara-page .sg-fact > i { width:40px; height:40px; font-size:19px; }.manyara-page .sg-overview { padding:42px 0; }.my-gallery .sg-tiles { gap:15px; }.my-gallery .sg-tile { height:240px; }.manyara-page .sg-planning h2 { font-size:28px!important; }.manyara-page .sg-cta h2 { font-size:32px!important; }.manyara-page .sg-cta-actions { flex-direction:column; gap:20px; } }

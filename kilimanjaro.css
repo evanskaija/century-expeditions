@@ -1,0 +1,40 @@
+.kilimanjaro-page .sg-hero{background-image:url('assets/kilimanjaro-hero-v1.png');background-position:center;min-height:580px;height:67vh;max-height:740px}
+.kilimanjaro-page .sg-hero::before{background:linear-gradient(90deg,rgba(5,28,30,.62),rgba(5,28,30,.02))}
+.kilimanjaro-page .sg-hero h1{font-size:clamp(46px,5.5vw,80px)!important;max-width:1050px}
+.kilimanjaro-page .sg-facts .sg-wrap{grid-template-columns:repeat(3,1fr)}
+.kilimanjaro-page .sg-fact:last-child{border:0}
+.kilimanjaro-page .sg-fact span{letter-spacing:0;text-transform:none}
+.kilimanjaro-page :is(.kl-landscapes,.kl-experience,.kl-routes,.kl-expect){width:calc(100% - 40px);max-width:1250px;margin:0 auto}
+.kl-two{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.kl-two figure{margin:0}
+.kl-two img{width:100%;height:280px;object-fit:cover}
+.kl-two h3{font-size:26px;margin:14px 0 8px}
+.kilimanjaro-page .kl-two p{font-size:14px!important;margin:0}
+.kl-experience,.kl-routes,.kl-expect{padding:40px 0}
+.kl-grid{display:grid;gap:20px;margin-top:25px}
+.kl-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.kl-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kl-grid article{border:1px solid #e0d6c4;background:var(--sg-paper);overflow:hidden}
+.kl-grid img{width:100%;height:190px;object-fit:cover}
+.kl-grid article>div{padding:18px}
+.kl-grid h3{font-size:23px;margin:0 0 12px}
+.kilimanjaro-page .kl-grid p{font-size:14px!important;margin:0}
+.kl-grid .sg-link{font-size:12px;margin-top:20px}
+.kilimanjaro-page .kl-routes h2,.kilimanjaro-page .kl-expect h2{font-size:36px!important}
+.kilimanjaro-page .kl-note{font-size:12px!important;text-align:center;margin:20px 0 10px}
+.kl-source{display:block;text-align:center;font-size:12px;color:#9a7434;text-decoration:underline}
+.kl-expect-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 45px;margin-top:30px}
+.kl-expect-grid article{display:flex;gap:22px}
+.kl-expect-grid article>i{color:#a5803e;font-size:34px;width:45px;flex-shrink:0}
+.kl-expect-grid h3{font-size:22px;margin:0 0 10px}
+.kilimanjaro-page .kl-expect-grid p{font-size:14px!important;margin:0}
+.kl-altitude{border:1px solid #d8c6a2;margin-top:30px;padding:16px 20px;border-radius:5px}
+.kl-altitude summary{cursor:pointer;font-weight:600}
+.kilimanjaro-page .kl-altitude p{font-size:14px!important}
+.kl-altitude a{font-size:13px;color:#9a7434;text-decoration:underline}
+.kl-banner{background:linear-gradient(rgba(5,25,30,.25),rgba(5,25,30,.65)),url('assets/kilimanjaro-camp-v1.png') center/cover;min-height:220px;display:grid;place-items:center;padding:40px 20px}
+.kilimanjaro-page .kl-banner p{font:32px 'Playfair Display',serif!important;color:white;text-align:center}
+.kilimanjaro-page .sg-cta{background:#153d2d;padding:45px 0}
+.kilimanjaro-page .sg-cta h2{font-size:36px!important}
+@media(max-width:992px){.kl-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.kl-grid.three{grid-template-columns:1fr}.kl-grid.three img{height:280px}}
+@media(max-width:640px){.kilimanjaro-page .sg-hero h1{font-size:46px!important}.kilimanjaro-page .sg-hero{min-height:620px;background-position:60% center}.kilimanjaro-page .sg-fact{padding:8px 4px}.kilimanjaro-page .sg-fact strong{font-size:13px}.kilimanjaro-page .sg-fact span{font-size:10px}.kl-two,.kl-grid.four,.kl-expect-grid{grid-template-columns:1fr}.kl-two img,.kl-grid img{height:250px}.kilimanjaro-page .kl-routes h2,.kilimanjaro-page .kl-expect h2{font-size:29px!important}.kilimanjaro-page .sg-cta-actions{flex-direction:column;align-items:flex-start}}

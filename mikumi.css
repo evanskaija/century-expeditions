@@ -1,0 +1,29 @@
+.mikumi-page { --sg-paper:#fcfaf5; }
+.mikumi-page .sg-hero { background-image:url('assets/mikumi-hero-v1.png'); background-position:center; height:67vh; min-height:560px; max-height:720px; }
+.mikumi-page .sg-hero p { max-width:750px; }
+.mikumi-page .sg-facts .sg-wrap { grid-template-columns:repeat(3,1fr); }
+.mikumi-page .sg-fact { justify-content:center; padding:10px 22px; }
+.mikumi-page .sg-fact:last-child { border:0; }
+.mikumi-page .sg-fact > i { display:grid; place-items:center; width:60px; height:60px; border:1px solid #b59657; border-radius:50%; font-size:24px; flex-shrink:0; }
+.mikumi-page .sg-overview { padding:65px 0 55px; }
+.mikumi-page .sg-split { gap:55px; }
+.mikumi-page .sg-portrait > img { object-position:70% center; }
+.mikumi-page .sg-main .mk-gallery h2 { display:flex; align-items:center; gap:20px; font:11px 'Inter',sans-serif!important; letter-spacing:2px; text-transform:uppercase; color:#a5803e; margin:0 0 20px; }
+.mk-gallery h2::after { content:''; height:1px; background:#cbb47f; flex:1; }
+.mk-gallery .sg-tiles { gap:20px; }.mk-gallery .sg-tile { height:300px; border:1px solid #b69a60; padding:3px; }
+.mk-explore { padding:25px 0 40px; }
+.mikumi-page .sg-main .mk-explore h2,.mikumi-page .sg-main .sg-planning h2 { text-align:center; justify-content:center; font-size:36px!important; margin-bottom:30px; }
+.mikumi-page .sg-planning h2::before { display:none; }
+.mk-explore-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.mk-experience { position:relative; border:1px solid #dcc8a1; border-radius:4px; padding:7px; text-align:center; background:#fffdf8; }
+.mk-experience > img { width:100%; height:190px; object-fit:cover; }
+.mk-experience:nth-child(2) > img { object-position:center 20%; }
+.mk-experience > i { position:relative; display:grid; place-items:center; width:60px; height:60px; border-radius:50%; border:1px solid #b59657; background:#fffdf8; color:#a5803e; font-size:24px; margin:-30px auto 0; box-shadow:0 0 0 5px #fffdf8; }
+.mk-experience > div { padding:20px 22px 12px; }
+.mk-experience h3 { font-size:24px; margin:0 0 14px; }.mikumi-page .sg-main .mk-experience p { font-size:13px!important; margin:0; }
+.mikumi-page .sg-planning { border:0; background:transparent; padding-top:0; }
+.mikumi-page .sg-cta { padding:55px 0; background-image:linear-gradient(90deg,rgba(6,32,24,.92),rgba(6,32,24,.3)),url('assets/mikumi-hero-v1.png'); }
+.mikumi-page .sg-cta h2 { max-width:1050px; font-size:38px!important; }
+[data-theme='dark'] .mk-experience,[data-theme='dark'] .mk-experience > i { background:#203b30; }[data-theme='dark'] .mk-experience > i { box-shadow:0 0 0 5px #203b30; }
+@media(max-width:992px) { .mikumi-page .sg-fact { padding:8px 10px; gap:12px; }.mikumi-page .sg-fact > i { width:44px; height:44px; font-size:21px; }.mk-explore-grid { grid-template-columns:1fr; }.mk-experience > img { height:260px; } }
+@media(max-width:640px) { .mikumi-page .sg-hero { min-height:650px; height:80svh; background-position:64% center; }.mikumi-page .sg-fact { padding:5px; }.mikumi-page .sg-fact strong { font-size:14px; }.mikumi-page .sg-fact > i { width:40px; height:40px; font-size:19px; }.mikumi-page .sg-overview { padding:42px 0; }.mk-gallery .sg-tiles { gap:15px; }.mk-gallery .sg-tile { height:240px; }.mikumi-page .sg-main .mk-explore h2,.mikumi-page .sg-main .sg-planning h2 { font-size:29px!important; }.mikumi-page .sg-cta h2 { font-size:32px!important; }.mikumi-page .sg-cta-actions { flex-direction:column; align-items:flex-start; gap:20px; } }

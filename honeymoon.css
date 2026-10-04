@@ -1,0 +1,68 @@
+.honeymoon-page .sg-hero{background-image:url('assets/honeymoon-hero-v1.png');min-height:540px;height:66vh;max-height:740px;background-position:center}
+.honeymoon-page .sg-hero::before{background:linear-gradient(90deg,rgba(8,23,17,.75),rgba(8,23,17,.08))}
+.honeymoon-page .sg-hero h1{font-size:clamp(44px,5.1vw,74px)!important;max-width:820px}
+.honeymoon-page .sg-hero .sg-eyebrow{color:#e1c78b}
+.honeymoon-page .sg-facts .sg-wrap{grid-template-columns:repeat(3,1fr)}
+.honeymoon-page .sg-fact:last-child{border:0}
+.honeymoon-page .sg-fact span{letter-spacing:0;text-transform:none;font-size:12px}
+.fa-journey{padding-top:55px;padding-bottom:40px}
+.honeymoon-page .fa-journey h2{font-size:38px!important}
+.fa-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:25px}
+.fa-cards>a{border:1px solid #dfd4ba;border-radius:6px;overflow:hidden;color:var(--sg-ink);background:var(--sg-paper);text-decoration:none}
+.fa-cards img{width:100%;height:210px;object-fit:cover;transition:transform .3s}
+.fa-cards>a:hover img{transform:scale(1.03)}
+.fa-cards>a:focus-visible{outline:3px solid #a5803e;outline-offset:4px}
+.fa-cards> a>div{padding:18px 20px}
+.fa-cards h3{font-size:23px;margin:0 0 8px}
+.fa-cards h3 span{float:right;color:#a5803e}
+.honeymoon-page .fa-cards p{font-size:14px!important;margin:0}
+.fa-inquiry{display:grid;grid-template-columns:30% 70%;border:1px solid #b59a65;border-radius:12px;overflow:hidden;padding:0;margin-bottom:35px;scroll-margin-top:110px}
+.fa-aside{padding:38px 32px;color:white;background:linear-gradient(rgba(13,45,32,.94),rgba(13,45,32,.9)),url('assets/tarangire-hero-v1.png') center bottom/cover}
+.honeymoon-page .fa-aside h2{color:white;font-size:36px!important;line-height:1.15}
+.honeymoon-page .fa-aside p{color:#f2f0e8;font-size:15px!important}
+.fa-aside .sg-eyebrow{color:#d8bd7e}
+.fa-aside ul{list-style:none;padding:0;margin:32px 0}
+.fa-aside li{display:flex;gap:20px;align-items:center;margin:28px 0;font-size:15px}
+.fa-aside li i{font-size:25px;color:#d8bd7e;width:30px;flex-shrink:0}
+.fa-questions{border-top:1px solid #b7ad8b;padding-top:24px}
+.fa-questions a{color:#e3c47f;overflow-wrap:anywhere}
+.fa-form-panel{padding:32px 36px;background:var(--sg-paper)}
+.honeymoon-page .fa-form-panel h2{font-size:36px!important;margin-bottom:8px}
+.honeymoon-page .fa-form-panel>p{font-size:14px!important}
+.fa-form-panel fieldset{border:0;padding:0;margin:22px 0;min-width:0}
+.fa-form-panel legend{font:600 20px 'Playfair Display',serif;margin-bottom:14px}
+.fa-grid{display:grid;gap:16px}
+.fa-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fa-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fa-form-panel label{display:block;font-size:13px;line-height:1.5}
+.fa-form-panel label span,.fa-submit>small span{color:#b94432}
+.fa-form-panel input:not([type=checkbox]),.fa-form-panel select,.fa-form-panel textarea{width:100%;min-width:0;margin-top:5px;border:1px solid #cbc6b9;border-radius:4px;background:var(--sg-paper);color:var(--sg-ink);padding:10px;font:13px 'Inter',sans-serif}
+.fa-form-panel textarea{resize:vertical}
+.fa-form-panel :is(input,select,textarea):focus-visible{outline:2px solid #a5803e;outline-offset:2px}
+.fa-form-panel small{display:block;font-size:11px;color:#737568;margin-top:5px}
+.fa-options{display:flex;flex-wrap:wrap;gap:12px 20px}
+.fa-options label,.fa-form-panel .fa-check{display:flex;align-items:center;gap:8px}
+.fa-check{margin:16px 0}
+.fa-form-panel input[type=checkbox]{width:16px;height:16px;accent-color:#a5803e;flex-shrink:0}
+.fa-option-title{font-size:13px;margin:16px 0 10px}
+.fa-submit{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:20px}
+.fa-submit button{cursor:pointer;font-size:13px;border:1px solid #b99d61}
+.honeymoon-page .fa-status{font-size:12px!important;text-align:center;margin:14px 0 0}
+.fa-faq{padding:10px 0 55px;max-width:900px;text-align:center}
+.honeymoon-page .fa-faq h2{font-size:34px!important;margin-bottom:8px}
+.honeymoon-page .fa-faq>p{font-size:14px!important}
+.fa-faq details{text-align:left;border:1px solid #dacfba;border-radius:4px;padding:13px 18px;margin:10px 0;background:var(--sg-paper)}
+.fa-faq summary{cursor:pointer;font-weight:600}
+.honeymoon-page .fa-faq details p{font-size:14px!important;margin:14px 0 0}
+@media(max-width:992px){.fa-inquiry{grid-template-columns:1fr}.fa-aside{padding:30px}.fa-aside ul{display:grid;grid-template-columns:1fr 1fr;margin:15px 0}.fa-aside li{margin:10px 0}.fa-cards{gap:14px}.fa-cards h3{font-size:20px}.fa-cards img{height:170px}}
+@media(max-width:640px){.honeymoon-page .sg-hero{min-height:610px;background-position:58% center}.honeymoon-page .sg-hero h1{font-size:44px!important}.honeymoon-page .sg-fact{padding:8px 5px}.honeymoon-page .sg-fact strong{font-size:13px}.honeymoon-page .sg-fact span{font-size:10px}.fa-cards{grid-template-columns:1fr}.fa-cards img{height:230px}.honeymoon-page .fa-journey h2,.honeymoon-page .fa-form-panel h2{font-size:30px!important}.fa-form-panel{padding:26px 20px}.fa-grid.two,.fa-grid.three{grid-template-columns:1fr}.fa-submit{flex-direction:column;align-items:stretch}.fa-aside ul{grid-template-columns:1fr}.fa-faq{width:calc(100% - 40px)}}
+@media(prefers-reduced-motion:reduce){.fa-cards img{transition:none}}
+.honeymoon-page .fa-journey,.honeymoon-page .fa-inquiry { width:calc(100% - 40px); max-width:1250px; margin-left:auto; margin-right:auto; }
+.honeymoon-page .sg-hero::before{background:linear-gradient(90deg,rgba(10,31,25,.55),rgba(10,31,25,.02))}
+.honeymoon-page .fa-journey{text-align:center}
+.honeymoon-page .fa-cards{text-align:left}
+.honeymoon-page .fa-aside{background:linear-gradient(rgba(9,39,28,.94),rgba(9,39,28,.82)),url('assets/zanzibar-sunset-v1.png') center bottom/cover}
+.honeymoon-page .fa-form-panel fieldset+fieldset{padding-top:20px;border-top:1px solid #e2d7c1}
+.honeymoon-page .fa-grid.three{margin-top:18px}
+.hm-notes{margin-top:20px}
+@media(max-width:640px){.honeymoon-page .sg-hero{background-position:78% center}}

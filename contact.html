@@ -1,1203 +1,1573 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="assets/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="icon" href="assets/Century Expeditions lion badge logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/Century Expeditions lion badge logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Century Adventures Tanzania</title>
-    <meta name="description"
-        content="Plan your Tanzania safari with Century Adventures. Get in touch with our experts for personalized safari planning, trekking, and beach holidays.">
-    <link rel="stylesheet" href="index.css">
+    <title>Contact Us | Century Expeditions Tanzania</title>
+    <meta name="description" content="Plan your unforgettable Tanzania safari adventure with Century Expeditions. Contact our safari specialists for custom itineraries, Mount Kilimanjaro treks, and Zanzibar beach getaways.">
+    <link rel="stylesheet" href="index.css?v=12">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <script>
-        (function () {
+        (function() {
             const theme = localStorage.getItem('century-theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>
     <style>
-        /* ══ Hero ══ */
-        .contact-hero {
-            position: relative;
-            height: 80vh;
-            min-height: 480px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            color: #fff;
-        }
-
-        .contact-hero-bg {
-            position: absolute;
-            inset: 0;
-            background-image: url('assets/about-hero.png');
-            background-size: cover;
-            background-position: center;
-            transform: scale(1.05);
-            animation: heroZoom 18s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroZoom {
-            from {
-                transform: scale(1.05);
-            }
-
-            to {
-                transform: scale(1.12);
-            }
-        }
-
-        .contact-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom,
-                    rgba(0, 0, 0, 0.18) 0%,
-                    rgba(0, 25, 12, 0.65) 50%,
-                    rgba(0, 25, 12, 0.92) 100%);
-        }
-
-        .contact-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 880px;
-            padding: 0 24px;
-        }
-
-        .contact-hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(197, 160, 68, 0.2);
-            border: 1px solid rgba(197, 160, 68, 0.5);
-            color: var(--accent-gold);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-bottom: 28px;
-            backdrop-filter: blur(10px);
-            animation: fadeDown 0.8s ease forwards;
-        }
-
-        .contact-hero-content h1 {
-            font-size: clamp(2.4rem, 5.5vw, 4.5rem);
-            line-height: 1.15;
-            margin-bottom: 24px;
-            color: #fff;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-            animation: fadeUp 0.9s ease 0.15s both;
-        }
-
-        .contact-hero-content h1 em {
-            font-style: italic;
-            color: var(--accent-gold);
-        }
-
-        .contact-hero-tagline {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            opacity: 0.92;
-            max-width: 680px;
-            margin: 0 auto 38px;
-            line-height: 1.8;
-            animation: fadeUp 0.9s ease 0.3s both;
-        }
-
-        .contact-hero-scroll {
-            position: absolute;
-            bottom: 36px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        .contact-hero-scroll i {
-            font-size: 1.1rem;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(8px);
-            }
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ══ Stat Bar ══ */
-        .stat-bar {
-            background: var(--primary-green);
-            padding: 28px 0;
-        }
-
-        .stat-bar-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-        }
-
-        .stat-bar-item {
-            text-align: center;
-            padding: 10px 20px;
-            border-right: 1px solid rgba(255, 255, 255, 0.12);
-            color: #fff;
-        }
-
-        .stat-bar-item:last-child {
-            border-right: none;
-        }
-
-        .stat-bar-item .num {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            display: block;
-            line-height: 1;
-            margin-bottom: 6px;
-        }
-
-        .stat-bar-item .lbl {
-            font-size: 0.75rem;
-            opacity: 0.75;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 640px) {
-            .stat-bar-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stat-bar-item:nth-child(2) {
-                border-right: none;
-            }
-        }
-
-        /* ══ Main Contact Layout ══ */
-        .contact-section {
-            background: var(--bg-color);
-            padding: 100px 0;
-        }
-
-        .contact-layout-grid {
-            display: grid;
-            grid-template-columns: 0.95fr 1.05fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        @media (max-width: 992px) {
-            .contact-layout-grid {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-        }
-
-        /* Sidebar info style */
-        .contact-info-panel h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-            color: var(--primary-green);
-            margin-bottom: 24px;
-            line-height: 1.25;
-        }
-
-        [data-theme="dark"] .contact-info-panel h2 {
-            color: #fff;
-        }
-
-        .contact-info-panel .intro-text {
-            color: var(--text-muted);
-            font-size: 1.02rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .contact-details-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-bottom: 50px;
-        }
-
-        .contact-detail-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            background: var(--section-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            transition: var(--transition);
-        }
-
-        .contact-detail-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-gold);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .cd-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(197, 160, 68, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            color: var(--accent-gold);
-            flex-shrink: 0;
-        }
-
-        .cd-content h4 {
-            font-size: 0.95rem;
-            color: var(--text-main);
-            margin: 0 0 6px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cd-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .cd-content a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .cd-content a:hover {
-            color: var(--accent-gold);
-        }
-
-        .help-list-panel {
-            background: var(--section-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 36px;
-        }
-
-        .help-list-panel h3 {
-            font-size: 1.15rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-
-        [data-theme="dark"] .help-list-panel h3 {
-            color: var(--accent-gold);
-        }
-
-        .help-items-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 20px;
-        }
-
-        @media (max-width: 480px) {
-            .help-items-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .help-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        .help-item i {
-            color: var(--accent-gold);
-            font-size: 0.8rem;
-        }
-
-        /* Modern Form Container */
-        .form-container-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 50px 44px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .form-container-card h3 {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 30px;
-        }
-
-        [data-theme="dark"] .form-container-card h3 {
-            color: #fff;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 580px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group-full {
-            grid-column: span 2;
-        }
-
-        @media (max-width: 580px) {
-            .form-group-full {
-                grid-column: span 1;
-            }
-        }
-
-        .form-field {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-field label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .form-field input,
-        .form-field select,
-        .form-field textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-color);
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-field input:focus,
-        .form-field select:focus,
-        .form-field textarea:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 4px rgba(197, 160, 68, 0.1);
-        }
-
-        /* ══ Why Contact Us ══ */
-        .why-contact {
-            background: var(--section-bg);
-            padding: 100px 0;
-        }
-
-        .why-contact .section-top {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .why-contact h2 {
-            font-size: clamp(1.9rem, 3.5vw, 3rem);
-            color: var(--primary-green);
-            margin-bottom: 16px;
-        }
-
-        [data-theme="dark"] .why-contact h2 {
-            color: #fff;
-        }
-
-        .why-contact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-        }
-
-        @media (max-width: 1100px) {
-            .why-contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 580px) {
-            .why-contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .why-contact-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 36px 28px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .why-contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--accent-gold);
-        }
-
-        .wc-icon {
-            width: 54px;
-            height: 54px;
-            background: rgba(197, 160, 68, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.35rem;
-            margin: 0 auto 18px;
-        }
-
-        .why-contact-card h3 {
-            font-size: 1rem;
-            color: var(--text-main);
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /* ══ Commitment Block ══ */
-        .commitment-block {
-            background: var(--bg-color);
-            padding: 100px 0;
-            border-bottom: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .commitment-panel {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .commitment-panel h2 {
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-            color: var(--primary-green);
-            margin-bottom: 24px;
-        }
-
-        [data-theme="dark"] .commitment-panel h2 {
-            color: #fff;
-        }
-
-        .commitment-panel p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.85;
-            margin: 0;
-        }
-
-        /* ══ Closing CTA ══ */
-        .contact-closing {
-            background: var(--primary-gradient);
-            padding: 110px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-closing::before {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(197, 160, 68, 0.12) 0%, transparent 70%);
-            top: -200px;
-            right: -150px;
-            border-radius: 50%;
-        }
-
-        .contact-closing h2 {
-            font-size: clamp(2rem, 4vw, 3.4rem);
-            color: #fff;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .contact-closing .closing-tagline {
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 640px;
-            margin: 0 auto 16px;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            position: relative;
-        }
-
-        .contact-closing .closing-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .btn-closing-gold {
-            background: var(--accent-gold);
-            color: #002b18 !important;
-            font-weight: 800;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none !important;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 30px rgba(197, 160, 68, 0.3);
-        }
-
-        .btn-closing-gold:hover {
-            background: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 14px 40px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-closing-outline {
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            color: #fff !important;
-            font-weight: 700;
-            padding: 14px 36px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-decoration: none !important;
-            transition: all 0.4s ease;
-        }
-
-        .btn-closing-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #fff;
-        }
-
-        /* ══ Contact Our Team Section ══ */
-        .contact-team-section {
-            background: var(--bg-color);
-            padding: 80px 0;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-        
-        @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .team-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-gold);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .team-card-icon {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-        
-        .team-card h3 {
-            font-size: 1.25rem;
-            color: var(--primary-green);
-            margin: 0 0 12px 0;
-            font-family: 'Playfair Display', serif;
-        }
-        
-        [data-theme="dark"] .team-card h3 {
-            color: var(--accent-gold);
-        }
-        
-        .team-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0 0 20px 0;
-            flex-grow: 1;
-        }
-        
-        .team-email {
-            font-size: 1rem;
-            color: var(--accent-gold);
-            font-weight: 700;
-            text-decoration: none;
-            transition: var(--transition);
-            border-bottom: 1px solid transparent;
-        }
-        
-        .team-email:hover {
-            color: var(--primary-green);
-            border-color: var(--primary-green);
-        }
-        
-        [data-theme="dark"] .team-email:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
+    /* ============================================================
+       CENTURY EXPEDITIONS - CONTACT PAGE LUXURY SYSTEM
+       ============================================================ */
+    :root {
+        --ce-bg: #ffffff;
+        --ce-cream: #faf7f0;
+        --ce-cream-soft: #fcfaf5;
+        --ce-dark-green: #11251d;
+        --ce-forest: #142e20;
+        --ce-gold: #bfa15f;
+        --ce-gold-muted: #c5a044;
+        --ce-gold-light: #d4af37;
+        --ce-gold-button: #b48535;
+        --ce-text-dark: #11251d;
+        --ce-text-body: #4a554e;
+        --ce-text-muted: #6b7770;
+        --ce-border: #eae4da;
+        --ce-border-gold: rgba(191, 161, 95, 0.45);
+        --ce-footer-bg: #091b12;
+        --ce-footer-cta-bg: #0d281a;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--ce-bg);
+        color: var(--ce-text-body);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Botanical Corner Illustrations */
+    .botanical-flourish {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+        color: #c5a044;
+        opacity: 0.85;
+    }
+    .botanical-top-right { top: 0; right: 0; width: 140px; height: 140px; }
+    .botanical-top-left { top: 0; left: 0; width: 140px; height: 140px; transform: scaleX(-1); }
+    .botanical-bottom-right { bottom: 0; right: 0; width: 140px; height: 140px; transform: scaleY(-1); }
+    .botanical-bottom-left { bottom: 0; left: 0; width: 140px; height: 140px; transform: scale(-1); }
+
+    /* ============================================================
+       1. HEADER (Image 1 Exact Layout)
+       ============================================================ */
+    .ce-header {
+        background: #fdfcf9;
+        border-bottom: 1px solid var(--ce-border);
+        position: relative;
+        z-index: 100;
+    }
+    .ce-header-container {
+        max-width: 1260px;
+        margin: 0 auto;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .ce-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+    }
+    .ce-brand-badge {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .ce-brand-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.12rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--ce-dark-green);
+        text-transform: uppercase;
+    }
+    .ce-nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .ce-nav-menu a {
+        text-decoration: none;
+        font-size: 0.94rem;
+        font-weight: 500;
+        color: var(--ce-dark-green);
+        position: relative;
+        padding: 6px 0;
+        transition: color 0.25s ease;
+    }
+    .ce-nav-menu a:hover,
+    .ce-nav-menu a.active {
+        color: var(--ce-dark-green);
+    }
+    .ce-nav-menu a.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--ce-gold-muted);
+    }
+    .ce-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+    /* Toggle Capsule (EN/SW | DARK) */
+    .ce-toggle-capsule {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(191, 161, 95, 0.6);
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        padding: 5px 14px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ce-dark-green);
+    }
+    .ce-toggle-capsule button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: inherit;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .ce-toggle-capsule .lang-pill {
+        background: var(--ce-dark-green);
+        color: #ffffff;
+        padding: 2px 7px;
+        border-radius: 12px;
+        font-size: 0.72rem;
+    }
+    .ce-toggle-capsule .capsule-divider {
+        color: rgba(191, 161, 95, 0.6);
+        font-size: 0.85rem;
+    }
+    .ce-contact-header-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--ce-dark-green);
+        color: #ffffff;
+        padding: 9px 20px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+    .ce-contact-header-btn:hover {
+        background: var(--ce-gold-muted);
+        transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       2. HERO SECTION (Image 3 Top Appearance)
+       ============================================================ */
+    .ce-contact-hero {
+        position: relative;
+        min-height: 520px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 42%, rgba(255, 255, 255, 0) 70%), url('assets/about-hero-exact.jpg');
+        background-size: cover;
+        background-position: center right;
+        display: flex;
+        align-items: center;
+        padding: 70px 0;
+        overflow: hidden;
+    }
+    .ce-contact-hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 24px;
+        position: relative;
+        z-index: 2;
+    }
+    .ce-tag-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    .ce-tag-dash {
+        width: 24px;
+        height: 2px;
+        background: var(--ce-gold-muted);
+    }
+    .ce-tag-text {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--ce-gold-muted);
+    }
+    .ce-hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.6rem;
+        line-height: 1.12;
+        color: var(--ce-dark-green);
+        margin: 0 0 16px 0;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+    .ce-hero-subtitle {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: #26382e;
+        margin: 0;
+        font-weight: 500;
+        max-width: 500px;
+    }
+
+    /* ============================================================
+       3. 4-ITEM GUARANTEE / SERVICE STRIP
+       ============================================================ */
+    .ce-strip {
+        background: var(--ce-cream-soft);
+        border-top: 1px solid var(--ce-border);
+        border-bottom: 1px solid var(--ce-border);
+        padding: 30px 0;
+    }
+    .ce-strip-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .ce-strip-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+    }
+    .ce-strip-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 6px 16px;
+        position: relative;
+    }
+    .ce-strip-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 15%;
+        bottom: 15%;
+        width: 1px;
+        background: var(--ce-border);
+    }
+    .ce-strip-icon {
+        color: var(--ce-gold-muted);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ce-strip-item span {
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--ce-dark-green);
+    }
+
+    /* ============================================================
+       4. MAIN CONTACT & ENQUIRY SECTION (2 Columns)
+       ============================================================ */
+    .ce-contact-main {
+        padding: 90px 0;
+        background: #ffffff;
+        position: relative;
+        overflow: hidden;
+    }
+    .ce-contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 2;
+    }
+    .ce-contact-two-col {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 65px;
+        align-items: start;
+    }
+
+    /* Left Side */
+    .ce-info-col h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--ce-dark-green);
+        line-height: 1.2;
+        margin: 0 0 14px 0;
+    }
+    .ce-info-intro {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        color: var(--ce-text-body);
+        margin: 0 0 30px 0;
+    }
+    .ce-contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        margin-bottom: 32px;
+    }
+    .ce-contact-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .ce-point-icon {
+        color: var(--ce-gold-muted);
+        margin-top: 2px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+    }
+    .ce-point-text h4 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ce-dark-green);
+        margin: 0 0 3px 0;
+    }
+    .ce-point-text p,
+    .ce-point-text a {
+        font-size: 0.92rem;
+        color: var(--ce-text-body);
+        margin: 0;
+        line-height: 1.5;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .ce-point-text a:hover {
+        color: var(--ce-gold-muted);
+    }
+    .ce-whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--ce-forest);
+        color: #ffffff;
+        padding: 13px 26px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.92rem;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        margin-bottom: 40px;
+    }
+    .ce-whatsapp-btn:hover {
+        background: var(--ce-gold-muted);
+        transform: translateY(-2px);
+    }
+
+    /* We Can Help With */
+    .ce-help-box {
+        border-top: 1px solid var(--ce-border);
+        padding-top: 28px;
+    }
+    .ce-help-box h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.35rem;
+        color: var(--ce-dark-green);
+        margin: 0 0 18px 0;
+    }
+    .ce-help-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 24px;
+    }
+    .ce-help-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.88rem;
+        color: var(--ce-text-body);
+    }
+    .ce-help-item i {
+        color: var(--ce-gold-muted);
+        font-size: 0.8rem;
+    }
+
+    /* Right Side: Form Card */
+    .ce-form-card {
+        background: #ffffff;
+        border: 1px solid var(--ce-border-gold);
+        border-radius: 14px;
+        padding: 38px 40px;
+        box-shadow: 0 8px 30px rgba(17, 37, 29, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+    .ce-card-compass {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 140px;
+        height: 140px;
+        color: #c5a044;
+        opacity: 0.15;
+        pointer-events: none;
+    }
+    .ce-form-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: var(--ce-dark-green);
+        margin: 0 0 24px 0;
+        position: relative;
+        z-index: 2;
+    }
+    .ce-form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 2;
+    }
+    .ce-form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    .ce-form-group label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--ce-dark-green);
+    }
+    .ce-form-group input,
+    .ce-form-group select,
+    .ce-form-group textarea {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #ddd6cc;
+        border-radius: 6px;
+        background: #ffffff;
+        color: var(--ce-text-dark);
+        font-family: inherit;
+        font-size: 0.92rem;
+        outline: none;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ce-form-group input:focus,
+    .ce-form-group select:focus,
+    .ce-form-group textarea:focus {
+        border-color: var(--ce-gold-muted);
+        box-shadow: 0 0 0 3px rgba(197, 160, 68, 0.15);
+    }
+    .ce-form-group textarea {
+        resize: vertical;
+        min-height: 110px;
+    }
+    .btn-submit-enquiry {
+        width: 100%;
+        background: var(--ce-gold-button);
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 13px 20px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.25s ease;
+        margin-top: 6px;
+    }
+    .btn-submit-enquiry:hover {
+        background: #9d7027;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(180, 133, 53, 0.3);
+    }
+
+    /* ============================================================
+       5. CONTACT OUR TEAM (4 Columns)
+       ============================================================ */
+    .ce-team-section {
+        padding: 85px 0 75px;
+        background: #ffffff;
+        border-top: 1px solid var(--ce-border);
+        text-align: center;
+    }
+    .ce-team-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .ce-team-dash {
+        width: 32px;
+        height: 2px;
+        background: var(--ce-gold-muted);
+        margin: 0 auto 12px;
+    }
+    .ce-team-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.35rem;
+        color: var(--ce-dark-green);
+        margin: 0 0 45px 0;
+    }
+    .ce-team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
+    }
+    .ce-team-item {
+        padding: 10px 22px;
+        position: relative;
+    }
+    .ce-team-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 15%;
+        bottom: 15%;
+        width: 1px;
+        background: var(--ce-border);
+    }
+    .ce-team-icon {
+        color: var(--ce-gold-muted);
+        margin-bottom: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 42px;
+    }
+    .ce-team-item h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.05rem;
+        color: var(--ce-dark-green);
+        margin: 0 0 6px 0;
+        font-weight: 600;
+    }
+    .ce-team-item p {
+        font-size: 0.84rem;
+        line-height: 1.55;
+        color: var(--ce-text-body);
+        margin: 0 0 8px 0;
+    }
+    .ce-team-item a {
+        font-size: 0.82rem;
+        color: var(--ce-text-dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s ease;
+    }
+    .ce-team-item a:hover {
+        color: var(--ce-gold-muted);
+    }
+
+    /* ============================================================
+       6. OUR PROMISE (Scenic Banner)
+       ============================================================ */
+    .ce-promise-banner {
+        position: relative;
+        padding: 95px 0;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('assets/contact-promise-exact.jpg?v=2');
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        border-top: 1px solid var(--ce-border);
+    }
+    .ce-promise-container {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 2;
+    }
+    .ce-promise-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    .ce-promise-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.35rem;
+        color: var(--ce-dark-green);
+        margin: 0 0 14px 0;
+        font-weight: 700;
+    }
+    .ce-promise-desc {
+        font-size: 0.96rem;
+        line-height: 1.7;
+        color: #2b3a32;
+        margin: 0 auto;
+        max-width: 620px;
+    }
+
+    /* ============================================================
+       7. PRE-FOOTER CTA (Image 2 Exact Layout)
+       ============================================================ */
+    .ce-prefooter-cta {
+        background: var(--ce-footer-cta-bg);
+        background-image: linear-gradient(to bottom, rgba(13, 40, 26, 0.98), rgba(9, 27, 18, 0.98)), url('assets/hero-clean-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        padding: 60px 0 50px;
+        text-align: center;
+        color: #ffffff;
+        position: relative;
+    }
+    .ce-cta-container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .ce-cta-tag {
+        display: block;
+        color: var(--ce-gold-light);
+        font-size: 0.76rem;
+        letter-spacing: 2px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+    .ce-cta-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+        color: #ffffff;
+        margin: 0 0 16px 0;
+        font-weight: 700;
+    }
+    .ce-cta-desc {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0 auto 28px;
+        max-width: 680px;
+    }
+    .ce-cta-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .btn-cta-gold {
+        background: #d4af37;
+        color: #11251d;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 13px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+    .btn-cta-gold:hover {
+        background: #e6c555;
+        transform: translateY(-2px);
+    }
+    .btn-cta-outline {
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 12px 28px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+    .btn-cta-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #ffffff;
+    }
+    .btn-cta-phone {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #d4af37;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 12px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.25s ease;
+    }
+    .btn-cta-phone:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    .ce-cta-link-wrap {
+        margin-top: 10px;
+    }
+    .ce-cta-link {
+        color: #d4af37;
+        font-size: 0.84rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .ce-cta-link:hover {
+        color: #ffffff;
+    }
+
+    /* Gold Horizontal Accent Divider */
+    .ce-footer-divider {
+        height: 2px;
+        background: #bfa15f;
+        width: 100%;
+    }
+
+    /* ============================================================
+       8. MAIN FOOTER (Image 2 Exact Multi-Column Layout)
+       ============================================================ */
+    .ce-main-footer {
+        background: var(--ce-footer-bg);
+        color: #ffffff;
+        padding: 60px 0 30px;
+        font-size: 0.86rem;
+    }
+    .ce-footer-container {
+        max-width: 1260px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .ce-footer-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr 1fr 1fr 1.15fr;
+        gap: 36px;
+        align-items: start;
+        padding-bottom: 45px;
+    }
+    .ce-f-brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    .ce-f-brand-logo {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .ce-f-brand-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #d4af37;
+        text-transform: uppercase;
+    }
+    .ce-f-tagline {
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 0 18px 0;
+    }
+    .ce-f-contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .ce-f-contact-info div {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .ce-f-contact-info i {
+        color: #d4af37;
+        margin-top: 3px;
+        font-size: 0.85rem;
+    }
+    .ce-f-contact-info a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+    }
+    .ce-f-contact-info a:hover {
+        color: #d4af37;
+    }
+
+    .ce-f-col h4 {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #d4af37;
+        margin: 0 0 18px 0;
+    }
+    .ce-f-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+    }
+    .ce-f-links a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        font-size: 0.82rem;
+        transition: color 0.2s ease;
+    }
+    .ce-f-links a:hover {
+        color: #d4af37;
+    }
+
+    /* TripAdvisor Box & Partner Badges */
+    .ce-tripadvisor-box {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .ce-ta-circles {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    .ce-ta-circle {
+        width: 14px;
+        height: 14px;
+        background: #00aa6c;
+        border-radius: 50%;
+    }
+    .ce-tripadvisor-box h5 {
+        font-size: 0.88rem;
+        font-weight: 700;
+        margin: 0 0 2px 0;
+        color: #ffffff;
+    }
+    .ce-tripadvisor-box p {
+        font-size: 0.75rem;
+        color: #d4af37;
+        margin: 0 0 10px 0;
+    }
+    .btn-ta-feedback {
+        display: inline-block;
+        background: #d4af37;
+        color: #11251d;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 7px 18px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.2s ease;
+    }
+    .btn-ta-feedback:hover {
+        background: #e6c555;
+    }
+
+    .ce-badge-pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 50px;
+        padding: 8px 14px;
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .ce-badge-pill i {
+        color: #d4af37;
+    }
+
+    /* Bottom Copyright Bar */
+    .ce-footer-bottom-bar {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.55);
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    /* Floating Action Buttons (Bottom Right) */
+    .ce-floating-widgets {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+        z-index: 999;
+    }
+    .ce-float-top {
+        width: 36px;
+        height: 36px;
+        background: #c66914;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 0.85rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        transition: transform 0.25s ease;
+    }
+    .ce-float-top:hover {
+        transform: translateY(-2px);
+    }
+    .ce-float-ai {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #113123;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #ffffff;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        transition: transform 0.25s ease;
+    }
+    .ce-float-ai:hover {
+        transform: translateY(-2px);
+    }
+    .ce-float-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #25d366;
+        color: #ffffff;
+        padding: 10px 18px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+        transition: transform 0.25s ease;
+    }
+    .ce-float-whatsapp:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 991px) {
+        .ce-hero-title { font-size: 2.8rem; }
+        .ce-contact-two-col { grid-template-columns: 1fr; gap: 45px; }
+        .ce-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .ce-strip-item:nth-child(2)::after { display: none; }
+        .ce-team-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .ce-team-item:nth-child(2)::after { display: none; }
+        .ce-footer-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    }
+
+    @media (max-width: 650px) {
+        .ce-nav-menu { display: none; }
+        .ce-hero-title { font-size: 2.2rem; }
+        .ce-strip-grid { grid-template-columns: 1fr; gap: 12px; }
+        .ce-strip-item::after { display: none !important; }
+        .ce-form-row { grid-template-columns: 1fr; gap: 12px; }
+        .ce-team-grid { grid-template-columns: 1fr; gap: 20px; }
+        .ce-team-item::after { display: none !important; }
+        .ce-footer-grid { grid-template-columns: 1fr; gap: 26px; }
+        .ce-cta-buttons { flex-direction: column; width: 100%; }
+        .btn-cta-gold, .btn-cta-outline, .btn-cta-phone { width: 100%; text-align: center; }
+    }
     </style>
-    <link rel="manifest" href="manifest.json">
-</head>
-
+<link rel="stylesheet" href="site-effects.css"><script>try { const mode = localStorage.getItem("century-theme"); document.documentElement.dataset.theme = ["light","dark"].includes(mode) ? mode : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch { document.documentElement.dataset.theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }</script><link rel="stylesheet" href="site-responsive.css"><link rel="stylesheet" href="mobile-reference.css"></head>
 <body>
+
     <div class="scroll-progress"></div>
 
-    <!-- ══ Header ══ -->
-    <header class="header" id="mainHeader">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html"><img src="assets/logo.png" alt="Century Adventures Logo"></a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
-                    <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="#" data-en="Destinations" data-sw="Maeneo">Destinations <i
-                                class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="katavi.html">Katavi National Park</a></li>
-                            <li><a href="selous.html">Selous Game Reserve</a></li>
-                            <li><a href="ruaha.html">Ruaha National Park</a></li>
-                            <li><a href="mikumi.html">Mikumi National Park</a></li>
-                            <li><a href="serengeti.html">Serengeti National Park</a></li>
-                            <li><a href="gombe.html">Gombe Stream National Park</a></li>
-                            <li><a href="ngorongoro.html">Ngorongoro Conservation Area</a></li>
-                            <li><a href="manyara.html">Lake Manyara National Park</a></li>
-                            <li><a href="tarangire.html">Tarangire National Park</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="safaris.html" data-en="TOURS & SAFARIS" data-sw="SAFARI NA ZIARA">TOURS & SAFARIS</a></li>
-                    <li><a href="experiences.html" data-en="Experiences" data-sw="Uzoefu">Experiences</a></li>
-                    <li><a href="volunteer.html" data-en="Volunteer" data-sw="Kujitolea">Volunteer</a></li>
-                    <li><a href="vehicles.html" data-en="Safari Vehicles" data-sw="Magari ya Safari">Safari Vehicles</a>
-                    </li>
-                    <li><a href="contact.html" class="active" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact
-                            Us</a></li>
-                </ul>
+    <!-- Editorial Luxury Header (Fixed) -->
+    <header class="luxury-header-editorial" id="editorial-header">
+        <div class="container">
+            <a href="index.html" class="editorial-logo" aria-label="Century Expeditions Home">
+                <img src="assets/logo.png" alt="Century Expeditions Logo" class="editorial-logo-img">
+                <span class="editorial-logo-text">Century Expeditions</span>
+            </a>
+
+            <nav class="editorial-nav-links" id="editorialNav">
+                <a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a>
+                <a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a>
+                <a href="safaris.html" data-en="Safaris" data-sw="Safari">Safaris</a>
+                <a href="about.html" data-en="About" data-sw="Kuhusu Sisi">About</a>
             </nav>
-            <button class="mobile-toggle" id="mobile-toggle" onclick="toggleMobileMenu()"
-                aria-label="Open navigation menu">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </button>
-            <div class="header-actions">
+
+            <div class="editorial-header-actions">
                 <div class="header-toggles">
-                    <button class="toggle-btn lang-toggle" onclick="toggleLang()">SW</button>
-                    <button class="toggle-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                    <button class="toggle-btn lang-toggle" onclick="toggleLang(event)" aria-label="Toggle language"><span class="lang-label active">EN</span><span class="lang-divider">/</span><span class="lang-label">SW</span></button>
+                    <button class="toggle-btn theme-toggle" onclick="toggleTheme(event)" aria-label="Toggle dark/light theme"><i class="fas fa-moon"></i> <span class="toggle-text">DARK</span></button>
                 </div>
-                <a href="enquire.html" class="btn btn-primary enquire-btn" data-en="ENQUIRE" data-sw="ULIZA">ENQUIRE</a>
+                <a href="contact.html" class="editorial-contact-btn active" data-en="Contact &rarr;" data-sw="Wasiliana &rarr;">Contact <i class="fas fa-arrow-right"></i></a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open navigation menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
+
+        <!-- Mobile Navigation Menu Dropdown Drawer -->
+        <nav class="nav" id="mobileNavDrawer">
+            <button class="nav-close-btn" id="nav-close-btn" aria-label="Close navigation menu"><i class="fas fa-times"></i> <span data-en="Close" data-sw="Funga">Close</span></button>
+            <ul>
+                <li class="mobile-only-action mobile-menu-title"><i class="fas fa-bars"></i> MENU</li>
+                <li><a href="index.html" data-en="Home" data-sw="Nyumbani">Home</a></li>
+                <li><a href="safaris.html" data-en="Safaris" data-sw="Safari">Safaris</a></li>
+                <li><a href="destinations.html" data-en="Destinations" data-sw="Maeneo">Destinations</a></li>
+                <li><a href="about.html" data-en="About Us" data-sw="Kuhusu Sisi">About Us</a></li>
+                <li><a href="contact.html" class="active" data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</a></li>
+                <li class="mobile-only-action book-now-item"><a href="contact.html" class="btn btn-primary enquire-btn" data-en="BOOK NOW" data-sw="WEKA NAFASI">BOOK NOW</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- ══ Hero ══ -->
-    <section class="contact-hero" id="home">
-        <div class="contact-hero-bg"></div>
-        <div class="contact-hero-overlay"></div>
-        <div class="contact-hero-content">
-            <div class="contact-hero-badge">
-                <i class="fas fa-paper-plane"></i>
-                <span data-en="Contact Us" data-sw="Wasiliana Nasi">Contact Us</span>
+    <!-- ============================================================
+       2. HERO SECTION (Image 3 Top Appearance)
+       ============================================================ -->
+    <section class="ce-contact-hero">
+        <div class="ce-contact-hero-container">
+            <div class="ce-contact-hero-content">
+                <div class="ce-tag-line">
+                    <span class="ce-tag-dash"></span>
+                    <span class="ce-tag-text" data-en="CONTACT US" data-sw="WASILIANA NASI">CONTACT US</span>
+                </div>
+                <h1 class="ce-hero-title" data-en="Let's Plan Your<br>Next Adventure" data-sw="Tupange Safari Yako<br>Ijayo">Let's Plan Your<br>Next Adventure</h1>
+                <p class="ce-hero-subtitle" data-en="Your dream journey starts with a simple conversation." data-sw="Safari ya ndoto yako huanza na mazungumzo rahisi.">Your dream journey starts with a simple conversation.</p>
             </div>
-            <h1 data-en="Let's Plan Your Next Adventure" data-sw="Tupange Safari Yako Inayofuata">
-                Let's Plan Your Next Adventure
-            </h1>
-            <p class="contact-hero-tagline"
-                data-en="Your dream journey starts with a simple conversation. Our dedicated team is ready to help bring your vision to life."
-                data-sw="Safari ya ndoto yako inaanza na mazungumzo rahisi. Timu yetu iko tayari kukusaidia kutimiza ndoto yako.">
-                Your dream journey starts with a simple conversation. Our dedicated team is ready to help bring your
-                vision to life.
-            </p>
-        </div>
-        <div class="contact-hero-scroll">
-            <span>SCROLL</span>
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- ══ Stat Bar ══ -->
-    <div class="stat-bar">
-        <div class="container">
-            <div class="stat-bar-grid">
-                <div class="stat-bar-item">
-                    <span class="num">24/7</span>
-                    <span class="lbl" data-en="Customer Support" data-sw="Usaidizi wa Wateja">Customer Support</span>
+    <!-- ============================================================
+       3. 4-ITEM GUARANTEE / SERVICE STRIP
+       ============================================================ -->
+    <section class="ce-strip">
+        <div class="ce-strip-container">
+            <div class="ce-strip-grid">
+                <!-- 1. 24/7 Customer Support -->
+                <div class="ce-strip-item">
+                    <div class="ce-strip-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </div>
+                    <span data-en="24/7 Customer Support" data-sw="Msaada kwa Wateja 24/7">24/7 Customer Support</span>
                 </div>
-                <div class="stat-bar-item">
-                    <span class="num">Free</span>
-                    <span class="lbl" data-en="Quotations &amp; Consultations"
-                        data-sw="Nukuu na Ushauri wa Bure">Quotations &amp; Consultations</span>
+                <!-- 2. Free Quotations -->
+                <div class="ce-strip-item">
+                    <div class="ce-strip-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </div>
+                    <span data-en="Free Quotations" data-sw="Nukuu za Bure">Free Quotations</span>
                 </div>
-                <div class="stat-bar-item">
-                    <span class="num">Fast</span>
-                    <span class="lbl" data-en="Professional Response" data-sw="Jibu la Kitaalamu la Haraka">Professional
-                        Response</span>
+                <!-- 3. Professional Response -->
+                <div class="ce-strip-item">
+                    <div class="ce-strip-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            <circle cx="8.5" cy="12" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+                            <circle cx="15.5" cy="12" r="1" fill="currentColor"></circle>
+                        </svg>
+                    </div>
+                    <span data-en="Professional Response" data-sw="Majibu ya Kitaalamu">Professional Response</span>
                 </div>
-                <div class="stat-bar-item">
-                    <span class="num">Tailored</span>
-                    <span class="lbl" data-en="Safari Planning" data-sw="Upangaji Maalum wa Safari">Safari
-                        Planning</span>
+                <!-- 4. Tailored Safari Planning -->
+                <div class="ce-strip-item">
+                    <div class="ce-strip-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </div>
+                    <span data-en="Tailored Safari Planning" data-sw="Upangaji Safari Maalum">Tailored Safari Planning</span>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ══ Main Contact Layout ══ -->
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-layout-grid">
+    <!-- ============================================================
+       4. MAIN CONTACT SECTION: LEFT DETAILS & RIGHT MESSAGE CARD
+       ============================================================ -->
+    <section class="ce-contact-main">
+        <!-- Botanical leaf flourishes in corners -->
+        <svg class="botanical-flourish botanical-bottom-left" style="width: 130px; height: 130px;" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M100 0 C70 10, 40 40, 20 80" />
+            <path d="M80 10 C65 5, 55 15, 60 25 C65 20, 75 18, 80 10 Z" fill="rgba(197, 160, 68, 0.18)" />
+            <path d="M60 25 C45 20, 40 32, 48 40 C52 32, 58 30, 60 25 Z" fill="rgba(197, 160, 68, 0.18)" />
+        </svg>
 
-                <!-- Left Column: Details -->
-                <div class="contact-info-panel scroll-reveal-left">
-                    <span class="editorial-label" data-en="GET IN TOUCH" data-sw="WASILIANA NASI">GET IN TOUCH</span>
-                    <h2 data-en="Start Planning Your Adventure" data-sw="Anza Kupanga Safari Yako">Start Planning Your
-                        Adventure</h2>
-                    <p class="intro-text"
-                        data-en="We believe every traveler is unique, which is why we take the time to understand your interests, preferences, and budget to create a personalized experience that exceeds expectations."
-                        data-sw="Tunaamini kila msafiri ni wa kipekee, ndiyo maana tunachukua muda kuelewa maslahi, mapendeleo na bajeti yako ili kuunda safari iliyobinafsishwa inayozidi matarajio.">
-                        We believe every traveler is unique, which is why we take the time to understand your interests,
-                        preferences, and budget to create a personalized experience that exceeds expectations.
-                    </p>
+        <div class="ce-contact-container">
+            <div class="ce-contact-two-col">
+                <!-- Left Column -->
+                <div class="ce-info-col">
+                    <div class="ce-tag-line">
+                        <span class="ce-tag-dash"></span>
+                        <span class="ce-tag-text" data-en="GET IN TOUCH" data-sw="WASILIANA NASI">GET IN TOUCH</span>
+                    </div>
+                    <h2 data-en="Start Your Adventure" data-sw="Anzisha Safari Yako">Start Your Adventure</h2>
+                    <p class="ce-info-intro" data-en="Tell us your interests, travel plans and budget. We'll help shape a journey around you." data-sw="Tuambie maslahi yako, mipango ya safari na bajeti. Tutakusaidia kuunda safari inayokufaa.">Tell us your interests, travel plans and budget. We'll help shape a journey around you.</p>
 
-                    <div class="contact-details-list">
-                        <!-- Address -->
-                        <div class="contact-detail-card">
-                            <div class="cd-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="cd-content">
-                                <h4 data-en="📍 Office Address" data-sw="📍 Anwani ya Ofisi">📍 Office Address</h4>
-                                <p data-en="Asasi Tower, 4th Floor, Ohio Street, Dar es Salaam, Tanzania"
-                                    data-sw="Asasi Tower, Ghorofa ya 4, Ohio Street, Dar es Salaam, Tanzania">
-                                    Asasi Tower, 4th Floor, Ohio Street, Dar es Salaam, Tanzania
-                                </p>
+                    <div class="ce-contact-list">
+                        <!-- Office Address -->
+                        <div class="ce-contact-point">
+                            <div class="ce-point-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="ce-point-text">
+                                <h4 data-en="Office Address" data-sw="Anwani ya Ofisi">Office Address</h4>
+                                <p>Asasi Tower, 4th Floor, Ohio Street,<br>Dar es Salaam, Tanzania</p>
                             </div>
                         </div>
+
                         <!-- Phone -->
-                        <div class="contact-detail-card">
-                            <div class="cd-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="cd-content">
-                                <h4 data-en="📞 Phone" data-sw="📞 Simu">📞 Phone</h4>
-                                <p><a href="tel:+255747115390">+255 747 115 390</a></p>
+                        <div class="ce-contact-point">
+                            <div class="ce-point-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="ce-point-text">
+                                <h4 data-en="Phone" data-sw="Simu">Phone</h4>
+                                <a href="tel:+255747115390">+255 747 115 390</a>
                             </div>
                         </div>
+
                         <!-- WhatsApp -->
-                        <div class="contact-detail-card">
-                            <div class="cd-icon"><i class="fab fa-whatsapp"></i></div>
-                            <div class="cd-content">
-                                <h4 data-en="💬 WhatsApp" data-sw="💬 WhatsApp">💬 WhatsApp</h4>
-                                <p><a href="https://wa.me/255747115390" target="_blank">+255 747 115 390</a></p>
+                        <div class="ce-contact-point">
+                            <div class="ce-point-icon">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
+                            </div>
+                            <div class="ce-point-text">
+                                <h4 data-en="WhatsApp" data-sw="WhatsApp">WhatsApp</h4>
+                                <a href="https://wa.me/255747115390" target="_blank">+255 747 115 390</a>
                             </div>
                         </div>
+
                         <!-- Email -->
-                        <div class="contact-detail-card">
-                            <div class="cd-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="cd-content">
-                                <h4 data-en="📧 Email" data-sw="📧 Barua Pepe">📧 Email</h4>
-                                <p><a href="mailto:info@centuryadventures.com">info@centuryadventures.com</a></p>
+                        <div class="ce-contact-point">
+                            <div class="ce-point-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                    <path d="M22 6l-10 7L2 6"></path>
+                                </svg>
+                            </div>
+                            <div class="ce-point-text">
+                                <h4 data-en="Email" data-sw="Barua Pepe">Email</h4>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=visit@century-adventures.com&su=General%20Inquiry" target="_blank">visit@century-adventures.com</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Help list -->
-                    <div class="help-list-panel">
-                        <h3 data-en="What We Can Help You With" data-sw="Tunayoweza Kukusaidia Nayo">What We Can Help
-                            You With</h3>
-                        <div class="help-items-grid">
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Safari bookings &amp; itineraries"
-                                    data-sw="Uhifadhi wa safari &amp; ratiba">Safari bookings &amp; itineraries</span>
-                            </div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Group &amp; private tours" data-sw="Ziara za vikundi &amp; binafsi">Group
-                                    &amp; private tours</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span data-en="Airport transfers"
-                                    data-sw="Usafiri wa uwanja wa ndege">Airport transfers</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Accommodation arrangements" data-sw="Mipango ya malazi">Accommodation
-                                    arrangements</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span data-en="Zanzibar holidays"
-                                    data-sw="Likizo za Zanzibar">Zanzibar holidays</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Kilimanjaro climbing packages"
-                                    data-sw="Vifurushi vya kupanda Kili">Kilimanjaro climbing packages</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Volunteer placements" data-sw="Nafasi za kujitolea">Volunteer
-                                    placements</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span data-en="Family vacations"
-                                    data-sw="Likizo za kifamilia">Family vacations</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Honeymoon packages" data-sw="Vifurushi vya fungate">Honeymoon
-                                    packages</span></div>
-                            <div class="help-item"><i class="fas fa-check-circle"></i> <span
-                                    data-en="Corporate &amp; education tours"
-                                    data-sw="Ziara za kampuni &amp; shule">Corporate &amp; education tours</span></div>
+                    <!-- WhatsApp CTA Button -->
+                    <a href="https://wa.me/255747115390" target="_blank" class="ce-whatsapp-btn" data-en="Chat on WhatsApp &rarr;" data-sw="Zungumza WhatsApp &rarr;">
+                        <i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i>
+                        <span>Chat on WhatsApp &rarr;</span>
+                    </a>
+
+                    <!-- We Can Help With checklist -->
+                    <div class="ce-help-box">
+                        <h3 data-en="We Can Help With" data-sw="Tunayoweza Kukusaidia Nayo">We Can Help With</h3>
+                        <div class="ce-help-grid">
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Safari bookings" data-sw="Uhifadhi wa safari">Safari bookings</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Kilimanjaro climbing" data-sw="Kupanda Mlima Kilimanjaro">Kilimanjaro climbing</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Group &amp; private tours" data-sw="Ziara za vikundi na binafsi">Group &amp; private tours</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Volunteer placements" data-sw="Nafasi za kujitolea">Volunteer placements</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Airport transfers" data-sw="Usafiri wa uwanja wa ndege">Airport transfers</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Family vacations" data-sw="Likizo za kifamilia">Family vacations</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Accommodation" data-sw="Mipango ya malazi">Accommodation</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Honeymoon packages" data-sw="Vifurushi vya fungate">Honeymoon packages</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Zanzibar holidays" data-sw="Likizo za Zanzibar">Zanzibar holidays</span></div>
+                            <div class="ce-help-item"><i class="fa-solid fa-check"></i> <span data-en="Corporate &amp; education tours" data-sw="Ziara za kampuni na shule">Corporate &amp; education tours</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive Form -->
-                <div class="form-container-card scroll-reveal-right">
+                <!-- Right Column: Luxury Message Card -->
+                <div class="ce-form-card">
+                    <!-- Compass rose watermark in top-right -->
+                    <svg class="ce-card-compass" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+                        <circle cx="50" cy="50" r="46" stroke-dasharray="2 2" />
+                        <circle cx="50" cy="50" r="38" />
+                        <circle cx="50" cy="50" r="28" stroke-dasharray="1 3" />
+                        <polygon points="50,6 53,44 50,50 47,44" fill="currentColor" />
+                        <polygon points="50,94 53,56 50,50 47,56" fill="currentColor" />
+                        <polygon points="6,50 44,47 50,50 44,53" fill="currentColor" />
+                        <polygon points="94,50 56,47 50,50 56,53" fill="currentColor" />
+                        <polygon points="20,20 46,44 50,50 44,46" fill="none" />
+                        <polygon points="80,20 56,44 50,50 54,46" fill="none" />
+                        <polygon points="80,80 56,56 50,50 54,54" fill="none" />
+                        <polygon points="20,80 46,56 50,50 44,54" fill="none" />
+                    </svg>
+
                     <h3 data-en="Send Us a Message" data-sw="Tuma Ujumbe Kwetu">Send Us a Message</h3>
-                    <form action="#" method="POST">
-                        <div class="form-grid">
-                            <div class="form-field">
-                                <label for="name" data-en="Full Name" data-sw="Jina Kamili">Full Name</label>
-                                <input type="text" id="name" required placeholder="John Doe">
+
+                    <!-- Success Alert -->
+                    <div id="contact-success-alert" style="display: none; background: rgba(197, 160, 68, 0.15); border: 1px solid var(--ce-gold); color: var(--ce-dark-green); padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 0.88rem; align-items: center; gap: 10px;">
+                        <i class="fas fa-check-circle" style="color: var(--ce-gold-muted); font-size: 1.1rem;"></i>
+                        <span data-en="Thank you! Your enquiry has been received. We will get back to you shortly." data-sw="Asante! Ujumbe wako umepokelewa. Tutawasiliana nawe hivi karibuni.">Thank you! Your enquiry has been received. We will get back to you shortly.</span>
+                    </div>
+
+                    <!-- Web3Forms Form -->
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="6d284837-3b82-4940-8af1-5dea38d4bc25">
+                        <input type="hidden" name="subject" value="New Safari Enquiry - Century Expeditions">
+                        <input type="hidden" name="form_name" value="Century Expeditions Contact Form">
+                        <input type="hidden" name="replyto" value="@">
+
+                        <!-- Full Name -->
+                        <div class="ce-form-group">
+                            <label for="name" data-en="Full Name" data-sw="Jina Kamili">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="">
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="ce-form-group">
+                            <label for="email" data-en="Email Address" data-sw="Barua Pepe">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="">
+                        </div>
+
+                        <!-- Phone & Safari Type Row -->
+                        <div class="ce-form-row">
+                            <div class="ce-form-group">
+                                <label for="phone" data-en="Phone / WhatsApp" data-sw="Simu / WhatsApp">Phone / WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" placeholder="">
                             </div>
-                            <div class="form-field">
-                                <label for="email" data-en="Email Address" data-sw="Barua Pepe">Email Address</label>
-                                <input type="email" id="email" required placeholder="john@example.com">
-                            </div>
-                            <div class="form-field">
-                                <label for="phone" data-en="Phone / WhatsApp" data-sw="Simu / WhatsApp">Phone /
-                                    WhatsApp</label>
-                                <input type="tel" id="phone" placeholder="+1 (123) 456-7890">
-                            </div>
-                            <div class="form-field">
-                                <label for="safari_type" data-en="Safari Type" data-sw="Aina ya Safari">Safari
-                                    Type</label>
-                                <select id="safari_type">
-                                    <option value="wildlife" data-en="Wildlife Safari" data-sw="Safari ya Wanyamapori">
-                                        Wildlife Safari</option>
-                                    <option value="beach" data-en="Beach Holiday" data-sw="Likizo ya Ufukweni">Beach
-                                        Holiday</option>
-                                    <option value="trekking" data-en="Mountain Trekking" data-sw="Kupanda Milima">
-                                        Mountain Trekking</option>
-                                    <option value="volunteer" data-en="Volunteer Program"
-                                        data-sw="Programu ya Kujitolea">Volunteer Program</option>
-                                    <option value="custom" data-en="Custom Adventure" data-sw="Safari Maalum">Custom
-                                        Adventure</option>
+                            <div class="ce-form-group">
+                                <label for="safari_type" data-en="Safari Type" data-sw="Aina ya Safari">Safari Type</label>
+                                <select id="safari_type" name="safari_type">
+                                    <option value="" disabled selected data-en="Select an experience" data-sw="Chagua uzoefu">Select an experience</option>
+                                    <option value="Serengeti & Great Migration" data-en="Serengeti & Great Migration" data-sw="Serengeti & Uhamiaji Mkuu">Serengeti & Great Migration</option>
+                                    <option value="Ngorongoro & Northern Circuit" data-en="Ngorongoro & Northern Circuit" data-sw="Ngorongoro & Kaskazini">Ngorongoro & Northern Circuit</option>
+                                    <option value="Mount Kilimanjaro Trekking" data-en="Mount Kilimanjaro Trekking" data-sw="Kupanda Mlima Kilimanjaro">Mount Kilimanjaro Trekking</option>
+                                    <option value="Zanzibar Beach Escape" data-en="Zanzibar Beach Escape" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Escape</option>
+                                    <option value="Southern Parks (Ruaha & Nyerere)" data-en="Southern Parks (Ruaha & Nyerere)" data-sw="Mbuga za Kusini (Ruaha & Nyerere)">Southern Parks (Ruaha & Nyerere)</option>
+                                    <option value="Custom Tailored Safari" data-en="Custom Tailored Safari" data-sw="Safari Maalum">Custom Tailored Safari</option>
                                 </select>
-                            </div>
-                            <div class="form-field">
-                                <label for="travel_date" data-en="Preferred Travel Date"
-                                    data-sw="Tarehe ya Kusafiri">Preferred Travel Date</label>
-                                <input type="date" id="travel_date">
-                            </div>
-                            <div class="form-field">
-                                <label for="travelers" data-en="Number of Guests" data-sw="Idadi ya Wageni">Number of
-                                    Guests</label>
-                                <select id="travelers">
-                                    <option value="1">1 Guest</option>
-                                    <option value="2" selected>2 Guests</option>
-                                    <option value="3-5">3 - 5 Guests</option>
-                                    <option value="6-10">6 - 10 Guests</option>
-                                    <option value="10+">10+ Guests</option>
-                                </select>
-                            </div>
-                            <div class="form-field form-group-full">
-                                <label for="message" data-en="Tell us about your dream trip"
-                                    data-sw="Tuambie kuhusu safari yako ya ndoto">Tell us about your dream trip</label>
-                                <textarea id="message" rows="6"
-                                    placeholder="Share details like your interests, preferences, and estimated budget..."></textarea>
-                            </div>
-                            <div class="form-group-full" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-primary"
-                                    style="width: 100%; padding: 18px 0; font-size: 0.9rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;"
-                                    data-en="SEND ENQUIRY" data-sw="TUMA MAOMBI">SEND ENQUIRY</button>
                             </div>
                         </div>
+
+                        <!-- Travel Date & Number of Guests Row -->
+                        <div class="ce-form-row">
+                            <div class="ce-form-group">
+                                <label for="travel_date" data-en="Preferred Travel Date" data-sw="Tarehe ya Kusafiri">Preferred Travel Date</label>
+                                <input type="date" id="travel_date" name="travel_date">
+                            </div>
+                            <div class="ce-form-group">
+                                <label for="travelers" data-en="Number of Guests" data-sw="Idadi ya Wageni">Number of Guests</label>
+                                <select id="travelers" name="travelers">
+                                    <option value="" disabled selected data-en="Select guests" data-sw="Chagua idadi">Select guests</option>
+                                    <option value="1 Guest">1 Guest</option>
+                                    <option value="2 Guests">2 Guests</option>
+                                    <option value="3-4 Guests">3 - 4 Guests</option>
+                                    <option value="5-8 Guests">5 - 8 Guests</option>
+                                    <option value="9+ Guests">9+ Guests</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="ce-form-group">
+                            <label for="message" data-en="Tell us about your dream trip" data-sw="Tuambie kuhusu safari yako ya ndoto">Tell us about your dream trip</label>
+                            <textarea id="message" name="message" rows="4" placeholder="" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-enquiry" data-en="Send Enquiry &rarr;" data-sw="Tuma Maombi &rarr;">Send Enquiry &rarr;</button>
                     </form>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ══ Contact Our Team ══ -->
-    <section class="contact-team-section">
-        <div class="container">
-            <div class="section-top" style="text-align: center; margin-bottom: 50px;">
-                <span class="sub-heading" data-en="OUR DEPARTMENTS" data-sw="IDARA ZETU" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 800;">OUR DEPARTMENTS</span>
-                <h2 data-en="Contact Our Team" data-sw="Wasiliana na Timu Yetu" style="font-size: clamp(1.9rem, 3.5vw, 2.6rem); color: var(--primary-green); margin-top: 10px;">Contact Our Team</h2>
-            </div>
-            
-            <div class="team-grid">
-                <!-- General Info -->
-                <div class="team-card scroll-reveal">
-                    <div class="team-card-icon">📧</div>
-                    <h3 data-en="General Information" data-sw="Habari za Jumla">General Information</h3>
-                    <p data-en="For general questions about Tanzania, destinations, visas, travel advice, and company information." data-sw="Kwa maswali ya jumla kuhusu Tanzania, maeneo, viza, ushauri wa kusafiri, na taarifa za kampuni.">
-                        For general questions about Tanzania, destinations, visas, travel advice, and company information.
-                    </p>
-                    <a href="mailto:info@centuryadventures.com" class="team-email">info@centuryadventures.com</a>
-                </div>
-                
-                <!-- Bookings Department -->
-                <div class="team-card scroll-reveal">
-                    <div class="team-card-icon">🦁</div>
-                    <h3 data-en="Bookings Department" data-sw="Idara ya Uhifadhi">Bookings Department</h3>
-                    <p data-en="For safari reservations, itinerary planning, honeymoon safaris, family safaris, and custom tours." data-sw="Kwa kuweka nafasi za safari, kupanga ratiba, safari za fungate, safari za familia, na ziara maalum.">
-                        For safari reservations, itinerary planning, honeymoon safaris, family safaris, and custom tours.
-                    </p>
-                    <a href="mailto:bookings@centuryadventures.com" class="team-email">bookings@centuryadventures.com</a>
-                </div>
-                
-                <!-- Sales & Quotations -->
-                <div class="team-card scroll-reveal">
-                    <div class="team-card-icon">💰</div>
-                    <h3 data-en="Sales &amp; Quotations" data-sw="Mauzo na Makadirio">Sales &amp; Quotations</h3>
-                    <p data-en="For pricing requests, package comparisons, and special offers." data-sw="Kwa maombi ya bei, kulinganisha vifurushi, na matoleo maalum.">
-                        For pricing requests, package comparisons, and special offers.
-                    </p>
-                    <a href="mailto:sales@centuryadventures.com" class="team-email">sales@centuryadventures.com</a>
-                </div>
-                
-                <!-- Customer Support -->
-                <div class="team-card scroll-reveal">
-                    <div class="team-card-icon">🛠</div>
-                    <h3 data-en="Customer Support" data-sw="Usaidizi wa Wateja">Customer Support</h3>
-                    <p data-en="For assistance before, during, or after your trip." data-sw="Kwa usaidizi kabla, wakati, au baada ya safari yako.">
-                        For assistance before, during, or after your trip.
-                    </p>
-                    <a href="mailto:support@centuryadventures.com" class="team-email">support@centuryadventures.com</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ============================================================
+       5. CONTACT OUR TEAM (4 Columns)
+       ============================================================ -->
+    <section class="ce-team-section">
+        <div class="ce-team-container">
+            <div class="ce-team-dash"></div>
+            <h2 class="ce-team-title" data-en="Contact Our Team" data-sw="Wasiliana na Timu Yetu">Contact Our Team</h2>
 
-    <!-- ══ Why Contact Us ══ -->
-    <section class="why-contact">
-        <div class="container">
-            <div class="section-top">
-                <span class="sub-heading" data-en="WHY CHOOSE US" data-sw="KWA NINI UTUCHAGUE">WHY CHOOSE US</span>
-                <h2 data-en="Why Contact Us?" data-sw="Kwa Nini Uwasiliane Nasi?">Why Contact Us?</h2>
-            </div>
-
-            <div class="why-contact-grid">
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-globe-africa" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🌍 Expert Travel Advice" data-sw="🌍 Ushauri wa Kitaalamu wa Safari">🌍 Expert Travel
-                        Advice</h3>
-                </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-paw" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🦁 Personalized Safari Planning" data-sw="🦁 Upangaji Safari Maalum">🦁 Personalized
-                        Safari Planning</h3>
-                </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-umbrella-beach" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🏝 Customized Holiday Packages" data-sw="🏝 Vifurushi vya Likizo Maalum">🏝 Customized
-                        Holiday Packages</h3>
-                </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-hands-helping" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🤝 Volunteer Program Information" data-sw="🤝 Taarifa za Programu za Kujitolea">🤝
-                        Volunteer Program Info</h3>
-                </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-hiking" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🏔 Trekking &amp; Adventure Details" data-sw="🏔 Mipango ya Kupanda Milima">🏔 Trekking
-                        &amp; Adventure Details</h3>
-                </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-file-invoice-dollar" style="color: var(--accent-gold);"></i>
+            <div class="ce-team-grid">
+                <!-- 1. General Information -->
+                <div class="ce-team-item">
+                    <div class="ce-team-icon">
+                        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
                     </div>
-                    <h3 data-en="💰 Free Quotations &amp; Consult" data-sw="💰 Nukuu &amp; Ushauri wa Bure">💰 Free
-                        Quotations &amp; Consult</h3>
+                    <h4 data-en="General Information" data-sw="Taarifa za Jumla">General Information</h4>
+                    <p data-en="Travel advice and company enquiries." data-sw="Ushauri wa safari na maswali ya kampuni.">Travel advice and company enquiries.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@century-adventures.com&su=General%20Inquiry" target="_blank">admin@century-adventures.com</a>
                 </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-calendar-alt" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="📅 Flexible Booking Options" data-sw="📅 Chaguzi za Booking Flexible">📅 Flexible
-                        Booking Options</h3>
+
+                <!-- 2. Bookings Department -->
+                <div class="ce-team-item">
+                    <div class="ce-team-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <circle cx="8" cy="14" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="14" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="14" r="1" fill="currentColor"></circle>
+                            <circle cx="8" cy="18" r="1" fill="currentColor"></circle>
+                            <circle cx="12" cy="18" r="1" fill="currentColor"></circle>
+                            <circle cx="16" cy="18" r="1" fill="currentColor"></circle>
+                        </svg>
+                    </div>
+                    <h4 data-en="Bookings Department" data-sw="Idara ya Uhifadhi">Bookings Department</h4>
+                    <p data-en="Reservations and custom itineraries." data-sw="Nafasi za safari na ratiba maalum.">Reservations and custom itineraries.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bookings@century-adventures.com&su=Safari%20Booking%20Request" target="_blank">bookings@century-adventures.com</a>
                 </div>
-                <div class="why-contact-card scroll-reveal">
-                    <div class="wc-icon"><i class="fas fa-headset" style="color: var(--accent-gold);"></i></div>
-                    <h3 data-en="🎯 Fast and Professional Support" data-sw="🎯 Msaada wa Kitaalamu na Haraka">🎯 Fast
-                        &amp; Professional Support</h3>
+
+                <!-- 3. Sales & Quotations -->
+                <div class="ce-team-item">
+                    <div class="ce-team-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h4 data-en="Sales &amp; Quotations" data-sw="Mauzo na Makadirio">Sales &amp; Quotations</h4>
+                    <p data-en="Prices, packages and offers." data-sw="Bei, vifurushi na matoleo maalum.">Prices, packages and offers.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=visit@century-adventures.com&su=Trip%20Quotation%20Inquiry" target="_blank">visit@century-adventures.com</a>
+                </div>
+
+                <!-- 4. Customer Support -->
+                <div class="ce-team-item">
+                    <div class="ce-team-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                    </div>
+                    <h4 data-en="Customer Support" data-sw="Usaidizi wa Wateja">Customer Support</h4>
+                    <p data-en="Help before, during and after your trip." data-sw="Msaada kabla, wakati na baada ya safari.">Help before, during and after your trip.</p>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@century-adventures.com&su=Customer%20Support" target="_blank">support@century-adventures.com</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ══ Commitment Block ══ -->
-    <section class="commitment-block">
-        <div class="container">
-            <div class="commitment-panel scroll-reveal">
-                <span class="editorial-label" data-en="OUR PROMISE" data-sw="AHADI YETU">OUR PROMISE</span>
-                <h2 data-en="Our Commitment to You" data-sw="Ahadi Yetu Kwako">Our Commitment to You</h2>
-                <p data-en="From your first inquiry to the end of your journey, we are committed to providing exceptional service, reliable communication, and unforgettable travel experiences. Our goal is to ensure every detail is handled professionally, allowing you to focus on enjoying your adventure."
-                    data-sw="Kuanzia uchunguzi wako wa kwanza hadi mwisho wa safari yako, tumejitolea kutoa huduma ya kipekee, mawasiliano ya kuaminika, na uzoefu wa safari usiosahaulika. Lengo letu ni kuhakikisha kila undani unashughulikiwa kitaaluma, kukuruhusu wewe kufurahia safari yako.">
-                    From your first inquiry to the end of your journey, we are committed to providing exceptional
-                    service, reliable communication, and unforgettable travel experiences. Our goal is to ensure every
-                    detail is handled professionally, allowing you to focus on enjoying your adventure.
-                </p>
+    <!-- ============================================================
+       6. OUR PROMISE (Scenic Banner)
+       ============================================================ -->
+    <section class="ce-promise-banner">
+        <div class="ce-promise-container">
+            <div class="ce-promise-tag">
+                <span class="ce-tag-dash"></span>
+                <span class="ce-tag-text" data-en="OUR PROMISE" data-sw="AHADI YETU">OUR PROMISE</span>
+            </div>
+            <h2 class="ce-promise-title" data-en="With You Every Step of the Journey" data-sw="Pamoja Nawe Kila Hatua ya Safari">With You Every Step of the Journey</h2>
+            <p class="ce-promise-desc" data-en="Personal attention, reliable communication and thoughtful planning, from your first enquiry to your journey home." data-sw="Huduma binafsi, mawasiliano ya kuaminika na mipango makini, kuanzia swali lako la kwanza hadi kurejea nyumbani.">Personal attention, reliable communication and thoughtful planning, from your first enquiry to your journey home.</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+       7. PRE-FOOTER CTA (Image 2 Exact Layout)
+       ============================================================ -->
+    <section class="ce-prefooter-cta">
+        <div class="ce-cta-container">
+            <span class="ce-cta-tag" data-en="YOUR JOURNEY TO AFRICA STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR JOURNEY TO AFRICA STARTS HERE</span>
+            <h2 class="ce-cta-title" data-en="Are you ready to explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Are you ready to explore Tanzania?</h2>
+            <p class="ce-cta-desc" data-en="Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. Let Century Expeditions make those dreams come true." data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa machweo, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. Let Century Expeditions make those dreams come true.">Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. Let Century Expeditions make those dreams come true.</p>
+
+            <div class="ce-cta-buttons">
+                <a href="contact.html" class="btn-cta-gold" data-en="PLAN YOUR TRIP" data-sw="PANGA SAFARI YAKO">PLAN YOUR TRIP</a>
+                <a href="contact.html" class="btn-cta-outline" data-en="REQUEST A FREE QUOTE" data-sw="OMBA NUKUU YA BURE">REQUEST A FREE QUOTE</a>
+                <a href="tel:+255747115390" class="btn-cta-phone"><i class="fas fa-phone-alt"></i> +255 747 115 390</a>
+            </div>
+
+            <div class="ce-cta-link-wrap">
+                <a href="contact.html" class="ce-cta-link" data-en="Contact Our Safari Experts &rsaquo;" data-sw="Wasiliana na Wataalamu Wetu wa Safari &rsaquo;">Contact Our Safari Experts &rsaquo;</a>
             </div>
         </div>
     </section>
 
+    <!-- Gold horizontal separating accent line -->
+    <div class="ce-footer-divider"></div>
 
+    <!-- ============================================================
+       8. MAIN FOOTER (Image 2 Exact Multi-Column Layout)
+       ============================================================ -->
+    <footer class="ce-main-footer">
+        <div class="ce-footer-container">
+            <div class="ce-footer-grid">
+                <!-- Col 1: Brand & Contact Info -->
+                <div class="ce-f-col">
+                    <div class="ce-f-brand-wrap">
+                        <img src="assets/Century Expeditions lion badge logo.png" alt="Century Expeditions Logo" class="ce-f-brand-logo">
+                        <span class="ce-f-brand-name">CENTURY EXPEDITIONS</span>
+                    </div>
+                    <p class="ce-f-tagline" data-en="Tanzania's Premier Luxury Safari &amp; Adventure Specialists." data-sw="Wataalamu Wakuu wa Safari za Kifahari na Matukio Tanzania.">Tanzania's Premier Luxury Safari &amp; Adventure Specialists.</p>
+                    <div class="ce-f-contact-info">
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania</span>
+                        </div>
+                        <div>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/255747115390" target="_blank">+255 747 115 390</a>
+                        </div>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:bookings@century-adventures.com">bookings@century-adventures.com</a>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- ══ Footer ══ -->
-    <!-- Footer Contact Info -->
-    <div class="footer-top">
-        <div class="container">
-            <h2><i class="fas fa-phone-alt"></i> +255 747 115 390</h2>
-            <a href="enquire.html" class="btn enquire-btn" data-en="CONTACT US TODAY!" data-sw="WASILIANA NASI LEO!">CONTACT US TODAY!</a>
-        </div>
-    </div>
+                <!-- Col 2: POPULAR PLACES -->
+                <div class="ce-f-col">
+                    <h4 data-en="POPULAR PLACES" data-sw="MAENEO MAARUFU">POPULAR PLACES</h4>
+                    <ul class="ce-f-links">
+                        <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
+                        <li><a href="ngorongoro.html" data-en="Ngorongoro Conservation Area" data-sw="Eneo la Ngorongoro">Ngorongoro Conservation Area</a></li>
+                        <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
+                        <li><a href="manyara.html" data-en="Lake Manyara National Park" data-sw="Hifadhi ya Ziwa Manyara">Lake Manyara National Park</a></li>
+                        <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
+                        <li><a href="nyerere.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
+                        <li><a href="mikumi.html" data-en="Mikumi Park" data-sw="Hifadhi ya Mikumi">Mikumi Park</a></li>
+                    </ul>
+                </div>
 
-    <!-- Final Call to Action -->
-    <section class="section cta-section" style="background: var(--primary-gradient); padding: 50px 0; text-align: center; color: white; position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
-        <div class="container" style="position: relative; z-index: 2;">
-            <span class="sub-heading" style="color:var(--accent-gold); font-size: 0.8rem; letter-spacing: 2px;" data-en="YOUR JOURNEY TO AFRICA STARTS HERE" data-sw="SAFARI YAKO YA AFRIKA INAANZA HAPA">YOUR JOURNEY TO AFRICA STARTS HERE</span>
-            <h2 style="font-size: clamp(1.5rem, 3vw, 2.2rem); color: white; margin: 10px 0 16px;" data-en="Are you ready to explore Tanzania?" data-sw="Uko Tayari Kuichunguza Tanzania?">Are you ready to explore Tanzania?</h2>
-            
-            <p class="cta-description" style="max-width: 650px; margin: 0 auto 25px; font-size:0.9rem; line-height: 1.65; opacity: 0.9;">
-                <span class="cta-hide-mobile" data-en="Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. " data-sw="Fikiria kushuhudia uwindaji wa simba wakati wa machweo, kutazama tembo wakizurura kwa uhuru kwenye savanna zisizo na mwisho, kujionea Uhamiaji Mkuu, au kupumzika kwenye mchanga mweupe wa Zanzibar. ">Imagine witnessing a lion hunt at dawn, watching elephants roam freely across the endless savannah, experiencing the Great Migration, or relaxing on the white sands of Zanzibar. </span>
-                <span data-en="Let Century Adventures make those dreams come true." data-sw="Ruhusu Century Adventures kufanya ndoto hizo ziwe kweli.">Let Century Adventures make those dreams come true.</span>
-            </p>
+                <!-- Col 3: TRAVEL EXPERIENCE -->
+                <div class="ce-f-col">
+                    <h4 data-en="TRAVEL EXPERIENCE" data-sw="UZOEFU WA KUSAFIRI">TRAVEL EXPERIENCE</h4>
+                    <ul class="ce-f-links">
+                        <li><a href="packages.html" data-en="Safari Packages &amp; Itineraries" data-sw="Vifurushi na Ratiba za Safari">Safari Packages &amp; Itineraries</a></li>
+                    <li><a href="family.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
+                        <li><a href="honeymoon.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
+                        <li><a href="migration.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
+                        <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
+                        <li><a href="zanzibar.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
+                        <li><a href="vehicles.html" data-en="Safari 4x4 Vehicles" data-sw="Magari ya Safari 4x4">Safari 4x4 Vehicles</a></li>
+                    </ul>
+                </div>
 
-            <div class="cta-action-grid" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <a href="enquire.html" class="btn btn-primary cta-circle-btn" style="background: var(--accent-gold); color: #002b18; font-weight:800; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; text-decoration: none;" data-en="Plan Your Trip" data-sw="Panga Safari Yako">Plan Your Trip</a>
-                <a href="enquire.html" class="btn btn-outline cta-circle-btn secondary" style="border: 1px solid rgba(255,255,255,0.6); color: white; font-weight:700; border-radius:50px; padding: 12px 30px; font-size: 0.85rem; background: transparent; text-decoration: none;" data-en="Request a Free Quote" data-sw="Omba Nukuu ya Bure">Request a Free Quote</a>
-            </div>
-            
-            <div style="margin-top: 18px;">
-                <a href="contact.html" style="color: var(--accent-gold); font-weight: 700; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;" data-en="Contact Our Experts &rarr;" data-sw="Wasiliana na Wataalamu Wetu &rarr;">Contact Our Experts &rarr;</a>
-            </div>
-        </div>
-    </section>
+                <!-- Col 4: TRAVEL RESOURCES -->
+                <div class="ce-f-col">
+                    <h4 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h4>
+                    <ul class="ce-f-links">
+                        <li><a href="booking-payment.html" data-en="Booking &amp; Payment Information" data-sw="Taarifa za Kuhifadhi na Malipo">Booking &amp; Payment Information</a></li>
+                    <li><a href="travel-guide.html" data-en="Tanzania Travel Guide" data-sw="Mwongozo wa Kusafiri Tanzania">Tanzania Travel Guide</a></li>
+                        <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
+                        <li><a href="health-safety.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
+                    </ul>
+                </div>
 
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-col info-col">
-                <h3 data-en="CONTACT US" data-sw="WASILIANA NASI">CONTACT US</h3>
-                <p><strong>Century Adventures</strong></p>
-                <p data-en="Asasi Tower, 4th Floor" data-sw="Asasi Tower, Ghorofa ya 4">Asasi Tower, 4th Floor</p>
-                <p data-en="Ohio Street" data-sw="Mtaa wa Ohio">Ohio Street</p>
-                <p><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/255747115390" target="_blank" style="color: inherit;">+255 747 115 390</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@centuryadventures.com" style="color: inherit;">info@centuryadventures.com</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:bookings@centuryadventures.com" style="color: inherit;">bookings@centuryadventures.com</a></p>
-            </div>
-            <div class="footer-col link-col collapsible">
-                <h3 data-en="POPULAR PLACES" data-sw="MAENEO MAARUFU">POPULAR PLACES</h3>
-                <ul>
-                    <li><a href="serengeti.html" data-en="Serengeti National Park" data-sw="Hifadhi ya Serengeti">Serengeti National Park</a></li>
-                    <li><a href="tarangire.html" data-en="Tarangire National Park" data-sw="Hifadhi ya Tarangire">Tarangire National Park</a></li>
-                    <li><a href="selous.html" data-en="Nyerere Park" data-sw="Hifadhi ya Nyerere">Nyerere Park</a></li>
-                    <li><a href="ruaha.html" data-en="Ruaha National Park" data-sw="Hifadhi ya Ruaha">Ruaha National Park</a></li>
-                    <li><a href="mikumi.html" data-en="Mikumi Park" data-sw="Hifadhi ya Mikumi">Mikumi Park</a></li>
-                    <li><a href="ngorongoro.html" data-en="Ngorongoro" data-sw="Ngorongoro">Ngorongoro</a></li>
-                    <li><a href="manyara.html" data-en="Manyara National Park" data-sw="Hifadhi ya Manyara">Manyara National Park</a></li>
-                </ul>
-            </div>
-            <div class="footer-col link-col collapsible">
-                <h3 data-en="TRAVEL EXPERIENCE" data-sw="UZOEFU WA KUSAFIRI">TRAVEL EXPERIENCE</h3>
-                <ul>
-                    <li><a href="family-safaris.html" data-en="Family Trips" data-sw="Safari za Familia">Family Trips</a></li>
-                    <li><a href="honeymoon-safaris.html" data-en="Honeymoon Trips" data-sw="Safari za Fungate">Honeymoon Trips</a></li>
-                    <li><a href="migration-safaris.html" data-en="Migration Trips" data-sw="Safari za Uhamiaji">Migration Trips</a></li>
-                    <li><a href="volunteer.html" data-en="Volunteer Programs" data-sw="Mipango ya Kujitolea">Volunteer Programs</a></li>
-                    <li><a href="zanzibar-beach.html" data-en="Zanzibar Beach Holiday" data-sw="Likizo ya Pwani ya Zanzibar">Zanzibar Beach Holiday</a></li>
-                </ul>
-            </div>
-            <div class="footer-col link-col collapsible">
-                <h3 data-en="TRAVEL RESOURCES" data-sw="MAARIFA YA SAFARI">TRAVEL RESOURCES</h3>
-                <ul>
-                    <li><a href="blog.html" data-en="Travel Blog" data-sw="Blogu yetu">Travel Blog</a></li>
-                    <li><a href="faq.html" data-en="FAQs" data-sw="Maswali ya Kawaida">FAQs</a></li>
-                    <li><a href="gallery.html" data-en="Photo Gallery" data-sw="Picha za Safari">Photo Gallery</a></li>
-                    <li><a href="testimonials.html" data-en="Testimonials" data-sw="Shuhuda">Testimonials</a></li>
-                    <li><a href="best-time-to-visit-tanzania.html" data-en="Best Time to Visit" data-sw="Wakati Bora wa Kuja">Best Time to Visit</a></li>
-                    <li><a href="health-safety-tanzania.html" data-en="Health &amp; Safety" data-sw="Afya na Usalama">Health &amp; Safety</a></li>
-                    <li><a href="obtaining-visa-tanzania.html" data-en="Visa Information" data-sw="Visa ya Safari">Visa Information</a></li>
-                    <li><a href="solo-female-travel-tanzania.html" data-en="Solo Female Travel" data-sw="Safari ya Wanawake">Solo Female Travel</a></li>
-                    <li><a href="what-to-wear-safari.html" data-en="Safari Packing Guide" data-sw="Nguo za Safari">Safari Packing Guide</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <div class="tripadvisor-card">
-                    <img src="https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/4.5-66827-5.svg" alt="TripAdvisor">
-                    <h4 data-en="TripAdvisor Century Adventures" data-sw="TripAdvisor Century Adventures">TripAdvisor Century Adventures</h4>
-                    <p data-en="Ranked #1 on TripAdvisor" data-sw="Imeorodheshwa #1 TripAdvisor">Ranked #1 on TripAdvisor</p>
-                    <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-small" data-en="TripAdvisor Give Feedback Century Adventures" data-sw="TripAdvisor Toa Maoni Century Adventures">TripAdvisor Give Feedback Century Adventures</a>
+                <!-- Col 5: Ratings & Partner Badges -->
+                <div class="ce-f-col">
+                    <!-- TripAdvisor Box -->
+                    <div class="ce-tripadvisor-box">
+                        <div class="ce-ta-circles">
+                            <span class="ce-ta-circle"></span>
+                            <span class="ce-ta-circle"></span>
+                            <span class="ce-ta-circle"></span>
+                            <span class="ce-ta-circle"></span>
+                            <span class="ce-ta-circle"></span>
+                        </div>
+                        <h5 data-en="TripAdvisor Excellence" data-sw="Ubora wa TripAdvisor">TripAdvisor Excellence</h5>
+                        <p data-en="Ranked #1 Safari Operator" data-sw="Imeorodheshwa #1 Kampuni ya Safari">Ranked #1 Safari Operator</p>
+                        <a href="about.html" class="btn-ta-feedback" data-en="GIVE FEEDBACK" data-sw="TOA MAONI">GIVE FEEDBACK</a>
+                    </div>
+
+                    <div class="ce-badge-pill">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-en="100% Licensed &amp; Insured" data-sw="100% Leseni na Bima">100% Licensed &amp; Insured</span>
+                    </div>
+
+                    <div class="ce-badge-pill">
+                        <i class="fas fa-bell"></i>
+                        <span data-en="TANAPA Partner" data-sw="Mshirika wa TANAPA">TANAPA Partner</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom container">
-            <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=61577731823809"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/@CenturyAdventures" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/century_adventures?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/255747115390"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@centuryadventures.com"><i class="fas fa-envelope"></i></a>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="ce-footer-bottom-bar">
+                <span data-en="&copy; 2026 Century Expeditions. All rights reserved." data-sw="&copy; 2026 Century Expeditions. Haki zote zimehifadhiwa.">&copy; 2026 Century Expeditions. All rights reserved.</span>
+                <span style="letter-spacing: 1px;" data-en="TANZANIA | PEOPLE | WILDLIFE | BOLDER TOMORROWS" data-sw="TANZANIA | WATU | WANYAMAPORI | KESHO YENYE MATUMAINI">TANZANIA | PEOPLE | WILDLIFE | BOLDER TOMORROWS</span>
             </div>
-            <p>&copy; Copyright 2012 - 2026 | Century Adventures</p>
         </div>
     </footer>
 
-    <script src="index.js"></script>
-</body>
+    <!-- Floating Action Buttons -->
+    <div class="ce-floating-widgets">
+        <a href="#" class="ce-float-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+        <a href="index.html#ai-assistant" class="ce-float-ai"><i class="fas fa-comment-dots"></i> <span>SWALA-TINA</span></a>
+        <a href="https://wa.me/255747115390" target="_blank" class="ce-float-whatsapp"><i class="fab fa-whatsapp" style="font-size: 1.15rem;"></i> <span>Chat with us</span></a>
+    </div>
 
+    <script src="index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("success") === "true") {
+                const alertBox = document.getElementById("contact-success-alert");
+                if (alertBox) {
+                    alertBox.style.display = "flex";
+                    alertBox.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+            }
+        });
+    </script>
+<script src="site-effects.js"></script><script src="mobile-reference.js"></script></body>
 </html>
