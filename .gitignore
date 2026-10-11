@@ -37,3 +37,6 @@ jspm_packages/
 # OS Metadata
 .DS_Store
 Thumbs.db
+
+# Test/inspection screenshots
+*-check.png

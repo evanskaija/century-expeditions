@@ -22,6 +22,46 @@ body{font-size:16px!important}header.luxury-header-editorial .container{height:7
 @media(max-width:1100px){header.luxury-header-editorial .header-toggles{position:absolute!important;right:70px!important;top:16px!important;width:110px!important;max-width:110px!important;height:40px!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;padding:0!important;gap:4px!important}header.luxury-header-editorial .editorial-header-actions{position:static!important;width:180px!important;max-width:180px!important;flex-basis:180px!important;padding:0!important}header.luxury-header-editorial .theme-toggle{position:static!important;width:40px!important;min-width:40px!important;height:40px!important;margin:0!important}header.luxury-header-editorial .lang-toggle{position:static!important;margin:0!important;min-width:60px!important}header.luxury-header-editorial .mobile-toggle{right:16px!important;top:14px!important}.site-entering[data-enter=left],.site-entering[data-enter=right]{translate:0 10px!important}.pk-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}.pk-cards>*{min-width:0!important;max-width:100%!important}.pk-faq{max-width:100%!important}.sg-plan-card{min-width:0!important;max-width:100%!important}}
 @media(max-width:700px){.pk-cards{grid-template-columns:1fr!important}}
 @media(max-width:380px){header.luxury-header-editorial .header-toggles{right:68px!important;width:42px!important;max-width:42px!important}header.luxury-header-editorial .editorial-header-actions{width:100px!important;max-width:100px!important;flex-basis:100px!important}header.luxury-header-editorial .lang-toggle{display:none!important}}
+
+/* Tablet header: keep the controls spacious without taking over the hero. */
+@media(min-width:701px) and (max-width:1100px){
+html body header#editorial-header{
+  position:fixed!important;
+  top:12px!important;
+  left:12px!important;
+  right:12px!important;
+  width:auto!important;
+  height:64px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  z-index:1251!important;
+}
+html body header#editorial-header>.container{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  column-gap:16px!important;
+  width:100%!important;
+  max-width:none!important;
+  height:64px!important;
+  padding:8px 14px!important;
+  background:rgba(8,28,20,.96)!important;
+  border:1px solid rgba(212,175,55,.42)!important;
+  border-radius:16px!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.24)!important;
+}
+html body header#editorial-header .editorial-logo{max-width:calc(100% - 218px)!important;gap:10px!important}
+html body header#editorial-header .editorial-logo-img{width:40px!important;height:40px!important}
+html body header#editorial-header .editorial-logo-text{font-size:12px!important;line-height:1.18!important;letter-spacing:1.2px!important;max-width:170px!important;color:#f7f5f0!important}
+html body header#editorial-header .editorial-header-actions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;width:auto!important;max-width:none!important;flex:0 0 auto!important;padding:0!important}
+html body header#editorial-header .header-toggles{position:static!important;right:auto!important;top:auto!important;width:auto!important;max-width:none!important;height:40px!important;padding:0 3px!important;gap:0!important;flex:0 0 auto!important}
+html body header#editorial-header .lang-toggle{min-width:76px!important;padding:5px 6px!important}
+html body header#editorial-header .theme-toggle{width:42px!important;min-width:42px!important;height:36px!important;padding:5px 9px!important;justify-content:center!important}
+html body header#editorial-header .mobile-toggle{position:static!important;right:auto!important;top:auto!important;width:44px!important;height:44px!important;flex:0 0 44px!important;border:1px solid rgba(212,175,55,.5)!important;border-radius:11px!important;background:rgba(20,55,43,.9)!important;padding:8px!important}
+html body header#editorial-header .mobile-toggle .bar{width:24px!important;height:2px!important;background:#f1e4c4!important}
+}
 /* Compact Home information and native swipe cards on phones. */
 @media(max-width:700px){
 body .luxury-stats-card{padding:16px!important;border-radius:16px!important}body .luxury-stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 10px!important}body .luxury-stat-item{display:flex!important;flex-direction:row!important;gap:8px!important;align-items:center!important;padding:8px 0!important;min-width:0!important;border:0!important}body .luxury-stat-icon-wrap{width:32px!important;height:32px!important;min-width:32px!important;font-size:14px!important;margin:0!important}body .luxury-stat-icon-wrap i{font-size:14px!important}body .luxury-stat-info{min-width:0!important}body .luxury-stat-number{font-size:clamp(19px,5.6vw,25px)!important;line-height:1.1!important;letter-spacing:-.5px!important;white-space:nowrap!important}body .luxury-stat-label{display:block!important;font-size:9px!important;line-height:1.5!important;letter-spacing:.6px!important;margin-top:4px!important;overflow-wrap:normal!important}body .luxury-stat-item:last-child{grid-column:1/-1!important;justify-content:center!important}

@@ -1,0 +1,13 @@
+[
+  { "type": "greeting", "input": "Mambo", "expectedText": "Poa!" },
+  { "type": "greeting", "input": "Good morning", "expectedText": "Good morning" },
+  { "type": "identity", "input": "Are you a real person?", "expectedText": "AI assistant" },
+  { "type": "swahili", "input": "Nawezaje kuweka nafasi?", "expectedText": "booking" },
+  { "type": "typo", "input": "Tell me about Serengetti", "canonical": "serengeti" },
+  { "type": "typo", "input": "I want Zanzabar", "canonical": "zanzibar" },
+  { "type": "follow-up", "input": "Tell me more", "expectedText": "lastAssistantMessage" },
+  { "type": "comparison", "input": "What is the difference between Serengeti and Tarangire?", "expectedText": "In short" },
+  { "type": "missing-information", "input": "What is included in this package?", "expectedText": "not supplied" },
+  { "type": "safety", "input": "Can you guarantee a river crossing?", "expectedText": "cannot be guaranteed" },
+  { "type": "privacy", "input": "Can I upload my passport?", "expectedText": "passport numbers" }
+]

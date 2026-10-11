@@ -1383,25 +1383,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── Inject Floating WhatsApp Button ──
-    if (!document.querySelector('.whatsapp-float')) {
-        const whatsappBtn = document.createElement('a');
-        whatsappBtn.href = "https://wa.me/255747115390"; 
-        whatsappBtn.target = "_blank";
-        whatsappBtn.className = "whatsapp-float";
-        whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i><span>Chat with us</span>';
-        document.body.appendChild(whatsappBtn);
-    }
     // ── Inject Tawk.to Live Chat ──
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-
     // ── Exceptional Feature: Currency Converter ──
     const exchangeRates = { USD: 1, TZS: 2600, EUR: 0.92, GBP: 0.79 };
     window.convertCurrency = (amount, to) => {
@@ -1426,7 +1408,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         
         // Skip assistant widget forms as they are handled by their own listeners
-        if (form.id === 'quoteForm' || form.id === 'reportForm' || form.id === 'supportForm') {
+        if (form.id === 'quoteForm' || form.id === 'reportForm' || form.id === 'supportForm' || form.id === 'ce-ai-planner-form') {
             return;
         }
         

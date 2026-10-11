@@ -20,4 +20,18 @@ window.addEventListener('scroll',()=>{if(!scrollFrame)scrollFrame=setTimeout(ref
 window.addEventListener('resize',refreshVisibility,{passive:true});
 new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(n=>{if(n instanceof HTMLElement)enhance(n);}))).observe(document.body,{childList:true,subtree:true});
 motion.addEventListener('change',()=>{if(motion.matches)document.querySelectorAll('.site-entering').forEach(el=>el.classList.remove('site-entering'));});
+// Load the shared assistant after the common page effects so every public page gets the same widget.
+if (!document.querySelector('link[data-century-assistant-style]')) {
+  const assistantStyle = document.createElement('link');
+  assistantStyle.rel = 'stylesheet';
+  assistantStyle.href = 'assistant.css?v=6';
+  assistantStyle.dataset.centuryAssistantStyle = 'true';
+  document.head.appendChild(assistantStyle);
+}
+if (!document.querySelector('script[data-century-assistant-script]')) {
+  const assistantScript = document.createElement('script');
+  assistantScript.src = 'assistant.js?v=2';
+  assistantScript.dataset.centuryAssistantScript = 'true';
+  document.body.appendChild(assistantScript);
+}
 })();

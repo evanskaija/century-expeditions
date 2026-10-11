@@ -1,0 +1,547 @@
+/*
+ * Century Expeditions responsive polish
+ * Loaded last so the public pages have one predictable visual system at
+ * desktop, tablet, and phone widths.
+ */
+
+:root {
+    --ce-polish-ink: #102a20;
+    --ce-polish-gold: #b58a36;
+    --ce-polish-cream: #fbf8f1;
+    --ce-polish-line: rgba(181, 138, 54, 0.22);
+}
+
+html {
+    text-rendering: optimizeLegibility;
+}
+
+/* Keep the shared header from becoming cramped on wide screens. */
+header.luxury-header-editorial .container {
+    width: min(100% - 48px, 1240px);
+}
+
+/* Contact hero */
+.ce-contact-hero {
+    min-height: 575px;
+    background-image:
+        linear-gradient(90deg, rgba(250, 247, 240, 0.97) 0%, rgba(250, 247, 240, 0.88) 28%, rgba(250, 247, 240, 0.34) 58%, rgba(250, 247, 240, 0) 78%),
+        url('assets/about-hero-exact.jpg');
+    background-position: center right;
+    background-size: cover;
+}
+
+.ce-contact-hero-container {
+    max-width: 1240px;
+    padding: 0 32px;
+}
+
+.ce-contact-hero-content {
+    max-width: 540px;
+}
+
+.ce-hero-title {
+    font-size: clamp(3.25rem, 5vw, 4.65rem);
+    line-height: 1.04;
+    letter-spacing: -1px;
+    text-wrap: balance;
+}
+
+.ce-hero-subtitle {
+    max-width: 440px;
+    font-size: 1.08rem;
+}
+
+/* The four service promises read as a single, quiet band on desktop. */
+.ce-strip {
+    padding: 22px 0;
+    background: #fcfaf5;
+    box-shadow: 0 8px 24px rgba(16, 42, 32, 0.04);
+}
+
+.ce-strip-container,
+.ce-contact-container,
+.ce-team-container,
+.ce-footer-container {
+    max-width: 1240px;
+}
+
+.ce-strip-item {
+    min-height: 48px;
+}
+
+.ce-strip-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.ce-contact-main {
+    padding: 96px 0 104px;
+    background: #fffefa;
+}
+
+.ce-contact-two-col {
+    grid-template-columns: minmax(0, 0.92fr) minmax(460px, 1.08fr);
+    gap: 82px;
+}
+
+.ce-info-col h2 {
+    font-size: clamp(2.25rem, 3vw, 2.85rem);
+    letter-spacing: -0.4px;
+}
+
+.ce-form-card {
+    padding: 42px 44px;
+    border-radius: 22px;
+    box-shadow: 0 18px 44px rgba(17, 37, 29, 0.09);
+}
+
+.ce-form-group input,
+.ce-form-group select,
+.ce-form-group textarea {
+    border-radius: 10px;
+    min-height: 48px;
+}
+
+.ce-form-group textarea {
+    min-height: 128px;
+}
+
+.btn-submit-enquiry {
+    min-height: 50px;
+    border-radius: 10px;
+}
+
+.ce-team-section {
+    padding: 82px 0 76px;
+    background: var(--ce-polish-cream);
+}
+
+.ce-team-grid {
+    gap: 0;
+}
+
+.ce-promise-banner {
+    padding: 104px 0;
+    background-image:
+        linear-gradient(rgba(250, 247, 240, 0.64), rgba(250, 247, 240, 0.64)),
+        url('assets/contact-promise-exact.jpg?v=2');
+}
+
+/* A compact dock is easier to scan than three stacked pills. */
+.ce-floating-widgets {
+    right: 24px;
+    bottom: 24px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.ce-float-top {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+}
+
+.ce-float-ai,
+.ce-float-whatsapp {
+    min-height: 42px;
+    padding: 10px 15px;
+    white-space: nowrap;
+}
+
+/* Homepage floating actions: keep the two contact actions separated. */
+.editorial-chat-bubble {
+    bottom: 24px !important;
+    right: 24px !important;
+}
+
+.tanapa-floating-widgets {
+    right: 220px !important;
+    bottom: 24px !important;
+    gap: 8px !important;
+}
+
+.tanapa-back-to-top {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+}
+
+/* Homepage refinements share the same responsive rhythm. */
+.home-hero-editorial .hero-editorial-container,
+.hero-destinations-strip-new .strip-new-container {
+    width: min(100% - 48px, 1240px);
+}
+
+.home-hero-editorial .hero-editorial-left {
+    max-width: 610px;
+}
+
+.home-hero-editorial .hero-editorial-heading {
+    letter-spacing: -1px;
+}
+
+@media (max-width: 1100px) {
+    .ce-contact-hero {
+        min-height: 540px;
+        background-position: 64% center;
+    }
+
+    .ce-contact-two-col {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+        gap: 42px;
+    }
+
+    .ce-form-card {
+        padding: 32px 28px;
+    }
+}
+
+@media (max-width: 700px) {
+    body {
+        padding-top: 82px !important;
+    }
+
+    header.luxury-header-editorial .container {
+        width: calc(100% - 24px);
+    }
+
+    #editorial-header .editorial-header-actions {
+        display: flex !important;
+        width: 40px !important;
+        max-width: 40px !important;
+        flex: 0 0 40px !important;
+        padding: 0 !important;
+        margin-left: auto !important;
+    }
+
+    #editorial-header .mobile-toggle {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        top: 50% !important;
+        right: 14px !important;
+        transform: translateY(-50%) !important;
+        width: 34px !important;
+        height: 36px !important;
+    }
+
+    .ce-contact-hero {
+        min-height: 470px;
+        padding: 58px 0 64px;
+        align-items: center;
+        background-image:
+            linear-gradient(180deg, rgba(250, 247, 240, 0.94) 0%, rgba(250, 247, 240, 0.76) 45%, rgba(250, 247, 240, 0.38) 100%),
+            url('assets/about-hero-exact.jpg');
+        background-position: 66% center;
+    }
+
+    .ce-contact-hero-container,
+    .ce-contact-container,
+    .ce-team-container,
+    .ce-footer-container {
+        width: calc(100% - 40px);
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .ce-contact-hero-content {
+        max-width: 340px;
+    }
+
+    .ce-tag-line {
+        margin-bottom: 12px;
+    }
+
+    .ce-tag-text {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+
+    .ce-hero-title {
+        font-size: clamp(2.45rem, 10.5vw, 3.45rem);
+        line-height: 1.03;
+        margin-bottom: 14px;
+    }
+
+    .ce-hero-subtitle {
+        max-width: 300px;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .ce-strip {
+        padding: 18px 0;
+    }
+
+    .ce-strip-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    .ce-strip-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px;
+    }
+
+    .ce-strip-item,
+    .ce-strip-item:not(:last-child) {
+        min-height: 82px;
+        flex-direction: column;
+        gap: 7px;
+        padding: 12px 8px;
+        border: 1px solid var(--ce-polish-line);
+        border-radius: 14px;
+        background: #ffffff;
+        box-shadow: 0 5px 16px rgba(16, 42, 32, 0.045);
+    }
+
+    .ce-strip-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .ce-strip-item span {
+        max-width: 130px;
+        font-size: 0.72rem;
+        line-height: 1.28;
+        text-align: center;
+    }
+
+    .ce-contact-main {
+        padding: 58px 0 64px;
+    }
+
+    .ce-contact-two-col {
+        grid-template-columns: 1fr !important;
+        gap: 38px;
+    }
+
+    .ce-info-col h2 {
+        font-size: 2.15rem;
+        line-height: 1.12;
+    }
+
+    .ce-info-intro {
+        font-size: 0.94rem;
+    }
+
+    .ce-contact-list {
+        gap: 18px;
+    }
+
+    .ce-form-card {
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .ce-form-card h3 {
+        font-size: 1.75rem;
+        line-height: 1.15;
+    }
+
+    .ce-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .ce-team-section {
+        padding: 62px 0 58px;
+    }
+
+    .ce-team-title {
+        font-size: 2rem;
+        margin-bottom: 28px;
+    }
+
+    .ce-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px;
+        text-align: left;
+    }
+
+    .ce-team-item,
+    .ce-team-item:not(:last-child) {
+        min-width: 0;
+        padding: 16px 13px;
+        border: 1px solid var(--ce-polish-line);
+        border-radius: 15px;
+        background: #ffffff;
+    }
+
+    .ce-team-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .ce-team-icon {
+        height: 34px;
+        margin-bottom: 9px;
+    }
+
+    .ce-team-item h4 {
+        font-size: 0.92rem;
+        line-height: 1.25;
+    }
+
+    .ce-team-item p,
+    .ce-team-item a {
+        font-size: 0.76rem;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+    .ce-promise-banner {
+        padding: 72px 0;
+        background-position: 62% center;
+        background-image:
+            linear-gradient(rgba(250, 247, 240, 0.72), rgba(250, 247, 240, 0.72)),
+            url('assets/contact-promise-exact.jpg?v=2');
+    }
+
+    .ce-promise-title {
+        font-size: clamp(1.9rem, 8vw, 2.45rem);
+        line-height: 1.12;
+    }
+
+    .ce-promise-desc {
+        font-size: 0.9rem;
+    }
+
+    .ce-prefooter-cta {
+        padding: 58px 0 48px;
+    }
+
+    .ce-cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-cta-gold,
+    .btn-cta-outline,
+    .btn-cta-phone {
+        width: min(100%, 360px);
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ce-main-footer {
+        padding: 52px 0 26px;
+    }
+
+    .ce-floating-widgets {
+        right: auto !important;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: 16px !important;
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+        justify-content: center;
+        gap: 7px;
+        box-sizing: border-box !important;
+    }
+
+    .ce-float-ai,
+    .ce-float-whatsapp {
+        min-height: 40px;
+        min-width: 0;
+        flex: 0 1 auto;
+        max-width: calc(50% - 4px);
+        padding: 9px 12px;
+        font-size: 0.72rem;
+        letter-spacing: 0.55px;
+        overflow: hidden;
+    }
+
+    .ce-float-ai span,
+    .ce-float-whatsapp span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ce-float-top {
+        bottom: calc(100% + 9px);
+    }
+
+    .editorial-chat-bubble {
+        left: 16px !important;
+        right: auto !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+        width: 54px !important;
+        height: 54px !important;
+    }
+
+    .tanapa-floating-widgets {
+        left: auto !important;
+        right: 16px !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+        width: fit-content !important;
+        max-width: calc(100vw - 90px) !important;
+        flex-direction: row !important;
+        gap: 7px !important;
+    }
+
+    .tanapa-chat-pill {
+        min-height: 40px;
+        max-width: 100%;
+        padding: 9px 12px;
+        font-size: 0.72rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* Homepage hero: keep the copy inside the safe text column. */
+    .home-hero-editorial {
+        min-height: 600px !important;
+        padding: 126px 0 56px !important;
+        background-position: 66% center !important;
+    }
+
+    .home-hero-editorial .hero-editorial-container,
+    .hero-destinations-strip-new .strip-new-container {
+        width: calc(100% - 32px);
+    }
+
+    .home-hero-editorial .hero-editorial-heading {
+        max-width: 310px;
+        font-size: clamp(3rem, 13vw, 4rem) !important;
+        line-height: 1.02 !important;
+    }
+
+    .home-hero-editorial .hero-editorial-lead {
+        max-width: 300px;
+        font-size: 1.05rem !important;
+        line-height: 1.45 !important;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 980px) {
+    .tanapa-floating-widgets {
+        right: 190px !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .ce-contact-hero-container,
+    .ce-contact-container,
+    .ce-team-container,
+    .ce-footer-container,
+    .ce-strip-container {
+        width: calc(100% - 32px);
+    }
+
+    .ce-team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ce-float-ai,
+    .ce-float-whatsapp {
+        padding-inline: 10px;
+        font-size: 0.68rem;
+    }
+}

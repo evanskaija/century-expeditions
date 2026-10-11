@@ -1,0 +1,12 @@
+{
+  "name": "century-expeditions-site",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:knowledge",
+    "build:knowledge": "node scripts/build-assistant-knowledge.cjs",
+    "test:assistant": "node tests/assistant-coverage.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

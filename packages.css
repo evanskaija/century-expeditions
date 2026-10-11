@@ -110,3 +110,10 @@
 #custom-fields[hidden]{display:none!important}
 @media(max-width:992px){.pk-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.pk-details{grid-template-columns:1fr}.pk-details>img{height:250px;min-height:0}.pk-enquiry{grid-template-columns:1fr}.pk-summary img{height:200px}}
 @media(max-width:640px){.pk-cards{grid-template-columns:1fr}.pk-card>img{height:250px}.pk-details,.pk-enquiry{padding:18px}.packages-page .pk-enquiry h2{font-size:29px!important}.pk-filters label{flex-basis:100%}.pk-tabs button{flex:1 1 40%}.packages-page .sg-hero h1{font-size:44px!important}.pk-actions button{min-height:44px}}
+.pk-cost-summary{display:grid;gap:10px;margin:18px 0 4px;padding:16px;border:1px solid rgba(232,202,138,.55);border-radius:7px;background:rgba(0,0,0,.13)}
+.pk-cost-summary[hidden]{display:none}
+.pk-cost-summary>div{display:flex;justify-content:space-between;align-items:center;gap:14px;color:#f3efdf;font-size:13px}
+.pk-cost-summary strong{color:#ffe0a0;font-size:16px;white-space:nowrap}
+.pk-cost-summary .pk-cost-total{padding-top:11px;border-top:1px solid rgba(232,202,138,.45)}
+.pk-cost-summary .pk-cost-total strong{font-size:21px}
+.pk-cost-summary small{color:#d9d1b8;font-size:11px;line-height:1.45}
