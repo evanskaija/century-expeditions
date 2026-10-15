@@ -1,5 +1,11 @@
 {
   "buildCommand": "npm run build:knowledge",
+  "outputDirectory": ".",
+  "functions": {
+    "api/assistant.js": {
+      "includeFiles": "assistant-knowledge.json"
+    }
+  },
   "redirects": [
     {
       "source": "/(.*)",
