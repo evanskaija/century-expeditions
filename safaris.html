@@ -1578,7 +1578,334 @@
             .packages-grid { grid-template-columns: 1fr; }
             .package-card { padding: 28px 22px; }
         }
-    </style>
+    
+        /* Mobile and tablet safari layout refinement */
+        @media (min-width: 769px) and (max-width: 1100px) {
+            .safari-hero-editorial {
+                min-height: 620px;
+            }
+            .safari-hero-container {
+                padding: 54px 26px;
+            }
+            .find-perfect-safari-section {
+                padding: 64px 24px 78px;
+            }
+            .find-perfect-header-row {
+                margin-bottom: 30px;
+            }
+            .safari-editorial-cards-grid {
+                gap: 18px;
+            }
+            .safari-card-media {
+                height: 205px;
+            }
+            .safari-card-info {
+                padding: 18px;
+            }
+            .safari-card-title {
+                font-size: 1.18rem;
+            }
+            .safari-card-meta {
+                font-size: .82rem;
+                margin-bottom: 16px;
+            }
+            .safari-card-footer {
+                gap: 10px;
+                padding-top: 12px;
+            }
+            .safari-card-pricing {
+                font-size: .78rem;
+            }
+            .safari-card-price-value {
+                font-size: 1.08rem;
+            }
+            .safari-card-view-btn {
+                padding: 8px 14px;
+                font-size: .78rem;
+            }
+            .tours-marquee-section {
+                padding: 64px 0 74px;
+            }
+            .tours-marquee-section .marquee-wrapper {
+                padding: 22px 54px 34px;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+            .tours-marquee-section .marquee-track {
+                gap: 18px;
+            }
+            .tours-marquee-section .safari-card.mini-card {
+                width: 310px !important;
+                border-radius: 18px;
+            }
+            .tours-marquee-section .safari-card-img-box,
+            .tours-marquee-section .safari-card.mini-card img {
+                height: 190px !important;
+            }
+            .tours-marquee-section .safari-content {
+                padding: 18px !important;
+            }
+            .tours-marquee-section .safari-content h3 {
+                font-size: 1.08rem !important;
+            }
+            .tours-marquee-section .marquee-arrow {
+                width: 46px !important;
+                height: 46px !important;
+                font-size: 1rem !important;
+            }
+            .tours-marquee-section .marquee-arrow-left { left: 10px !important; }
+            .tours-marquee-section .marquee-arrow-right { right: 10px !important; }
+            .tour-packages-section {
+                padding: 64px 24px;
+            }
+            .packages-grid {
+                gap: 18px;
+            }
+            .package-card {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .safari-hero-editorial {
+                min-height: 560px;
+                align-items: flex-end;
+            }
+            .safari-hero-container {
+                padding: 52px 20px 58px;
+            }
+            .safari-editorial-heading {
+                font-size: clamp(2.2rem, 10vw, 3.25rem);
+                line-height: 1.08;
+                margin-bottom: 14px;
+            }
+            .safari-editorial-lead {
+                font-size: .92rem;
+                line-height: 1.55;
+                margin-bottom: 22px;
+            }
+            .safari-hero-cta {
+                padding: 12px 22px;
+                font-size: .86rem;
+            }
+            .find-perfect-safari-section {
+                padding: 46px 16px 62px;
+            }
+            .find-perfect-header-row {
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            .find-perfect-title {
+                font-size: clamp(1.8rem, 8.5vw, 2.35rem);
+            }
+            .find-perfect-subtitle {
+                font-size: .88rem;
+                line-height: 1.5;
+                margin-top: 12px;
+            }
+            .safari-filters-pills {
+                width: 100%;
+                gap: 8px;
+            }
+            .safari-filter-btn {
+                flex: 1 1 auto;
+                min-height: 40px;
+                padding: 8px 12px;
+                font-size: .76rem;
+            }
+            .safari-editorial-cards-grid {
+                gap: 14px;
+            }
+            .safari-luxury-card {
+                border-radius: 14px;
+            }
+            .safari-card-media {
+                height: 188px;
+            }
+            .safari-card-info {
+                padding: 16px;
+            }
+            .safari-card-title {
+                font-size: 1.12rem;
+                line-height: 1.2;
+            }
+            .safari-card-meta {
+                font-size: .78rem;
+                margin-bottom: 14px;
+            }
+            .safari-card-footer {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding-top: 12px;
+            }
+            .safari-card-pricing {
+                font-size: .76rem;
+            }
+            .safari-card-price-value {
+                font-size: 1.04rem;
+            }
+            .safari-card-view-btn {
+                padding: 8px 12px;
+                font-size: .74rem;
+            }
+            .safaris-page-hero {
+                height: 30vh;
+                min-height: 190px;
+                max-height: 230px;
+            }
+            .safaris-intro {
+                padding: 44px 0 34px;
+            }
+            .safaris-intro h1 {
+                font-size: clamp(1.9rem, 8vw, 2.45rem);
+                margin-bottom: 14px;
+            }
+            .safaris-intro p {
+                font-size: .9rem;
+                line-height: 1.6;
+            }
+            .tours-marquee-section {
+                padding: 46px 0 58px;
+            }
+            .tours-marquee-header {
+                padding: 0 16px;
+            }
+            .tours-marquee-section .marquee-wrapper {
+                padding: 16px 44px 28px;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+            .tours-marquee-section .marquee-track {
+                gap: 14px;
+                padding: 8px 0;
+            }
+            .tours-marquee-section .safari-card.mini-card {
+                width: min(78vw, 320px) !important;
+                max-width: calc(100vw - 88px);
+                border-radius: 16px;
+            }
+            .tours-marquee-section .safari-card-img-box,
+            .tours-marquee-section .safari-card.mini-card img {
+                height: 165px !important;
+            }
+            .tours-marquee-section .card-badge-top-left {
+                top: 10px;
+                left: 10px;
+                padding: 4px 8px;
+                font-size: .62rem;
+            }
+            .tours-marquee-section .card-duration-badge,
+            .tours-marquee-section .card-rating-badge {
+                bottom: 9px;
+                padding: 3px 8px;
+                font-size: .65rem;
+            }
+            .tours-marquee-section .card-duration-badge { left: 10px; }
+            .tours-marquee-section .card-rating-badge { right: 10px; }
+            .tours-marquee-section .wishlist-heart-btn {
+                top: 10px !important;
+                right: 10px !important;
+                width: 32px !important;
+                height: 32px !important;
+                font-size: .9rem !important;
+            }
+            .tours-marquee-section .safari-content {
+                padding: 14px 15px 15px !important;
+            }
+            .tours-marquee-section .safari-content h3 {
+                font-size: .98rem !important;
+                line-height: 1.25 !important;
+                margin-bottom: 6px !important;
+            }
+            .tours-marquee-section .safari-route-desc {
+                font-size: .76rem !important;
+                line-height: 1.4 !important;
+                min-height: 34px;
+                margin-bottom: 11px !important;
+            }
+            .tours-marquee-section .card-tags-row {
+                gap: 4px;
+                margin-bottom: 12px;
+            }
+            .tours-marquee-section .safari-tag-pill {
+                gap: 3px;
+                padding: 3px 7px;
+                font-size: .62rem;
+            }
+            .tours-marquee-section .card-action-row {
+                gap: 8px;
+                padding-top: 11px;
+            }
+            .tours-marquee-section .price-label-sub {
+                font-size: .58rem;
+            }
+            .tours-marquee-section .price {
+                font-size: .98rem !important;
+            }
+            .tours-marquee-section .btn-card {
+                padding: 9px 11px !important;
+                font-size: .7rem !important;
+                gap: 5px !important;
+                border-radius: 10px !important;
+            }
+            .tours-marquee-section .marquee-arrow {
+                width: 38px !important;
+                height: 38px !important;
+                font-size: .82rem !important;
+            }
+            .tours-marquee-section .marquee-arrow-left { left: 5px !important; }
+            .tours-marquee-section .marquee-arrow-right { right: 5px !important; }
+            .tour-packages-section {
+                padding: 54px 16px 64px;
+            }
+            .tour-packages-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            .packages-grid {
+                gap: 14px;
+                margin-bottom: 36px;
+            }
+            .package-card {
+                border-radius: 16px;
+                padding: 20px 18px;
+            }
+            .package-card h3 {
+                font-size: 1.1rem;
+            }
+            .package-card > p {
+                font-size: .8rem;
+                line-height: 1.5;
+                margin-bottom: 14px;
+            }
+            .package-pills-wrap {
+                gap: 5px;
+                padding-top: 11px;
+            }
+            .pkg-pill {
+                padding: 3px 8px;
+                font-size: .65rem;
+            }
+            .safaris-cta {
+                padding: 58px 18px;
+            }
+            .safaris-cta p {
+                font-size: .88rem;
+                line-height: 1.55;
+                margin-bottom: 22px;
+            }
+            .safaris-cta .btn-gold {
+                padding: 12px 24px;
+                font-size: .76rem;
+            }
+            .floating-chat-bubble {
+                right: 14px;
+                bottom: 76px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.05rem;
+            }
+        }</style>
     <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="site-effects.css"><script>try { const mode = localStorage.getItem("century-theme"); document.documentElement.dataset.theme = ["light","dark"].includes(mode) ? mode : "light"; } catch { document.documentElement.dataset.theme = "light"; }</script><link rel="stylesheet" href="site-responsive.css"><link rel="stylesheet" href="mobile-reference.css">    <link rel="stylesheet" href="dark-mode.css?v=1">
 </head>

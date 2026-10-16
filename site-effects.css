@@ -24,3 +24,23 @@ html[data-theme=dark]{color-scheme:dark;--bg-color:#101a17;--text-color:#edf2ee;
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.site-reveal{opacity:1!important;translate:none!important}}
 
 [data-theme=dark] :is(main,footer,header,nav,dialog,[role=dialog]) :is(span,td,th,em){color:inherit!important}[data-theme=dark] :is(main,footer,header,nav) i{color:#e8c579!important}[data-theme=dark] :is(.editorial-mobile-menu,.editorial-mobile-nav,.nav.open,.nav.active,.mobile-drawer,.pk-pending){background-color:#18261f!important;color:#edf2ee!important;border-color:#465349!important}
+/* Dark-mode TripAdvisor trust treatment */
+html[data-theme="dark"] body :is(.tripadvisor-card, .ce-tripadvisor-box) {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(0, 190, 122, .22), transparent 58%),
+        linear-gradient(145deg, #123f2d 0%, #082619 100%) !important;
+    border-color: rgba(241, 207, 111, .68) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .42), inset 0 1px 0 rgba(255, 255, 255, .12), 0 0 22px rgba(0, 170, 108, .12) !important;
+    color: #fffaf0 !important;
+}
+html[data-theme="dark"] body :is(.tripadvisor-card h4, .ce-tripadvisor-box h5) { color: #fffaf0 !important; }
+html[data-theme="dark"] body :is(.tripadvisor-card p, .ce-tripadvisor-box p) { color: #f1d188 !important; }
+html[data-theme="dark"] body .tripadvisor-card img { filter: drop-shadow(0 0 10px rgba(0, 205, 135, .34)); }
+html[data-theme="dark"] body .ce-ta-circle { box-shadow: 0 0 0 3px rgba(0, 170, 108, .12), 0 0 13px rgba(0, 205, 135, .45); }
+html[data-theme="dark"] body .ce-ta-circle:nth-child(2n) { background: #12bd82; }
+html[data-theme="dark"] body .ce-ta-circle:nth-child(3n) { background: #f1d188; box-shadow: 0 0 0 3px rgba(241, 209, 136, .12), 0 0 13px rgba(241, 209, 136, .42); }
+html[data-theme="dark"] body :is(.tripadvisor-card .btn-small, .ce-tripadvisor-box .btn-ta-feedback) {
+    background: linear-gradient(135deg, #f1d188, #c9972d) !important;
+    box-shadow: 0 7px 16px rgba(0, 0, 0, .25);
+    color: #10291d !important;
+}

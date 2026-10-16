@@ -167,6 +167,11 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && state.open) close();
     });
+    document.addEventListener('pointerdown', event => {
+      if (!state.open) return;
+      if (panel.contains(event.target) || launcher.contains(event.target)) return;
+      close();
+    });
 
     window.CenturyAssistant = { open, close, ask: question => { open(); submitQuestion(question); } };
     prefillContactFromAssistant();
@@ -306,12 +311,14 @@
   });
 
   function setLoading(show) {
+    const panel = panelEl();
     const existing = document.getElementById('ce-ai-loading');
+    if (panel) panel.classList.toggle('is-answering', show);
     if (show && !existing) {
       const wrapper = document.createElement('div');
       wrapper.id = 'ce-ai-loading';
       wrapper.className = 'ce-ai-message assistant';
-      wrapper.innerHTML = '<div class="ce-ai-bubble"><span class="ce-ai-loading"><i></i><i></i><i></i> Thinking from our published pages…</span></div>';
+      wrapper.innerHTML = '<div class="ce-ai-bubble ce-ai-loading-bubble"><div class="ce-ai-loading-status"><strong>Preparing your answer</strong><span class="ce-ai-loading"><i></i><i></i><i></i> Thinking from our published pages...</span></div></div>';
       messagesEl().append(wrapper);
       messagesEl().scrollTop = messagesEl().scrollHeight;
     } else if (!show && existing) existing.remove();

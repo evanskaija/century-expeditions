@@ -24,13 +24,13 @@ motion.addEventListener('change',()=>{if(motion.matches)document.querySelectorAl
 if (!document.querySelector('link[data-century-assistant-style]')) {
   const assistantStyle = document.createElement('link');
   assistantStyle.rel = 'stylesheet';
-  assistantStyle.href = 'assistant.css?v=6';
+  assistantStyle.href = 'assistant.css?v=9';
   assistantStyle.dataset.centuryAssistantStyle = 'true';
   document.head.appendChild(assistantStyle);
 }
 if (!document.querySelector('script[data-century-assistant-script]')) {
   const assistantScript = document.createElement('script');
-  assistantScript.src = 'assistant.js?v=3';
+  assistantScript.src = 'assistant.js?v=5';
   assistantScript.dataset.centuryAssistantScript = 'true';
   document.body.appendChild(assistantScript);
 }
