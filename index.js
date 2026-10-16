@@ -687,6 +687,299 @@ document.addEventListener('DOMContentLoaded', () => {
         "By train:": "Kwa treni:"
     };
 
+    // Shared coverage for page copy that does not yet carry a data-sw attribute.
+    // Phrase translations run before word translations so titles and calls to action stay natural.
+    const pagePhraseTranslations = {
+        "Century Expeditions": "Century Expeditions",
+        "Safari Assistant": "Msaidizi wa Safari",
+        "Ask Safari Assistant": "Uliza Msaidizi wa Safari",
+        "Safari planning assistant": "Msaidizi wa kupanga safari",
+        "Open Safari Assistant": "Fungua Msaidizi wa Safari",
+        "Close assistant": "Funga msaidizi",
+        "Switch language": "Badili lugha",
+        "Send question": "Tuma swali",
+        "Let's plan this one step at a time": "Tupange safari hatua kwa hatua",
+        "Let’s plan this one step at a time": "Tupange safari hatua kwa hatua",
+        "Let's plan this step by step": "Tupange hatua kwa hatua",
+        "Let’s plan this step by step": "Tupange hatua kwa hatua",
+        "Ask about Tanzania, trips or booking...": "Uliza kuhusu Tanzania, safari au uhifadhi...",
+        "For your privacy, please do not share passport numbers or detailed medical records.": "Kwa faragha yako, tafadhali usishiriki nambari ya pasipoti au taarifa za kina za matibabu.",
+        "Thinking from our published pages…": "Natafuta katika kurasa zetu zilizochapishwa…",
+        "Thinking from our published pages...": "Natafuta katika kurasa zetu zilizochapishwa...",
+        "Family Trips": "Safari za Familia",
+        "Family Safari": "Safari ya Familia",
+        "Plan a family safari": "Panga safari ya familia",
+        "Family safari planning": "Mipango ya safari za familia",
+        "Honeymoon Trips": "Safari za Fungate",
+        "Honeymoon Safari": "Safari ya Fungate",
+        "Plan your honeymoon": "Panga fungate yako",
+        "Migration Trips": "Safari za Uhamiaji",
+        "Great Migration": "Uhamiaji Mkuu",
+        "Great Migration Safari": "Safari ya Uhamiaji Mkuu",
+        "Volunteer Programs": "Mipango ya Kujitolea",
+        "Volunteer programme": "Mpango wa kujitolea",
+        "Volunteer programmes": "Mipango ya kujitolea",
+        "Safari 4x4 Vehicles": "Magari ya Safari 4x4",
+        "Safari vehicles": "Magari ya safari",
+        "Travel Guide": "Mwongozo wa Kusafiri",
+        "Tanzania Travel Guide": "Mwongozo wa Kusafiri Tanzania",
+        "Health & Safety": "Afya na Usalama",
+        "Health and Safety": "Afya na Usalama",
+        "Booking & Payment": "Uhifadhi na Malipo",
+        "Booking and Payment": "Uhifadhi na Malipo",
+        "Booking & Payment Information": "Taarifa za Kuhifadhi na Malipo",
+        "Photo Gallery": "Picha za Safari",
+        "Gallery": "Matunzio",
+        "Destinations": "Maeneo",
+        "Safari Packages": "Vifurushi vya Safari",
+        "Safari Packages & Itineraries": "Vifurushi na Ratiba za Safari",
+        "Packages & Itineraries": "Vifurushi na Ratiba",
+        "Request a quote": "Omba bei",
+        "Request Quote": "Omba Bei",
+        "Request an enquiry": "Tuma ombi",
+        "Send Inquiry": "Tuma Ombi",
+        "Submit Inquiry": "Tuma Ombi",
+        "Book Now": "Weka Nafasi Sasa",
+        "Book your safari": "Weka nafasi ya safari yako",
+        "Plan Your Safari": "Panga Safari Yako",
+        "Plan your safari": "Panga safari yako",
+        "Start planning": "Anza kupanga",
+        "Learn More": "Jifunze Zaidi",
+        "Read More": "Soma Zaidi",
+        "Read Less": "Soma Kidogo",
+        "View Details": "Tazama Maelezo",
+        "View package": "Tazama kifurushi",
+        "View packages": "Tazama vifurushi",
+        "Explore Tanzania": "Gundua Tanzania",
+        "Explore destinations": "Gundua maeneo",
+        "Discover Tanzania": "Gundua Tanzania",
+        "Contact Us": "Wasiliana Nasi",
+        "Contact Century Expeditions": "Wasiliana na Century Expeditions",
+        "Get in touch": "Wasiliana nasi",
+        "Give Feedback": "Toa Maoni",
+        "Back to top": "Rudi juu",
+        "Next": "Ifuatayo",
+        "Previous": "Iliyotangulia",
+        "Close": "Funga",
+        "Menu": "Menyu",
+        "Search": "Tafuta",
+        "Filter": "Chuja",
+        "All": "Zote",
+        "Choose one": "Chagua moja",
+        "Select an option": "Chagua chaguo",
+        "Your name": "Jina lako",
+        "Your email": "Barua pepe yako",
+        "Your phone": "Simu yako",
+        "Your Country": "Nchi yako",
+        "Country": "Nchi",
+        "Message": "Ujumbe",
+        "Your message": "Ujumbe wako",
+        "Number of travellers": "Idadi ya wasafiri",
+        "Travel dates": "Tarehe za kusafiri",
+        "Arrival date": "Tarehe ya kuwasili",
+        "Departure date": "Tarehe ya kuondoka",
+        "Adults": "Watu wazima",
+        "Children": "Watoto",
+        "Guests": "Wageni",
+        "Accommodation": "Malazi",
+        "Budget": "Bajeti",
+        "Special requests": "Mahitaji maalum",
+        "Safari type": "Aina ya safari",
+        "Travel experience": "Uzoefu wa kusafiri",
+        "Why choose us": "Kwa nini utuchague",
+        "What our guests say": "Wageni wetu wanasema nini",
+        "Frequently Asked Questions": "Maswali Yanayoulizwa Mara kwa Mara",
+        "Frequently asked questions": "Maswali yanayoulizwa mara kwa mara",
+        "Our story": "Hadithi yetu",
+        "Our team": "Timu yetu",
+        "Our commitment": "Ahadi yetu",
+        "Our values": "Maadili yetu",
+        "Responsible travel": "Usafiri wenye kuwajibika",
+        "Travel information": "Taarifa za kusafiri",
+        "Before you travel": "Kabla ya kusafiri",
+        "Getting there": "Jinsi ya kufika",
+        "Getting around": "Jinsi ya kusafiri ndani ya nchi",
+        "What to pack": "Vitu vya kufunga",
+        "What to expect": "Mambo ya kutarajia",
+        "Best time to visit": "Wakati bora wa kutembelea",
+        "Where to stay": "Mahali pa kukaa",
+        "Things to do": "Mambo ya kufanya",
+        "Wildlife": "Wanyamapori",
+        "Wildlife safari": "Safari ya wanyamapori",
+        "Beach holiday": "Likizo ya pwani",
+        "Cultural experiences": "Uzoefu wa kitamaduni",
+        "Mountain trekking": "Safari ya kupanda mlima",
+        "Luxury travel": "Usafiri wa kifahari",
+        "Family-friendly": "Inayofaa familia",
+        "Private safari": "Safari ya binafsi",
+        "Group safari": "Safari ya kikundi",
+        "Northern Tanzania": "Tanzania Kaskazini",
+        "Southern Tanzania": "Tanzania Kusini",
+        "Western Tanzania": "Tanzania Magharibi",
+        "Zanzibar and the coast": "Zanzibar na Pwani",
+        "National Park": "Hifadhi ya Taifa",
+        "Conservation Area": "Eneo la Hifadhi",
+        "Lake Manyara National Park": "Hifadhi ya Taifa ya Ziwa Manyara",
+        "Serengeti National Park": "Hifadhi ya Taifa ya Serengeti",
+        "Tarangire National Park": "Hifadhi ya Taifa ya Tarangire",
+        "Nyerere National Park": "Hifadhi ya Taifa ya Nyerere",
+        "Ruaha National Park": "Hifadhi ya Taifa ya Ruaha",
+        "Mikumi National Park": "Hifadhi ya Taifa ya Mikumi",
+        "Katavi National Park": "Hifadhi ya Taifa ya Katavi",
+        "Gombe Stream National Park": "Hifadhi ya Taifa ya Gombe Stream",
+        "Ngorongoro Conservation Area": "Eneo la Hifadhi la Ngorongoro",
+        "Kilimanjaro experiences": "Uzoefu wa Kilimanjaro",
+        "Zanzibar holidays": "Likizo za Zanzibar",
+        "The Great Migration": "Uhamiaji Mkuu",
+        "River crossing": "Kuvuka mto",
+        "Game drive": "Safari ya kuangalia wanyamapori",
+        "Game drives": "Safari za kuangalia wanyamapori",
+        "Boat safari": "Safari ya mashua",
+        "Walking safari": "Safari ya kutembea",
+        "Big 5": "Wanyama 5 wakubwa",
+        "Luxury lodge": "Lodge ya kifahari",
+        "Tented camp": "Kambi ya hema",
+        "Airport transfer": "Usafiri wa uwanja wa ndege",
+        "Airport transfers": "Usafiri wa viwanja vya ndege",
+        "per person": "kwa mtu",
+        "per night": "kwa usiku",
+        "days": "siku",
+        "day": "siku",
+        "years": "miaka",
+        "year": "mwaka",
+        "hours": "masaa",
+        "hour": "saa",
+        "minutes": "dakika",
+        "minute": "dakika",
+        "All Rights Reserved": "Haki zote zimehifadhiwa",
+        "Licensed & Insured": "Imepewa leseni na ina bima",
+        "TANAPA Partner": "Mshirika wa TANAPA",
+        "100% Licensed & Insured": "Ina leseni na bima kamili",
+        "Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania": "Asasi mnara, ghorofa ya nne, Mtaa wa Ohio, Dar es Salaam, Tanzania",
+        "TripAdvisor Excellence": "Ubora wa TripAdvisor",
+        "Ranked #1 Safari Operator": "Imeorodheshwa kuwa mwendeshaji wa safari #1",
+        "Available 24/7": "Inapatikana saa 24/7",
+        "See All": "Tazama Zote",
+        "Popular Destinations": "Maeneo Maarufu",
+        "Switch between English and Swahili": "Badili kati ya Kiingereza na Kiswahili",
+        "Dark mode": "Hali ya giza",
+        "Light mode": "Hali ya mwanga",
+        "Rate / person": "Bei / mtu",
+        "Rate per person": "Bei kwa mtu",
+        "Estimated total": "Jumla iliyokadiriwa",
+        "Fixed listed rate": "Bei iliyoorodheshwa iliyowekwa",
+        "Travellers": "Wasafiri",
+        "Select Trip": "Chagua Safari",
+        "View Trip": "Tazama Safari",
+        "Create Your Own Journey": "Unda Safari Yako",
+        "Choose your destinations, duration and travel style.": "Chagua maeneo yako, muda na mtindo wa kusafiri.",
+        "Customise My Trip": "Binafsisha Safari Yangu",
+        "Custom Journey": "Safari Maalum",
+        "Personalised quotation": "Nukuu maalum",
+        "Your dates. Your pace.": "Tarehe zako. Mwendo wako.",
+        "Choose the places and experiences you love.": "Chagua maeneo na uzoefu unaoupenda.",
+        "Arrival": "Kuwasili",
+        "Departure": "Kuondoka",
+        "Official guidance last reviewed": "Mwongozo rasmi ulikaguliwa mwisho",
+        "Recheck before departure.": "Kagua tena kabla ya kuondoka.",
+        "The guide could not load.": "Mwongozo haukuweza kupakiwa.",
+        "Please refresh": "Tafadhali pakia upya",
+        "Update": "Sasisha",
+        "Download": "Pakua",
+        "Import": "Ingiza",
+        "Export": "Hamisha",
+        "Submit": "Tuma",
+        "Sending your request": "Inatuma ombi lako",
+        "Thank you": "Asante",
+        "Your request could not be sent.": "Ombi lako halikuweza kutumwa.",
+        "Please try again": "Tafadhali jaribu tena",
+        "Best Seller": "INAYOPENDWA ZAIDI",
+        "6 Days": "Siku 6",
+        "10 Days": "Siku 10",
+        "12 Days": "Siku 12",
+        "(142 reviews)": "— Maoni 142",
+        "(98 reviews)": "— Maoni 98",
+        "(115 reviews)": "— Maoni 115",
+        "(82 reviews)": "— Maoni 82",
+        "Serengeti • Ngorongoro • Tarangire": "Serengeti • Ngorongoro • Tarangire",
+        "Serengeti • Ngorongoro • Zanzibar": "Serengeti • Ngorongoro • Zanzibar",
+        "Mara River • Serengeti • Manyara": "Mto Mara • Serengeti • Manyara",
+        "Ruaha • Nyerere • Serengeti • Crater": "Ruaha • Nyerere • Serengeti • Kreta",
+        "Private 4x4": "Gari binafsi lenye mfumo wa kuendesha magurudumu yote manne",
+        "Luxury Camps": "Kambi za kifahari",
+        "Big Five": "Simba, chui, tembo, kifaru na nyati",
+        "Bush Flight": "Safari ya ndege kuelekea maeneo ya porini",
+        "5★ Beach Villa": "Nyumba ya kifahari ya nyota tano ufukweni",
+        "All-Inclusive": "Malazi, milo na huduma zilizoainishwa zimejumuishwa",
+        "River Crossings": "Nyumbu wakivuka mito",
+        "Mobile Camps": "Kambi zinazohamishwa kufuata makundi ya wanyama",
+        "Photo Safari": "Safari za upigaji picha",
+        "Walking Safari": "Matembezi ya kuongozwa porini",
+        "Boat Safari": "Safari za mashua",
+        "Remote Wilds": "Maeneo ya porini yaliyo mbali na misongamano",
+        "Explore Serengeti Safari": "Gundua safari ya Serengeti",
+        "Explore Zanzibar Beach": "Gundua fukwe za Zanzibar",
+        "Explore Kilimanjaro Climb": "Gundua kupanda Kilimanjaro",
+        "Explore Ngorongoro Crater": "Gundua Kreta ya Ngorongoro",
+        "Serengeti Safari Lion": "Simba katika Hifadhi ya Taifa ya Serengeti",
+        "Northern Tanzania Safari": "Safari ya Kaskazini mwa Tanzania",
+        "Luxury Safari &amp; Zanzibar Retreat": "Safari ya Kifahari na Mapumziko Zanzibar",
+        "Great Migration Safari": "Safari ya Uhamaji Mkuu wa Nyumbu",
+        "South &amp; North Tanzania Safari": "Safari ya Kusini na Kaskazini mwa Tanzania",
+        "TripAdvisor Rating": "Ukadiriaji kwenye TripAdvisor",
+        "100% Licensed &amp; Insured": "Ina leseni na bima kamili",
+        "TANAPA Partner": "Mshirika wa TANAPA",
+        "100% Licensed & Insured": "Ina leseni na bima kamili",
+        "Asasi Tower, 4th Floor, Ohio St, Dar es Salaam, Tanzania": "Asasi mnara, ghorofa ya nne, Mtaa wa Ohio, Dar es Salaam, Tanzania"
+    };
+
+    const swahiliWordTranslations = {
+        "about": "kuhusu", "accommodation": "malazi", "adventure": "matembezi", "adventures": "matembezi",
+        "advice": "ushauri", "africa": "afrika", "airport": "uwanja wa ndege", "all": "zote", "and": "na",
+        "area": "eneo", "areas": "maeneo", "around": "karibu", "available": "inapatikana", "best": "bora",
+        "booking": "uhifadhi", "bookings": "uhifadhi", "camp": "kambi", "camps": "kambi", "car": "gari",
+        "care": "utunzaji", "celebration": "sherehe", "celebrations": "sherehe", "city": "jiji", "clean": "safi",
+        "coast": "pwani", "comfortable": "starehe", "community": "jamii", "communities": "jamii", "contact": "wasiliana",
+        "culture": "utamaduni", "cultural": "kitamaduni", "custom": "maalum", "customize": "binafsisha", "day": "siku",
+        "days": "siku", "details": "maelezo", "destination": "eneo", "destinations": "maeneo", "discover": "gundua",
+        "document": "hati", "documents": "hati", "drive": "endesha", "drives": "safari", "email": "barua pepe",
+        "emergency": "dharura", "experience": "uzoefu", "experiences": "uzoefu", "explore": "gundua", "family": "familia",
+        "feedback": "maoni", "find": "pata", "food": "chakula", "forest": "msitu", "from": "kutoka", "guide": "mwongozo",
+        "guided": "inayoongozwa", "health": "afya", "help": "msaada", "holiday": "likizo", "holidays": "likizo",
+        "home": "nyumbani", "hotel": "hoteli", "hotels": "hoteli", "information": "taarifa", "insurance": "bima",
+        "interest": "shauku", "interests": "mapendeleo", "itinerary": "ratiba", "itineraries": "ratiba", "journey": "safari",
+        "journeys": "safari", "kilimanjaro": "Kilimanjaro", "lake": "ziwa", "lodge": "lodge", "lodges": "lodge", "local": "wa hapa",
+        "location": "mahali", "luxury": "kifahari", "maasai": "Wamasai", "medical": "matibabu", "message": "ujumbe",
+        "more": "zaidi", "mountain": "mlima", "mountains": "milima", "national": "taifa", "nature": "asili", "need": "hitaji",
+        "needs": "mahitaji", "night": "usiku", "nights": "usiku", "north": "kaskazini", "northern": "kaskazini", "number": "nambari",
+        "offers": "inatoa", "official": "rasmi", "operator": "mwendeshaji", "options": "chaguo", "our": "yetu", "park": "hifadhi",
+        "parks": "hifadhi", "passenger": "abiria", "passengers": "abiria", "payment": "malipo", "payments": "malipo", "people": "watu",
+        "phone": "simu", "photo": "picha", "photos": "picha", "place": "mahali", "places": "maeneo", "plan": "panga", "planning": "kupanga",
+        "please": "tafadhali", "popular": "maarufu", "price": "bei", "prices": "bei", "privacy": "faragha", "private": "binafsi",
+        "programme": "mpango", "programmes": "mipango", "provide": "toa", "quote": "bei", "read": "soma", "recommend": "pendekeza",
+        "recommended": "inayopendekezwa", "region": "eneo", "regions": "maeneo", "request": "omba", "requests": "maombi", "resources": "rasilimali",
+        "responsible": "wenye kuwajibika", "river": "mto", "road": "barabara", "safari": "safari", "safety": "usalama", "sand": "mchanga",
+        "school": "shule", "seasons": "misimu", "services": "huduma", "share": "shiriki", "shore": "ufukwe", "show": "onyesha",
+        "south": "kusini", "southern": "kusini", "stay": "kaa", "stays": "malazi", "support": "msaada", "team": "timu", "things": "mambo",
+        "time": "muda", "to": "kwa", "tour": "ziara", "tours": "ziara", "travel": "kusafiri", "traveller": "msafiri", "travellers": "wasafiri",
+        "trip": "safari", "trips": "safari", "trust": "amini", "us": "sisi", "vehicle": "gari", "vehicles": "magari", "view": "tazama",
+        "volunteer": "kujitolea", "volunteers": "wajitolea", "water": "maji", "way": "njia", "ways": "njia", "west": "magharibi", "western": "magharibi",
+        "wildlife": "wanyamapori", "with": "na", "without": "bila", "world": "dunia", "year": "mwaka", "years": "miaka", "your": "yako",
+        "you": "wewe", "the": "ya", "of": "ya", "for": "kwa", "in": "katika", "on": "kwenye", "or": "au", "is": "ni", "are": "ni", "be": "kuwa",
+        "this": "hii", "that": "hiyo", "these": "hizi", "those": "hizo", "what": "nini", "where": "wapi", "when": "lini", "which": "ipi",
+        "how": "jinsi", "why": "kwa nini", "who": "nani", "more": "zaidi", "less": "kidogo", "new": "mpya", "first": "kwanza", "next": "ifuatayo",
+        "safaris": "safari", "tanzania's": "ya Tanzania", "can": "inaweza", "will": "ita", "dates": "tarehe", "encounters": "mikutano", "encounter": "mkutano", "floor": "sakafu", "suitable": "inayofaa", "before": "kabla", "landscape": "mandhari", "landscapes": "mandhari", "specialists": "wataalamu", "plains": "tambarare", "great": "mkuu", "tower": "mnara", "now": "sasa", "ranked": "imeorodheshwa", "premier": "bora", "dark": "giza", "close": "funga", "menu": "menyu", "give": "toa", "licensed": "yenye leseni", "excellence": "ubora", "insured": "yenye bima", "rights": "haki", "reserved": "zimehifadhiwa", "partner": "mshirika", "partners": "washirika", "visit": "tembelea", "preferences": "mapendeleo", "pace": "mwendo", "discuss": "jadili", "across": "kote", "starting": "kuanzia", "seasonal": "ya msimu", "follow": "fuata", "content": "maudhui", "every": "kila", "remarkable": "ya kipekee", "through": "kupitia", "open": "fungua", "scenery": "mandhari", "tell": "eleza", "guides": "waongoza", "quotation": "nukuu", "crater": "kreta", "island": "kisiwa", "bush": "pori", "programs": "mipango", "select": "chagua", "book": "weka nafasi", "booking": "uhifadhi", "help": "saidia", "resources": "rasilimali", "details": "maelezo", "now": "sasa", "image": "picha", "images": "picha", "logo": "nembo", "logos": "nembo", "background": "usuli", "landmark": "alama ya eneo", "popular": "maarufu", "available": "inapatikana", "included": "imejumuishwa", "excluded": "haijajumuishwa"
+    };
+
+    const translateString = (value) => {
+        if (typeof value !== 'string' || !value) return value;
+        let translated = value;
+        const phraseEntries = Object.entries({ ...translationDict, ...pagePhraseTranslations }).sort((a, b) => b[0].length - a[0].length);
+        phraseEntries.forEach(([english, swahili]) => {
+            if (translated.includes(english)) translated = translated.split(english).join(swahili);
+        });
+        return translated.replace(/\b[A-Za-z][A-Za-z'’\-]*\b/g, token => swahiliWordTranslations[token.toLowerCase()] || token);
+    };
     const translateTextNode = (node, lang) => {
         if (node.nodeType === Node.TEXT_NODE) {
             const trimmed = node.textContent.trim();
@@ -698,20 +991,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             if (lang === 'sw') {
-                if (translationDict[trimmed]) {
-                    node.textContent = node.textContent.replace(trimmed, translationDict[trimmed]);
-                } else {
-                    let translated = trimmed;
-                    let modified = false;
-                    for (const [enKey, swVal] of Object.entries(translationDict)) {
-                        if (translated.includes(enKey)) {
-                            translated = translated.split(enKey).join(swVal);
-                            modified = true;
-                        }
-                    }
-                    if (modified) {
-                        node.textContent = translated;
-                    }
+                const translated = translateString(trimmed);
+                if (translated !== trimmed) {
+                    node.textContent = node.textContent.replace(trimmed, translated);
                 }
             } else {
                 // Restore original English text
@@ -747,16 +1029,23 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('century-lang', lang);
         document.documentElement.lang = lang === 'sw' ? 'sw' : 'en';
 
-        // Translate explicit data-en elements
+        // Translate explicit data-en elements, including older pages that only have English source copy.
         const elements = document.querySelectorAll('[data-en]');
         elements.forEach(el => {
-            const translation = el.getAttribute(`data-${lang}`);
+            const english = el.getAttribute('data-en') || '';
+            const translation = lang === 'en' ? english : (el.getAttribute('data-sw') || translateString(english));
             if (translation) {
                 if (translation.includes('<') && translation.includes('>')) {
                     el.innerHTML = translation;
                 } else if (el.children.length > 0) {
-                    // Try to preserve icons (typically <i> or <span>) by replacing only text nodes
+                    // Preserve icons and other child elements while changing the visible label.
                     let textNode = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
+                    if (!textNode) {
+                        for (const descendant of el.querySelectorAll('*')) {
+                            textNode = Array.from(descendant.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
+                            if (textNode) break;
+                        }
+                    }
                     if (textNode) {
                         textNode.textContent = translation;
                     } else {
@@ -768,25 +1057,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Translate placeholders
-        const inputs = document.querySelectorAll('[placeholder]');
-        inputs.forEach(input => {
-            const ph = input.getAttribute('placeholder');
-            if (ph) {
-                if (input._originalPlaceholder === undefined) {
-                    input._originalPlaceholder = ph;
+        const translatableAttributes = ['alt', 'title', 'aria-label', 'placeholder'];
+        document.querySelectorAll('[alt], [title], [aria-label], [placeholder]').forEach(el => {
+            translatableAttributes.forEach(attribute => {
+                if (!el.hasAttribute(attribute)) return;
+                const originalAttribute = `data-century-original-${attribute}`;
+                if (!el.hasAttribute(originalAttribute)) {
+                    el.setAttribute(originalAttribute, el.getAttribute(attribute) || '');
                 }
-                if (lang === 'sw') {
-                    const cleaned = ph.trim().replace(/^[.,;:!?()*\-&|•"' \t\n\r]+|[.,;:!?()*\-&|•"' \t\n\r]+$/g, "");
-                    if (translationDict[ph]) {
-                        input.setAttribute('placeholder', translationDict[ph]);
-                    } else if (translationDict[cleaned]) {
-                        input.setAttribute('placeholder', translationDict[cleaned]);
-                    }
-                } else {
-                    input.setAttribute('placeholder', input._originalPlaceholder);
-                }
+                const english = el.getAttribute(originalAttribute) || '';
+                el.setAttribute(attribute, lang === 'sw' ? translateString(english) : english);
+            });
+        });
+
+        const titleElement = document.querySelector('title');
+        if (titleElement) {
+            if (!titleElement.hasAttribute('data-century-original-title')) {
+                titleElement.setAttribute('data-century-original-title', titleElement.textContent || '');
             }
+            const originalTitle = titleElement.getAttribute('data-century-original-title') || '';
+            titleElement.textContent = lang === 'sw' ? translateString(originalTitle) : originalTitle;
+        }
+        document.querySelectorAll('meta[name="description"], meta[property="og:title"], meta[property="og:description"]').forEach(meta => {
+            if (!meta.hasAttribute('data-century-original-content')) {
+                meta.setAttribute('data-century-original-content', meta.getAttribute('content') || '');
+            }
+            const originalContent = meta.getAttribute('data-century-original-content') || '';
+            meta.setAttribute('content', lang === 'sw' ? translateString(originalContent) : originalContent);
         });
 
         // Translate other page text dynamically using the dictionary
@@ -826,7 +1123,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         console.log(`Language applied: ${lang}`);
+        window.dispatchEvent(new CustomEvent('century-language-change', { detail: { lang } }));
     };
+
+    window.applyCenturyLanguage = applyLang;
 
     // Real-time tab synchronization event listener
     window.addEventListener('storage', (e) => {
@@ -842,6 +1142,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initTheme();
     initLang();
+
+    // Page-specific scripts and fetched guide content can render after the first pass.
+    // Re-run once after DOMContentLoaded handlers, then translate newly inserted content while Swahili is active.
+    setTimeout(() => {
+        const currentLanguage = localStorage.getItem('century-lang') || 'en';
+        if (currentLanguage === 'sw') applyLang('sw');
+    }, 0);
+    const languageObserver = new MutationObserver(records => {
+        if ((localStorage.getItem('century-lang') || 'en') !== 'sw') return;
+        records.forEach(record => record.addedNodes.forEach(node => {
+            if (node.nodeType !== Node.ELEMENT_NODE || node.tagName === 'SCRIPT' || node.tagName === 'STYLE') return;
+            const dynamicElements = [node, ...node.querySelectorAll('*')];
+            dynamicElements.forEach(el => {
+                if (el.hasAttribute('data-en')) {
+                    const english = el.getAttribute('data-en') || '';
+                    const translation = el.getAttribute('data-sw') || translateString(english);
+                    const textNode = Array.from(el.childNodes).find(child => child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0);
+                    if (textNode) textNode.textContent = translation;
+                    else if (!el.children.length) el.textContent = translation;
+                }
+                ['alt', 'title', 'aria-label', 'placeholder'].forEach(attribute => {
+                    if (!el.hasAttribute(attribute)) return;
+                    const originalAttribute = `data-century-original-${attribute}`;
+                    if (!el.hasAttribute(originalAttribute)) el.setAttribute(originalAttribute, el.getAttribute(attribute) || '');
+                    el.setAttribute(attribute, translateString(el.getAttribute(originalAttribute) || ''));
+                });
+            });
+            translateTextNode(node, 'sw');
+        }));
+    });
+    languageObserver.observe(document.body, { childList: true, subtree: true });
 
     // Header scroll effect
     const header = document.querySelector('.header');

@@ -30,7 +30,7 @@ if (!document.querySelector('link[data-century-assistant-style]')) {
 }
 if (!document.querySelector('script[data-century-assistant-script]')) {
   const assistantScript = document.createElement('script');
-  assistantScript.src = 'assistant.js?v=2';
+  assistantScript.src = 'assistant.js?v=3';
   assistantScript.dataset.centuryAssistantScript = 'true';
   document.body.appendChild(assistantScript);
 }

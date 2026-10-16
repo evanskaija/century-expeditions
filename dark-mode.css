@@ -1,0 +1,681 @@
+/*
+ * Century Expeditions - Colorful Dark Mode
+ * Keeps the safari identity while adding distinct surfaces and accents.
+ */
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-color: #06150f !important;
+    --card-bg: #102b20 !important;
+    --section-bg: #0a2118 !important;
+    --cream-bg: #0a2118 !important;
+    --header-bg: rgba(6, 21, 15, 0.96) !important;
+    --footer-bg: #03100b !important;
+    --text-main: #f7f2e4 !important;
+    --text-muted: #b7c8bd !important;
+    --border-color: rgba(231, 189, 81, 0.28) !important;
+    --primary-green: #1d6b50 !important;
+    --safari-brown: #b8754e !important;
+    --accent-gold: #e7bd51 !important;
+    --accent-gradient: linear-gradient(135deg, #f6d878 0%, #bd8125 100%) !important;
+    --primary-gradient: linear-gradient(135deg, #247b5b 0%, #0a3324 100%) !important;
+    --ce-dark-0: #03100b;
+    --ce-dark-1: #06150f;
+    --ce-dark-2: #0a2118;
+    --ce-dark-3: #102b20;
+    --ce-dark-4: #173a2b;
+    --ce-cream: #f7f2e4;
+    --ce-muted: #b7c8bd;
+    --ce-gold: #e7bd51;
+    --ce-teal: #48c5a3;
+    --ce-amber: #f0a15e;
+    --ce-sky: #78b8e8;
+    --ce-lime: #b8cf68;
+    --ce-purple: #ae9be8;
+}
+
+html[data-theme="dark"] body {
+    color: var(--ce-cream) !important;
+    background-color: var(--ce-dark-1) !important;
+    background-image:
+        radial-gradient(circle at 8% 8%, rgba(72, 197, 163, 0.12), transparent 27rem),
+        radial-gradient(circle at 92% 28%, rgba(231, 189, 81, 0.08), transparent 24rem),
+        linear-gradient(145deg, #06150f 0%, #081b14 48%, #04110c 100%) !important;
+}
+
+html[data-theme="dark"] main,
+html[data-theme="dark"] .main-content,
+html[data-theme="dark"] .page-wrapper {
+    background: transparent !important;
+}
+
+html[data-theme="dark"] .section,
+html[data-theme="dark"] .section-alt,
+html[data-theme="dark"] .content-section,
+html[data-theme="dark"] .page-section {
+    background-color: rgba(10, 33, 24, 0.72) !important;
+}
+
+html[data-theme="dark"] .section:nth-of-type(even),
+html[data-theme="dark"] .section-alt:nth-of-type(even) {
+    background-color: rgba(6, 21, 15, 0.78) !important;
+}
+
+/* Shared type hierarchy: headings stay bright, supporting copy becomes softer. */
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+    color: var(--ce-cream) !important;
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] li,
+html[data-theme="dark"] label,
+html[data-theme="dark"] td,
+html[data-theme="dark"] th {
+    color: var(--ce-muted) !important;
+}
+
+html[data-theme="dark"] strong,
+html[data-theme="dark"] b {
+    color: #f1cc69 !important;
+}
+
+html[data-theme="dark"] a:not(.btn):not(.btn-primary):not(.btn-outline) {
+    color: var(--ce-teal) !important;
+}
+
+html[data-theme="dark"] a:not(.btn):not(.btn-primary):not(.btn-outline):hover {
+    color: var(--ce-gold) !important;
+}
+
+html[data-theme="dark"] ::selection {
+    color: #07170e;
+    background: #e7bd51;
+}
+
+/* Header and navigation */
+html[data-theme="dark"] header.header,
+html[data-theme="dark"] .header,
+html[data-theme="dark"] #main-header,
+html[data-theme="dark"] .luxury-header-editorial {
+    background: linear-gradient(110deg, rgba(5, 22, 15, 0.98), rgba(12, 52, 38, 0.97) 58%, rgba(56, 55, 28, 0.96)) !important;
+    border-bottom-color: rgba(231, 189, 81, 0.42) !important;
+    box-shadow: 0 8px 34px rgba(0, 0, 0, 0.48), 0 1px 0 rgba(72, 197, 163, 0.18) !important;
+}
+
+html[data-theme="dark"] .header.luxury-header.scrolled {
+    background: linear-gradient(110deg, #04120c, #0d3023 68%, #3b3118) !important;
+}
+
+html[data-theme="dark"] .nav ul li a,
+html[data-theme="dark"] .nav-links a,
+html[data-theme="dark"] .header a,
+html[data-theme="dark"] .mobile-menu-title {
+    color: #f7f2e4 !important;
+}
+
+html[data-theme="dark"] .nav ul li a:hover,
+html[data-theme="dark"] .nav ul li a.active,
+html[data-theme="dark"] .nav-links a:hover,
+html[data-theme="dark"] .header a:hover {
+    color: #f4cb62 !important;
+}
+
+html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .dropdown .dropdown-menu {
+    background: linear-gradient(145deg, #12382a, #0a2118) !important;
+    border-color: rgba(72, 197, 163, 0.42) !important;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.52) !important;
+}
+
+html[data-theme="dark"] .dropdown-menu li a,
+html[data-theme="dark"] .dropdown-menu a {
+    color: #e8f0e9 !important;
+}
+
+html[data-theme="dark"] .dropdown-menu li a:hover,
+html[data-theme="dark"] .dropdown-menu a:hover {
+    color: #07170e !important;
+    background: linear-gradient(90deg, #e7bd51, #f0a15e) !important;
+}
+
+/* Controls and buttons */
+html[data-theme="dark"] .toggle-btn,
+html[data-theme="dark"] .mobile-menu-controls .toggle-btn {
+    color: #f7f2e4 !important;
+    background: rgba(72, 197, 163, 0.10) !important;
+    border-color: rgba(72, 197, 163, 0.45) !important;
+}
+
+html[data-theme="dark"] .toggle-btn:hover,
+html[data-theme="dark"] .mobile-menu-controls .toggle-btn:hover {
+    color: #07170e !important;
+    background: #48c5a3 !important;
+    border-color: #48c5a3 !important;
+}
+
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .btn-card,
+html[data-theme="dark"] .book-now-item .btn,
+html[data-theme="dark"] .footer-top .btn,
+html[data-theme="dark"] .cta-section .btn-primary {
+    color: #07170e !important;
+    background: linear-gradient(135deg, #f5d776 0%, #e7bd51 48%, #b97922 100%) !important;
+    border-color: transparent !important;
+    box-shadow: 0 9px 24px rgba(231, 189, 81, 0.28) !important;
+}
+
+html[data-theme="dark"] .btn-primary:hover,
+html[data-theme="dark"] .btn-card:hover,
+html[data-theme="dark"] .book-now-item .btn:hover,
+html[data-theme="dark"] .footer-top .btn:hover,
+html[data-theme="dark"] .cta-section .btn-primary:hover {
+    color: #06150f !important;
+    background: linear-gradient(135deg, #ffe9a0 0%, #f0c75e 55%, #d49432 100%) !important;
+    box-shadow: 0 13px 32px rgba(231, 189, 81, 0.42) !important;
+}
+
+html[data-theme="dark"] .btn-outline,
+html[data-theme="dark"] .hero-btn-secondary {
+    color: #83e3c3 !important;
+    background: rgba(72, 197, 163, 0.08) !important;
+    border-color: rgba(72, 197, 163, 0.70) !important;
+}
+
+html[data-theme="dark"] .btn-outline:hover,
+html[data-theme="dark"] .hero-btn-secondary:hover {
+    color: #06150f !important;
+    background: #48c5a3 !important;
+    border-color: #48c5a3 !important;
+}
+
+html[data-theme="dark"] .luxury-cta-btn,
+html[data-theme="dark"] .hero-btn-primary {
+    color: #07170e !important;
+    background: linear-gradient(135deg, #ffe28a 0%, #f0c75e 42%, #c58a2b 100%) !important;
+}
+
+/* Reusable surfaces across destination, safari, guide and booking pages. */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .booking-form,
+html[data-theme="dark"] .booking-sidebar,
+html[data-theme="dark"] .booking-card,
+html[data-theme="dark"] .article-card,
+html[data-theme="dark"] .highlight-card,
+html[data-theme="dark"] .why-choose-card,
+html[data-theme="dark"] .experience-card,
+html[data-theme="dark"] .safari-card,
+html[data-theme="dark"] .tip-card,
+html[data-theme="dark"] .trip-featured-card,
+html[data-theme="dark"] .trip-card,
+html[data-theme="dark"] .package-card,
+html[data-theme="dark"] .contact-card,
+html[data-theme="dark"] .contact-form,
+html[data-theme="dark"] .vehicle-card,
+html[data-theme="dark"] .review-card,
+html[data-theme="dark"] .testimonial-card,
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .faq-details,
+html[data-theme="dark"] .comparison-box,
+html[data-theme="dark"] .season-card,
+html[data-theme="dark"] .info-card {
+    background: linear-gradient(145deg, #12382a 0%, #0b241a 100%) !important;
+    border-color: rgba(72, 197, 163, 0.30) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(231, 189, 81, 0.07) !important;
+}
+
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .article-card:hover,
+html[data-theme="dark"] .highlight-card:hover,
+html[data-theme="dark"] .why-choose-card:hover,
+html[data-theme="dark"] .experience-card:hover,
+html[data-theme="dark"] .safari-card:hover,
+html[data-theme="dark"] .tip-card:hover,
+html[data-theme="dark"] .trip-featured-card:hover,
+html[data-theme="dark"] .trip-card:hover,
+html[data-theme="dark"] .package-card:hover,
+html[data-theme="dark"] .vehicle-card:hover {
+    border-color: rgba(231, 189, 81, 0.78) !important;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.42), 0 0 24px rgba(231, 189, 81, 0.12) !important;
+}
+
+html[data-theme="dark"] .article-card h2,
+html[data-theme="dark"] .highlight-card h3,
+html[data-theme="dark"] .why-choose-card h3,
+html[data-theme="dark"] .experience-card h3,
+html[data-theme="dark"] .safari-content h3,
+html[data-theme="dark"] .trip-featured-card h3,
+html[data-theme="dark"] .package-card h3 {
+    color: #f7f2e4 !important;
+}
+
+html[data-theme="dark"] .article-card p,
+html[data-theme="dark"] .highlight-card p,
+html[data-theme="dark"] .why-choose-card p,
+html[data-theme="dark"] .experience-card p,
+html[data-theme="dark"] .safari-content p,
+html[data-theme="dark"] .trip-featured-card p,
+html[data-theme="dark"] .package-card p {
+    color: #b7c8bd !important;
+}
+
+html[data-theme="dark"] .price,
+html[data-theme="dark"] .card-category,
+html[data-theme="dark"] .sub-heading,
+html[data-theme="dark"] .tips-column-title,
+html[data-theme="dark"] .widget-title {
+    color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .tip-card .tip-icon,
+html[data-theme="dark"] .why-us-item i,
+html[data-theme="dark"] .card-icons i {
+    color: #48c5a3 !important;
+    background-color: rgba(72, 197, 163, 0.14) !important;
+}
+
+/* Inputs and interactive panels */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+    color: #f7f2e4 !important;
+    background: #0b2a1e !important;
+    border-color: rgba(72, 197, 163, 0.42) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #89a99b !important;
+}
+
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+    border-color: #e7bd51 !important;
+    box-shadow: 0 0 0 3px rgba(231, 189, 81, 0.16) !important;
+}
+
+html[data-theme="dark"] .filter-btn {
+    color: #b7c8bd !important;
+    background: rgba(72, 197, 163, 0.08) !important;
+    border-color: rgba(72, 197, 163, 0.40) !important;
+}
+
+html[data-theme="dark"] .filter-btn.active,
+html[data-theme="dark"] .filter-btn:hover {
+    color: #06150f !important;
+    background: #48c5a3 !important;
+    border-color: #48c5a3 !important;
+}
+
+/* Homepage cards and bands use alternating safari accents. */
+html[data-theme="dark"] .luxury-stats-card {
+    background: linear-gradient(115deg, #112f23 0%, #183c2b 55%, #3a3219 100%) !important;
+    border-color: rgba(231, 189, 81, 0.56) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34), 0 0 24px rgba(231, 189, 81, 0.10) !important;
+}
+
+html[data-theme="dark"] .luxury-stat-item {
+    border-right-color: rgba(231, 189, 81, 0.28) !important;
+}
+
+html[data-theme="dark"] .luxury-stat-icon-wrap,
+html[data-theme="dark"] .simple-box-icon,
+html[data-theme="dark"] .luxury-vip-icon-ring {
+    color: #f6d878 !important;
+    background: linear-gradient(135deg, rgba(231, 189, 81, 0.24), rgba(72, 197, 163, 0.14)) !important;
+    border-color: rgba(231, 189, 81, 0.62) !important;
+}
+
+html[data-theme="dark"] .luxury-card-premium,
+html[data-theme="dark"] .simple-box-item {
+    background: linear-gradient(145deg, #12382a, #0b241a) !important;
+    border-color: rgba(231, 189, 81, 0.42) !important;
+}
+
+html[data-theme="dark"] .luxury-card-premium:nth-child(2),
+html[data-theme="dark"] .simple-box-item:nth-child(2),
+html[data-theme="dark"] .experience-luxury-card:nth-child(2) {
+    border-color: rgba(72, 197, 163, 0.70) !important;
+}
+
+html[data-theme="dark"] .luxury-card-premium:nth-child(3),
+html[data-theme="dark"] .simple-box-item:nth-child(3),
+html[data-theme="dark"] .experience-luxury-card:nth-child(3) {
+    border-color: rgba(240, 161, 94, 0.76) !important;
+}
+
+html[data-theme="dark"] .luxury-card-premium:nth-child(4),
+html[data-theme="dark"] .simple-box-item:nth-child(4),
+html[data-theme="dark"] .experience-luxury-card:nth-child(4) {
+    border-color: rgba(120, 184, 232, 0.72) !important;
+}
+
+html[data-theme="dark"] .luxury-card-premium:nth-child(5),
+html[data-theme="dark"] .simple-box-item:nth-child(5),
+html[data-theme="dark"] .experience-luxury-card:nth-child(5) {
+    border-color: rgba(184, 207, 104, 0.70) !important;
+}
+
+html[data-theme="dark"] .luxury-card-title,
+html[data-theme="dark"] .simple-box-title,
+html[data-theme="dark"] .experience-card-title,
+html[data-theme="dark"] .luxury-main-heading,
+html[data-theme="dark"] .experiences-main-title {
+    color: #f7f2e4 !important;
+}
+
+html[data-theme="dark"] .luxury-card-desc,
+html[data-theme="dark"] .experience-card-desc,
+html[data-theme="dark"] .luxury-subtitle-desc,
+html[data-theme="dark"] .simple-box-item p,
+html[data-theme="dark"] .experiences-subtitle {
+    color: #b7c8bd !important;
+}
+
+html[data-theme="dark"] .luxury-tag-pill,
+html[data-theme="dark"] .hero-pill-badge {
+    color: #d7ece1 !important;
+    background: rgba(72, 197, 163, 0.13) !important;
+    border-color: rgba(72, 197, 163, 0.32) !important;
+}
+
+html[data-theme="dark"] .luxury-vip-bar {
+    background: linear-gradient(115deg, #08281d, #123d2c 58%, #423419) !important;
+    border-color: rgba(231, 189, 81, 0.55) !important;
+}
+
+html[data-theme="dark"] .luxury-vip-item:nth-child(2) .luxury-vip-icon-ring,
+html[data-theme="dark"] .luxury-vip-item:nth-child(4) .luxury-vip-icon-ring {
+    color: #83e3c3 !important;
+    border-color: rgba(72, 197, 163, 0.72) !important;
+    background: rgba(72, 197, 163, 0.17) !important;
+}
+
+html[data-theme="dark"] .luxury-vip-item:nth-child(3) .luxury-vip-icon-ring {
+    color: #f0a15e !important;
+    border-color: rgba(240, 161, 94, 0.72) !important;
+    background: rgba(240, 161, 94, 0.16) !important;
+}
+
+html[data-theme="dark"] .luxury-vip-text {
+    color: #e8f0e9 !important;
+}
+
+html[data-theme="dark"] .simple-box-item:hover,
+html[data-theme="dark"] .luxury-card-premium:hover,
+html[data-theme="dark"] .experience-luxury-card:hover {
+    background: linear-gradient(145deg, #194b37, #102b20) !important;
+    border-color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .simple-box-arrow,
+html[data-theme="dark"] .experience-card-cta,
+html[data-theme="dark"] .luxury-destinations-strip,
+html[data-theme="dark"] .luxury-price-value,
+html[data-theme="dark"] .luxury-eyebrow-pill {
+    color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .unforgettable-experiences-section,
+html[data-theme="dark"] .luxury-safari-collection-section,
+html[data-theme="dark"] .simple-boxes-section,
+html[data-theme="dark"] .instagram-section,
+html[data-theme="dark"] .travel-advice-section {
+    background:
+        radial-gradient(circle at 84% 12%, rgba(72, 197, 163, 0.08), transparent 22rem),
+        linear-gradient(180deg, #071a12 0%, #0b241a 100%) !important;
+}
+
+html[data-theme="dark"] .instagram-section .insta-follow-pill,
+html[data-theme="dark"] .insta-follow-pill {
+    color: #f7f2e4 !important;
+    background: linear-gradient(110deg, #102f23, #193e2d) !important;
+    border-color: rgba(72, 197, 163, 0.74) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30) !important;
+}
+
+html[data-theme="dark"] .insta-pill-handle,
+html[data-theme="dark"] .insta-tag-highlight {
+    color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .insta-item {
+    border-color: rgba(72, 197, 163, 0.58) !important;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32) !important;
+}
+
+html[data-theme="dark"] .insta-item:nth-child(3n+2) {
+    border-color: rgba(240, 161, 94, 0.72) !important;
+}
+
+html[data-theme="dark"] .insta-item:nth-child(3n+3) {
+    border-color: rgba(120, 184, 232, 0.72) !important;
+}
+
+html[data-theme="dark"] .tip-item-pro:nth-child(2n) .tip-icon-pro {
+    color: #f0a15e !important;
+    background: rgba(240, 161, 94, 0.15) !important;
+}
+
+html[data-theme="dark"] .tip-item-pro:nth-child(3n) .tip-icon-pro {
+    color: #78b8e8 !important;
+    background: rgba(120, 184, 232, 0.15) !important;
+}
+
+/* Content that sits on top of photography should remain light and readable. */
+html[data-theme="dark"] .card-overlay,
+html[data-theme="dark"] .hero-vignette-overlay,
+html[data-theme="dark"] .luxury-card-gradient-overlay {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .card-overlay h3,
+html[data-theme="dark"] .card-overlay p,
+html[data-theme="dark"] .hero-eyebrow,
+html[data-theme="dark"] .hero-eyebrow span,
+html[data-theme="dark"] .hero-story-lead,
+html[data-theme="dark"] .trust-pill,
+html[data-theme="dark"] .motto-text {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .hero-eyebrow,
+html[data-theme="dark"] .hero-pill-badge {
+    background-color: rgba(6, 21, 15, 0.72) !important;
+}
+
+html[data-theme="dark"] .hero-sup-script {
+    color: #f6dca7 !important;
+}
+
+/* Footer, alerts and utility panels */
+html[data-theme="dark"] .footer {
+    background: linear-gradient(120deg, #03100b 0%, #082b1e 58%, #3a2b16 100%) !important;
+    color: #f7f2e4 !important;
+    border-top: 1px solid rgba(231, 189, 81, 0.25) !important;
+}
+
+html[data-theme="dark"] .footer-col h3,
+html[data-theme="dark"] .footer .accent,
+html[data-theme="dark"] .footer i {
+    color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .footer-col p,
+html[data-theme="dark"] .footer-col a,
+html[data-theme="dark"] .footer-bottom,
+html[data-theme="dark"] .footer-bottom span {
+    color: #b7c8bd !important;
+}
+
+html[data-theme="dark"] .footer-col a:hover {
+    color: #83e3c3 !important;
+}
+
+html[data-theme="dark"] .trusted-by-section {
+    background: linear-gradient(90deg, rgba(72, 197, 163, 0.06), rgba(231, 189, 81, 0.08), rgba(240, 161, 94, 0.06)) !important;
+    border-color: rgba(231, 189, 81, 0.24) !important;
+}
+
+html[data-theme="dark"] .tripadvisor-card,
+html[data-theme="dark"] .tripadvisor-footer-box,
+html[data-theme="dark"] .read-more-btn {
+    background: linear-gradient(135deg, #12382a, #0c261b) !important;
+    border-color: rgba(231, 189, 81, 0.48) !important;
+}
+
+html[data-theme="dark"] .read-more-btn {
+    color: #f0c75e !important;
+}
+
+html[data-theme="dark"] .read-more-btn:hover {
+    color: #06150f !important;
+    background: #e7bd51 !important;
+}
+
+html[data-theme="dark"] .scroll-progress {
+    background: linear-gradient(90deg, #48c5a3, #e7bd51, #f0a15e) !important;
+}
+
+html[data-theme="dark"] :focus-visible {
+    outline: 2px solid #f0c75e !important;
+    outline-offset: 3px;
+}
+/* Soft white contrast: light paper panels keep dark mode from feeling flat. */
+html[data-theme="dark"] body {
+    background-image:
+        radial-gradient(circle at 8% 8%, rgba(255, 255, 255, 0.08), transparent 24rem),
+        radial-gradient(circle at 92% 28%, rgba(231, 189, 81, 0.08), transparent 24rem),
+        linear-gradient(145deg, #06150f 0%, #081b14 48%, #04110c 100%) !important;
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .booking-form,
+html[data-theme="dark"] .booking-sidebar,
+html[data-theme="dark"] .booking-card,
+html[data-theme="dark"] .article-card,
+html[data-theme="dark"] .highlight-card,
+html[data-theme="dark"] .why-choose-card,
+html[data-theme="dark"] .experience-card,
+html[data-theme="dark"] .safari-card,
+html[data-theme="dark"] .tip-card,
+html[data-theme="dark"] .trip-featured-card,
+html[data-theme="dark"] .trip-card,
+html[data-theme="dark"] .package-card,
+html[data-theme="dark"] .contact-card,
+html[data-theme="dark"] .contact-form,
+html[data-theme="dark"] .vehicle-card,
+html[data-theme="dark"] .review-card,
+html[data-theme="dark"] .testimonial-card,
+html[data-theme="dark"] .faq-item,
+html[data-theme="dark"] .faq-details,
+html[data-theme="dark"] .comparison-box,
+html[data-theme="dark"] .season-card,
+html[data-theme="dark"] .info-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, #12382a 25%, #0b241a 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 36px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(231, 189, 81, 0.07) !important;
+}
+
+/* A few readable paper panels give every page a clean white focal point. */
+html[data-theme="dark"] .ce-form-card,
+html[data-theme="dark"] .fa-form-panel,
+html[data-theme="dark"] .bp-card,
+html[data-theme="dark"] .pg-card,
+html[data-theme="dark"] .pg-lightbox,
+html[data-theme="dark"] .info-panel,
+html[data-theme="dark"] .sg-plan-card,
+html[data-theme="dark"] .sg-tile,
+html[data-theme="dark"] .tanapa-review-card,
+html[data-theme="dark"] .visitor-video-card,
+html[data-theme="dark"] .tripadvisor-card,
+html[data-theme="dark"] .ce-help-box,
+html[data-theme="dark"] .ce-tripadvisor-box {
+    color: #14382a !important;
+    background: linear-gradient(145deg, #fffef9 0%, #edf4ee 100%) !important;
+    border-color: rgba(231, 189, 81, 0.62) !important;
+    box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+}
+
+html[data-theme="dark"] .ce-form-card h1,
+html[data-theme="dark"] .ce-form-card h2,
+html[data-theme="dark"] .ce-form-card h3,
+html[data-theme="dark"] .ce-form-card h4,
+html[data-theme="dark"] .fa-form-panel h1,
+html[data-theme="dark"] .fa-form-panel h2,
+html[data-theme="dark"] .fa-form-panel h3,
+html[data-theme="dark"] .bp-card h1,
+html[data-theme="dark"] .bp-card h2,
+html[data-theme="dark"] .bp-card h3,
+html[data-theme="dark"] .pg-card h1,
+html[data-theme="dark"] .pg-card h2,
+html[data-theme="dark"] .pg-card h3,
+html[data-theme="dark"] .info-panel h1,
+html[data-theme="dark"] .info-panel h2,
+html[data-theme="dark"] .info-panel h3,
+html[data-theme="dark"] .sg-plan-card h3,
+html[data-theme="dark"] .sg-tile h3,
+html[data-theme="dark"] .tanapa-review-card h3,
+html[data-theme="dark"] .visitor-video-card h3,
+html[data-theme="dark"] .tripadvisor-card h3,
+html[data-theme="dark"] .ce-help-box h3,
+html[data-theme="dark"] .ce-tripadvisor-box h3 {
+    color: #14382a !important;
+}
+
+html[data-theme="dark"] .ce-form-card p,
+html[data-theme="dark"] .ce-form-card label,
+html[data-theme="dark"] .fa-form-panel p,
+html[data-theme="dark"] .fa-form-panel label,
+html[data-theme="dark"] .bp-card p,
+html[data-theme="dark"] .bp-card label,
+html[data-theme="dark"] .pg-card figcaption,
+html[data-theme="dark"] .info-panel p,
+html[data-theme="dark"] .sg-plan-card p,
+html[data-theme="dark"] .sg-tile p,
+html[data-theme="dark"] .tanapa-review-card p,
+html[data-theme="dark"] .visitor-video-card p,
+html[data-theme="dark"] .tripadvisor-card p,
+html[data-theme="dark"] .ce-help-box p,
+html[data-theme="dark"] .ce-tripadvisor-box p {
+    color: #53665c !important;
+}
+
+html[data-theme="dark"] .ce-form-card i,
+html[data-theme="dark"] .fa-form-panel i,
+html[data-theme="dark"] .bp-card i,
+html[data-theme="dark"] .info-panel i,
+html[data-theme="dark"] .sg-plan-card i,
+html[data-theme="dark"] .sg-tile i,
+html[data-theme="dark"] .visitor-video-card i,
+html[data-theme="dark"] .tripadvisor-card i {
+    color: #b78626 !important;
+}
+
+html[data-theme="dark"] .ce-form-card input,
+html[data-theme="dark"] .ce-form-card textarea,
+html[data-theme="dark"] .fa-form-panel input,
+html[data-theme="dark"] .fa-form-panel textarea,
+html[data-theme="dark"] .bp-card input,
+html[data-theme="dark"] .bp-card textarea {
+    color: #14382a !important;
+    background: rgba(255, 255, 255, 0.82) !important;
+    border-color: rgba(20, 56, 42, 0.24) !important;
+}
+
+html[data-theme="dark"] .header-brand .brand-logo-wrap,
+html[data-theme="dark"] .editorial-logo-wrap,
+html[data-theme="dark"] .site-logo,
+html[data-theme="dark"] .logo-wrap {
+    background: #fffef9 !important;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.10), 0 8px 22px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-theme="dark"] .luxury-stat-number,
+html[data-theme="dark"] .hero-title-main,
+html[data-theme="dark"] .title-word-discover {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22), 0 5px 28px rgba(0, 0, 0, 0.46) !important;
+}

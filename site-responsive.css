@@ -69,3 +69,77 @@ body .experiences-cards-grid{display:flex!important;flex-direction:row!important
 body .simple-boxes-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}body .simple-box-item{min-height:115px!important;padding:14px 10px!important;border-radius:12px!important;gap:8px!important}body .simple-box-icon{width:32px!important;height:32px!important;min-width:32px!important;margin:0!important}body .simple-box-icon i{font-size:14px!important}body .simple-box-title{font-size:14px!important;line-height:1.35!important}body .simple-box-arrow{font-size:10px!important;letter-spacing:.4px!important;margin-top:0!important}body .simple-boxes-section{padding-top:30px!important;padding-bottom:30px!important}
 body .luxury-vip-bar{padding:18px 14px!important;border-radius:12px!important}body .luxury-vip-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px 10px!important}body .luxury-vip-item{padding:0!important;gap:8px!important;min-width:0!important;border:0!important}body .luxury-vip-icon-ring{width:30px!important;height:30px!important;min-width:30px!important;margin:0!important}body .luxury-vip-icon-ring i{font-size:13px!important}body .luxury-vip-text{font-size:10px!important;line-height:1.45!important;letter-spacing:.4px!important}body .luxury-vip-item:last-child{grid-column:1/-1!important;justify-self:center!important;max-width:160px!important}
 }
+
+/* Mobile swipe rows for compact homepage card groups. */
+@media (max-width: 700px) {
+  body .luxury-stats-grid,
+  body .luxury-vip-grid,
+  body .simple-boxes-grid,
+  body .instagram-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 14px !important;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 12px;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    padding: 8px 0 18px !important;
+    scrollbar-width: thin;
+  }
+
+  body .luxury-stats-grid > .luxury-stat-item {
+    flex: 0 0 min(72vw, 250px) !important;
+    width: min(72vw, 250px) !important;
+    max-width: 250px !important;
+    min-width: 0 !important;
+    padding: 12px !important;
+    border: 1px solid rgba(212, 175, 55, 0.24) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    scroll-snap-align: start;
+  }
+  body .luxury-stats-grid > .luxury-stat-item:last-child {
+    grid-column: auto !important;
+    justify-content: flex-start !important;
+    max-width: 250px !important;
+  }
+
+  body .luxury-vip-grid > .luxury-vip-item {
+    flex: 0 0 min(72vw, 260px) !important;
+    width: min(72vw, 260px) !important;
+    max-width: 260px !important;
+    min-width: 0 !important;
+    min-height: 82px !important;
+    padding: 14px !important;
+    border: 1px solid rgba(212, 175, 55, 0.24) !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    scroll-snap-align: start;
+  }
+  body .luxury-vip-grid > .luxury-vip-item:last-child {
+    grid-column: auto !important;
+    justify-self: auto !important;
+    max-width: 260px !important;
+  }
+
+  body .simple-boxes-grid > .simple-box-item {
+    flex: 0 0 min(72vw, 230px) !important;
+    width: min(72vw, 230px) !important;
+    max-width: 230px !important;
+    min-width: 0 !important;
+    scroll-snap-align: start;
+  }
+
+  body .instagram-grid > .insta-item {
+    flex: 0 0 min(76vw, 300px) !important;
+    width: min(76vw, 300px) !important;
+    max-width: 300px !important;
+    min-width: 0 !important;
+    scroll-snap-align: start;
+  }
+}

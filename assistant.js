@@ -100,7 +100,7 @@
     if (planner.budget) params.set('budget_per_person', planner.budget.replace(/[^0-9.]/g, ''));
     if (planner.accommodation) params.set('accommodation', planner.accommodation);
     const preferences = [planner.interest, planner.timing, planner.travellers, planner.accommodation && `Accommodation: ${planner.accommodation}`, planner.budget && `Budget: ${planner.budget}`, planner.priorities].filter(Boolean).join('. ');
-    if (preferences) params.set('message', `Planned with Swala-Tina. Interests: ${preferences}`);
+    if (preferences) params.set('message', `Planned with the Century Expeditions Safari Assistant. Interests: ${preferences}`);
     return `packages.html?${params.toString()}`;
   }
 
@@ -122,13 +122,13 @@
     launcher.className = 'ce-ai-launcher';
     launcher.setAttribute('aria-controls', 'ce-ai-panel');
     launcher.setAttribute('aria-expanded', 'false');
-    launcher.setAttribute('aria-label', 'Open Swala-Tina assistant');
-    launcher.innerHTML = '<span class="ce-ai-launcher-icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></span><span class="ce-ai-launcher-text"><span>Ask Swala-Tina</span><small>Safari planning assistant</small></span>';
+    launcher.setAttribute('aria-label', state.lang === 'sw' ? 'Fungua Msaidizi wa Safari' : 'Open Safari Assistant');
+    launcher.innerHTML = `<span class="ce-ai-launcher-icon"><i class="fa-solid fa-compass-drafting" aria-hidden="true"></i></span><span class="ce-ai-launcher-text"><span>${state.lang === 'sw' ? 'Uliza Msaidizi wa Safari' : 'Ask Safari Assistant'}</span><small>${state.lang === 'sw' ? 'Msaidizi wa kupanga safari' : 'Safari planning assistant'}</small></span>`;
 
     const panel = document.createElement('section');
     panel.id = 'ce-ai-panel';
     panel.className = 'ce-ai-panel';
-    panel.setAttribute('aria-label', 'Century Expeditions Safari Assistant');
+    panel.setAttribute('aria-label', state.lang === 'sw' ? 'Msaidizi wa Safari wa Century Expeditions' : 'Century Expeditions Safari Assistant');
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-modal', 'true');
     panel.setAttribute('aria-live', 'polite');
@@ -136,20 +136,20 @@
     panel.innerHTML = `
       <header class="ce-ai-header">
         <div class="ce-ai-mark"><i class="fa-solid fa-compass" aria-hidden="true"></i></div>
-        <div class="ce-ai-heading"><h2>Swala-Tina</h2><p class="ce-ai-status">${state.lang === 'sw' ? 'Msaidizi wa safari wa Century Expeditions' : 'Century Expeditions Safari Assistant'}</p></div>
-        <button type="button" class="ce-ai-language" aria-label="Switch language">${state.lang === 'sw' ? 'EN' : 'SW'}</button>
-        <button type="button" class="ce-ai-close" aria-label="Close assistant">×</button>
+        <div class="ce-ai-heading"><h2>${state.lang === 'sw' ? 'Msaidizi wa Safari' : 'Safari Assistant'}</h2><p class="ce-ai-status">${state.lang === 'sw' ? 'Msaidizi wa safari wa Century Expeditions' : 'Century Expeditions Safari Assistant'}</p></div>
+        <button type="button" class="ce-ai-language" aria-label="${state.lang === 'sw' ? 'Badili lugha' : 'Switch language'}">${state.lang === 'sw' ? 'EN' : 'SW'}</button>
+        <button type="button" class="ce-ai-close" aria-label="${state.lang === 'sw' ? 'Funga msaidizi' : 'Close assistant'}">×</button>
       </header>
       <div class="ce-ai-messages" id="ce-ai-messages"></div>
       <form class="ce-ai-planner" id="ce-ai-planner-form" hidden>
-        <p class="ce-ai-planner-title" id="ce-ai-planner-title">Let’s plan this one step at a time</p>
+        <p class="ce-ai-planner-title" id="ce-ai-planner-title">${state.lang === 'sw' ? 'Tupange safari hatua kwa hatua' : 'Let’s plan this one step at a time'}</p>
         <div class="ce-ai-planner-question" id="ce-ai-planner-question"></div>
         <div class="ce-ai-planner-control" id="ce-ai-planner-control"></div>
-        <div class="ce-ai-planner-actions"><button class="ce-ai-plan-skip" id="ce-ai-plan-skip" type="button">Skip</button><button class="ce-ai-plan-submit" id="ce-ai-plan-submit" type="submit">Continue</button></div>
+        <div class="ce-ai-planner-actions"><button class="ce-ai-plan-skip" id="ce-ai-plan-skip" type="button">${state.lang === 'sw' ? 'Ruka' : 'Skip'}</button><button class="ce-ai-plan-submit" id="ce-ai-plan-submit" type="submit">${state.lang === 'sw' ? 'Endelea' : 'Continue'}</button></div>
       </form>
       <footer class="ce-ai-footer">
-        <div class="ce-ai-composer"><textarea class="ce-ai-input" rows="1" maxlength="1200" placeholder="Ask about Tanzania, trips or booking..."></textarea><button type="button" class="ce-ai-send" aria-label="Send question"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button></div>
-        <p class="ce-ai-privacy">For your privacy, please do not share passport numbers or detailed medical records.</p>
+        <div class="ce-ai-composer"><textarea class="ce-ai-input" rows="1" maxlength="1200" placeholder="${state.lang === 'sw' ? 'Uliza kuhusu Tanzania, safari au uhifadhi...' : 'Ask about Tanzania, trips or booking...'}"></textarea><button type="button" class="ce-ai-send" aria-label="${state.lang === 'sw' ? 'Tuma swali' : 'Send question'}"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button></div>
+        <p class="ce-ai-privacy">${state.lang === 'sw' ? 'Kwa faragha yako, tafadhali usishiriki nambari ya pasipoti au taarifa za kina za matibabu.' : 'For your privacy, please do not share passport numbers or detailed medical records.'}</p>
       </footer>`;
     document.body.append(launcher, panel);
 
@@ -251,19 +251,59 @@
     setTimeout(() => { if (!state.open) panel.hidden = true; }, 220);
   }
 
+  function refreshAssistantLanguage() {
+    const sw = state.lang === 'sw';
+    const panel = panelEl();
+    if (!panel) return;
+    panel.setAttribute('aria-label', sw ? 'Msaidizi wa Safari wa Century Expeditions' : 'Century Expeditions Safari Assistant');
+    const heading = panel.querySelector('.ce-ai-heading h2');
+    const status = panel.querySelector('.ce-ai-status');
+    const language = panel.querySelector('.ce-ai-language');
+    const closeButton = panel.querySelector('.ce-ai-close');
+    const input = panel.querySelector('.ce-ai-input');
+    const sendButton = panel.querySelector('.ce-ai-send');
+    const plannerTitle = panel.querySelector('.ce-ai-planner-title');
+    const skip = panel.querySelector('.ce-ai-plan-skip');
+    const submit = panel.querySelector('.ce-ai-plan-submit');
+    if (heading) heading.textContent = sw ? 'Msaidizi wa Safari' : 'Safari Assistant';
+    if (status) status.textContent = sw ? 'Msaidizi wa safari wa Century Expeditions' : 'Century Expeditions Safari Assistant';
+    if (language) {
+      language.textContent = sw ? 'EN' : 'SW';
+      language.setAttribute('aria-label', sw ? 'Badili lugha' : 'Switch language');
+    }
+    if (closeButton) closeButton.setAttribute('aria-label', sw ? 'Funga msaidizi' : 'Close assistant');
+    if (input) input.placeholder = sw ? 'Uliza kuhusu Tanzania, safari au uhifadhi...' : 'Ask about Tanzania, trips or booking...';
+    if (sendButton) sendButton.setAttribute('aria-label', sw ? 'Tuma swali' : 'Send question');
+    if (plannerTitle) plannerTitle.textContent = sw ? 'Tupange safari hatua kwa hatua' : 'Let’s plan this one step at a time';
+    if (skip) skip.textContent = sw ? 'Ruka' : 'Skip';
+    if (submit && state.plannerStage < 0) submit.textContent = sw ? 'Endelea' : 'Continue';
+    const privacy = panel.querySelector('.ce-ai-privacy');
+    if (privacy) privacy.textContent = sw ? 'Kwa faragha yako, tafadhali usishiriki nambari ya pasipoti au taarifa za kina za matibabu.' : 'For your privacy, please do not share passport numbers or detailed medical records.';
+    const launcher = document.querySelector('.ce-ai-launcher');
+    if (launcher) {
+      launcher.setAttribute('aria-label', sw ? 'Fungua Msaidizi wa Safari' : 'Open Safari Assistant');
+      const launcherLabel = launcher.querySelector('.ce-ai-launcher-text span');
+      const launcherHint = launcher.querySelector('.ce-ai-launcher-text small');
+      if (launcherLabel) launcherLabel.textContent = sw ? 'Uliza Msaidizi wa Safari' : 'Ask Safari Assistant';
+      if (launcherHint) launcherHint.textContent = sw ? 'Msaidizi wa kupanga safari' : 'Safari planning assistant';
+    }
+    if (state.plannerStage >= 0) renderPlannerQuestion();
+  }
+
   function toggleLanguage() {
     state.lang = state.lang === 'sw' ? 'en' : 'sw';
     try { localStorage.setItem('century-lang', state.lang); } catch (_) {}
-    const toggle = panelEl().querySelector('.ce-ai-language');
-    toggle.textContent = state.lang === 'sw' ? 'EN' : 'SW';
-    panelEl().querySelector('.ce-ai-status').textContent = state.lang === 'sw' ? 'Msaidizi wa safari wa Century Expeditions' : 'Century Expeditions Safari Assistant';
-    panelEl().querySelector('.ce-ai-input').placeholder = state.lang === 'sw' ? 'Uliza kuhusu Tanzania, safari au uhifadhi...' : 'Ask about Tanzania, trips or booking...';
-    const launcherLabel = document.querySelector('.ce-ai-launcher-text span');
-    const launcherHint = document.querySelector('.ce-ai-launcher-text small');
-    if (launcherLabel) launcherLabel.textContent = state.lang === 'sw' ? 'Uliza Swala-Tina' : 'Ask Swala-Tina';
-    if (launcherHint) launcherHint.textContent = state.lang === 'sw' ? 'Msaidizi wa kupanga safari' : 'Safari planning assistant';
-    if (state.plannerStage >= 0) renderPlannerQuestion();
+    refreshAssistantLanguage();
+    if (typeof window.applyCenturyLanguage === 'function') window.applyCenturyLanguage(state.lang);
   }
+
+  window.addEventListener('century-language-change', event => {
+    const nextLanguage = event.detail && event.detail.lang;
+    if (nextLanguage !== 'sw' && nextLanguage !== 'en') return;
+    if (state.lang === nextLanguage) return;
+    state.lang = nextLanguage;
+    refreshAssistantLanguage();
+  });
 
   function setLoading(show) {
     const existing = document.getElementById('ce-ai-loading');
@@ -543,6 +583,7 @@
 
   function start() {
     initMarkup();
+    if (typeof window.applyCenturyLanguage === 'function') window.applyCenturyLanguage(state.lang);
     loadKnowledge();
   }
 
