@@ -1,6 +1,18 @@
 .kilimanjaro-page .sg-hero{background-image:url('assets/kilimanjaro-hero-v1.png');background-position:center;min-height:580px;height:67vh;max-height:740px}
 .kilimanjaro-page .sg-hero::before{background:linear-gradient(90deg,rgba(5,28,30,.62),rgba(5,28,30,.02))}
-.kilimanjaro-page .sg-hero h1{font-size:clamp(46px,5.5vw,80px)!important;max-width:1050px}
+.kilimanjaro-page .kl-hero .sg-wrap{padding-top:118px}
+.kilimanjaro-page .kl-hero h1{font-size:clamp(45px,5.4vw,76px)!important;max-width:900px;line-height:1.02!important;letter-spacing:-1.8px!important}
+.kl-hero-badge{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;padding:10px 17px;border-radius:999px;background:#f3df42;color:#17372b;font:700 12px/1 Inter,sans-serif;letter-spacing:1.1px;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+.kl-hero-badge i{font-size:13px}
+.kl-breadcrumb{background:#fff;border-bottom:1px solid #eee5d7}
+.kl-breadcrumb .sg-wrap{display:flex;align-items:center;gap:10px;min-height:72px;font-size:13px;color:#60766b}
+.kl-breadcrumb a{color:#2d70a5;font-weight:600;text-decoration:none}
+.kl-breadcrumb i{font-size:10px;color:#a2a9a4}
+.kl-breadcrumb span{color:#2d70a5;font-weight:700}
+.kl-floating-actions{position:fixed;right:17px;top:53%;z-index:10010;display:grid;gap:10px}
+.kl-floating-actions a{display:grid;place-items:center;width:97px;min-height:39px;padding:8px 10px;border-radius:3px;background:#24618f;color:#fff!important;font:600 12px/1.1 Inter,sans-serif;text-decoration:none;box-shadow:0 6px 16px rgba(21,52,72,.2)}
+.kl-floating-actions a:last-child{background:#ef3d22}
+.kl-floating-actions a:hover{filter:brightness(1.08);transform:translateX(-2px)}
 .kilimanjaro-page .sg-facts .sg-wrap{grid-template-columns:repeat(3,1fr)}
 .kilimanjaro-page .sg-fact:last-child{border:0}
 .kilimanjaro-page .sg-fact span{letter-spacing:0;text-transform:none}
@@ -37,4 +49,4 @@
 .kilimanjaro-page .sg-cta{background:#153d2d;padding:45px 0}
 .kilimanjaro-page .sg-cta h2{font-size:36px!important}
 @media(max-width:992px){.kl-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.kl-grid.three{grid-template-columns:1fr}.kl-grid.three img{height:280px}}
-@media(max-width:640px){.kilimanjaro-page .sg-hero h1{font-size:46px!important}.kilimanjaro-page .sg-hero{min-height:620px;background-position:60% center}.kilimanjaro-page .sg-fact{padding:8px 4px}.kilimanjaro-page .sg-fact strong{font-size:13px}.kilimanjaro-page .sg-fact span{font-size:10px}.kl-two,.kl-grid.four,.kl-expect-grid{grid-template-columns:1fr}.kl-two img,.kl-grid img{height:250px}.kilimanjaro-page .kl-routes h2,.kilimanjaro-page .kl-expect h2{font-size:29px!important}.kilimanjaro-page .sg-cta-actions{flex-direction:column;align-items:flex-start}}
+@media(max-width:640px){.kilimanjaro-page .kl-hero h1{font-size:44px!important}.kilimanjaro-page .kl-hero .sg-wrap{padding-top:92px}.kilimanjaro-page .sg-hero{min-height:620px;background-position:60% center}.kilimanjaro-page .sg-fact{padding:8px 4px}.kilimanjaro-page .sg-fact strong{font-size:13px}.kilimanjaro-page .sg-fact span{font-size:10px}.kl-breadcrumb .sg-wrap{min-height:62px;gap:7px;font-size:12px;white-space:nowrap}.kl-two,.kl-grid.four,.kl-expect-grid{grid-template-columns:1fr}.kl-two img,.kl-grid img{height:250px}.kilimanjaro-page .kl-routes h2,.kilimanjaro-page .kl-expect h2{font-size:29px!important}.kilimanjaro-page .sg-cta-actions{flex-direction:column;align-items:flex-start}.kl-floating-actions{right:8px;top:50%;gap:8px}.kl-floating-actions a{width:86px;min-height:36px;padding:7px 8px;font-size:11px}}

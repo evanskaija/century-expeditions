@@ -44,3 +44,62 @@ html[data-theme="dark"] body :is(.tripadvisor-card .btn-small, .ce-tripadvisor-b
     box-shadow: 0 7px 16px rgba(0, 0, 0, .25);
     color: #10291d !important;
 }
+
+/* Quiet, site-wide WhatsApp contact tab. Keep it separate from the larger
+   Safari Assistant launcher so visitors can always reach the team directly. */
+.ce-whatsapp-float {
+    position: fixed;
+    left: 16px;
+    bottom: 18px;
+    z-index: 10019;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff !important;
+    text-decoration: none !important;
+    box-shadow: 0 8px 22px rgba(16, 77, 40, .28), 0 0 0 1px rgba(37, 211, 102, .18);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.ce-whatsapp-float i { font-size: 23px; line-height: 1; }
+.ce-whatsapp-float::after {
+    content: 'WhatsApp';
+    position: absolute;
+    left: 53px;
+    top: 50%;
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: #123d2b;
+    color: #fff;
+    font: 700 11px/1 Inter, system-ui, sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-50%) translateX(-4px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.ce-whatsapp-float:hover,
+.ce-whatsapp-float:focus-visible { transform: translateY(-2px); box-shadow: 0 11px 26px rgba(16, 77, 40, .38), 0 0 0 1px rgba(37, 211, 102, .25); }
+.ce-whatsapp-float:hover::after,
+.ce-whatsapp-float:focus-visible::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+/* The mountain is a first-class destination in the shared navigation. */
+.ce-kili-nav-link { color: #947022 !important; font-weight: 700 !important; }
+.ce-kili-nav-link i { margin-right: 5px; font-size: .9em; }
+[data-theme="dark"] .ce-kili-nav-link { color: #f1d188 !important; }
+.ce-kili-footer-link a { font-weight: 700; }
+
+@media (max-width: 560px) {
+    .ce-whatsapp-float {
+        left: 12px;
+        bottom: max(14px, env(safe-area-inset-bottom));
+        width: 42px;
+        height: 42px;
+        border-width: 2px;
+    }
+    .ce-whatsapp-float i { font-size: 21px; }
+    .ce-whatsapp-float::after { display: none; }
+}

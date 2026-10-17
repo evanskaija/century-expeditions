@@ -3,6 +3,53 @@ const root=document.documentElement, motion=matchMedia('(prefers-reduced-motion:
 const saved=()=>{try{return localStorage.getItem('century-theme');}catch{return null;}};
 function sync(){const mode=saved();root.dataset.theme=['light','dark'].includes(mode)?mode:'light';document.querySelectorAll('.theme-toggle').forEach(b=>{b.setAttribute('aria-label',root.dataset.theme==='dark'?'Switch to light mode':'Switch to dark mode');b.setAttribute('aria-pressed',String(root.dataset.theme==='dark'));});}
 sync();
+
+function addKilimanjaroLinks(){
+  const current=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('.editorial-nav-links, #mobileNavDrawer ul').forEach(nav=>{
+    if(nav.querySelector('a[href*="kilimanjaro.html"]'))return;
+    const link=document.createElement('a');
+    link.href='kilimanjaro.html';
+    link.className='ce-kili-nav-link';
+    link.setAttribute('data-en','Kilimanjaro');
+    link.setAttribute('data-sw','Kilimanjaro');
+    link.innerHTML='<i class="fa-solid fa-mountain" aria-hidden="true"></i><span>Kilimanjaro</span>';
+    if(nav.matches('ul')){
+      const item=document.createElement('li');
+      item.append(link);
+      nav.append(item);
+    }else nav.append(link);
+    if(current==='kilimanjaro.html'){
+      link.classList.add('active');
+      link.setAttribute('aria-current','page');
+    }
+  });
+  document.querySelectorAll('.footer-col').forEach(col=>{
+    const heading=col.querySelector('h3');
+    const list=col.querySelector('ul');
+    if(!heading||!list||!heading.textContent.toUpperCase().includes('POPULAR')||list.querySelector('a[href*="kilimanjaro.html"]'))return;
+    const item=document.createElement('li');
+    item.className='ce-kili-footer-link';
+    item.innerHTML='<a href="kilimanjaro.html" data-en="Kilimanjaro Climbing" data-sw="Kupanda Kilimanjaro">Kilimanjaro Climbing</a>';
+    list.append(item);
+  });
+}
+
+function addWhatsAppFloat(){
+  if(document.querySelector('.ce-whatsapp-float'))return;
+  const link=document.createElement('a');
+  link.className='ce-whatsapp-float';
+  link.href='https://wa.me/255747115390';
+  link.target='_blank';
+  link.rel='noopener';
+  link.setAttribute('aria-label','Chat with Century Expeditions on WhatsApp');
+  link.title='Chat with Century Expeditions on WhatsApp';
+  link.innerHTML='<i class="fab fa-whatsapp" aria-hidden="true"></i>';
+  document.body.append(link);
+}
+
+addKilimanjaroLinks();
+addWhatsAppFloat();
 // Classify existing light surfaces without replacing photographs or dark image overlays.
 const classified=new WeakSet();
 function classify(scope){const all=[scope,...scope.querySelectorAll('*')];all.forEach(el=>{if(!(el instanceof HTMLElement)||classified.has(el)||el.closest('script,style,svg'))return;classified.add(el);const cs=getComputedStyle(el),rgb=cs.backgroundColor.match(/[\d.]+/g);if(rgb&&rgb.length>=3&&(rgb.length<4||Number(rgb[3])>.15)&&(Number(rgb[0])+Number(rgb[1])+Number(rgb[2]))/3>155)el.classList.add('site-light-surface');if(cs.backgroundImage.includes('gradient')&&!cs.backgroundImage.includes('url(')&&/rgba?\((?:2[0-5]\d|1[6-9]\d)/.test(cs.backgroundImage))el.classList.add('site-light-gradient');});}
